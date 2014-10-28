@@ -12,3 +12,11 @@
 .restricted-width {
 	max-width: 400px;
 }
+
+.soften-text {
+	color: #555;
+}
+
+.thin-button {
+	width: 84px;
+}
