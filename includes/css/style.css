@@ -9,12 +9,9 @@
 	margin-right: auto;
 }
 
-.blue-back {
-	background-color: blue;
-}
-
-.green-back {
-	background-color: green;
+.fixed-bottom {
+	bottom: 0px;
+	position: fixed;
 }
 
 .login-position {
@@ -37,8 +34,8 @@
 	width: 104px;
 }
 
-.translucent-div {
-	background: rgba(0,0,200,0.5);
+.translucent {
+	background: rgba(200,200,200,0.2);
 }
 
 p {
