@@ -23,6 +23,14 @@
 	margin-right: 5px;
 }
 
+.no-left-padding {
+	padding-left: 0;
+}
+
+.no-right-padding {
+	padding-right: 0;
+}
+
 .restricted-width {
 	max-width: 400px;
 }
@@ -39,7 +47,7 @@
 }
 
 .thin-button {
-	width: 84px;
+	width: 64px;
 }
 
 .translucent {
