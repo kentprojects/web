@@ -12,6 +12,7 @@
 .fixed-bottom {
 	bottom: 0px;
 	position: fixed;
+	width: 100%;
 }
 
 .login-position {
@@ -27,7 +28,7 @@
 }
 
 .soften-text {
-	color: #555;
+	color: rgb(52, 73, 94);
 }
 
 .thin-button {
@@ -35,7 +36,7 @@
 }
 
 .translucent {
-	background: rgba(200,200,200,0.2);
+	background: rgba(255,255,255,0.5);
 }
 
 p {
