@@ -15,12 +15,12 @@
 	width: 100%;
 }
 
-.login-position {
-	margin-top: 12px;
+.inline-heading {
+	display: inline-block;
 }
 
-.red-back {
-	background-color: red;
+.margin-right {
+	margin-right: 5px;
 }
 
 .restricted-width {
@@ -31,8 +31,15 @@
 	color: rgb(52, 73, 94);
 }
 
+.square-btn {
+	height: 36px;
+	margin-left: 5px;
+	margin-top: -12px;
+	width: 36px;
+}
+
 .thin-button {
-	width: 104px;
+	width: 84px;
 }
 
 .translucent {
@@ -40,5 +47,5 @@
 }
 
 p {
-	font-size: 14px;
+	font-size: 13px;
 }

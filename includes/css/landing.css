@@ -9,3 +9,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.login-position {
+	margin-top: 12px;
+}
