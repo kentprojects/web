@@ -37,6 +37,10 @@
 	width: 104px;
 }
 
+.translucent-div {
+	background: rgba(0,0,200,0.5);
+}
+
 p {
 	font-size: 14px;
 }
