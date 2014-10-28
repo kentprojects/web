@@ -9,6 +9,22 @@
 	margin-right: auto;
 }
 
+.blue-back {
+	background-color: blue;
+}
+
+.green-back {
+	background-color: green;
+}
+
+.login-position {
+	margin-top: 12px;
+}
+
+.red-back {
+	background-color: red;
+}
+
 .restricted-width {
 	max-width: 400px;
 }
@@ -18,7 +34,7 @@
 }
 
 .thin-button {
-	width: 84px;
+	width: 104px;
 }
 
 p {
