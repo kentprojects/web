@@ -7,19 +7,16 @@ function switchInfoVisibility() {
 	else {
 		hideInfo();
 	}
-	switchButton();
 }
 
 function hideInfo() {
 	infoHidden = true;
-	alert("Hide info.");
+	document.getElementById("btnInfo").innerHTML = "?";
+	document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-danger\b/, "btn-info");
 }
 
 function showInfo() {
 	infoHidden = false;
-	alert("Show info.");
-}
-
-function switchButton() {
-	alert("Switch button.");
+	document.getElementById("btnInfo").innerHTML = "X";
+	document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-info\b/, "btn-danger");
 }
