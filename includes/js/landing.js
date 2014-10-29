@@ -1,6 +1,16 @@
 var backgroundImages = ["includes/img/kentbusiness.jpg","includes/img/kenteye.jpg","includes/img/students.jpg"];
 var counter = 0;
 
+/*
+ * Preload all images contained in the 'backgroundImages' array into the preLoad array.
+ */
+var preLoad = [];
+for (var i = 0; i < backgroundImages.length; i++) {
+    preLoad[i] = new Image();
+    preLoad[i].src = backgroundImages[i];
+}
+
+
 /**
  * Calls the function to change the background image every 7 seconds.
  */
@@ -12,17 +22,11 @@ window.setInterval(function(){
  * Calls the function to change the background image every 7 seconds.
  */
 function changeBackgroundImage() {
-    console.log("change");
-
     document.getElementById("slideshow-front").style.backgroundImage="url('" + backgroundImages[counter] + "')";
-
     counter = (counter + 1) % backgroundImages.length;
-
     document.getElementById("slideshow-front").style.filter = "alpha(opacity='1')";
     document.getElementById("slideshow-front").style.opacity = 1;
-
     document.getElementById("slideshow-back").style.backgroundImage="url('" + backgroundImages[counter] + "')";
-
     fadeOut("slideshow-front", 250, 250);
 }
 
