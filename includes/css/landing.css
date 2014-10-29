@@ -24,11 +24,15 @@ body {
 }
 
 #divInfo {
-	/*display: none;*/
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 5%;
 	max-width: 720px;
+}
+
+#infoContainer {
+	filter: alpha(opacity=0);
+	opacity: 0;
 }
 
 #info-title {
