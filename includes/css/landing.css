@@ -13,3 +13,7 @@ body {
 .login-position {
 	margin-top: 12px;
 }
+
+#divInfo {
+	display: none;
+}
