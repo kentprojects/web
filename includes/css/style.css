@@ -25,9 +25,11 @@
 
 .no-left-padding {
 	padding-left: 0;
+	padding-right: 11px;
 }
 
 .no-right-padding {
+	padding-left: 11px;
 	padding-right: 0;
 }
 
@@ -41,8 +43,7 @@
 
 .square-btn {
 	height: 36px;
-	margin-left: 5px;
-	margin-top: -12px;
+	margin-right: 5px;
 	width: 36px;
 }
 
