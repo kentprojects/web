@@ -1,26 +1,26 @@
 /**
- * Increases the opacity of the given element by 1% every 4ms until the opacity is one.
+ * Increases the opacity of the given element by 2% every 1ms until the opacity is one.
  *@param {String} elem Contains the id of the element for which the opacity is being increased.
  *@param {Number} num The integer value signifying the percentage opacity of the element.
  */
 function fadeIn(elem, num) {
   document.getElementById(elem).style.filter = "alpha(opacity=" + num + ")";
-  document.getElementById(elem).style.opacity = num/100;
-  if (num < 100) {
-    window.setTimeout(function(){fadeIn(elem, num+1)},4);
+  document.getElementById(elem).style.opacity = num/50;
+  if (num < 50) {
+    window.setTimeout(function(){fadeIn(elem, num+1)},1);
   }
 }
 
 /**
- * Decreases the opacity of the given element by 1% every 4ms until the opacity is zero.
+ * Decreases the opacity of the given element by 2% every 1ms until the opacity is zero.
  *@param {String} elem Contains the id of the element for which the opacity is being decreased.
  *@param {Number} num The integer value signifying the percentage opacity of the element.
  */
 function fadeOut(elem, num) {
   document.getElementById(elem).style.filter = "alpha(opacity=" + num + ")";
-  document.getElementById(elem).style.opacity = num/100;
+  document.getElementById(elem).style.opacity = num/50;
   if (num > 0) {
-    window.setTimeout(function(){fadeOut(elem, num-1)},4);
+    window.setTimeout(function(){fadeOut(elem, num-1)},1);
   }
 }
 
@@ -29,7 +29,7 @@ function fadeOut(elem, num) {
  */
 function hideInfo() {
   document.getElementById("btnInfo").innerHTML = "?";
-  fadeOut("infoContainer", 100);
+  fadeOut("infoContainer", 50);
   document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-danger\b/, "btn-info");
 }
 
