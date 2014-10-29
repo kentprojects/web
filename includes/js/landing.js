@@ -10,7 +10,6 @@ for (var i = 0; i < backgroundImages.length; i++) {
     preLoad[i].src = backgroundImages[i];
 }
 
-
 /**
  * Calls the function to change the background image every 7 seconds.
  */
