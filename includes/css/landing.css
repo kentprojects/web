@@ -28,6 +28,8 @@ body {
 	margin-right: auto;
 	margin-top: 5%;
 	max-width: 720px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #infoContainer {
