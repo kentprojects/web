@@ -3,6 +3,10 @@
     margin-bottom: 10px;
 }
 
+.center-in-row {
+    float: none;
+}
+
 .center-item {
     display:block;
     margin-left: auto;
