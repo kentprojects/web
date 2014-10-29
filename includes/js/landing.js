@@ -4,6 +4,7 @@
  *@param {Number} num The integer value signifying the percentage opacity of the element.
  */
 function fadeIn(elem, num) {
+	document.getElementById(elem).style.filter = "alpha(opacity=" + num + ")";
 	document.getElementById(elem).style.opacity = num/100;
 	if (num < 100) {
 		window.setTimeout(function(){fadeIn(elem, num+1)},4);
@@ -16,6 +17,7 @@ function fadeIn(elem, num) {
  *@param {Number} num The integer value signifying the percentage opacity of the element.
  */
 function fadeOut(elem, num) {
+	document.getElementById(elem).style.filter = "alpha(opacity=" + num + ")";
 	document.getElementById(elem).style.opacity = num/100;
 	if (num > 0) {
 		window.setTimeout(function(){fadeOut(elem, num-1)},4);
