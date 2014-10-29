@@ -1,3 +1,15 @@
+var backgroundImages = ["includes/img/kentbusiness.jpg","includes/img/kenteye.jpg","includes/img/students.jpg"];
+var counter = 1;
+
+window.setInterval(function(){
+    changeBackgroundImage();
+}, 7000);
+
+function changeBackgroundImage() {
+    document.body.style.backgroundImage="url('" + backgroundImages[counter] + "')";
+    counter=(counter+1)%backgroundImages.length;
+}
+
 /**
  * Increases the opacity of the given element by 2% every 1ms until the opacity is one.
  *@param {String} elem Contains the id of the element for which the opacity is being increased.
