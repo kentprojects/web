@@ -1,5 +1,6 @@
 var backgroundImages = ["includes/img/kentbusiness.jpg","includes/img/kenteye.jpg","includes/img/students.jpg"];
 var counter = 0;
+var infoFadeSpeed = 30;
 
 /*
  * Preload all images contained in the 'backgroundImages' array into the preLoad array.
@@ -21,12 +22,12 @@ window.setInterval(function(){
  * Calls the function to change the background image every 7 seconds.
  */
 function changeBackgroundImage() {
-    document.getElementById("slideshow-front").style.backgroundImage="url('" + backgroundImages[counter] + "')";
+    document.getElementById("slideshow-front").style.backgroundImage = "url('" + backgroundImages[counter] + "')";
     counter = (counter + 1) % backgroundImages.length;
     document.getElementById("slideshow-front").style.filter = "alpha(opacity='1')";
     document.getElementById("slideshow-front").style.opacity = 1;
-    document.getElementById("slideshow-back").style.backgroundImage="url('" + backgroundImages[counter] + "')";
-    fadeOut("slideshow-front", 250, 250);
+    document.getElementById("slideshow-back").style.backgroundImage = "url('" + backgroundImages[counter] + "')";
+    fadeOut("slideshow-front", 50, 50, 1000);
 }
 
 /**
@@ -34,11 +35,11 @@ function changeBackgroundImage() {
  *@param {String} elem Contains the id of the element for which the opacity is being increased.
  *@param {Number} num The integer value signifying the percentage opacity of the element.
  */
-function fadeIn(elem, num, max) {
+function fadeIn(elem, num, max, time) {
     document.getElementById(elem).style.filter = "alpha(opacity=" + num + ")";
     document.getElementById(elem).style.opacity = num/max;
-    if (num < 50) {
-        window.setTimeout(function(){fadeIn(elem, num+1, max)},1);
+    if (num < infoFadeSpeed) {
+        window.setTimeout(function(){ fadeIn(elem, num+1, max, time) }, time / max);
     }
 }
 
@@ -47,11 +48,11 @@ function fadeIn(elem, num, max) {
  *@param {String} elem Contains the id of the element for which the opacity is being decreased.
  *@param {Number} num The integer value signifying the percentage opacity of the element.
  */
-function fadeOut(elem, num, max) {
+function fadeOut(elem, num, max, time) {
     document.getElementById(elem).style.filter = "alpha(opacity=" + num + ")";
-    document.getElementById(elem).style.opacity = num/max;
+    document.getElementById(elem).style.opacity = num / max;
     if (num > 0) {
-        window.setTimeout(function(){fadeOut(elem, num-1, max)},1);
+        window.setTimeout(function(){ fadeOut(elem, num-1, max, time) }, time / max);
     }
 }
 
@@ -60,7 +61,7 @@ function fadeOut(elem, num, max) {
  */
 function hideInfo() {
     document.getElementById("btnInfo").innerHTML = "?";
-    fadeOut("infoContainer", 50, 50);
+    fadeOut("infoContainer", infoFadeSpeed, infoFadeSpeed, infoFadeSpeed * 10);
     document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-danger\b/, "btn-info");
 }
 
@@ -69,7 +70,7 @@ function hideInfo() {
  */
 function showInfo() {
     document.getElementById("btnInfo").innerHTML = "X";
-    fadeIn("infoContainer", 0, 50);
+    fadeIn("infoContainer", 0, infoFadeSpeed, infoFadeSpeed * 10);
     document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-info\b/, "btn-danger");
 }
 
