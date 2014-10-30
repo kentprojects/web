@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kent Projects Successful Login</title>
+        <link rel="shortcut icon" href="includes/img/kp.ico">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="includes/css/flat-ui-pro.min.css" rel="stylesheet">
+        <link href="includes/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center" id="title">Logging in to KentProjects</h1>
+            </div>
+            <div class="row">
+				<p id="loading">Hold on a sec...</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 big-margin center-in-row center-item">
+                    <a href="/" class="btn btn-block btn-md btn-danger center-item restricted-width"> Back to landing page </a>
+                </div>
+            </div>
+            <footer class="row">
+                <hr/>
+                <p class="big-margin soften-text text-center"> &copy; 2014. James Dryden, Matt House, Matt Weeks </p>
+            </footer>
+        </div>
+		<script src="/includes/js/ajax.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			function CheckAuthentication()
+			{
+				API.POST("/auth/confirm?auth="+window.location.hash.substr(1), {}, function () {
+					document.getElementById("title").innerText = "Logged In to KentProjects";
+					document.getElementById("loading").innerText = "Hello, Bob!";
+				});
+			}
+			
+			setTimeout(CheckAuthentication, 100);
+		</script>
+    </body>
+</html>
