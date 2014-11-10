@@ -32,10 +32,20 @@
 		<script type="text/javascript">
 			function CheckAuthentication()
 			{
-				API.POST("/auth/confirm?auth="+window.location.hash.substr(1), {}, function () {
-					document.getElementById("title").innerText = "Logged In to KentProjects";
-					document.getElementById("loading").innerText = "Hello, Bob!";
-				});
+				API.POST(
+					"/auth/confirm?auth="+window.location.hash.substr(1),
+					{},
+					function(data) {
+						console.log(data);
+						document.getElementById("title").innerText = "Logged In to KentProjects";
+						document.getElementById("loading").innerText = "Hello, Bob!";
+					},
+					function(data) {
+						console.error(data);
+						document.getElementById("title").innerText = "Failed to login with KentProjects";
+						document.getElementById("loading").innerText = "No, Bob. No.";
+					}
+				);
 			}
 			
 			setTimeout(CheckAuthentication, 100);
