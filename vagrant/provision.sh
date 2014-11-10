@@ -7,8 +7,9 @@
 
 locale-gen en_GB.UTF-8
 
-apt-get update
-apt-get install -y apache2
+apt-get update &&
+apt-get install -y apache2 &&
+apt-get install -y php5 php5-cli php5-curl php5-json
 
 if [ "$?" != "0" ]; then
 	echo "Something went wrong trying to install the packages. Aborting."
