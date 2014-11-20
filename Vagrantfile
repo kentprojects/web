@@ -12,6 +12,9 @@ Vagrant.configure("2") do |config|
 	config.vm.network "private_network", ip: "172.16.1.12"
 	config.vm.provision "shell", path: "vagrant/provision.sh"
 	config.vm.provider :virtualbox do |vb|
+    	vb.name = "kentprojects-web-dev"
+	end
+	config.vm.provider "parallels" do |vb|
 		vb.name = "kentprojects-web-dev"
 	end
 end
