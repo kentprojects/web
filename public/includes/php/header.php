@@ -5,9 +5,22 @@
 				<h4 class="inline-heading whiteText"> Kent Projects </h4>
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4 login-position no-left-padding alignRight">
-				<span class="fui-gear iconSize whiteText"></span>
-				<span class="fui-exit iconSize whiteText"></span>
+				<span class="fui-gear iconSize whiteText" onclick="clickSettings()"></span>
+				<span class="fui-exit iconSize whiteText" onclick="clickLogOut()"></span>
 			</div>
 		</div>
 	</div>
 </header>
+
+<script>
+	function clickLogOut() {
+		if (confirm("Are you sure you want to log out?")) {
+			//TODO: Implement logout.
+			alert("You selected log out...")
+		}
+	}
+
+	function clickSettings() {
+
+	}
+</script>
