@@ -8,6 +8,13 @@
 				<span class="fui-gear iconSize whiteText" onclick="clickSettings()"></span>
 				<span class="fui-exit iconSize whiteText" onclick="clickLogOut()"></span>
 			</div>
+			<div class="" id="settingsMenu">
+				<ul id="settingsList">
+					<li class="settingsMenuOption">Option 1</li>
+					<li class="settingsMenuOption">Option 2</li>
+					<li class="settingsMenuOption">Option 3</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </header>
@@ -21,6 +28,6 @@
 	}
 
 	function clickSettings() {
-
+		
 	}
 </script>
