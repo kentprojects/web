@@ -1,7 +1,38 @@
+/* Header and footer styles */
+.alignRight {
+    text-align: right;
+}
+
 .big-margin {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.icon-size, span {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+}
+
+.kentBlueBackground {
+    background-color: #013984;
+}
+
+.lightBlueBackground {
+    background-color: #89B;
+}
+
+.soften-text {
+    color: rgb(52, 73, 94);
+}
+
+.whiteText {
+    color: #FEFEFF;
+}
+
+/* End of Header footer styles */
+
+/* Other stuff */
 
 .center-in-row {
     float: none;
@@ -39,10 +70,6 @@
 
 .restricted-width {
     max-width: 400px;
-}
-
-.soften-text {
-    color: rgb(52, 73, 94);
 }
 
 .square-btn {
