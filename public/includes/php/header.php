@@ -23,7 +23,8 @@
 	function clickLogOut() {
 		if (confirm("Are you sure you want to log out?")) {
 			//TODO: Implement logout.
-			alert("Nah, we can't do that yet...")
+			alert("Nah, we can't do that yet, we'll just redirect you...")
+			window.location.href = ("/");
 		}
 	}
 
