@@ -1,4 +1,8 @@
 /* Header and footer styles */
+body {
+    width: 100%;
+}
+
 .alignRight {
     text-align: right;
 }
@@ -8,10 +12,8 @@
     margin-bottom: 10px;
 }
 
-.icon-size, span {
-    display: inline-block;
-    height: 40px;
-    width: 40px;
+.hideOnLoad {
+    display: none;
 }
 
 .kentBlueBackground {
@@ -20,6 +22,10 @@
 
 .lightBlueBackground {
     background-color: #89B;
+}
+
+.settingsMenuOption {
+    width: 100%;
 }
 
 .soften-text {

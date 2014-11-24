@@ -8,8 +8,8 @@
 				<span class="fui-gear iconSize whiteText" onclick="clickSettings()"></span>
 				<span class="fui-exit iconSize whiteText" onclick="clickLogOut()"></span>
 			</div>
-			<div class="" id="settingsMenu">
-				<ul id="settingsList">
+			<div class="hideOnLoad" id="settingsMenu">
+				<ul class="whiteText" id="settingsList">
 					<li class="settingsMenuOption">Option 1</li>
 					<li class="settingsMenuOption">Option 2</li>
 					<li class="settingsMenuOption">Option 3</li>
@@ -23,11 +23,16 @@
 	function clickLogOut() {
 		if (confirm("Are you sure you want to log out?")) {
 			//TODO: Implement logout.
-			alert("You selected log out...")
+			alert("Nah, we can't do that yet...")
 		}
 	}
 
 	function clickSettings() {
-		
+		if (document.getElementById("settingsMenu").style.display == "none") {
+			document.getElementById("settingsMenu").style.display = "block";
+		}
+		else {
+			document.getElementById("settingsMenu").style.display = "none";
+		}
 	}
 </script>
