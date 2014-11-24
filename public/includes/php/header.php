@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-xs-8 col-sm-8 col-md-8 no-right-padding">
 				<!-- TODO: Change link to actual dashboard link -->
-				<h4 class="inline-heading whiteText"><a href="#dashboard"> Kent Projects </a></h4>
+				<a href="#dashboard"><h4 class="inline-heading whiteText"> Kent Projects </h4></a>
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4 login-position no-left-padding alignRight">
 				<span class="fui-gear iconSize whiteText" onclick="clickSettings()"></span>
@@ -11,9 +11,9 @@
 			</div>
 			<div class="hideOnLoad" id="settingsMenu">
 				<ul class="whiteText" id="settingsList">
-					<li class="settingsMenuOption">Option 1</li>
-					<li class="settingsMenuOption">Option 2</li>
-					<li class="settingsMenuOption">Option 3</li>
+					<li class="settingsMenuOption"><a class="whiteText" href="#option1">Option 1</a></li>
+					<li class="settingsMenuOption"><a class="whiteText" href="#option2">Option 2</a></li>
+					<li class="settingsMenuOption whiteText"><a class="whiteText" href="#option3">Option 3</a></li>
 				</ul>
 			</div>
 		</div>

@@ -24,6 +24,11 @@ body {
     background-color: #89B;
 }
 
+.removeLinkStyle {
+    color: inherit;
+    text-decoration: none;
+}
+
 .settingsMenuOption {
     width: 100%;
 }
@@ -33,6 +38,10 @@ body {
 }
 
 .whiteText {
+    color: #FEFEFF;
+}
+
+.whiteText:hover {
     color: #FEFEFF;
 }
 
