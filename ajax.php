@@ -113,9 +113,9 @@ try
 	$API = (object) array(
 		"authentication" => (object) array(
 			"expires" => 300,
-			"key" => "1234",
-			"salt" => "kylie",
-			"secret" => "5678"
+			"key" => "77bf0b0815ce058841d74298394643ab",
+			"salt" => "aboard-hay-fish-grass",
+			"secret" => "7ede1f827d744b39666214441122764c"
 		),
 		"baseurl" => "http://api".(DEVELOPMENT ? ".dev" : "").".kentprojects.com",
 		"headers" => array(
