@@ -1,7 +1,58 @@
+/* Header and footer styles */
+body {
+    width: 100%;
+}
+
+.alignRight {
+    text-align: right;
+}
+
 .big-margin {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.hideOnLoad {
+    display: none;
+}
+
+.kentBlueBackground {
+    background-color: #013984;
+}
+
+.lightBlueBackground {
+    background-color: #89B;
+}
+
+.listLink {
+    display: block;
+    width: 100%;
+}
+
+.removeLinkStyle {
+    color: inherit;
+    text-decoration: none;
+}
+
+.settingsMenuOption {
+    width: 100%;
+}
+
+.soften-text {
+    color: rgb(52, 73, 94);
+}
+
+.whiteText {
+    color: #FEFEFF;
+}
+
+.whiteText:hover {
+    color: #FEFEFF;
+}
+
+/* End of Header footer styles */
+
+/* Other stuff */
 
 .center-in-row {
     float: none;
@@ -39,10 +90,6 @@
 
 .restricted-width {
     max-width: 400px;
-}
-
-.soften-text {
-    color: rgb(52, 73, 94);
 }
 
 .square-btn {
