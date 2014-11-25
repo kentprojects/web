@@ -58,6 +58,12 @@ body {
     color: rgb(52, 73, 94);
 }
 
+.smallerMobileHeading {
+    font-size: 28px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 .topBlueBorder {
     border-color: #013984;
     border-style: solid;
@@ -71,6 +77,18 @@ body {
 .whiteText:hover {
     color: #FEFEFF;
 }
+
+/* On mobile landscape */
+@media only screen 
+and (min-width : 321px) {
+    .smallerMobileHeading {
+        font-size: 20px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+}
+
+
 
 /* End of Header footer styles */
 

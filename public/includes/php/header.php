@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xs-8 col-sm-8 col-md-8 no-right-padding">
                 <!-- TODO: Change link to actual dashboard link. -->
-                <a href="#dashboard"><h4 class="inline-heading whiteText"> Kent Projects </h4></a>
+                <a href="#dashboard"><h4 class="inline-heading smallerMobileHeading whiteText"> Kent Projects </h4></a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 login-position no-left-padding alignRight">
                 <span class="fui-gear iconSize whiteText" onclick="clickSettings()"></span>
