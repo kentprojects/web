@@ -25,9 +25,8 @@ body {
     color: #FEFEFF;
 }
 
-/* On mobile landscape */
-@media only screen 
-and (min-width : 321px) {
+/* When on landscape on mobile */
+@media (orientation:landscape) and (max-device-width: 568px) { 
     .smallerMobileHeading {
         font-size: 20px;
         margin-bottom: 5px;
