@@ -61,7 +61,7 @@ body {
 .topBlueBorder {
     border-color: #013984;
     border-style: solid;
-    border-width: 1px;
+    border-width: 1px 0 0 0;
 }
 
 .whiteText {
