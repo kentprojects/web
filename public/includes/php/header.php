@@ -12,11 +12,11 @@
 		</div>
 		<div class="row">
 			<div class="hideOnLoad" id="settingsMenu">
-				<ul class="whiteText" id="settingsList">
+				<ul class="noBullets whiteText" id="settingsList">
 					<!-- TODO: Replace with proper links and options text. -->
-					<li class="settingsMenuOption"><a class="listLink whiteText" href="#option1">Option 1</a></li>
-					<li class="settingsMenuOption"><a class="listLink whiteText" href="#option2">Option 2</a></li>
-					<li class="settingsMenuOption"><a class="listLink whiteText" href="#option3">Option 3</a></li>
+					<li class="settingsMenuOption slightLeftPadding topBlueBorder"><a class="kentBlueText listLink" href="#option1">Option 1</a></li>
+					<li class="settingsMenuOption slightLeftPadding topBlueBorder"><a class="kentBlueText listLink" href="#option2">Option 2</a></li>
+					<li class="settingsMenuOption slightLeftPadding topBlueBorder"><a class="kentBlueText listLink" href="#option3">Option 3</a></li>
 				</ul>
 			</div>
 		</div>
