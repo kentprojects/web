@@ -58,7 +58,10 @@ final class Auth
 	 */
 	public static function redirect($code)
 	{
-		Session::set("redirect-from", $_SERVER["REQUEST_URI"]);
+		if ($_SERVER["REQUEST_URI"] !== "/login.php")
+		{
+			Session::set("redirect-from", $_SERVER["REQUEST_URI"]);
+		}
 		redirect(API::GetURL() . "/auth/internal?auth=" . $code);
 	}
 }
