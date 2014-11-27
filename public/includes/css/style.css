@@ -7,8 +7,16 @@ body {
     text-align: right;
 }
 
+.hoverHand:hover {
+    cursor: pointer;
+}
+
 .kentBlueBackground {
     background-color: #013984;
+}
+
+.marginLeft10 {
+    margin-left: 10px;
 }
 
 .smallerMobileHeading {
