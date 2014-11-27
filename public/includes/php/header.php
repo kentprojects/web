@@ -6,8 +6,8 @@
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 login-position no-left-padding alignRight">
                 <a href="profile.php"><span class="fui-user smallerMobileHeading whiteText"></span></a>
-                <a href="settings.php"><span class="fui-gear smallerMobileHeading whiteText"></span></a>
-                <a href="#"><span class="fui-exit smallerMobileHeading whiteText" onclick="logoutUser()"></span></a>
+                <a href="settings.php"><span class="fui-gear marginLeft10 smallerMobileHeading whiteText"></span></a>
+                <span class="fui-exit hoverHand marginLeft10 smallerMobileHeading whiteText" onclick="logoutUser()"></span>
             </div>
         </div>
     </div>
