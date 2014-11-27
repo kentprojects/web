@@ -37,6 +37,14 @@ final class Auth
 	}
 
 	/**
+	 * @return stdClass|null
+	 */
+	public static function getUser()
+	{
+		return Session::get("user");
+	}
+
+	/**
 	 * @return bool
 	 */
 	public static function isLoggedIn()

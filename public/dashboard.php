@@ -1,3 +1,18 @@
+<?php
+if (!Auth::isLoggedIn())
+{
+	/**
+	 * Everyday I'm error~ing.
+	 */
+	echo "You must be logged in to see this!";
+	exit();
+}
+
+$user = Auth::getUser();
+
+$projects = API::Request(API::GET, "/projects", array("fields" => "id,name,supervisor"));
+$supervisors = API::Request(API::GET, "/supervisors");
+?>
 <!doctype html>
 <html lang="en">
     <head>
