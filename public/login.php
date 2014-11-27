@@ -35,6 +35,33 @@ if (!empty($_GET["auth"]))
 	Auth::redirect($_GET["auth"]);
 	exit();
 }
+
+$people = array(
+	"f4dfeada0e91e1791a80da1bb26a7d96" => array(
+		"role" => "staff",
+		"username" => "J.C.Hernandez-Castro"
+	),
+	"1e9a755d73865da9068f079d81402ce7" => array(
+		"role" => "staff",
+		"username" => "J.S.Crawford"
+	),
+	"6f2653c2a1c64220e3d2a713cc52b438" => array(
+		"role" => "staff",
+		"username" => "supervisor2"
+	),
+	"1f18ed87771daf095e090916cb9423e4" => array(
+		"role" => "student",
+		"username" => "mh471"
+	),
+	"1460357d62390ab9b3b33fa1a0618a8f" => array(
+		"role" => "student",
+		"username" => "jsd24"
+	),
+	"930144ea545ce754789b15074106bc36" => array(
+		"role" => "student",
+		"username" => "mjw59"
+	),
+);
 ?>
 <!doctype html>
 <html lang="en">
@@ -54,24 +81,13 @@ if (!empty($_GET["auth"]))
                 <h1 class="text-center"> Log in to Kent Projects! </h1>
             </div>
             <div class="row">
+				<?php foreach($people as $code => $person) { ?>
                 <div class="col-xs-12 col-sm-6 col-md-4 big-margin">
-                    <a href="?auth=f4dfeada0e91e1791a80da1bb26a7d96" class="btn btn-block btn-md btn-primary center-item restricted-width"> Log in as Convenor </a>
+                    <a href="?auth=<?php echo $code;?>" class="btn btn-block btn-md btn-primary center-item restricted-width">
+						Log in as <?php echo strtoupper($person["username"]);?> (<?php echo $person["role"];?>)
+					</a>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 big-margin">
-                    <a href="?auth=1e9a755d73865da9068f079d81402ce7" class="btn btn-block btn-md btn-primary center-item restricted-width"> Log in as Supervisor 1 </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 big-margin">
-                    <a href="?auth=6f2653c2a1c64220e3d2a713cc52b438" class="btn btn-block btn-md btn-primary center-item restricted-width"> Log in as Supervisor 2 </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 big-margin">
-                    <a href="?auth=1f18ed87771daf095e090916cb9423e4" class="btn btn-block btn-md btn-primary center-item restricted-width"> Log in as Student 1 </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 big-margin">
-                    <a href="?auth=1460357d62390ab9b3b33fa1a0618a8f" class="btn btn-block btn-md btn-primary center-item restricted-width"> Log in as Student 2 </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 big-margin">
-                    <a href="?auth=930144ea545ce754789b15074106bc36" class="btn btn-block btn-md btn-primary center-item restricted-width"> Log in as Student 3 </a>
-                </div>
+				<?php } ?>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4 big-margin center-in-row center-item">
