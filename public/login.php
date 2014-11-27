@@ -84,7 +84,7 @@ $people = array(
 				<?php foreach($people as $code => $person) { ?>
                 <div class="col-xs-12 col-sm-6 col-md-4 big-margin">
                     <a href="?auth=<?php echo $code;?>" class="btn btn-block btn-md btn-primary center-item restricted-width">
-						Log in as <?php echo strtoupper($person["username"]);?> (<?php echo $person["role"];?>)
+						Log in as <?php echo strtoupper($person["username"]);?> (<?php echo ucfirst($person["role"]);?>)
 					</a>
                 </div>
 				<?php } ?>
