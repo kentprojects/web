@@ -5,9 +5,9 @@
                 <a href="dashboard.php"><h4 class="inline-heading smallerMobileHeading whiteText"> Kent Projects </h4></a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 login-position no-left-padding alignRight">
-                <a href="profile.php"><span class="fui-user iconSize whiteText"></span></a>
-                <a href="settings.php"><span class="fui-gear iconSize whiteText"></span></a>
-                <span class="fui-exit iconSize whiteText" onclick="logoutUser()"></span>
+                <a href="profile.php"><span class="fui-user iconSize smallerMobileHeading whiteText"></span></a>
+                <a href="settings.php"><span class="fui-gear iconSize smallerMobileHeading whiteText"></span></a>
+                <a href="#"><span class="fui-exit iconSize smallerMobileHeading whiteText" onclick="logoutUser()"></span></a>
             </div>
         </div>
     </div>
