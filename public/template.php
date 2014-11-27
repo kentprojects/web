@@ -9,8 +9,7 @@
         <link href="/includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="/includes/css/flat-ui-pro.min.css" rel="stylesheet">
         <link href="/includes/css/style.css" rel="stylesheet">
-        <link href="/includes/js/konami.js">
-        <script>
+        <script src="/includes/js/konami.js">
             var easter_egg = new Konami(function() { alert('Konami code!')});
             easter_egg.load();
         </script>
