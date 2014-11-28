@@ -19,7 +19,7 @@ require_once __DIR__."/../private/bootstrap.php";
         <div class="container">
             <div class="row">
                 <h1> Profile </h1>
-                <p> This be your profile page, <?php Session::get("user");?> </p>
+                <p> This be your profile page, <?php echo Session::get("user");?> </p>
             </div>
         </div>
         <?php include 'includes/php/footer.php'; ?>
