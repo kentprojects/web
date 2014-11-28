@@ -2,10 +2,7 @@
 require_once __DIR__."/../private/bootstrap.php";
 if (!Auth::isLoggedIn())
 {
-	/**
-	 * Everyday I'm error~ing.
-	 */
-	echo "You must be logged in to see this!";
+	redirect("/login.php");
 	exit();
 }
 
