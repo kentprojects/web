@@ -1,3 +1,7 @@
+<?php
+$prerequisites = array("authentication");
+require_once __DIR__."/../private/bootstrap.php";
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -15,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <h1> Profile </h1>
-                <p> This be your profile page... </p>
+                <p> This be your profile page, <?php Session::get("user");?> </p>
             </div>
         </div>
         <?php include 'includes/php/footer.php'; ?>
