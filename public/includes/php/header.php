@@ -19,9 +19,7 @@
      */
     function logoutUser() {
         if (confirm("Are you sure you want to log out?")) {
-            //TODO: Implement logout.
-            alert("Hah, you thought you were logged in to begin with... Here's the landing page.")
-            window.location.href = ("/");
+            window.location.href = ("/logout.php");
         }
     }
 </script>
