@@ -21,6 +21,7 @@ $user = Auth::getUser();
         <div class="container">
             <div class="row">
                 <h1> Profile </h1>
+				<pre><?php print_r($user);?></pre>
                 <p> This be your profile page, <?php echo $user->first_name;?> </p>
             </div>
         </div>
