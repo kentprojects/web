@@ -15,4 +15,4 @@
         <p> This be your profile page, <?php echo $user->first_name;?> </p>
     </div>
 </div>
-<?php include PUBLIC_DIR.'/includes/php/footer.php'; ?>
+<?php require PUBLIC_DIR.'/includes/php/footer.php'; ?>

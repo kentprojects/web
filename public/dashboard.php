@@ -18,4 +18,4 @@
         <p> Start with this stuff... </p>
     </div>
 </div>
-<?php include PUBLIC_DIR.'/includes/php/footer.php'; ?>
+<?php require PUBLIC_DIR.'/includes/php/footer.php'; ?>
