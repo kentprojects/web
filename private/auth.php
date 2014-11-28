@@ -53,15 +53,15 @@ final class Auth
 	}
 
 	/**
-	 * @param string $code
+	 * @param string $code Code is only optional for our Fake SSO.
 	 * @return void
 	 */
-	public static function redirect($code)
+	public static function redirect($code = null)
 	{
 		if ($_SERVER["REQUEST_URI"] !== "/login.php")
 		{
 			Session::set("redirect-from", $_SERVER["REQUEST_URI"]);
 		}
-		redirect(API::GetURL() . "/auth/internal?auth=" . $code);
+		redirect(API::GetURL() . (empty($code) ? "/auth/sso" : "/auth/internal?auth=" . $code));
 	}
 }
