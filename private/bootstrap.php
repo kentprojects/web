@@ -11,11 +11,18 @@ require_once __DIR__."/auth.php";
 require_once __DIR__."/functions.php";
 require_once __DIR__."/session.php";
 
-if(in_array("authentication", $prerequisites))
+while(!empty($prerequisites))
 {
-	if (!Auth::isLoggedIn())
+	switch(array_shift($prerequisites))
 	{
-		redirect("/login.php");
-		exit();
+		case "authentication":
+			if (!Auth::isLoggedIn())
+			{
+				redirect("/login.php");
+				exit();
+			}
+			break;
+		case "supervisor":
+			break;
 	}
 }
