@@ -1,0 +1,20 @@
+ img-origins
+-=-=-=-=-=-=-
+
+campus.jpg - from the web
+page: http://www.kent.ac.uk/parents/choosing/choosing-a-university.html
+imgURL: http://www.kent.ac.uk/parents/images/Aerial%20shot%20of%20Canterbury%20campus%20(whole%20campus).jpg
+
+kentbusiness.jpg - from the web
+page: http://www.kent.ac.uk/news/kentlife/667/building-plans-on-council-portal
+imgURL: https://news.kent.ac.uk/app/uploads/2014/06/KBSSMSAS_artistimpression-1024x682.jpg
+
+kenteye.jpg - from the web
+page: http://www.kent.ac.uk/news/kentlife/2239/kent-celebrates-50th-year
+imgURL: https://news.kent.ac.uk/app/uploads/2014/09/Kent-Eye1-1024x682.jpg
+
+kp.ico - created for this project
+
+students.jpg - from the web
+page: http://www.kent.ac.uk/news/kentlife/2446/kent-up-to-24th-in-table-of-tables
+imgURL: https://news.kent.ac.uk/app/uploads/2012/01/SU_0019-1024x682.jpg

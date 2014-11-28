@@ -1,0 +1,119 @@
+/* Header footer styles */
+body {
+    width: 100%;
+}
+
+.alignRight {
+    text-align: right;
+}
+
+.hoverHand:hover {
+    cursor: pointer;
+}
+
+.kentBlueBackground {
+    background-color: #013984;
+}
+
+.marginLeft10 {
+    margin-left: 10px;
+}
+
+.smallerMobileHeading {
+    font-size: 28px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.whiteText {
+    color: #FEFEFF;
+}
+
+.whiteText:hover {
+    color: #FEFEFF;
+}
+
+#pageContent {
+    padding: 0 10px;
+}
+
+/* When on landscape on mobile */
+@media (orientation:landscape) and (max-device-width: 568px) { 
+    .smallerMobileHeading {
+        font-size: 20px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+}
+
+/* End of Header footer styles */
+
+/* Other stuff */
+
+.bigMargin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.centerInRow {
+    float: none;
+}
+
+.centerItem {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fixedBottom {
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+}
+
+.inlineHeading {
+    display: inline-block;
+}
+
+.loginPosition {
+    margin-top: 12px;
+}
+
+.marginRight {
+    margin-right: 10px;
+}
+
+.noLeftPadding {
+    padding-left: 0;
+    padding-right: 10px;
+}
+
+.noRightPadding {
+    padding-left: 10px;
+    padding-right: 0;
+}
+
+.restrictedWidth {
+    max-width: 400px;
+}
+
+.softenText {
+    color: rgb(52, 73, 94);
+}
+
+.squareButton {
+    height: 36px;
+    width: 36px;
+}
+
+.thinButton {
+    width: 64px;
+}
+
+.translucent {
+    background: rgba(255,255,255,.8);
+}
+
+p {
+    font-size: 13px;
+}
