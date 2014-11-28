@@ -38,7 +38,7 @@ if (!empty($_GET["auth"]))
 
 $people = array(
 	"f4dfeada0e91e1791a80da1bb26a7d96" => array(
-		"role" => "staff",
+		"role" => "convenor",
 		"username" => "J.C.Hernandez-Castro"
 	),
 	"1e9a755d73865da9068f079d81402ce7" => array(
@@ -69,34 +69,35 @@ $people = array(
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> Kent Projects Login </title>
+        <title>Kent Projects Login</title>
         <link rel="shortcut icon" href="/includes/img/kp.ico">
         <link href="/includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="/includes/css/flat-ui-pro.min.css" rel="stylesheet">
         <link href="/includes/css/style.css" rel="stylesheet">
+        <link href="/includes/css/login.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <h1 class="text-center"> Log in to Kent Projects! </h1>
+                <h1 class="text-center">Log in to Kent Projects!</h1>
             </div>
             <div class="row">
 				<?php foreach($people as $code => $person) { ?>
-                <div class="col-xs-12 col-sm-6 col-md-4 big-margin">
-                    <a href="?auth=<?php echo $code;?>" class="btn btn-block btn-md btn-primary center-item restricted-width">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 bigMargin">
+                    <a href="?auth=<?php echo $code;?>" class="btn btn-block btn-md btn-primary centerItem restrictedWidth">
 						Log in as <?php echo strtoupper($person["username"]);?> (<?php echo ucfirst($person["role"]);?>)
 					</a>
                 </div>
 				<?php } ?>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-4 big-margin center-in-row center-item">
-                    <a href="/" class="btn btn-block btn-md btn-danger center-item restricted-width"> Back to landing page </a>
+                <div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
+                    <a href="/" class="btn btn-block btn-md btn-danger centerItem restrictedWidth">Back to landing page</a>
                 </div>
             </div>
             <footer class="row">
                 <hr/>
-                <p class="big-margin soften-text text-center"> &copy; 2014. James Dryden, Matt House, Matt Weeks </p>
+                <p class="bigTargin softenText text-center">&copy; 2014. James Dryden, Matt House, Matt Weeks</p>
             </footer>
         </div>
     </body>
