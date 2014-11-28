@@ -1,10 +1,6 @@
 <?php
+$prerequisites = array("authentication");
 require_once __DIR__."/../private/bootstrap.php";
-if (!Auth::isLoggedIn())
-{
-	redirect("/login.php");
-	exit();
-}
 
 $user = Auth::getUser();
 
