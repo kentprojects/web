@@ -1,4 +1,4 @@
-/* Header and footer styles */
+/* Header footer styles */
 body {
     width: 100%;
 }
@@ -31,6 +31,10 @@ body {
 
 .whiteText:hover {
     color: #FEFEFF;
+}
+
+#pageContent {
+    padding: 0 10px;
 }
 
 /* When on landscape on mobile */
