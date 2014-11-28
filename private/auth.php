@@ -62,7 +62,6 @@ final class Auth
 		{
 			Session::set("redirect-from", $_SERVER["REQUEST_URI"]);
 		}
-		error_log("THE CODE IS $code");
 		redirect(API::GetURL() . "/auth/internal?auth=" . $code);
 	}
 }
