@@ -58,6 +58,7 @@ final class Auth
 	 */
 	public static function redirect($code)
 	{
+		throw new Exception($code);
 		if ($_SERVER["REQUEST_URI"] !== "/login.php")
 		{
 			Session::set("redirect-from", $_SERVER["REQUEST_URI"]);
