@@ -7,16 +7,12 @@ html {
     width: 100%;
 }
 
-.centered-div {
+.centeredDiv {
     margin: 0 auto;
     vertical-align: middle;
 }
 
-.login-position {
-    margin-top: 12px;
-}
-
-.rounded-corners {
+.roundedCorners {
     border: 0px solid;
     border-radius: 10px;
 }
@@ -53,18 +49,27 @@ html {
     overflow-x: auto;
 }
 
-#info-title {
+#infoTitle {
     font-size: 24px;
 }
 
-#slideshow-front {
+#slideshowFront {
     background-image: url("../img/kentbusiness.jpg");
     filter: alpha(opacity=0);
     opacity: 0;
     z-index: -1;
 }
 
-#slideshow-back {
+#slideshowBack {
     background-image: url("../img/kentbusiness.jpg");
     z-index: -2;
+}
+
+/* Reduce width of header buttons on portrait mobile. */
+@media (orientation:portrait) and (max-device-width: 568px) { 
+    .thinButton {
+        padding-left: 0;
+        padding-right: 0;
+        width: 51px;
+    }
 }

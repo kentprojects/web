@@ -22,12 +22,12 @@ window.setInterval(function(){
  * Calls the function to change the background image every 7 seconds.
  */
 function changeBackgroundImage() {
-    document.getElementById("slideshow-front").style.backgroundImage = "url('" + backgroundImages[counter] + "')";
+    document.getElementById("slideshowFront").style.backgroundImage = "url('" + backgroundImages[counter] + "')";
     counter = (counter + 1) % backgroundImages.length;
-    document.getElementById("slideshow-front").style.filter = "alpha(opacity='1')";
-    document.getElementById("slideshow-front").style.opacity = 1;
-    document.getElementById("slideshow-back").style.backgroundImage = "url('" + backgroundImages[counter] + "')";
-    fadeOut("slideshow-front", 50, 50, 1000);
+    document.getElementById("slideshowFront").style.filter = "alpha(opacity='1')";
+    document.getElementById("slideshowFront").style.opacity = 1;
+    document.getElementById("slideshowBack").style.backgroundImage = "url('" + backgroundImages[counter] + "')";
+    fadeOut("slideshowFront", 50, 50, 1000);
 }
 
 /**
@@ -60,18 +60,18 @@ function fadeOut(elem, num, max, time) {
  * Changes the info button text and style. Begins the fade sequence to hide the info div.
  */
 function hideInfo() {
-    document.getElementById("btnInfo").innerHTML = "?";
+    document.getElementById("btnAbout").innerHTML = "About";
     fadeOut("infoContainer", infoFadeSpeed, infoFadeSpeed, infoFadeSpeed * 10);
-    document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-danger\b/, "btn-info");
+    document.getElementById("btnAbout").className = document.getElementById("btnAbout").className.replace(/\bbtn-danger\b/, "btn-info");
 }
 
 /**
  * Changes the info button text and style. Begins the fade sequence to show the info div.
  */
 function showInfo() {
-    document.getElementById("btnInfo").innerHTML = "X";
+    document.getElementById("btnAbout").innerHTML = "Close";
     fadeIn("infoContainer", 0, infoFadeSpeed, infoFadeSpeed * 10);
-    document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-info\b/, "btn-danger");
+    document.getElementById("btnAbout").className = document.getElementById("btnAbout").className.replace(/\bbtn-info\b/, "btn-danger");
 }
 
 /**

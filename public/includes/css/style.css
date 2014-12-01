@@ -50,59 +50,58 @@ body {
 
 /* Other stuff */
 
-.big-margin {
+.bigMargin {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.center-in-row {
+.centerInRow {
     float: none;
 }
 
-.center-item {
+.centerItem {
     display:block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.fixed-bottom {
+.fixedBottom {
     bottom: 0px;
     position: fixed;
     width: 100%;
 }
 
-.inline-heading {
+.inlineHeading {
     display: inline-block;
 }
 
-.margin-right {
+.loginPosition {
+    margin-top: 12px;
+}
+
+.marginRight {
     margin-right: 10px;
 }
 
-.no-left-padding {
+.noLeftPadding {
     padding-left: 0;
     padding-right: 10px;
 }
 
-.no-right-padding {
+.noRightPadding {
     padding-left: 10px;
     padding-right: 0;
 }
 
-.restricted-width {
+.restrictedWidth {
     max-width: 400px;
 }
 
-.soften-text {
+.softenText {
     color: rgb(52, 73, 94);
 }
 
-.square-btn {
-    height: 36px;
-    width: 36px;
-}
-
-.thin-button {
+.thinButton {
     width: 64px;
 }
 

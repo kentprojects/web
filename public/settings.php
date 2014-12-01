@@ -10,4 +10,4 @@
         <p> These be your modifiable settings... </p>
     </div>
 </div>
-<?php include PUBLIC_DIR.'/includes/php/footer.php'; ?>
+<?php require PUBLIC_DIR.'/includes/php/footer.php'; ?>

@@ -10,4 +10,4 @@
         <p> This be your page content... </p>
     </div>
 </div>
-<?php include PUBLIC_DIR.'/includes/php/footer.php'; ?>
+<?php require PUBLIC_DIR.'/includes/php/footer.php'; ?>
