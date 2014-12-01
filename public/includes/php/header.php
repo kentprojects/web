@@ -9,7 +9,7 @@
         <link href="../includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../includes/css/flat-ui-pro.min.css" rel="stylesheet">
         <link href="../includes/css/style.css" rel="stylesheet">
-        <script src="../includes/js/konami.js"></script>
+        <script src="../includes/js/cheet.js"></script>
     </head>
     <body>
         <header class="kentBlueBackground">
@@ -28,10 +28,17 @@
         </header>
         <script>
             /**
-             * Add easter egg functionality.
+             * No easter eggs here, no sir.
              */
-            var easter_egg = new Konami(function() { alert('Konami code!')});
-            easter_egg.load();
+            cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
+                alert('You get full marks, congratulations.');
+            });
+            cheet('d e c 4 b a l l s', function () {
+                alert('He sure is!');
+            });
+            cheet('i d d q d', function () {
+                alert('Supervisor mode enabled');
+            });
             /**
              * Confirm the user wants to log out, if so logs the user out of the system.
              */
