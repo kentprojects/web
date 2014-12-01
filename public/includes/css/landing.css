@@ -64,3 +64,12 @@ html {
     background-image: url("../img/kentbusiness.jpg");
     z-index: -2;
 }
+
+/* Reduce width of header buttons on portrait mobile. */
+@media (orientation:portrait) and (max-device-width: 568px) { 
+    .thinButton {
+        padding-left: 0;
+        padding-right: 0;
+        width: 51px;
+    }
+}

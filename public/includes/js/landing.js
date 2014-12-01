@@ -60,18 +60,18 @@ function fadeOut(elem, num, max, time) {
  * Changes the info button text and style. Begins the fade sequence to hide the info div.
  */
 function hideInfo() {
-    document.getElementById("btnInfo").innerHTML = "About";
+    document.getElementById("btnAbout").innerHTML = "About";
     fadeOut("infoContainer", infoFadeSpeed, infoFadeSpeed, infoFadeSpeed * 10);
-    document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-danger\b/, "btn-info");
+    document.getElementById("btnAbout").className = document.getElementById("btnAbout").className.replace(/\bbtn-danger\b/, "btn-info");
 }
 
 /**
  * Changes the info button text and style. Begins the fade sequence to show the info div.
  */
 function showInfo() {
-    document.getElementById("btnInfo").innerHTML = "Close";
+    document.getElementById("btnAbout").innerHTML = "Close";
     fadeIn("infoContainer", 0, infoFadeSpeed, infoFadeSpeed * 10);
-    document.getElementById("btnInfo").className = document.getElementById("btnInfo").className.replace(/\bbtn-info\b/, "btn-danger");
+    document.getElementById("btnAbout").className = document.getElementById("btnAbout").className.replace(/\bbtn-info\b/, "btn-danger");
 }
 
 /**
