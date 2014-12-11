@@ -1,29 +1,22 @@
 var API = {};
 
 API.GET = function(url, query, success, error) {
-	var r = new XMLHttpRequest();
-	r.open("GET", "/ajax.php"+url+"?"+this._BuildQueryString(query), true);
-	r.onreadystatechange = function () {
-		if (r.readyState != 4) return;
-		if ((r.status >= 200) && (r.status < 300))
-		{
-			success && success(JSON.parse(r.responseText));
-		}
-		else
-		{
-			error && error(JSON.parse(r.responseText))
-		}
-	};
-	r.send();
+	API._Request("GET", url, query, {}, success, error)
 };
 
-API._BuildQueryString = function(query) {
-	var query = query || {}, string = [];
-	for(var p in query) string.push(p+"="+query[p]);
-	return string.join("&");
+API.POST = function( url, data, success, error) {
+	API._Request("POST",url, {}, data, success, error)
 };
 
-API.POST = function(url, data, success, error) {
+API.PUT = function(url, data, success, error) {
+	API._Request("PUT", url, {}, data, success, error)
+};
+
+API.DELETE = function(url, query, success, error) {
+	API._Request("DELETE", url, query, success, error)
+};
+
+API._Request = function(method, url, query, post, success, error) {
 	var data = data || {},
 		r = new XMLHttpRequest();
 	r.open("POST", "/ajax.php"+url, true);
@@ -41,3 +34,8 @@ API.POST = function(url, data, success, error) {
 	};
 	r.send(JSON.stringify(data));
 };
+
+// example usage:
+// API.GET("/user/1", {}, function(user) {
+//	  console.log(user.email);
+// });
