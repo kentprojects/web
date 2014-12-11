@@ -103,7 +103,9 @@ final class API
 		 * Initialise a CURL handler.
 		 * (And make a variable for a potential file handler (for PUT!))
 		 */
-		$ch = curl_init();
+		$ch = curl_init(
+			static::GetURL() . $endpoint . "?" . http_build_query($getParams, null, "&")
+		);
 		$fh = null;
 
 		/**
@@ -112,7 +114,6 @@ final class API
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_URL, static::GetURL() . $endpoint . "?" . http_build_query($getParams, null, "&"));
 
 		/**
 		 * If the requested method is POST, PUT or DELETE
@@ -162,7 +163,7 @@ final class API
 	}
 }
 
-final class ApiResponse
+final class ApiResponse implements JsonSerializable
 {
 	/**
 	 * @var array|stdClass
@@ -215,5 +216,14 @@ final class ApiResponse
 	public function getStatusMessage()
 	{
 		return getHttpStatusForCode($this->status);
+	}
+
+	public function JsonSerialize()
+	{
+		return array(
+			"status" => $this->status,
+			"message" => $this->getStatusMessage(),
+			"body" => (!empty($this->body)) ? $this->body : $this->raw
+		);
 	}
 }
