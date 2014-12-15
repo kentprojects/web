@@ -16,8 +16,9 @@ final class Auth
 		if ($response->status === 200)
 		{
 			Session::set("logged-in", true);
-			Session::set("token", $response->body->token);
 			Session::set("user", $response->body->user);
+
+			API::setUserToken($response->body->token);
 
 			if (Session::has("redirect-from"))
 			{

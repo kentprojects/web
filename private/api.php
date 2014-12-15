@@ -14,6 +14,14 @@ final class API
 	/**
 	 * @return string
 	 */
+	public static function getUserToken()
+	{
+		Session::get("token");
+	}
+
+	/**
+	 * @return string
+	 */
 	public static function GetURL()
 	{
 		return config("api", "url");
@@ -74,6 +82,9 @@ final class API
 		 * Swish and flick!
 		 */
 		$getParams["signature"] = md5(config("api", "salt") . config("api", "secret") . json_encode($getParams));
+
+		error_log(print_r(config("api"), true));
+		error_log(print_r($getParams, true));
 
 		/**
 		 * Set the standard headers.
@@ -160,6 +171,14 @@ final class API
 		 * Return a response.
 		 */
 		return new ApiResponse($headers["http_code"], $body);
+	}
+
+	/**
+	 * @param string $token
+	 */
+	public static function setUserToken($token)
+	{
+		Session::set("token", $token);
 	}
 }
 
