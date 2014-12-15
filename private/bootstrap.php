@@ -21,6 +21,7 @@ while(!empty($prerequisites))
 		case "authentication":
 			if (!Auth::isLoggedIn())
 			{
+				Session::set("redirect-from", $_SERVER["REQUEST_URI"]);
 				redirect("/login.php");
 				exit();
 			}
