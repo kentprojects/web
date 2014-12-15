@@ -12,6 +12,31 @@ final class API
 	const DELETE = "api:request:delete";
 
 	/**
+	 * @var array
+	 */
+	private static $lastRequest;
+	/**
+	 * @var ApiResponse
+	 */
+	private static $lastResponse;
+
+	/**
+	 * @return array
+	 */
+	public static function getLastRequest()
+	{
+		return static::$lastRequest;
+	}
+
+	/**
+	 * @return ApiResponse
+	 */
+	public static function getLastResponse()
+	{
+		return static::$lastResponse;
+	}
+
+	/**
 	 * @return string
 	 */
 	public static function getUserToken()
@@ -37,6 +62,9 @@ final class API
 	 */
 	public static function Request($method, $endpoint, array $getParams = array(), array $postParams = array())
 	{
+		static::$lastRequest = array();
+		static::$lastResponse = null;
+
 		/**
 		 * If you didn't pass a valid API constant, then throw an exception.
 		 */
@@ -83,8 +111,7 @@ final class API
 		 */
 		$getParams["signature"] = md5(config("api", "salt") . config("api", "secret") . json_encode($getParams));
 
-		error_log(print_r(config("api"), true));
-		error_log(print_r($getParams, true));
+		static::$lastRequest["getParams"] = $getParams;
 
 		/**
 		 * Set the standard headers.
@@ -110,6 +137,9 @@ final class API
 			);
 		}
 
+		static::$lastRequest["postParams"] = $postParams;
+		static::$lastRequest["headers"] = $headers;
+
 		/**
 		 * Initialise a CURL handler.
 		 * (And make a variable for a potential file handler (for PUT!))
@@ -118,6 +148,7 @@ final class API
 			static::GetURL() . $endpoint . "?" . http_build_query($getParams, null, "&")
 		);
 		$fh = null;
+		static::$lastRequest["url"] = static::GetURL() . $endpoint . "?" . http_build_query($getParams, null, "&");
 
 		/**
 		 * Set various CURL options.
@@ -170,7 +201,8 @@ final class API
 		/**
 		 * Return a response.
 		 */
-		return new ApiResponse($headers["http_code"], $body);
+		static::$lastResponse = new ApiResponse($headers["http_code"], $body);
+		return static::$lastResponse;
 	}
 
 	/**

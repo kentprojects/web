@@ -12,6 +12,7 @@ try
 	 */
 
 	require_once __DIR__ . "/../private/api.php";
+	require_once __DIR__ . "/../private/functions.php";
 
 	/**
 	 * The data being representing the request.
@@ -76,4 +77,9 @@ catch (Exception $e)
 
 header(sprintf("HTTP/1.1 %d %s", $response->status, $response->getStatusMessage()));
 header("Content-Type: application/json");
+if (true)
+{
+	header("X-Last-Request: ".print_r(API::getLastRequest(), true));
+	header("X-Last-Response: ".print_r(API::getLastResponse(), true));
+}
 echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
