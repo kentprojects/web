@@ -15,7 +15,7 @@ abstract class Session
 	 */
 	public static function delete($key)
 	{
-		foreach(func_get_args() as $key)
+		foreach (func_get_args() as $key)
 		{
 			unset($_SESSION[(string)$key]);
 		}

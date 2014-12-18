@@ -13,6 +13,7 @@ final class Auth
 	public static function confirm($code)
 	{
 		$response = API::Request(API::POST, "/auth/confirm", array(), array("code" => $code));
+
 		if ($response->status === 200)
 		{
 			Session::set("logged-in", true);
@@ -32,9 +33,8 @@ final class Auth
 		}
 		else
 		{
-			error_log($response);
+			error_log((string)$response);
 		}
-		return null;
 	}
 
 	/**
