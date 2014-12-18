@@ -274,7 +274,7 @@ final class ApiResponse implements JsonSerializable
 		return array(
 			"status" => $this->status,
 			"message" => $this->getStatusMessage(),
-			"body" => (!empty($this->body)) ? $this->body : $this->raw
+			"body" => ($this->body !== null) ? $this->body : $this->raw
 		);
 	}
 }

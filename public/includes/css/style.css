@@ -93,6 +93,10 @@ body {
     padding-right: 0;
 }
 
+.noBottomMargin {
+    margin-bottom: 0;
+}
+
 .restrictedWidth {
     max-width: 400px;
 }
@@ -107,6 +111,58 @@ body {
 
 .translucent {
     background: rgba(255,255,255,.8);
+}
+.sideScroller {
+    overflow-x:scroll;
+    overflow-y:hidden;
+    width:100%;
+    padding: 10px;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    box-shadow: none;
+    -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
+    transition: border .25s linear, color .25s linear, background-color .25s linear;
+}
+
+/*.gauge {*/
+    /*max-width: 345px;*/
+    /*display: block;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+/*}*/
+
+.rowTitle {
+    float: left;
+}
+
+.sideScrollerSearchBox {
+    float: right;
+    width:200px;
+    margin-top: 32px;
+}
+
+.sideScrollerItem {
+    vertical-align: top;
+}
+
+.list-inline {
+    white-space: nowrap;
+}
+
+.scrollerTile {
+    height: 200px;
+    width: 200px;
+    margin: 5px;
+}
+
+.scrollerPlaceholder {
+    text-align: center;
+    height: 200px;
+    margin: 5px;
+}
+
+.scrollerTile .tile-title {
+    white-space: pre-wrap; /* CSS3 */
 }
 
 p {
