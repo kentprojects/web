@@ -23,30 +23,30 @@
 
 <div class="container">
     <div class="row Header">
-        <div class="col-xs-12">
-            <h1> Dashboard - <?php echo $year;?></h1>
-            <p>Welcome to your dashboard. Here you can look at graphs and stuff.</p>
+        <div class="col-sm-12">
+            <h1 class="text-center"> Dashboard </h1>
+            <h4 class="text-center"><?php echo $year;?></h4>
+            <p class="text-center text-info">Welcome to your dashboard. Here you can look at graphs and stuff.</p>
         </div>
     </div>
     <div class="row Meters">
-        <h3>This year at a glance:</h3>
-        <div class="col-sm-6 col-md-3 gauge">
+        <div class="col-xs-6 col-sm-6 col-md-3 gauge">
             <div class="tile"><div id="power-levels"></div></div>
         </div>
-        <div class="col-sm-6 col-md-3 gauge">
+        <div class="col-xs-6 col-sm-6 col-md-3 gauge">
             <div class="tile"><div id="julio-awesome"></div></div>
         </div>
-        <div class="col-sm-6 col-md-3 gauge">
+        <div class="col-xs-6 col-sm-6 col-md-3 gauge">
             <div class="tile"><div id="project-complete"></div></div>
         </div>
-        <div class="col-sm-6 col-md-3 gauge">
+        <div class="col-xs-6 col-sm-6 col-md-3 gauge">
             <div class="tile"><div id="half-of-100"></div></div>
         </div>
     </div>
     <div class="Projects">
         <div class="row">
-            <div class="col-sm-6 rowTitle"><h3>Projects</h3></div>
-            <div class="col-sm-6 sideScrollerSearchBox"><input type="text" value="" placeholder="Search Projects" class="form-control"></div>
+            <div class="col-xs-6"><h3>Projects</h3></div>
+            <div class="col-xs-6 sideScrollerSearchBox text-right-not-xs"><input type="text" value="" placeholder="Search Projects" class="form-control"></div>
         </div>
         <div class="row">
         <div class="col-sm-12">
@@ -61,8 +61,8 @@
     </div>
     <div class="Students">
         <div class="row">
-        <div class="col-sm-6 rowTitle"><h3>Students</h3></div>
-            <div class="col-sm-6 sideScrollerSearchBox"><input type="text" value="" placeholder="Search Students" class="form-control"></div>
+        <div class="col-xs-6"><h3>Students</h3></div>
+            <div class="col-xs-6 sideScrollerSearchBox"><input type="text" value="" placeholder="Search Students" class="form-control"></div>
            </div>
         <div class="row">
         <div class="col-sm-12">
@@ -153,7 +153,7 @@
             return HTML.join("");
         }
         else {
-            return '<div class="scrollerPlaceholder noBottomMargin"><div class="tile-title"> There\'s nothing here yet! </div></div>';
+            return '<div class="scrollerPlaceholder noBottomMargin"><div class="text-info"> There\'s nothing here yet! </div></div>';
         }
     };
 
