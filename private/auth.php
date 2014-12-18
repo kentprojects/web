@@ -16,6 +16,11 @@ final class Auth
 
 		if ($response->status === 200)
 		{
+			if (!is_object($response->body))
+			{
+				$response->body = json_decode($response->body);
+			}
+
 			Session::set("logged-in", true);
 			Session::set("user", $response->body->user);
 
