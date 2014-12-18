@@ -81,6 +81,11 @@ $people = array(
             <div class="row">
                 <h1 class="text-center">Log in to Kent Projects!</h1>
             </div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
+					<a href="/" class="btn btn-block btn-lg btn-info centerItem restrictedWidth">Login with Single-Sign-On</a>
+				</div>
+			</div>
             <div class="row">
 				<?php foreach($people as $code => $person) { ?>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 bigMargin">
