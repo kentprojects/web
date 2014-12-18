@@ -15,6 +15,8 @@ final class Auth
 		$response = API::Request(API::POST, "/auth/confirm", array(), array("code" => $code));
 		if ($response->status === 200)
 		{
+			die((string) $response);
+
 			Session::set("logged-in", true);
 			Session::set("user", $response->body->user);
 
