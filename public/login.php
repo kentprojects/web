@@ -106,7 +106,7 @@ $people = array(
 					</a>
 				</div>
 				<?php 
-				if(loginAsCas { 
+				if(loginAsCas) { 
 					echo('
 					<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
 						<div class="login-form">
@@ -123,7 +123,7 @@ $people = array(
 				        </div>
 					</div>
 					')
-				})
+				}
 			?>
 			</div>
             <div class="row">
