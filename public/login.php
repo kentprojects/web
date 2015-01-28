@@ -105,9 +105,7 @@ $people = array(
 						Login with Single-Sign-On
 					</a>
 				</div>
-				<?php 
-				if(loginAsCas) { 
-					echo('
+				<?php if ($loginAsCas) { ?>
 					<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
 						<div class="login-form">
 				        	<div class="form-group">
@@ -122,9 +120,7 @@ $people = array(
 				            <a class="login-link" href="#">Lost your password?</a>
 				        </div>
 					</div>
-					')
-				}
-			?>
+				<?php } ?>
 			</div>
             <div class="row">
 				<?php foreach($people as $code => $person) { ?>
