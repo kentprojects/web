@@ -4,7 +4,7 @@
     require_once __DIR__."/../private/bootstrap.php";
 
     $user = Auth::getUser();
-    $year = KentProjects::getAcademicYearFromDate(time());
+    $year = KentProjects::getAcademicYearFromDate("today");
 
     $yearData = API::Request(API::GET, "/year/$year");
 
