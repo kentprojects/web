@@ -36,6 +36,22 @@ if (!empty($_GET["auth"]))
 	exit();
 }
 
+if (isset($_GET["cas"]))
+{
+	die("Declan");
+}
+
+/**
+ * This will be set to true when we are going live.
+ */
+if (false)
+{
+	Auth::redirect();
+	exit();
+}
+
+
+
 $people = array(
 	"f4dfeada0e91e1791a80da1bb26a7d96" => array(
 		"role" => "convenor",
