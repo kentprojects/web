@@ -9,6 +9,12 @@
 define("PRIVATE_DIR", __DIR__);
 define("PUBLIC_DIR", __DIR__ . "/../public");
 
+/**
+ * Display and report all of the errors.
+ */
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once __DIR__."/api.php";
 require_once __DIR__."/auth.php";
 require_once __DIR__."/functions.php";
