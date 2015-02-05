@@ -24,7 +24,7 @@ final class Auth
 			Session::set("logged-in", true);
 			Session::set("user", $response->body->user);
 
-			API::setUserToken($response->body->token);
+			Session::set(API::USERTOKEN_SESSIONKEY, $response->body->token);
 
 			if (Session::has("redirect-from"))
 			{
