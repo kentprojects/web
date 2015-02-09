@@ -115,56 +115,6 @@
 		}
 	);
 
-</script>
-
-<!-- For Raphael -->
-<script src="/includes/js/raphael.js"></script>
-<!-- For JustGage -->
-<script src="/includes/js/justgage.js"></script>
-
-<!-- Set the gauges -->
-<script>
-	var total_students = 0;
-	var total_groups = 0;
-	var students_in_groups = 0;
-	var groups_with_projects = 0;
-	// Get the stats
-	API.GET(
-		"/year/<?php echo $year;?>/stats", {},
-		function (data) {
-			total_students = data.body.total_students;
-			total_groups = data.body.total_groups;
-			students_in_groups = data.body.total_students_in_groups;
-			groups_with_projects = data.body.total_groups_with_projects;
-
-			setGauges();
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-	function setGauges() {
-		var studentsInGroupsGauge = new JustGage({
-			id: "students-in-group-gauge",
-			value: students_in_groups,
-			min: 0,
-			max: total_students,
-			title: "Students in groups:",
-			label: "%",
-			relativeGaugeSize: true
-		});
-		var groupsWithProjects = new JustGage({
-			id: "groups-with-projects-gauge",
-			value: groups_with_projects,
-			min: 0,
-			max: total_groups,
-			title: "Groups with projects:",
-			label: "%",
-			relativeGaugeSize: true
-		})
-
-	}
-
 	// Generates a scroller
 	function scrollerHTML(data) {
 		if (data.body.length > 0) {

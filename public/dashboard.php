@@ -89,7 +89,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 				<h1 class="text-center Heading">Dashboard</h1>
 			</div>
 			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0"></div>
-			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" id="roleSelectorDiv">
 				<div class="dropdown dashboardSelector Heading">
 					<button class="btn btn-default dropdown-toggle dashboardSelector"
 						type="button" id="roleSelector" data-toggle="dropdown">
@@ -101,7 +101,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-2 col-md-3 col-sm-4 col-xs-12">
+			<div class="col-md-2 col-md-3 col-sm-4 col-xs-12" id="yearSelectorDiv">
 				<div class="dashboardSelector Heading">
 					<form action="dashboard.php" method="get">
 						<input type="text" name="year" id="yearSelector" class="form-control text-center"
@@ -144,8 +144,8 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		}
 		if ($user->role == "student")
 		{
-			$user->group = "poop";
-			$user->project = "wee";
+			$user->group = null;
+			$user->project = null;
 			if($user->group != null) {
 				if($user->project != null) {
 					include VIEWS_DIR . "/dashboard-student-project.php";
@@ -188,6 +188,8 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		<?php }
 		else { ?>
 		document.getElementById("roleSelector").style.display = "none";
+		document.getElementById("roleSelectorDiv").className = "col-lg-0 col-md-0 col-sm-0 col-xs-0";
+		document.getElementById("yearSelectorDiv").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
 		<?php } ?>
 
 		// Populate the year selection box
