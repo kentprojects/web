@@ -94,7 +94,7 @@ final class API
 		 */
 		if (Session::has(static::USERTOKEN_SESSIONKEY))
 		{
-			$getParams["user"] = Session::has(static::USERTOKEN_SESSIONKEY);
+			$getParams["user"] = Session::get(static::USERTOKEN_SESSIONKEY);
 		}
 		/**
 		 * And sign the request!

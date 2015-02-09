@@ -17,44 +17,40 @@ final class KentProjects
 	public static function getAcademicYearFromDate($date)
 	{
 		$date = strtotime($date);
+
 		return (intval(date("n", $date)) >= 9) ? intval(date("Y", $date)) : (intval(date("Y", $date)) - 1);
 	}
 
-    public static function getForcedRole()
-    {
-        return Session::get("forcedRole");
-    }
+	public static function getForcedRole()
+	{
+		return Session::get("forcedRole");
+	}
 
-    // TODO: Add validation for this
-    public static function setForcedRole($role)
-    {
-        Session::set("forcedRole", $role);
-    }
+	// TODO: Add validation for this
+	public static function setForcedRole($role)
+	{
+		Session::set("forcedRole", $role);
+	}
 
-    public static function getPotentialRoles(stdClass $user)
-    {
-	    $roles = array();
-	    
-		if ($user->role != "staff")
+	public static function getPotentialRoles(stdClass $roles)
+	{
+		$potential = array();
+
+		if ($roles->convener)
 		{
-			return $roles;
+			$potential["convener"] = "Convener";
 		}
-		
-		if ($user->is->convenor)
+		if ($roles->supervisor)
 		{
-			$roles[] = "Convenor";
+			$potential["supervisor"] = "Supervisor";
 		}
-		if ($user->is->supervisor)
+		if ($roles->secondmarker)
 		{
-			$roles[] = "Supervisor";
+			$potential["secondmarker"] = "Second Marker";
 		}
-		if ($user->is->secondmarker)
-		{
-			$roles[] = "Second Marker";
-		}
-		
-		return $roles;
-    }
+
+		return $potential;
+	}
 
 	public static function getForcedYear()
 	{
@@ -67,9 +63,22 @@ final class KentProjects
 		Session::set("forcedYear", $year);
 	}
 
-	public static function getPotentialYears(stdClass $user)
+	public static function getPotentialYears()
 	{
-		// TODO: Get a list of years the user is assigned to
+		if (Session::has("years"))
+		{
+			$years = Session::get("years");
+		}
+		else
+		{
+			$response = API::Request(API::GET, "/years");
+			if ($response->status != 200)
+			{
+				throw new LogicException((string)$response);
+			}
+			$years = $response->body;
+			Session::set("years", $years);
+		}
 
 		return $years;
 	}
