@@ -88,7 +88,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			<div class="col-sm-12 col-xs-12">
 				<h1 class="text-center Heading">Dashboard</h1>
 			</div>
-			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0"></div>
+			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0" id="headerPadLeft"></div>
 			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" id="roleSelectorDiv">
 				<div class="dropdown dashboardSelector Heading">
 					<button class="btn btn-default dropdown-toggle dashboardSelector"
@@ -109,7 +109,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 					</form>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0"></div>
+			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0" id="headerPadRight"></div>
 		</div>
 
 		<?php
@@ -189,7 +189,9 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		else { ?>
 		document.getElementById("roleSelector").style.display = "none";
 		document.getElementById("roleSelectorDiv").className = "col-lg-0 col-md-0 col-sm-0 col-xs-0";
-		document.getElementById("yearSelectorDiv").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+		document.getElementById("yearSelectorDiv").className = "col-lg-2 col-md-4 col-sm-6 col-xs-12";
+		document.getElementById("headerPadLeft").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
+		document.getElementById("headerPadRight").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
 		<?php } ?>
 
 		// Populate the year selection box
