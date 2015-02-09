@@ -13,6 +13,7 @@ try
 
 	require_once __DIR__ . "/../private/api.php";
 	require_once __DIR__ . "/../private/functions.php";
+	require_once __DIR__ . "/../private/session.php";
 
 	/**
 	 * The data being representing the request.
@@ -69,10 +70,11 @@ try
 			"api:request:" . strtolower($data["method"]), $data["url"], $data["query"], $data["post"]
 		);
 
-		/*
-		error_log(json_encode(API::getLastRequest(), JSON_UNESCAPED_SLASHES));
-		error_log(json_encode(API::getLastResponse(),  JSON_UNESCAPED_SLASHES));
-		*/
+		if (false)
+		{
+			error_log(json_encode(API::getLastRequest(), JSON_UNESCAPED_SLASHES));
+			error_log(json_encode(API::getLastResponse(), JSON_UNESCAPED_SLASHES));
+		}
 	}
 }
 catch (Exception $e)

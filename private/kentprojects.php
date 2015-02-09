@@ -12,11 +12,65 @@ final class KentProjects
 	 * Otherwise, return the year minus one.
 	 *
 	 * @param string $date
-	 * @return Model_Year
+	 * @return int
 	 */
 	public static function getAcademicYearFromDate($date)
 	{
 		$date = strtotime($date);
 		return (intval(date("n", $date)) >= 9) ? intval(date("Y", $date)) : (intval(date("Y", $date)) - 1);
+	}
+
+    public static function getForcedRole()
+    {
+        return Session::get("forcedRole");
+    }
+
+    // TODO: Add validation for this
+    public static function setForcedRole($role)
+    {
+        Session::set("forcedRole", $role);
+    }
+
+    public static function getPotentialRoles(stdClass $user)
+    {
+	    $roles = array();
+	    
+		if ($user->role != "staff")
+		{
+			return $roles;
+		}
+		
+		if ($user->is->convenor)
+		{
+			$roles[] = "Convenor";
+		}
+		if ($user->is->supervisor)
+		{
+			$roles[] = "Supervisor";
+		}
+		if ($user->is->secondmarker)
+		{
+			$roles[] = "Second Marker";
+		}
+		
+		return $roles;
+    }
+
+	public static function getForcedYear()
+	{
+		return Session::get("forcedYear");
+	}
+
+	// TODO: Add validation for this
+	public static function setForcedYear($year)
+	{
+		Session::set("forcedYear", $year);
+	}
+
+	public static function getPotentialYears(stdClass $user)
+	{
+		// TODO: Get a list of years the user is assigned to
+
+		return $years;
 	}
 }

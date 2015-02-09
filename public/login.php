@@ -36,17 +36,12 @@ if (!empty($_GET["auth"]))
 	exit();
 }
 
-$loginAsCas = false;
-
-if (isset($_GET["cas"]))
-{
-	$loginAsCas = true;
-}
+$loginAsCas = isset($_GET["cas"]) || isset($_GET["CAS"]);
 
 /**
  * This will be set to true when we are going live.
  */
-if (false)
+if (false && !$loginAsCas)
 {
 	Auth::redirect();
 	exit();
@@ -96,34 +91,41 @@ $people = array(
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <h1 class="text-center">Log in to Kent Projects!</h1>
+	    	<?php if ($loginAsCas) { ?>
+	        <div class="row">
+                <h2 class="text-center">Kent Projects CAS office login:</h2>
             </div>
 			<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
+							<div class="login-form">
+                                <form action="<?php echo API::GetURL();?>/auth/cas" method="POST">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control login-field" value="" placeholder="Username" id="login-name" />
+                                        <label class="login-field-icon fui-user" for="login-name"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass" />
+                                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                                    </div>
+                                    <button class="btn btn-primary btn-lg btn-block">Login</button>
+                                </form>
+							</div>
+					</div>
+			</div>
+				<?php } else { ?>
+			<div class="row">
+                <h2 class="text-center">Kent Projects Beta Login</h2>
+                <p class="text-center text-info">This is only temporary. If you see this after September 2015, tell Julio.</p>
+            </div>
+            <div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
 					<a href="<?php echo API::GetURL();?>/auth/sso" class="btn btn-block btn-lg btn-info centerItem restrictedWidth">
-						Login with Single-Sign-On
+						Login with SSO
 					</a>
-				</div>
-				<?php if ($loginAsCas) { ?>
-					<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
-						<div class="login">
-							<div class="login-form">
-								<div class="form-group">
-									<input type="text" class="form-control login-field" value="" placeholder="Enter your name" id="login-name" />
-									<label class="login-field-icon fui-user" for="login-name"></label>
-								</div>
-								<div class="form-group">
-									<input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass" />
-									<label class="login-field-icon fui-lock" for="login-pass"></label>
-								</div>
-								<a class="btn btn-primary btn-lg btn-block" href="#">Log in</a>
-								<a class="login-link" href="#">Lost your password?</a>
-							</div>
-						</div>
-					</div>
-				<?php } ?>
+				</div>				
 			</div>
+			
+		
             <div class="row">
 				<?php foreach($people as $code => $person) { ?>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 bigMargin">
@@ -138,6 +140,7 @@ $people = array(
                     <a href="/" class="btn btn-block btn-md btn-danger centerItem restrictedWidth">Back to landing page</a>
                 </div>
             </div>
+        <?php } ?>
             <footer class="row">
                 <hr/>
                 <p class="bigTargin softenText text-center">&copy; 2014. James Dryden, Matt House, Matt Weeks</p>

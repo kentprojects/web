@@ -11,6 +11,8 @@ final class API
 	const PUT = "api:request:put";
 	const DELETE = "api:request:delete";
 
+	const USERTOKEN_SESSIONKEY = "token";
+
 	/**
 	 * @var array
 	 */
@@ -34,14 +36,6 @@ final class API
 	public static function getLastResponse()
 	{
 		return static::$lastResponse;
-	}
-
-	/**
-	 * @return string
-	 */
-	public static function getUserToken()
-	{
-		Session::get("token");
 	}
 
 	/**
@@ -94,6 +88,14 @@ final class API
 			"key" => config("api", "key"),
 			"expires" => time() + config("api", "expires")
 		));
+		/**
+		 * If the user has given us a user token, then use it in every request.
+		 * Automatically. Seamlessly. Instantaneously. On the line.
+		 */
+		if (Session::has(static::USERTOKEN_SESSIONKEY))
+		{
+			$getParams["user"] = Session::has(static::USERTOKEN_SESSIONKEY);
+		}
 		/**
 		 * And sign the request!
 		 */
@@ -203,14 +205,6 @@ final class API
 		 */
 		static::$lastResponse = new ApiResponse($headers["http_code"], $body);
 		return static::$lastResponse;
-	}
-
-	/**
-	 * @param string $token
-	 */
-	public static function setUserToken($token)
-	{
-		Session::set("token", $token);
 	}
 }
 

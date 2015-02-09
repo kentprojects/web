@@ -1,182 +1,145 @@
 <?php
-    // Get authentication
-    $prerequisites = array("authentication");
-    require_once __DIR__."/../private/bootstrap.php";
+// Get authentication
+$prerequisites = array("authentication");
+require_once __DIR__ . "/../private/bootstrap.php";
 
-    $user = Auth::getUser();
-    $year = KentProjects::getAcademicYearFromDate("today");
+$user = Auth::getUser();
 
-    $yearData = API::Request(API::GET, "/year/$year");
+// TODO: Validate the user permissions for roles
+if (!empty($_GET["role"]))
+{
+	KentProjects::setForcedRole($_GET["role"]);
+	$forcedRole = $_GET["role"];
+}
+else
+{
+	$forcedRole = KentProjects::getForcedRole();
+}
 
-    if ($yearData->status !== 200)
-    {
-        echo "Year not created.";
-        exit(1);
-    }
+// TODO: Validate the user permissions for years
+if (!empty($_GET["year"]))
+{
+	KentProjects::setForcedYear($_GET["year"]);
+	$forcedYear = $_GET["year"];
+}
+else
+{
+	$forcedYear = KentProjects::getForcedYear();
+}
 
-    // Get header
-    $title = "Dashboard";
-    require PUBLIC_DIR . "/includes/php/header.php";
+$potentialRoles = KentProjects::getPotentialRoles($user);
+$year = !empty($forcedYear) ? $forcedYear : KentProjects::getAcademicYearFromDate("today");
+$yearData = API::Request(API::GET, "/year/$year");
+
+if ($yearData->status !== 200)
+{
+	echo "Year not created.";
+	exit(1);
+}
+
+// Get header
+$title = "Dashboard";
+require PUBLIC_DIR . "/includes/php/header.php";
 ?>
 
-<!-- Layout -->
+	<script src="/includes/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+	<script src="/includes/js/flat-ui-pro.min.js" type="text/javascript"></script>
+	<script src="/includes/js/ajax.js" type="text/javascript"></script>
+	<script src="/includes/js/includes.php" type="text/javascript"></script>
 
-<div class="container">
-    <div class="row Header">
-        <div class="col-sm-12">
-            <h1 class="text-center"> Dashboard </h1>
-            <h4 class="text-center"><?php echo $year;?></h4>
-            <p class="text-center text-info">Welcome to your dashboard. Here you can look at graphs and stuff.</p>
-        </div>
-    </div>
-    <div class="row Meters">
-        <div class="col-xs-6 col-sm-6 col-md-3 gauge">
-            <div class="tile"><div id="power-levels"></div></div>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-3 gauge">
-            <div class="tile"><div id="julio-awesome"></div></div>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-3 gauge">
-            <div class="tile"><div id="project-complete"></div></div>
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-3 gauge">
-            <div class="tile"><div id="half-of-100"></div></div>
-        </div>
-    </div>
-    <div class="Projects">
-        <div class="row">
-            <div class="col-xs-6"><h3>Projects</h3></div>
-            <div class="col-xs-6 sideScrollerSearchBox text-right-not-xs"><input type="text" value="" placeholder="Search Projects" class="form-control"></div>
-        </div>
-        <div class="row">
-        <div class="col-sm-12">
+	<!-- Layout -->
 
-            <div class="sideScroller" id="project-scroller">
-                <ul class="list-inline noBottomMargin" >
-                    <!-- Projects appear here -->
-                </ul>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="Students">
-        <div class="row">
-        <div class="col-xs-6"><h3>Students</h3></div>
-            <div class="col-xs-6 sideScrollerSearchBox"><input type="text" value="" placeholder="Search Students" class="form-control"></div>
-           </div>
-        <div class="row">
-        <div class="col-sm-12">
-            <div class="sideScroller" id="student-scroller">
-                <ul class="list-inline noBottomMargin">
-                    <!-- Students appear here -->
-                </ul>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="row Supervisors">
-        <h3>Supervisors</h3>
-        <div class="col-sm-12">
-        </div>
-    </div>
-</div>
+	<div class="container">
+		<div class="row Header">
+			<div class="col-sm-12 col-xs-12">
+				<h1 class="text-center Heading">Dashboard</h1>
+			</div>
+			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0"></div>
+			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+				<div class="dropdown dashboardSelector Heading">
+					<button class="btn btn-default dropdown-toggle dashboardSelector"
+						type="button" id="roleSelector" data-toggle="dropdown">
+						Role: <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu dashboardSelector" id="roleSelectorDropdown" role="menu"
+						aria-labelledby="dropdownMenu1">
+						<li role="presentation" class="dropdown-header">Choose a role:</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-2 col-md-3 col-sm-4 col-xs-12">
+				<div class="dashboardSelector Heading">
+					<form action="dashboard.php" method="get">
+						<input type="text" name="year" id="yearSelector" class="form-control text-center"
+							placeholder="">
+					</form>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0"></div>
+		</div>
 
-<!-- *** App code goes here *** -->
+		<?php
+		if ($user->role == "staff")
+		{
 
-<!-- For Raphael -->
-<script src="/includes/js/raphael.js"></script>
-<!-- For JustGage -->
-<script src="/includes/js/justgage.js"></script>
-
-<!-- Set the gauges -->
-<script>
-    function setGauges() {
-        var powerLevel = 9001;
-        var projectCompleteness = 10;
-        var julioAwesomeness = 101;
-        var fifty = 50;
-        var powerLevelsGauge = new JustGage({
-            id: "power-levels",
-            value: powerLevel,
-            min: 0,
-            max: 10000,
-            title: "Power Levels:",
-            label: "Power",
-            relativeGaugeSize: true
-        });
-        var projectCompleteGauge = new JustGage({
-            id: "project-complete",
-            value: projectCompleteness,
-            min: 0,
-            max: 100,
-            title: "Project completeness:",
-            label: "%",
-            relativeGaugeSize: true
-        });
-        var julioAwesomenessGauge = new JustGage({
-            id: "julio-awesome",
-            value: julioAwesomeness,
-            min: 0,
-            max: 100,
-            title: "How awesome Julio is:",
-            label: "Awesome",
-            relativeGaugeSize: true
-        })
-        var halfOfOneHundred = new JustGage({
-            id: "half-of-100",
-            value: fifty,
-            min: 0,
-            max: 100,
-            title: "100 divided by 2 is:",
-            relativeGaugeSize: true
-        })
-    }
-    setGauges();
-</script>
-
-<script src="/includes/js/ajax.js" type="text/javascript"></script>
-<script src="/includes/js/includes.php" type="text/javascript"></script>
-<script>
-    function scrollerHTML(data) {
-        if (data.body.length > 0) {
-            var item, HTML = [];
-            for (var i = 0; i < data.body.length; i++) {
-                item = data.body[i];
-                HTML.push(
-                        '<li class="sideScrollerItem noBottomMargin">',
-                        '<div class="tile scrollerTile noBottomMargin">',
-                        '<div class="tile-title">' + item.name + '</div>',
-                        '</div>',
-                        '</li>'
-                );
-            }
-            return HTML.join("");
-        }
-        else {
-            return '<div class="scrollerPlaceholder noBottomMargin"><div class="text-info"> There\'s nothing here yet! </div></div>';
-        }
-    };
-
-    // List the projects
-    API.GET(
-        "/projects", { "year": <?php echo $year;?> },
-        function (data) {
-            document.querySelector(".Projects ul").innerHTML = scrollerHTML(data);
-            document.querySelector(".Projects h3").innerText = 'Projects ('+data.body.length+')';
-        },
-        function (data)	{console.error(data);}
-    );
-
-    // List the students
-    API.GET(
-            "/students", { "year": <?php echo $year;?> },
-    function (data) {
-        document.querySelector(".Students ul").innerHTML = scrollerHTML(data);
-        document.querySelector(".Students h3").innerText = 'Students ('+data.body.length+')';
-    },
-    function (data)	{console.error(data);}
-    );
-</script>
+			switch ($forcedRole)
+			{
+				case "Second Marker":
+					include VIEWS_DIR . "/dashboard-secondmarker.php";
+					break;
+				case "Supervisor":
+					include VIEWS_DIR . "/dashboard-supervisor.php";
+					break;
+				default:
+					if ($user->is->convenor)
+					{
+						include VIEWS_DIR . "/dashboard-convenor.php";
+					}
+					elseif ($user->is->supervisor)
+					{
+						include VIEWS_DIR . "/dashboard-supervisor.php";
+					}
+					elseif ($user->is->secondmarker)
+					{
+						include VIEWS_DIR . "/dashboard-secondmarker.php";
+					}
+					else
+					{
+						include VIEWS_DIR . "/dashboard-staff.php";
+					}
+			}
+		}
+		if ($user->role == "student")
+		{
+			include VIEWS_DIR . "/dashboard-student.php";
+		}
+		?>
 
 
-<?php require PUBLIC_DIR.'/includes/php/footer.php'; ?>
+	</div>
+
+	<script>
+		<!-- App code goes here -->
+		var year = "<?php echo $year ?>";
+		// Populate the roles dropdown
+		<?php if (!empty($potentialRoles)) { ?>
+		(function () {
+			var roles = <?php echo json_encode($potentialRoles);?>;
+			var HTML = [];
+			for (var i = 0; i < roles.length; i++) {
+				HTML.push('<li role="presentation"><a role="menuitem" href="?role=' + roles[i] + '">' + roles[i] + '</a></li>');
+			}
+
+			document.getElementById("roleSelectorDropdown").innerHTML += HTML.join("");
+		})();
+		<?php }
+		else { ?>
+			document.getElementById("roleSelector").style.display = "none";
+		<?php } ?>
+
+		// Populate the year selection box
+		document.getElementById("yearSelector").setAttribute("placeholder", "Year: " + year);
+	</script>
+
+
+<?php require PUBLIC_DIR . '/includes/php/footer.php';
