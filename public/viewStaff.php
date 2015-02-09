@@ -8,10 +8,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-8 col-md-8">
-            <h1 class="reduceHeading"> View Staff </h1>
+            <h1 class="reduceHeading hideEdit"> View Staff </h1>
+            <h1 class="reduceHeading showEdit"> Edit Staff </h1>
         </div>
         <div class="col-xs-4 col-md-4 alignRight">
-            <button style="margin-top:40px;"> Edit staff </button>
+            <button style="margin-top:40px;"> Edit </button>
         </div>
         <script type="text/javascript">
             function generateList() {
@@ -30,6 +31,7 @@
         </script>
     </div>
 </div>
+<script type="text/javascript" src="/includes/viewEdit.js"></script>
 <?php
     require PUBLIC_DIR.'/includes/php/footer.php';
 ?>

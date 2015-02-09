@@ -223,7 +223,7 @@ p {
 }
 
 /* Mobile */
-@media (max-device-width: 568px) {
+@media (max-device-width: 568px) and (orientation: portrait) {
     .mobileHide {
         display: none;
     }
