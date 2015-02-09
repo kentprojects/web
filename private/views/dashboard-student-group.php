@@ -1,11 +1,10 @@
 <div class="jumbotron">
 	<div class="container">
-		<h3>Welcome to KentProjects!</h3>
+		<h3>You're in a group, go you!</h3>
 
-		<p>This is your dashboard, where you can quickly search through available projects, students that aren't yet in
-			groups, and supervisors.</p>
+		<p>Give yourself a high-five, you've made it this far.</p>
 
-		<p>Start by finding a group you want to join, or creating your own.</p>
+		<p>Now you need to find a project.</p>
 
 	</div>
 </div>
@@ -26,27 +25,6 @@
 			<div class="sideScroller" id="project-scroller">
 				<ul class="list-inline noBottomMargin">
 					<!-- Projects appear here -->
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="Students">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-7 col-mg-8 col-lg-9">
-					<h3 class="panel-title sideScrollerTitle">Students</h3>
-				</div>
-				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" type="text" value=""
-						placeholder="Search Students" /></div>
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- Students appear here -->
 				</ul>
 			</div>
 		</div>
@@ -73,6 +51,24 @@
 		</div>
 	</div>
 </div>
+<div class="MyGroup">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-mg-12 col-lg-12">
+					<h3 class="panel-title sideScrollerTitle">My Group</h3>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="sideScroller" id="project-scroller">
+				<ul class="list-inline noBottomMargin">
+					<!-- My Group members appear here -->
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script>
 
@@ -90,12 +86,12 @@
 		}
 	);
 
-	// List the students
+	// List your group members
 	API.GET(
 		"/students", {"year": <?php echo $year;?>},
 		function (data) {
-			document.querySelector(".Students ul").innerHTML = scrollerHTML(data);
-			document.querySelector(".Students h3").innerText = 'Students (' + data.body.length + ')';
+			document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(data);
+			document.querySelector(".MyGroup h3").innerText = 'My Group (' + data.body.length + ')';
 		},
 		function (data) {
 			console.error(data);
@@ -114,56 +110,6 @@
 			console.error(data);
 		}
 	);
-
-</script>
-
-<!-- For Raphael -->
-<script src="/includes/js/raphael.js"></script>
-<!-- For JustGage -->
-<script src="/includes/js/justgage.js"></script>
-
-<!-- Set the gauges -->
-<script>
-	var total_students = 0;
-	var total_groups = 0;
-	var students_in_groups = 0;
-	var groups_with_projects = 0;
-	// Get the stats
-	API.GET(
-		"/year/<?php echo $year;?>/stats", {},
-		function (data) {
-			total_students = data.body.total_students;
-			total_groups = data.body.total_groups;
-			students_in_groups = data.body.total_students_in_groups;
-			groups_with_projects = data.body.total_groups_with_projects;
-
-			setGauges();
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-	function setGauges() {
-		var studentsInGroupsGauge = new JustGage({
-			id: "students-in-group-gauge",
-			value: students_in_groups,
-			min: 0,
-			max: total_students,
-			title: "Students in groups:",
-			label: "%",
-			relativeGaugeSize: true
-		});
-		var groupsWithProjects = new JustGage({
-			id: "groups-with-projects-gauge",
-			value: groups_with_projects,
-			min: 0,
-			max: total_groups,
-			title: "Groups with projects:",
-			label: "%",
-			relativeGaugeSize: true
-		})
-
-	}
 
 	// Generates a scroller
 	function scrollerHTML(data) {

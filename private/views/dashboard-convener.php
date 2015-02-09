@@ -103,6 +103,19 @@
 		}
 	);
 
+	// List the supervisors
+	API.GET(
+		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
+		function (data) {
+			console.log(data);
+			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data);
+			document.querySelector(".Supervisors h3").innerText = 'Supervisors (' + data.body.length + ')';
+		},
+		function (data) {
+			console.error(data);
+		}
+	);
+
 </script>
 
 <!-- For Raphael -->

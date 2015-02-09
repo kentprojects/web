@@ -144,7 +144,20 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		}
 		if ($user->role == "student")
 		{
-			include VIEWS_DIR . "/dashboard-student.php";
+			$user->group = "poop";
+			$user->project = "wee";
+			if($user->group != null) {
+				if($user->project != null) {
+					include VIEWS_DIR . "/dashboard-student-project.php";
+				}
+				else {
+					include VIEWS_DIR . "/dashboard-student-group.php";
+				}
+
+			}
+			else {
+				include VIEWS_DIR . "/dashboard-student.php";
+			}
 		}
 		?>
 
