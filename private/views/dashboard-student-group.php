@@ -1,17 +1,12 @@
-<div class="row Meters">
-	<div class="col-xs-0 col-sm-0 col-md-2 col-lg-2"></div>
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gauge">
-		<div class="tile">
-			<div id="students-in-group-gauge"></div>
-		</div>
+<div class="jumbotron">
+	<div class="container">
+		<h3>You're in a group, go you!</h3>
+
+		<p>Give yourself a high-five, you've made it this far.</p>
+
+		<p>Now you need to find a project.</p>
+
 	</div>
-	<div class="col-xs-0 col-sm-0 col-md-0 col-lg-2"></div>
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gauge">
-		<div class="tile">
-			<div id="groups-with-projects-gauge"></div>
-		</div>
-	</div>
-	<div class="col-xs-0 col-sm-0 col-md-2 col-lg-2"></div>
 </div>
 
 <div class="Projects">
@@ -22,33 +17,14 @@
 					<h3 class="panel-title sideScrollerTitle">Projects</h3>
 				</div>
 				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" type="text" value="" placeholder="Search Projects"/></div>
+					<input class="form-control sideScrollerSearchBox" type="text" value=""
+						placeholder="Search Projects" /></div>
 			</div>
 		</div>
 		<div class="panel-body">
 			<div class="sideScroller" id="project-scroller">
 				<ul class="list-inline noBottomMargin">
 					<!-- Projects appear here -->
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="Students">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-7 col-mg-8 col-lg-9">
-					<h3 class="panel-title sideScrollerTitle">Students</h3>
-				</div>
-				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" type="text" value="" placeholder="Search Students"/></div>
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- Students appear here -->
 				</ul>
 			</div>
 		</div>
@@ -62,13 +38,32 @@
 					<h3 class="panel-title sideScrollerTitle">Supervisors</h3>
 				</div>
 				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" type="text" value="" placeholder="Search Supervisors"/></div>
+					<input class="form-control sideScrollerSearchBox" type="text" value=""
+						placeholder="Search Supervisors" /></div>
 			</div>
 		</div>
 		<div class="panel-body">
 			<div class="sideScroller" id="project-scroller">
 				<ul class="list-inline noBottomMargin">
 					<!-- Supervisors appear here -->
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="MyGroup">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-mg-12 col-lg-12">
+					<h3 class="panel-title sideScrollerTitle">My Group</h3>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="sideScroller" id="project-scroller">
+				<ul class="list-inline noBottomMargin">
+					<!-- My Group members appear here -->
 				</ul>
 			</div>
 		</div>
@@ -91,51 +86,30 @@
 		}
 	);
 
-	// List the students
+	// List your group members
 	API.GET(
 		"/students", {"year": <?php echo $year;?>},
 		function (data) {
-			document.querySelector(".Students ul").innerHTML = scrollerHTML(data);
-			document.querySelector(".Students h3").innerText = 'Students (' + data.body.length + ')';
+			document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(data);
+			document.querySelector(".MyGroup h3").innerText = 'My Group (' + data.body.length + ')';
 		},
 		function (data) {
 			console.error(data);
 		}
 	);
 
-</script>
-
-<!-- For Raphael -->
-<script src="/includes/js/raphael.js"></script>
-<!-- For JustGage -->
-<script src="/includes/js/justgage.js"></script>
-
-<!-- Set the gauges -->
-<script>
-	function setGauges() {
-		var students_in_groups = 80;
-		var groups_with_projects = 50;
-		var studentsInGroupsGauge = new JustGage({
-			id: "students-in-group-gauge",
-			value: students_in_groups,
-			min: 0,
-			max: 100,
-			title: "Students in groups:",
-			label: "%",
-			relativeGaugeSize: true
-		});
-		var groupsWithProjects = new JustGage({
-			id: "groups-with-projects-gauge",
-			value: groups_with_projects,
-			min: 0,
-			max: 100,
-			title: "Groups with projects:",
-			label: "%",
-			relativeGaugeSize: true
-		})
-
-	}
-	setGauges();
+	// List the supervisors
+	API.GET(
+		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
+		function (data) {
+			console.log(data);
+			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data);
+			document.querySelector(".Supervisors h3").innerText = 'Supervisors (' + data.body.length + ')';
+		},
+		function (data) {
+			console.error(data);
+		}
+	);
 
 	// Generates a scroller
 	function scrollerHTML(data) {
