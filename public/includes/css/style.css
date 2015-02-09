@@ -38,7 +38,7 @@ body {
 }
 
 /* When on landscape on mobile */
-@media (orientation:landscape) and (max-device-width: 568px) { 
+@media (orientation:landscape) and (max-device-width: 568px) {
     .smallerMobileHeading {
         font-size: 20px;
         margin-bottom: 5px;
@@ -63,6 +63,10 @@ body {
     display:block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.inline {
+    display: inline;
 }
 
 .fixedBottom {
@@ -161,4 +165,11 @@ body {
 
 p {
     font-size: 13px;
+}
+
+/* Mobile */
+@media (max-device-width: 568px) {
+    .mobileHide {
+        display: none;
+    }
 }
