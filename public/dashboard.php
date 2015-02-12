@@ -186,9 +186,6 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		document.getElementById("headerPadLeft").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
 		document.getElementById("headerPadRight").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
 		<?php } ?>
-
-		// Populate the year selection box
-		document.getElementById("yearSelector").setAttribute("placeholder", "Year: " + year);
 	</script>
 
 
