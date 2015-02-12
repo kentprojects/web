@@ -7,6 +7,7 @@
         <title> <?php print $title ?> </title>
         <link rel="shortcut icon" href="/../includes/img/kp.ico">
         <script src="../includes/js/cheet.min.js"></script>
+        <script src="../includes/js/dynamicCSS.js"></script>
         <link href="../includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../includes/css/flat-ui-pro.min.css" rel="stylesheet">
         <link href="../includes/css/style.css" rel="stylesheet">

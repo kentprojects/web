@@ -65,6 +65,10 @@ body {
 	margin-right: auto;
 }
 
+.inline {
+    display: inline;
+}
+
 .fixedBottom {
 	bottom: 0px;
 	position: fixed;
@@ -215,5 +219,12 @@ body {
 }
 
 p {
-	font-size: 13px;
+    font-size: 13px;
+}
+
+/* Mobile */
+@media (max-device-width: 568px) and (orientation: portrait) {
+    .mobileHide {
+        display: none;
+    }
 }
