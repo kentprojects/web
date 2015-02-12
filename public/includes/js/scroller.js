@@ -1,15 +1,15 @@
 /**
  * Created by house on 12/02/15.
  */
-function scrollerHTML(data) {
-	if (data.body.length > 0) {
+function scrollerHTML(data, type) {
+	if (data.length > 0) {
 		var item, HTML = [];
-		for (var i = 0; i < data.body.length; i++) {
-			item = data.body[i];
+		for (var i = 0; i < data.length; i++) {
+			item = data[i];
 			HTML.push(
 				'<li class="sideScrollerItem noBottomMargin">',
 				'<div class="tile scrollerTile noBottomMargin">',
-				'<div class="tile-title">' + item.name + '</div>',
+				'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
 				'</div>',
 				'</li>'
 			);

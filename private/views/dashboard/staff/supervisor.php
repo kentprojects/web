@@ -78,7 +78,7 @@
 	API.GET(
 		"/projects", {"year": <?php echo $year;?>},
 		function (data) {
-			document.querySelector(".MyProjects ul").innerHTML = scrollerHTML(data);
+			document.querySelector(".MyProjects ul").innerHTML = scrollerHTML(data.body, "project");
 			document.querySelector(".MyProjects h3").innerText = 'My Projects (' + data.body.length + ')';
 		},
 		function (data) {
@@ -90,7 +90,7 @@
 	API.GET(
 		"/groups", {"year": <?php echo $year;?>},
 		function (data) {
-			document.querySelector(".MyGroups ul").innerHTML = scrollerHTML(data);
+			document.querySelector(".MyGroups ul").innerHTML = scrollerHTML(data.body, "group");
 			document.querySelector(".MyGroups h3").innerText = 'My Groups (' + data.body.length + ')';
 		},
 		function (data) {
@@ -102,7 +102,7 @@
 	API.GET(
 		"/students", {"year": <?php echo $year;?>},
 		function (data) {
-			document.querySelector(".MyStudents ul").innerHTML = scrollerHTML(data);
+			document.querySelector(".MyStudents ul").innerHTML = scrollerHTML(data.body, "student");
 			document.querySelector(".MyStudents h3").innerText = 'My Students (' + data.body.length + ')';
 		},
 		function (data) {
