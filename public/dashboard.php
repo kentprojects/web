@@ -111,45 +111,45 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			switch ($forcedRole)
 			{
 				case "secondmarker":
-					include VIEWS_DIR . "/dashboard-secondmarker.php";
+					include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
 					break;
 				case "supervisor":
-					include VIEWS_DIR . "/dashboard-supervisor.php";
+					include VIEWS_DIR . "/dashboard/staff/supervisor.php";
 					break;
 				default:
 					if ($roles->convener)
 					{
-						include VIEWS_DIR . "/dashboard-convener.php";
+						include VIEWS_DIR . "/dashboard/staff/convener.php";
 					}
 					elseif ($roles->supervisor)
 					{
-						include VIEWS_DIR . "/dashboard-supervisor.php";
+						include VIEWS_DIR . "/dashboard/staff/supervisor.php";
 					}
 					elseif ($roles->secondmarker)
 					{
-						include VIEWS_DIR . "/dashboard-secondmarker.php";
+						include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
 					}
 					else
 					{
-						include VIEWS_DIR . "/dashboard-staff.php";
+						include VIEWS_DIR . "/dashboard/staff/noRole.php";
 					}
 			}
 		}
 		if ($user->role == "student")
 		{
-			$user->group = " ";
-			$user->project = " ";
+			$user->group = null;
+			$user->project = null;
 			if($user->group != null) {
 				if($user->project != null) {
-					include VIEWS_DIR . "/dashboard-student-project.php";
+					include VIEWS_DIR . "/dashboard/student/hasProject.php";
 				}
 				else {
-					include VIEWS_DIR . "/dashboard-student-group.php";
+					include VIEWS_DIR . "/dashboard/student/inGroup.php";
 				}
 
 			}
 			else {
-				include VIEWS_DIR . "/dashboard-student.php";
+				include VIEWS_DIR . "/dashboard/student/noGroup.php";
 			}
 		}
 		?>
