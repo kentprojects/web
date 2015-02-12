@@ -1,17 +1,26 @@
-<div class="row Meters">
-	<div class="col-xs-0 col-sm-0 col-md-2 col-lg-2"></div>
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gauge">
-		<div class="tile">
-			<div id="students-in-group-gauge"></div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+		<div class="jumbotron convenorWelcome">
+			<div class="container">
+				<h3>Welcome to KentProjects!</h3>
+
+				<p>This is your <i>convener</i> dashboard, where you can quickly search through your projects, groups, and students.</p>
+
+			</div>
 		</div>
 	</div>
-	<div class="col-xs-0 col-sm-0 col-md-0 col-lg-2"></div>
-	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gauge">
-		<div class="tile">
-			<div id="groups-with-projects-gauge"></div>
+	<div class="Meters col-xs-12 col-sm-12 col-md-6 col-lg-8">
+		<div class="gauge col-xs-12 col-sm-6 col-md-6 col-lg-6">
+			<div class="tile">
+				<div id="students-in-group-gauge"></div>
+			</div>
+		</div>
+		<div class="gauge col-xs-12 col-sm-6 col-md-6 col-lg-6">
+			<div class="tile">
+				<div id="groups-with-projects-gauge"></div>
+			</div>
 		</div>
 	</div>
-	<div class="col-xs-0 col-sm-0 col-md-2 col-lg-2"></div>
 </div>
 
 <div class="row">

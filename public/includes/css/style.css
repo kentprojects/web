@@ -122,8 +122,11 @@ body {
 	overflow-y: hidden;
 }
 
+.Meters {
+	padding: 0 0 0 0;
+}
+
 .gauge {
-	min-width: 250px;
 	display: inline-block;
 }
 
