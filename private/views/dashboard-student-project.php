@@ -9,56 +9,48 @@
 	</div>
 </div>
 
-<div class="MyProject">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-mg-12 col-lg-12">
-					<h3 class="panel-title sideScrollerTitle">My Project</h3>
+<div class="row">
+	<div class="MyProject col-xs-12 col-sm-6 col-md-6 col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title sideScrollerTitle">My Project</h3>
+			</div>
+			<div class="panel-body">
+				<div class="sideScroller" id="project-scroller">
+					<ul class="list-inline noBottomMargin">
+						<!-- My project will appear here -->
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- My project will appear here -->
-				</ul>
+	</div>
+	<div class="MySupervisor col-xs-12 col-sm-6 col-md-6 col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title sideScrollerTitle">My Supervisor</h3>
+			</div>
+			<div class="panel-body">
+				<div class="sideScroller" id="project-scroller">
+					<ul class="list-inline noBottomMargin">
+						<!-- My supervisor will appear here -->
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="MySupervisor">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-mg-12 col-lg-12">
-					<h3 class="panel-title sideScrollerTitle">My Supervisor</h3>
+<div class="row">
+	<div class="MyGroup col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title sideScrollerTitle">My Group</h3>
+			</div>
+			<div class="panel-body">
+				<div class="sideScroller" id="project-scroller">
+					<ul class="list-inline noBottomMargin">
+						<!-- My group will appear here -->
+					</ul>
 				</div>
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- My supervisor appear here -->
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="MyGroup">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-mg-12 col-lg-12">
-					<h3 class="panel-title sideScrollerTitle">My Group</h3>
-				</div>
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- My Group members appear here -->
-				</ul>
 			</div>
 		</div>
 	</div>
@@ -101,26 +93,4 @@
 			console.error(data);
 		}
 	);
-
-	// Generates a scroller
-	function scrollerHTML(data) {
-		if (data.body.length > 0) {
-			var item, HTML = [];
-			for (var i = 0; i < data.body.length; i++) {
-				item = data.body[i];
-				HTML.push(
-					'<li class="sideScrollerItem noBottomMargin">',
-					'<div class="tile scrollerTile noBottomMargin">',
-					'<div class="tile-title">' + item.name + '</div>',
-					'</div>',
-					'</li>'
-				);
-			}
-			return HTML.join("");
-		}
-		else {
-			return '<div class="scrollerPlaceholder noBottomMargin"><div class="text-info"> There\'s nothing here yet! </div></div>';
-		}
-	}
-	;
 </script>

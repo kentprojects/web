@@ -20,7 +20,7 @@ if (!empty($_GET["year"]))
 	}
 	if (empty($forcedYear))
 	{
-		die("NO. YOU ARE NOT ALLOWED TO TIME TRAVEL.");
+		redirect("/dashboard.php");
 	}
 }
 else
@@ -79,6 +79,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 	<script src="/includes/js/jquery-1.11.2.min.js" type="text/javascript"></script>
 	<script src="/includes/js/flat-ui-pro.min.js" type="text/javascript"></script>
 	<script src="/includes/js/ajax.js" type="text/javascript"></script>
+	<script src="/includes/js/scroller.js" type="text/javascript"></script>
 	<script src="/includes/js/includes.php" type="text/javascript"></script>
 
 	<!-- Layout -->
@@ -88,8 +89,8 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			<div class="col-sm-12 col-xs-12">
 				<h1 class="text-center Heading">Dashboard</h1>
 			</div>
-			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0" id="headerPadLeft"></div>
-			<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" id="roleSelectorDiv">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-0" id="headerPadLeft"></div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="roleSelectorDiv">
 				<div class="dropdown dashboardSelector Heading">
 					<button class="btn btn-default dropdown-toggle dashboardSelector"
 						type="button" id="roleSelector" data-toggle="dropdown">
@@ -101,15 +102,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-2 col-md-3 col-sm-4 col-xs-12" id="yearSelectorDiv">
-				<div class="dashboardSelector Heading">
-					<form action="dashboard.php" method="get">
-						<input type="text" name="year" id="yearSelector" class="form-control text-center"
-							placeholder="">
-					</form>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-3 col-sm-2 col-xs-0" id="headerPadRight"></div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-0" id="headerPadRight"></div>
 		</div>
 
 		<?php
@@ -144,8 +137,8 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		}
 		if ($user->role == "student")
 		{
-			$user->group = null;
-			$user->project = null;
+			$user->group = " ";
+			$user->project = " ";
 			if($user->group != null) {
 				if($user->project != null) {
 					include VIEWS_DIR . "/dashboard-student-project.php";
