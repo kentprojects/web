@@ -7,7 +7,12 @@
 <div class="container">
     <div class="row">
         <h1> Settings </h1>
-        <p> These be your modifiable settings... </p>
+    </div>
+    <div class=""row>
+        <form action="dashboard.php" method="get">
+            <input type="text" name="year" id="yearSelector" class="form-control text-center"
+                placeholder="Year">
+        </form>
     </div>
 </div>
 <?php require PUBLIC_DIR.'/includes/php/footer.php'; ?>

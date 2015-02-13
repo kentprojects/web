@@ -65,6 +65,10 @@ body {
 	margin-right: auto;
 }
 
+.inline {
+    display: inline;
+}
+
 .fixedBottom {
 	bottom: 0px;
 	position: fixed;
@@ -118,8 +122,11 @@ body {
 	overflow-y: hidden;
 }
 
+.Meters {
+	padding: 0 0 0 0;
+}
+
 .gauge {
-	min-width: 250px;
 	display: inline-block;
 }
 
@@ -215,5 +222,12 @@ body {
 }
 
 p {
-	font-size: 13px;
+    font-size: 13px;
+}
+
+/* Mobile */
+@media (max-device-width: 568px) and (orientation: portrait) {
+    .mobileHide {
+        display: none;
+    }
 }
