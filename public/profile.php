@@ -8,21 +8,44 @@ $user = Auth::getUser();
 $title = "Profile";
 require PUBLIC_DIR . "/includes/php/header.php";
 
-if (!empty($_GET["type"]))
+if (!empty($_GET["shortcut"]))
 {
-	$profileType = $_GET["type"];
+	$shortcut = $_GET["shortcut"];
+	switch ($shortcut)
+	{
+		case "myProfile":
+			if ($user->role == "staff")
+			{
+				$profileType = "staff";
+			}
+			elseif ($user->role == "student")
+			{
+				$profileType = "student";
+			}
+			else
+			{
+				redirect("dashboard.php");
+			}
+			$profileId = $user->id;
+	}
 }
-else
-{
-	redirect("dashboard.php");
-}
-if (!empty($_GET["id"]))
-{
-	$profileId = $_GET["id"];
-}
-else
-{
-	redirect("dashboard.php");
+else {
+	if (!empty($_GET["type"]))
+	{
+		$profileType = $_GET["type"];
+	}
+	else
+	{
+		redirect("dashboard.php");
+	}
+	if (!empty($_GET["id"]))
+	{
+		$profileId = $_GET["id"];
+	}
+	else
+	{
+		redirect("dashboard.php");
+	}
 }
 ?>
 

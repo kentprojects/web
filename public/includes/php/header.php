@@ -20,7 +20,7 @@
                         <a href="/dashboard.php"><h4 class="inlineHeading smallerMobileHeading whiteText"> Kent Projects </h4></a>
                     </div>
                     <div class="col-xs-5 col-sm-5 col-md-5 noLeftPadding alignRight">
-                        <a href="/profile.php"><span class="fui-user smallerMobileHeading whiteText"></span></a>
+                        <a href="/profile.php?shortcut=myProfile"><span class="fui-user smallerMobileHeading whiteText"></span></a>
                         <a href="/settings.php"><span class="fui-gear marginLeft10 smallerMobileHeading whiteText"></span></a>
                         <span class="fui-exit hoverHand marginLeft10 smallerMobileHeading whiteText" onclick="logoutUser()"></span>
                     </div>
