@@ -22,7 +22,7 @@ if (!empty($user))
 	else
 	{
 		$meRequest = API::Request(API::GET, "/me");
-		if ($meRequest == 200)
+		if ($meRequest->status == 200)
 		{
 			$meRequest = $meRequest->body;
 			Session::set("meRequest", $meRequest);
