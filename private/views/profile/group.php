@@ -24,7 +24,7 @@
 				</div>
 				<div class="panel-body">
 					<h6 id="projectName">Project Name</h6>
-					<p id="projectDescription">Project description</p>
+					<p id="projectBio">Project description</p>
 				</div>
 			</div>
 		</div>
@@ -44,15 +44,23 @@
 </div>
 
 <script type="text/javascript">
+	var defaultProjectBio = [
+		'This project doesn\'t have a bio yet',
+		'',
+		'*Why not comment on its creator\'s page and let them know?*'
+	].join('\n');
 	API.GET(
 		"/group/" + profileId, {},
-		function (data) {
+		function Success(data) {
 			console.log(data.body);
 			document.getElementById("group_name").innerText = data.body.name;
 			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
-			document.getElementById("projectName").innerText = data.body.project.name;
+			document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
+			// Set the project bio
+			var projectBio = data.body.project.bio || defaultProjectBio;
+			markdownThingy("projectBio", projectBio);
 		},
-		function (data) {
+		function Error(data) {
 			console.error(data);
 		}
 	);
