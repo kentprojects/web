@@ -1,12 +1,24 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12"><h1 id="group_name">Group Profile</h1></div>
+
 	</div>
 	<div class="row">
 		<div class="groupMembers col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title sideScrollerTitle">Group Members</h3>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<h3 class="panel-title">Group Members</h3>
+						</div>
+						<div class="col-xs-3 col-sm-2 col-md-1"></div>
+						<div class="col-xs-6 col-sm-4 col-md-5">
+							<div class="text-center" id="membershipOptions">
+								<button class="btn btn-info panelHeadingButton">Join This Group</button>
+							</div>
+						</div>
+						<div class="col-xs-3 col-sm-0"></div>
+					</div>
 				</div>
 				<div class="panel-body">
 					<div class="sideScroller" id="project-scroller">
