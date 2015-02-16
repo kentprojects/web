@@ -13,11 +13,12 @@ $title = empty($title) ? "KentProjects" : $title;
         <script src="/includes/js/dynamicCSS.js"></script>
         <!-- Bootstrap -->
         <link href="/includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="/includes/css/style.css" rel="stylesheet">
         <!-- Flat UI -->
         <link href="/includes/css/flat-ui-pro.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="/includes/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <!-- Our Styles -->
+        <link href="/includes/css/style.css" rel="stylesheet">
         <!-- Bootstrap Markdown Support -->
         <link href="/includes/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css"/>
         <script src="/includes/js/bootstrap-markdown.js" type="text/javascript"></script>

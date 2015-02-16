@@ -130,10 +130,10 @@ body {
 	display: inline-block;
 }
 
-.sideScrollerTitle {
+/* .sideScrollerTitle {
 	margin-top: 5px;
 	margin-bottom: 5px;
-}
+} */
 
 .sideScrollerSearchBox {
 	margin-top: 0px;
@@ -161,6 +161,12 @@ body {
 
 .scrollerTile .tile-title {
 	white-space: pre-wrap; /* CSS3 */
+}
+
+.panelHeadingButton {
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 100%;
 }
 
 .login-form {
@@ -233,14 +239,14 @@ p {
     font-size: 13px;
 }
 
-html, body, #editor {
+#editor {
 	margin: 0;
 	height: 100%;
 	font-family: 'Helvetica Neue', Arial, sans-serif;
 	color: #333;
 }
 
-textarea, #editor div {
+#editor div {
 	display: inline-block;
 	width: 49%;
 	height: 100%;
