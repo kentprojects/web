@@ -36,8 +36,8 @@ if (!empty($user))
 
 	if (!empty($meRequest))
 	{
-		$variables["group"] = $meRequest->group;
-		$variables["project"] = $meRequest->project;
+		$variables["group"] = !empty($meRequest->group) ? $meRequest->group : new stdClass;
+		$variables["project"] = !empty($meRequest->project) ? $meRequest->project : new stdClass;
 	}
 }
 
