@@ -10,8 +10,7 @@ require_once __DIR__ . "/../../../private/bootstrap.php";
 $user = Auth::getUser();
 
 $variables = array(
-	"me" => new stdClass,
-	"me.user" => (!empty($user) ? $user : new stdClass)
+	"user" => (!empty($user) ? $user : new stdClass)
 );
 
 if (!empty($user))
@@ -37,8 +36,8 @@ if (!empty($user))
 
 	if (!empty($meRequest))
 	{
-		$variables["me.group"] = !empty($meRequest->group) ? $meRequest->group : new stdClass;
-		$variables["me.project"] = !empty($meRequest->project) ? $meRequest->project : new stdClass;
+		$variables["group"] = !empty($meRequest->group) ? $meRequest->group : new stdClass;
+		$variables["project"] = !empty($meRequest->project) ? $meRequest->project : new stdClass;
 	}
 }
 
@@ -52,9 +51,11 @@ echo <<<EOT
  * @link: http://kentprojects.com
  */
 
+var me = {};
+
 EOT;
 
 foreach ($variables as $key => $value)
 {
-	echo "var $key = " . json_encode($value, JSON_PRETTY_PRINT) . ";" . PHP_EOL;
+	echo "me.$key = " . json_encode($value, JSON_PRETTY_PRINT) . ";" . PHP_EOL;
 }
