@@ -10,7 +10,8 @@ require_once __DIR__ . "/../../../private/bootstrap.php";
 $user = Auth::getUser();
 
 $variables = array(
-	"user" => (!empty($user) ? $user : new stdClass)
+	"me" => new stdClass,
+	"me.user" => (!empty($user) ? $user : new stdClass)
 );
 
 if (!empty($user))
@@ -36,8 +37,8 @@ if (!empty($user))
 
 	if (!empty($meRequest))
 	{
-		$variables["group"] = !empty($meRequest->group) ? $meRequest->group : new stdClass;
-		$variables["project"] = !empty($meRequest->project) ? $meRequest->project : new stdClass;
+		$variables["me.group"] = !empty($meRequest->group) ? $meRequest->group : new stdClass;
+		$variables["me.project"] = !empty($meRequest->project) ? $meRequest->project : new stdClass;
 	}
 }
 
