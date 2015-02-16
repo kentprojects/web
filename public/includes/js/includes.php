@@ -50,6 +50,7 @@ echo <<<EOT
  * @license: Copyright KentProjects
  * @link: http://kentprojects.com
  */
+
 EOT;
 
 foreach ($variables as $key => $value)
