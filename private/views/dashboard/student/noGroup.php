@@ -18,7 +18,7 @@
 					<h3 class="panel-title sideScrollerTitle">Projects</h3>
 				</div>
 				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" type="text" value=""
+					<input class="form-control sideScrollerSearchBox" id="project-searchbox" type="text" value=""
 						placeholder="Search Projects" /></div>
 			</div>
 		</div>
@@ -39,7 +39,9 @@
 					<h3 class="panel-title sideScrollerTitle">Groups</h3>
 				</div>
 				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" type="text" value="" placeholder="Search Groups"/></div>
+					<input class="form-control sideScrollerSearchBox" id="group-searchbox" type="text" value=""
+						placeholder="Search Groups" />
+				</div>
 			</div>
 		</div>
 		<div class="panel-body">
@@ -59,8 +61,9 @@
 					<h3 class="panel-title sideScrollerTitle">Students</h3>
 				</div>
 				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" type="text" value=""
-						placeholder="Search Students" /></div>
+					<input class="form-control sideScrollerSearchBox" id="student-searchbox" type="text" value=""
+						placeholder="Search Students" />
+				</div>
 			</div>
 		</div>
 		<div class="panel-body">
@@ -81,7 +84,8 @@
 				</div>
 				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
 					<input class="form-control sideScrollerSearchBox" type="text" value=""
-						placeholder="Search Supervisors" /></div>
+						placeholder="Search Supervisors" />
+				</div>
 			</div>
 		</div>
 		<div class="panel-body">
@@ -94,8 +98,7 @@
 	</div>
 </div>
 
-<script>
-
+<script type="text/javascript">
 	<!-- *** App code goes here *** -->
 
 	// List the projects
@@ -146,5 +149,4 @@
 			console.error(data);
 		}
 	);
-	;
 </script>

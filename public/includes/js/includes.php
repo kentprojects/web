@@ -50,12 +50,10 @@ echo <<<EOT
  * @license: Copyright KentProjects
  * @link: http://kentprojects.com
  */
-
 var me = {};
-
 EOT;
 
 foreach ($variables as $key => $value)
 {
-	echo "me.$key = " . json_encode($value, JSON_PRETTY_PRINT) . ";" . PHP_EOL;
+	echo PHP_EOL . "me.$key = " . json_encode($value, JSON_PRETTY_PRINT) . ";";
 }
