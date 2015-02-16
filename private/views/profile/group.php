@@ -57,7 +57,7 @@
 			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
 			document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
 			// Set the project bio
-			var projectBio = data.body.project.bio || defaultProjectBio;
+			var projectBio = data.body.project.description || defaultProjectBio;
 			markdownThingy("projectBio", projectBio);
 		},
 		function Error(data) {
