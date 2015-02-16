@@ -55,5 +55,5 @@ EOT;
 
 foreach ($variables as $key => $value)
 {
-	echo "var $key = " . json_encode($value) . ";" . PHP_EOL;
+	echo "var $key = " . json_encode($value, JSON_PRETTY_PRINT) . ";" . PHP_EOL;
 }
