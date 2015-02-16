@@ -90,7 +90,7 @@
 			document.getElementById("supervisorName").innerHTML = '<a href="/profile.php?type=staff&id=' + data.body.creator.id + '">' + data.body.creator.name + '</a>';
 			// Set the project description
 			var projectDescription = data.body.description || defaultProjectDescription;
-			if(data.body.permissions.create == 1) {
+			if(data.body.permissions.update == 1) {
 				markdownThingy(
 					"projectDescription", projectDescription, "editProjectBioButton",
 					queueChange("projectDescription", function SaveProjectDescription(saveData, next) {
