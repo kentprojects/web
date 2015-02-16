@@ -3,13 +3,23 @@
  */
 var changes = {};
 
-function pushChanges() {
-	console.log("Saving changes:")
-	console.log(changes);
-	for(var p in changes) {
-		console.log(changes[p]);
-		changes[p].callback(changes[p].data);
+function attemptReload() {
+	if (Object.keys(changes).length < 1) {
+		window.location.reload();
 	}
+}
+
+function successfulChange(saveName) {
+	delete changes[saveName];
+};
+
+function pushChanges() {
+	for(var p in changes) {
+		changes[p].callback(changes[p].data, function nextFunction() {
+			successfulChange(p);
+		});
+	}
+	setInterval(attemptReload, 200);
 }
 
 function queueChange(saveName, saveCallback) {

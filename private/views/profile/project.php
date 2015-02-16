@@ -79,11 +79,12 @@
 			if(canDoTheThing) {
 				markdownThingy(
 					"projectDescription", projectDescription, "editProjectBioButton",
-					queueChange("projectDescription", function SaveProjectDescription(saveData) {
+					queueChange("projectDescription", function SaveProjectDescription(saveData, next) {
 						API.PUT(
 							"/project/" + profileId, {"description": saveData},
 							function SaveProjectDescriptionSuccess(data) {
 								console.log(data);
+								next();
 							},
 							function SaveProjectDescriptionError(data) {
 								console.error(data);
