@@ -79,7 +79,7 @@
 		"/project/" + profileId, {},
 		function Success(data) {
 			document.getElementById("projectName").innerText = data.body.name;
-			document.getElementById("supervisorName").innerText = data.body.creator.name;
+			document.getElementById("supervisorName").innerHTML = '<a href="/profile.php?type=staff&id=' + data.body.creator.id + '">' + data.body.creator.name + '</a>';
 			// Set the project description
 			var projectDescription = data.body.description || defaultProjectDescription;
 			if(canDoTheThing) {
