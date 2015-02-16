@@ -72,9 +72,6 @@
 		'*Why not comment on their page and let them know?*'
 	].join('\n');
 
-	//TODO: Actually check the user permission
-	var canDoTheThing = true;
-
 	API.GET(
 		"/project/" + profileId, {},
 		function Success(data) {
@@ -82,7 +79,7 @@
 			document.getElementById("supervisorName").innerHTML = '<a href="/profile.php?type=staff&id=' + data.body.creator.id + '">' + data.body.creator.name + '</a>';
 			// Set the project description
 			var projectDescription = data.body.description || defaultProjectDescription;
-			if(canDoTheThing) {
+			if(data.body.permissions.create == 1) {
 				markdownThingy(
 					"projectDescription", projectDescription, "editProjectBioButton",
 					queueChange("projectDescription", function SaveProjectDescription(saveData, next) {

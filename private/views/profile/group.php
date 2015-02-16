@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<h1 id="group_name">Group Profile</h1>
+		<div class="col-xs-12"><h1 id="group_name">Group Profile</h1></div>
 	</div>
 	<div class="row">
 		<div class="groupMembers col-xs-12 col-sm-12 col-md-6 col-lg-6">

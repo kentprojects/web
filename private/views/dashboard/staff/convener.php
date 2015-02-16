@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
 		<div class="jumbotron convenorWelcome">
 			<div class="container">
 				<h3>Welcome to KentProjects!</h3>
@@ -9,7 +9,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="Meters col-xs-12 col-sm-12 col-md-6 col-lg-8">
+	<div class="Meters col-xs-12 col-sm-12 col-md-6 col-lg-7">
 		<div class="gauge col-xs-12 col-sm-6 col-md-6 col-lg-6">
 			<div class="tile">
 				<div id="students-in-group-gauge"></div>
