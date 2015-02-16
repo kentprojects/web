@@ -1,3 +1,6 @@
+<?php
+$title = empty($title) ? "KentProjects" : $title;
+?>
 <!doctype html>
 <html lang="en">
     <head>
