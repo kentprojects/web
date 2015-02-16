@@ -41,7 +41,7 @@
 				<div class="panel-body">
 					<h6 id="supervisorName">Supervisor Name</h6>
 
-					<p id="supervisorDescription">Supervisor bio</p>
+					<p id="supervisorBio">Supervisor bio</p>
 
 				</div>
 			</div>
@@ -66,6 +66,11 @@
 	 '',
 	 'Use [Markdown](http://daringfireball.net/projects/markdown/syntax) for formatting'
 	 ].join('\n');
+	var defaultUserBio = [
+		'This user hasn\'t set a bio yet',
+		'',
+		'*Why not comment on their page and let them know?*'
+	].join('\n');
 
 	//TODO: Actually check the user permission
 	var canDoTheThing = true;
@@ -75,6 +80,7 @@
 		function Success(data) {
 			document.getElementById("projectName").innerText = data.body.name;
 			document.getElementById("supervisorName").innerText = data.body.creator.name;
+			// Set the project description
 			var projectDescription = data.body.description || defaultProjectDescription;
 			if(canDoTheThing) {
 				markdownThingy(
@@ -96,6 +102,9 @@
 			else{
 				markdownThingy("projectDescription", projectDescription);
 			}
+			// Set the users bio
+			var userBio = data.body.creator.bio || defaultUserBio;
+			markdownThingy("supervisorBio", userBio);
 		},
 		function Error(data) {
 			console.error(data);
