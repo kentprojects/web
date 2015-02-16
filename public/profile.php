@@ -27,6 +27,9 @@ if (!empty($_GET["shortcut"]))
 				redirect("dashboard.php");
 			}
 			$profileId = $user->id;
+			break;
+		default:
+			redirect("dashboard.php");
 	}
 }
 else {
@@ -57,6 +60,9 @@ else {
 <script src="/includes/js/ajax.js" type="text/javascript"></script>
 <script src="/includes/js/includes.php" type="text/javascript"></script>
 <script src="/includes/js/scroller.js" type="text/javascript"></script>
+<script src="includes/js/editPage.js" type="text/javascript"></script>
+<script src="/includes/js/markdownThingy.js" type="text/javascript"></script>
+
 
 <?php
 switch ($profileType)
@@ -73,6 +79,8 @@ switch ($profileType)
 	case "project":
 		include VIEWS_DIR . "/profile/project.php";
 		break;
+	default:
+		redirect("dashboard.php");
 }
 
 ?>
