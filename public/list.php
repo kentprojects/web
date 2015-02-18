@@ -40,8 +40,17 @@ else
 <?php
 switch ($listType)
 {
+	case "groups":
+			include VIEWS_DIR . "/lists/groups.php";
+			break;
+	case "projects":
+			include VIEWS_DIR . "/lists/projects.php";
+			break;
 	case "staff":
 			include VIEWS_DIR . "/lists/staff.php";
+			break;
+	case "students":
+			include VIEWS_DIR . "/lists/students.php";
 			break;
 	default:
 		redirect("dashboard.php");
