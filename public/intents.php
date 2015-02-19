@@ -3,12 +3,9 @@
  * @author: KentProjects <developer@kentprojects.com>
  * @license: Copyright KentProjects
  * @link: http://kentprojects.com
+ *
+ * @var stdClass $user
  */
-
-if (!in_array(strtoupper($_SERVER["REQUEST_METHOD"]), array("GET", "POST")))
-{
-	exit((string)new Exception("Bad request type."));
-}
 
 $prerequisites = array("authentication");
 require_once __DIR__ . "/../private/bootstrap.php";
@@ -21,22 +18,36 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 		{
 			exit((string)new Exception("No request given."));
 		}
-
-		if (!Intents::isValidIntent(strtolower($_GET["request"])))
-		{
-			exit((string)new Exception("Invalid request specified."));
-		}
-
-		require VIEWS_DIR . "/intents/request.php";
+		$action = "request";
 		break;
 	case "view":
 		if (empty($_GET["id"]))
 		{
-			exit((string)new Exception("No ID given."));
+			exit((string)new Exception("No request ID given."));
 		}
-
-		require VIEWS_DIR . "/intents/view.php";
+		$action = "view";
 		break;
 	default:
 		redirect("dashboard.php");
 }
+
+require PUBLIC_DIR . "/includes/php/header.php";
+
+?>
+
+
+	<div class="container">
+		<div class="Header"></div>
+		<div class="jumbotron">
+			<div class="container">
+				<?php include VIEWS_DIR . "/intents/$action.php"; ?>
+			</div>
+		</div>
+	</div>
+
+	<script> var phpGets = <?php echo(json_encode($_GET)); ?>;</script>
+	<script src="/includes/js/ajax.js" type="text/javascript"></script>
+	<script src="/includes/js/includes.php" type="text/javascript"></script>
+	<script src="/includes/js/intents.js"></script>
+
+<?php require PUBLIC_DIR . "/includes/php/footer.php"; ?>
