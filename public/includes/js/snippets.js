@@ -20,7 +20,7 @@ function replaceAll(string, find, replace) {
 	return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 }
 
-mapPlaceHolders = (function BuildMapFunction() {
+var mapPlaceHolders = (function BuildMapFunction() {
 	function getDataByKey(data, key) {
 		key = key.split(".");
 		for (var i = 0; i < key.length; i++) {
@@ -40,11 +40,12 @@ mapPlaceHolders = (function BuildMapFunction() {
 	}
 
 	return function MapPlaceHolder(placeholders, data) {
+		var output = {};
 		for (var placeholder in placeholders) {
 			if (placeholders.hasOwnProperty(placeholder)) {
-				placeholders[placeholder] = getDataByKey(data, placeholders[placeholder])
+				output[placeholder] = getDataByKey(data, placeholders[placeholder]);
 			}
 		}
-		return placeholders;
+		return output;
 	};
 })();
