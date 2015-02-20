@@ -19,11 +19,8 @@ $title = empty($title) ? "KentProjects" : $title;
         <script src="/includes/js/jquery-1.11.2.min.js" type="text/javascript"></script>
         <!-- Our Styles -->
         <link href="/includes/css/style.css" rel="stylesheet">
-        <!-- Bootstrap Markdown Support -->
-        <link href="/includes/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css"/>
-        <script src="/includes/js/bootstrap-markdown.js" type="text/javascript"></script>
-        <script src="/includes/js/markdown.js" type="text/javascript"></script>
-        <script src="/includes/js/to-markdown.js" type="text/javascript"></script>
+        <!-- Our Scripts -->
+        <script src="/includes/js/snippets.js" type="text/javascript"></script>
     </head>
     <body>
         <header class="kentBlueBackground">

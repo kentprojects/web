@@ -3,48 +3,17 @@
  */
 var intents = {
 	generic: {
-		request: {
-			title: "Send a request to person_name?",
-			description: "Do you want to send a generic request to person_name?",
-			placeholders: {
-				person_name: "id"
-			}
-		},
-		view: {
-			title: "person_name sent you a request",
-			description: "Do you want to accept this request?",
-			placeholders: {
-				person_name: "id"
-			}
+		title: "person_name sent you a request",
+		description: "Do you want to accept this request?",
+		placeholders: {
+			person_name: "api.user.name"
 		}
 	},
 	join_a_group: {
-		request: {
-			title: "Ask to join group_name?",
-			description: "And a description of the request",
-			placeholders: {
-				group_name: "group.name",
-				person_name: "user.name"
-			}
-		},
-		view: {
-			title: "person_name would like to join group_name",
-			description: "And a description of the request"
-		}
+		title: "person_name would like to join group_name",
+		description: "And a description of the request"
 	}
 };
-
-function buildText(text, placeholders, data) {
-	var processedText = text;
-	var replacementStrings = mapPlaceHolders(placeholders, data);
-	for(var key in replacementStrings) {
-		if (replacementStrings.hasOwnProperty(key)) {
-			var replacementString = replacementStrings[key];
-			processedText = processedText.replace(key, replacementString);
-		}
-	}
-	return processedText;
-}
 
 if (phpGets.action == "view") {
 	var action = "view";
@@ -53,18 +22,18 @@ if (phpGets.action == "view") {
 		'/intent/' + requestId, {},
 		function Success(data) {
 			var request = data.body.handler;
-			var title = intents[request][action].title;
-			var description = intents[request][action].description;
-			var placeholders = intents[request][action].placeholders;
 			buildPage(
 				buildText(
-					description,
-					placeholders,
-					data.body
+					intents[request].title,
+					intents[request].placeholders,
+					{
+						"api": data.body,
+						"get": phpGets
+					}
 				),
 				buildText(
-					title,
-					placeholders,
+					intents[request].description,
+					intents[request].placeholders,
 					data.body
 				)
 			);
@@ -72,31 +41,14 @@ if (phpGets.action == "view") {
 		function Error(data) {
 			if (!request) {
 				console.error("That intent doesn't exist!");
-			}z
+			}
+			z
 			console.error(data);
 		}
 	);
 }
 else if (phpGets.action == "request") {
-	var action = "request";
-	var request = phpGets.request;
-	var title = intents[request][action].title;
-	var description = intents[request][action].description;
-	var placeholders = intents[request][action].placeholders;
-	console.log(placeholders);
-	buildPage(
-		buildText(
-			title,
-			placeholders,
-			phpGets
-		),
-		buildText(
-			description,
-			placeholders,
-			phpGets
-		)
-	);
-	console.log(placeholders);
+	//do nothing, let php handle it
 }
 else {
 	console.error("That action doesn't exist")
@@ -125,13 +77,10 @@ function intentReply(response) {
 	);
 }
 
-function intentCreate(request, data) {
-	//TODO: Don't hard-code this
-	data = {"something": "Some Value"};
-	var json = {"handler": request, "data": data};
+function intentCreate(handler, data) {
 	API.POST(
 		'/intent',
-		json,
+		{handler: handler, data: data},
 		function Success(data) {
 			window.history.back();
 		},
@@ -139,14 +88,6 @@ function intentCreate(request, data) {
 			console.error(data);
 		}
 	)
-}
-
-function confirmRequest() {
-	console.log("Request Confirmed");
-};
-
-function cancelRequest() {
-	console.log("Request Cancelled");
 }
 
 function acceptIntent() {
