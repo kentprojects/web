@@ -14,7 +14,8 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton">Join This Group</button>
+								<button class="btn btn-info panelHeadingButton" id="joinGroupButton"">Join This Group
+								</button>
 							</div>
 						</div>
 						<div class="col-xs-3 col-sm-0"></div>
@@ -36,6 +37,7 @@
 				</div>
 				<div class="panel-body">
 					<h6 id="projectName">Project Name</h6>
+
 					<p id="projectBio">Project description</p>
 				</div>
 			</div>
@@ -61,16 +63,25 @@
 		'',
 		'*Why not comment on its creator\'s page and let them know?*'
 	].join('\n');
+	if(!me.group.id){
+		document.getElementById("joinGroupButton").style.display = "block";
+	}
 	API.GET(
 		"/group/" + profileId, {},
 		function Success(data) {
-			console.log(data.body);
+			//console.log(data.body);
 			document.getElementById("group_name").innerText = data.body.name;
 			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
-			document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
-			// Set the project bio
-			var projectBio = data.body.project.description || defaultProjectBio;
-			markdownThingy("projectBio", projectBio);
+			document.getElementById('joinGroupButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;");
+			if(data.body.project) {
+				document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
+				// Set the project bio
+				var projectBio = data.body.project.description || defaultProjectBio;
+				markdownThingy("projectBio", projectBio);
+			}
+			else {
+				document.querySelector(".projectDetails").style.display = "none";
+			}
 		},
 		function Error(data) {
 			console.error(data);

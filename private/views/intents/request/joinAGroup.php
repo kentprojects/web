@@ -1,6 +1,6 @@
-<h3 id="intentTitle">Send a generic request to <var class="userName"">this user?</var></h3>
+<h3 id="intentTitle">Ask to join <var class="groupName"">this group?</var></h3>
 
-<p id="intentDescription">Are you sure you want to send a generic request to <var class="userName">the user</var></p>
+<p id="intentDescription">Do you want to ask <var class="userName">the creator of this group</var > if you can join <var class="groupName"> this group</var>?</p>
 
 <div class="btn-group">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
@@ -17,22 +17,23 @@
 
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function () {
-		var userId = phpGets.userId;
+		var groupId = phpGets.groupId;
 
 		API.GET(
-			"/user/" + userId, {},
+			"/group/" + groupId, {},
 			function Success(data) {
-				innerTextForQuerySelector(".userName", data.body.name);
+				innerTextForQuerySelector(".groupName", data.body.name);
+				innerTextForQuerySelector(".userName", data.body.creator.name);
 			},
 			function Error(data) {
-				console.error("That user doesn't exist!");
+				console.error("That group doesn't exist!");
 				console.error(data.body);
 			}
 		);
 		confirmRequest = function confirmRequest() {
 			intentCreate(
-				"generic",
-				{user_id: userId}
+				"join_a_group",
+				{group_id: groupId}
 			);
 		};
 		cancelRequest = function cancelRequest() {

@@ -43,7 +43,7 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton">Do This Project</button>
+								<button class="btn btn-info panelHeadingButton" id="doProjectButton">Do This Project</button>
 							</div>
 						</div>
 						<div class="col-xs-3 col-sm-0"></div>
@@ -82,7 +82,6 @@
 		'',
 		'*Why not comment on their page and let them know?*'
 	].join('\n');
-
 	API.GET(
 		"/project/" + profileId, {},
 		function Success(data) {
@@ -110,9 +109,16 @@
 			else{
 				markdownThingy("projectDescription", projectDescription);
 			}
-			// Set the users bio
+			// Set the supervisor's bio
 			var userBio = data.body.creator.bio || defaultUserBio;
 			markdownThingy("supervisorBio", userBio);
+
+			// TODO: Show the join button if:
+			// The user isn't a student / doesn't have a project / it's already taken
+			if(me.role = "student" && !me.project.id && !data.body.group){
+				document.getElementById("doProjectButton").style.display = "block";
+			}
+			document.getElementById('doProjectButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=undertake_a_project&projectId=' + profileId;");
 		},
 		function Error(data) {
 			console.error(data);

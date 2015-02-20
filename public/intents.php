@@ -22,11 +22,18 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 			switch ($_GET["request"])
 			{
 				case "generic":
-					if (empty($_GET["id"]))
+					if (empty($_GET["userId"]))
 					{
 						exit((string)new Exception("No request ID given."));
 					}
 					$content = "/request/generic";
+					break;
+				case "joinAGroup":
+					if (empty($_GET["groupId"]))
+					{
+						exit((string)new Exception("No group ID given."));
+					}
+					$content = "/request/joinAGroup";
 					break;
 				default:
 					exit((string)new Exception("Invalid request."));
