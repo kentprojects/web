@@ -57,10 +57,16 @@ else {
 	var profileId = <?php echo $profileId; ?>;
 </script>
 
+<!-- Bootstrap Markdown Support -->
+<link href="/includes/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css"/>
+<script src="/includes/js/bootstrap-markdown.js" type="text/javascript"></script>
+<script src="/includes/js/markdown.js" type="text/javascript"></script>
+<script src="/includes/js/to-markdown.js" type="text/javascript"></script>
+<!-- Our scripts -->
 <script src="/includes/js/ajax.js" type="text/javascript"></script>
 <script src="/includes/js/includes.php" type="text/javascript"></script>
 <script src="/includes/js/scroller.js" type="text/javascript"></script>
-<script src="includes/js/editPage.js" type="text/javascript"></script>
+<script src="/includes/js/editPage.js" type="text/javascript"></script>
 <script src="/includes/js/markdownThingy.js" type="text/javascript"></script>
 
 

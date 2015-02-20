@@ -135,10 +135,6 @@ body {
 	margin-bottom: 5px;
 } */
 
-.sideScrollerSearchBox {
-	margin-top: 0px;
-}
-
 .sideScrollerItem {
 	vertical-align: top;
 }
@@ -164,6 +160,13 @@ body {
 }
 
 .panelHeadingButton {
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 100%;
+	display: none;
+}
+
+.panelHeadingTextBox {
 	padding-top: 4px;
 	padding-bottom: 4px;
 	width: 100%;
@@ -255,6 +258,10 @@ p {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 0 20px;
+}
+
+.panel-body img  {
+	max-width: 100%;
 }
 
 textarea {
