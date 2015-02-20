@@ -31,7 +31,7 @@ else
 ?>
 
 <script>
-	var listType = "<?php echo listType; ?>";
+	var listType = '<?php echo $listType; ?>';
 </script>
 
 
@@ -58,6 +58,6 @@ switch ($listType)
 ?>
 
 
-<script type="text/javascript" src="/includes/viewEdit.js"></script>
+<script type="text/javascript" src="/includes/js/viewEdit.js"></script>
 
 <?php require PUBLIC_DIR . '/includes/php/footer.php'; ?>

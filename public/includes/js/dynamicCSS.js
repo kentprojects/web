@@ -24,7 +24,7 @@ function getWidth() {
 
 function checkDynamicCSS() {
     var currentWidth = getWidth();
-    console.log(currentWidth < 500);
+    //console.log(currentWidth < 500);
     if (currentWidth < 500) {
         reduceHeadings = document.getElementsByClassName('reduceHeading');
         for (var i = 0; i < reduceHeadings.length; i++) {
