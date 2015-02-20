@@ -16,6 +16,14 @@ function innerHTMLForQuerySelector(query, html) {
 	;
 }
 
+function setHrefForQuerySelector(query, href) {
+	var elements = document.querySelectorAll(query)
+	for (i = 0; i < elements.length; i++) {
+		elements[i].href = href;
+	}
+	;
+}
+
 function replaceAll(string, find, replace) {
 	return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 }
