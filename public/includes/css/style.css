@@ -260,6 +260,10 @@ p {
 	padding: 0 20px;
 }
 
+.panel-body img {
+	max-width: 100%;
+}
+
 #userPicture {
 	border: none;
 }

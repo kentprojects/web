@@ -104,6 +104,10 @@ function declineIntent() {
 }
 
 function buildPage(title, description) {
-	innerTextForQuerySelector("#intentTitle", title);
-	innerTextForQuerySelector("#intentDescription", description);
+	qf("#intentTitle", function (element) {
+		element.innerText = title;
+	});
+	qf("#intentDescription", function (element) {
+		element.innerText = description;
+	});
 }

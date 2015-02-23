@@ -1,6 +1,6 @@
 <h3 id="intentTitle">Ask to undertake <var class="projectName"">this project?</var></h3>
 
-<p id="intentDescription">Do you want to ask <a href="#" class="userName">the supervisor of this project</a> if you can
+<p id="intentDescription">Do you want to ask <a href="#" class="userName">the supervisor of this project</a> if your group can
 	undertake <a href="#" class="projectName"> this project</a>?</p>
 
 <div class="btn-group">
@@ -35,6 +35,11 @@
 				if (me.project.id) {
 					document.querySelector("#intentTitle").innerText = "You're already undertaking a project!"
 					document.querySelector("#intentDescription").innerHTML = 'You need to leave your current group, or take back your project request! </br><strong><a href=# onclick="window.history.back"> Go back? </a></strong>';
+					document.querySelector(".btn-group").style.display = "none";
+				}
+				if (me.group.creator.id != me.user.id) {
+					document.querySelector("#intentTitle").innerText = 'Only the creator of a group can pick the project';
+					document.querySelector("#intentDescription").innerHTML = 'You need to ask them to do it. </br><strong><a href="#" onclick="window.history.back"> Go back? </a></strong>';
 					document.querySelector(".btn-group").style.display = "none";
 				}
 				else {
