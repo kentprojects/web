@@ -40,6 +40,19 @@ if (phpGets.action == "view") {
 			);
 		},
 		function Error(data) {
+			if (data.status == 403) {
+				buildPage(
+					"This message isn't meant for you!",
+					"Either you're being nosy, or something's gone wrong."
+				)
+			}
+			if (data.status == 404) {
+				buildPage(
+					"Oops!",
+					"Whatever you're looking for isn't there, yet."
+				)
+			}
+			document.querySelector(".btn-group").style.display = "none";
 			console.error(data);
 		}
 	);
