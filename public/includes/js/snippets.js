@@ -3,14 +3,14 @@
  */
 function innerTextForQuerySelector(query, text) {
 	var elements = document.querySelectorAll(query)
-	for (i = 0; i < elements.length; i++) {
+	for (var i = 0; i < elements.length; i++) {
 		elements[i].innerText = text;
 	}
 	;
 }
 function innerHTMLForQuerySelector(query, html) {
 	var elements = document.querySelectorAll(query)
-	for (i = 0; i < elements.length; i++) {
+	for (var i = 0; i < elements.length; i++) {
 		elements[i].innerText = html;
 	}
 	;
@@ -18,10 +18,20 @@ function innerHTMLForQuerySelector(query, html) {
 
 function setHrefForQuerySelector(query, href) {
 	var elements = document.querySelectorAll(query)
-	for (i = 0; i < elements.length; i++) {
+	for (var i = 0; i < elements.length; i++) {
 		elements[i].href = href;
 	}
 	;
+}
+
+function qf(query, callback) {
+	if (!callback) {
+		console.error("No callback provided for query:", query);
+	}
+	var elements = document.querySelectorAll(query)
+	for (var i = 0; i < elements.length; i++) {
+		callback(elements[i]);
+	}
 }
 
 function replaceAll(string, find, replace) {

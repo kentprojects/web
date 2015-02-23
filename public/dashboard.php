@@ -182,7 +182,6 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		else { ?>
 		document.getElementById("roleSelector").style.display = "none";
 		document.getElementById("roleSelectorDiv").className = "col-lg-0 col-md-0 col-sm-0 col-xs-0";
-		document.getElementById("yearSelectorDiv").className = "col-lg-2 col-md-4 col-sm-6 col-xs-12";
 		document.getElementById("headerPadLeft").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
 		document.getElementById("headerPadRight").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
 		<?php } ?>

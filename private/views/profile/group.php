@@ -63,7 +63,7 @@
 		'',
 		'*Why not comment on its creator\'s page and let them know?*'
 	].join('\n');
-	if(!me.group.id){
+	if(me.user.role == "student" && !me.group.id){
 		document.getElementById("joinGroupButton").style.display = "block";
 	}
 	API.GET(

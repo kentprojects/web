@@ -6,12 +6,16 @@ var intents = {
 		title: "person_name sent you a request",
 		description: "Do you want to accept this request?",
 		placeholders: {
-			person_name: "api.user.name"
+			person_name: "user.name"
 		}
 	},
 	join_a_group: {
 		title: "person_name would like to join group_name",
-		description: "And a description of the request"
+		description: "Do you want to allow person_name to join group_name?",
+		placeholders: {
+			person_name: "user.name",
+			group_name: "group.name"
+		}
 	}
 };
 
@@ -26,10 +30,7 @@ if (phpGets.action == "view") {
 				buildText(
 					intents[request].title,
 					intents[request].placeholders,
-					{
-						"api": data.body,
-						"get": phpGets
-					}
+					data.body
 				),
 				buildText(
 					intents[request].description,
@@ -39,10 +40,6 @@ if (phpGets.action == "view") {
 			);
 		},
 		function Error(data) {
-			if (!request) {
-				console.error("That intent doesn't exist!");
-			}
-			z
 			console.error(data);
 		}
 	);
@@ -52,29 +49,6 @@ else if (phpGets.action == "request") {
 }
 else {
 	console.error("That action doesn't exist")
-}
-
-function intentReply(response) {
-	console.log(response);
-	if (response == "accept") {
-		state = "accepted"
-	}
-	if (response == "decline") {
-		state = "declined"
-	}
-	else {
-		console.error("invalid response state");
-	}
-	API.PUT(
-		"/intent/" + requestId,
-		{"state": state},
-		function Success(data) {
-			console.log(data);
-		},
-		function Error(data) {
-			console.error(data);
-		}
-	);
 }
 
 function intentCreate(handler, data) {
@@ -91,12 +65,29 @@ function intentCreate(handler, data) {
 }
 
 function acceptIntent() {
-	console.log("Intent Accepted");
-	//intentReply(response);
+	API.PUT(
+		"/intent/" + requestId,
+		{state: "accepted"},
+		function Success(data) {
+			window.location.href = "/dashboard.php";
+		},
+		function Error(data) {
+			console.log("Failed to accept intent: " + data);
+		}
+	)
 }
 
 function declineIntent() {
-	console.log("Intent Declined");
+	API.PUT(
+		"/intent/" + requestId,
+		{state: "rejected"},
+		function Success(data) {
+			window.location.href = "/dashboard.php";
+		},
+		function Error(data) {
+			console.log("Failed to reject intent: " + data);
+		}
+	)
 }
 
 function buildPage(title, description) {

@@ -113,12 +113,14 @@
 			var userBio = data.body.creator.bio || defaultUserBio;
 			markdownThingy("supervisorBio", userBio);
 
-			// TODO: Show the join button if:
+			// TODO: Show the do button if:
 			// The user isn't a student / doesn't have a project / it's already taken
-			if(me.role = "student" && !me.project.id && !data.body.group){
-				document.getElementById("doProjectButton").style.display = "block";
+			if(me.user.role == "student" && me.group.id && !me.project.id && !data.body.group){
+				if(me.group.creator.id == me.user.id) {
+					document.getElementById("doProjectButton").style.display = "block";
+				}
 			}
-			document.getElementById('doProjectButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=undertake_a_project&projectId=' + profileId;");
+			document.getElementById('doProjectButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;");
 		},
 		function Error(data) {
 			console.error(data);

@@ -260,8 +260,20 @@ p {
 	padding: 0 20px;
 }
 
-.panel-body img  {
+#userPicture {
+	border: none;
+}
+
+#userPicture > .panel-body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+}
+
+#userPicture > .panel-body > img {
 	max-width: 100%;
+	height: auto;
+	border-radius: 6px;
 }
 
 textarea {
