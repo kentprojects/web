@@ -3,6 +3,25 @@ $title = empty($title) ? "KentProjects" : $title;
 ?>
 <!doctype html>
 <html lang="en">
+<!--
+
+    Hey there! We'd love you to have a poke around in our source code - it was our final year project and I'm sure
+    we've made some mistakes! If you notice anything dodgy please let the current convenor for the module know.
+
+    **ONE IMPORTANT THING TO NOTE, HOWDEVER**
+    As you will undoubtedly notice, this site is mostly written in JS (on the front-end), and therefore can be mucked
+    about with in your browser. We've built this site like an app, communicating with the back-end via an API and you
+    shouldn't, therefore, be able to do anything without the appropriate permissions, even if you can expose the
+    functionality in the UI.
+
+    Just a little FYI.
+
+    We're sure you wouldn't even try that.
+
+    <3 JD, MH, MW.
+
+-->
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
