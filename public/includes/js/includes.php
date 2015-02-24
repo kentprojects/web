@@ -15,30 +15,20 @@ $variables = array(
 
 if (!empty($user))
 {
-	if (Session::has("meRequest"))
+	$meRequest = API::Request(API::GET, "/me");
+	if ($meRequest->status == 200)
 	{
-		$meRequest = Session::get("meRequest");
+		$meRequest = $meRequest->body;
+		Session::set("meRequest", $meRequest);
 	}
 	else
 	{
-		$meRequest = API::Request(API::GET, "/me");
-		if ($meRequest->status == 200)
-		{
-			$meRequest = $meRequest->body;
-			Session::set("meRequest", $meRequest);
-		}
-		else
-		{
-			error_log((string)$meRequest);
-			$meRequest = null;
-		}
+		error_log((string)$meRequest);
+		$meRequest = null;
 	}
 
-	if (!empty($meRequest))
-	{
-		$variables["group"] = !empty($meRequest->group) ? $meRequest->group : new stdClass;
-		$variables["project"] = !empty($meRequest->project) ? $meRequest->project : new stdClass;
-	}
+	$variables["group"] = !empty($meRequest->group) ? $meRequest->group : new stdClass;
+	$variables["project"] = !empty($meRequest->project) ? $meRequest->project : new stdClass;
 }
 
 header("HTTP/1.1 200 OK");
