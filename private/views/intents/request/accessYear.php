@@ -1,6 +1,6 @@
 <h3 id="intentTitle">Ask to join this year?</h3>
 
-<p id="intentDescription">Do you want to ask <a href="#" class="convenerName">the convener for this year</a> if you can join it?
+<p id="intentDescription">Do you want to ask the convener for this year if you can join it?
 
 <div class="btn-group">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">

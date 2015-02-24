@@ -6,6 +6,8 @@ require_once __DIR__ . "/../private/bootstrap.php";
 $user = Auth::getUser();
 $years = KentProjects::getPotentialYears();
 
+$user->years = "TBD";
+
 if (!empty($user->years))
 {
 
