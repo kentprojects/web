@@ -3,6 +3,28 @@ $title = empty($title) ? "KentProjects" : $title;
 ?>
 <!doctype html>
 <html lang="en">
+<!--
+
+    Hey there! We'd love you to have a poke around in our source code - it was our final year project and I'm sure
+    we've made some mistakes! If you notice anything dodgy please let the current convenor for the module know.
+
+    **ONE IMPORTANT THING TO NOTE, HOWEVER**
+    As you will undoubtedly notice, this site is mostly written in JS (on the front-end), and therefore can be mucked
+    about with in your browser. We've built this site like an app, communicating with the back-end via an API and you
+    shouldn't, therefore, be able to do anything without the appropriate permissions, even if you can expose the
+    functionality in the UI.
+
+    Just a little FYI.
+
+    We're sure you wouldn't even try that.
+
+	If you do, however, and find that you can, it'd be awesome if you'd let the powers that be know about it. :)
+
+
+    <3 JD, MH & MW.
+
+-->
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +43,18 @@ $title = empty($title) ? "KentProjects" : $title;
         <link href="/includes/css/style.css" rel="stylesheet">
         <!-- Our Scripts -->
         <script src="/includes/js/snippets.js" type="text/javascript"></script>
-    </head>
+		<script>
+			var $buoop = {c:2};
+			function $buo_f(){
+				var e = document.createElement("script");
+				e.src = "//browser-update.org/update.js";
+				document.body.appendChild(e);
+			};
+			try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+			catch(e){window.attachEvent("onload", $buo_f)}
+		</script>
+
+	</head>
     <body>
         <header class="kentBlueBackground">
             <div class="container">
@@ -42,13 +75,10 @@ $title = empty($title) ? "KentProjects" : $title;
              * No easter eggs here, no sir.
              */
             cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
-                alert('You get full marks, congratulations.');
-            });
-            cheet('d e c 4 b a l l s', function () {
-                alert('He sure is!');
+                alert('Cool video game reference number 1!');
             });
             cheet('i d d q d', function () {
-                alert('Supervisor mode enabled');
+                alert('Cool video game reference number 2!');
             });
             /**
              * Confirm the user wants to log out, if so logs the user out of the system.

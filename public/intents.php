@@ -33,7 +33,25 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					{
 						exit((string)new Exception("No group ID given."));
 					}
+					if ($user->role == "staff")
+					{
+						exit((string)new Exception("Staff can't do that!"));
+					}
 					$content = "/request/joinAGroup";
+					break;
+				case "undertakeAProject":
+					if (empty($_GET["projectId"]))
+					{
+						exit((string)new Exception("No project ID given."));
+					}
+					if ($user->role == "staff")
+					{
+						exit((string)new Exception("Staff can't do that!"));
+					}
+					$content = "/request/undertakeAProject";
+					break;
+				case "accessYear":
+					$content = "/request/accessYear";
 					break;
 				default:
 					exit((string)new Exception("Invalid request."));
@@ -60,12 +78,11 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		<div class="Header"></div>
 		<div class="jumbotron">
 			<div class="container">
-				<!-- TODO: SANITIZE SANITIZE SANITIZE -->
 				<?php include VIEWS_DIR . "/intents/$content.php"; ?>
 			</div>
 		</div>
 	</div>
-
+	<!-- TODO: SANITIZE SANITIZE SANITIZE -->
 	<script> var phpGets = <?php echo(json_encode($_GET)); ?>;</script>
 	<script src="/includes/js/ajax.js" type="text/javascript"></script>
 	<script src="/includes/js/includes.php" type="text/javascript"></script>

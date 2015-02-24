@@ -3,10 +3,10 @@
 <p id="intentDescription"></p>
 
 <div class="btn-group">
-	<button class="btn btn-primary intentAccept" onclick="acceptIntent();" value="accept">
+	<button class="btn btn-primary intentAccept" onclick="intentAccept();" value="accept">
 		Accept
 	</button>
-	<button class="btn btn-info intentDecline" onclick="declineIntent();" value="decline">
+	<button class="btn btn-info intentDecline" onclick="intentDecline();" value="decline">
 		Decline
 	</button>
 </div>

@@ -6,12 +6,31 @@ var intents = {
 		title: "person_name sent you a request",
 		description: "Do you want to accept this request?",
 		placeholders: {
-			person_name: "api.user.name"
+			person_name: "user.name"
 		}
 	},
 	join_a_group: {
 		title: "person_name would like to join group_name",
-		description: "And a description of the request"
+		description: "Do you want to allow person_name to join group_name?",
+		placeholders: {
+			person_name: "user.name",
+			group_name: "group.name"
+		}
+	},
+	undertake_a_project: {
+		title: "group_name would like to undertake project_name",
+		description: "Do you want to allow group_name to undertake project_name?",
+		placeholders: {
+			group_name: "group.name",
+			project_name: "project.name"
+		}
+	},
+	access_year: {
+		title: "person_name would like to access the current year",
+		description: "Do you want to allow person_name to access the current year?",
+		placeholders: {
+			person_name: "user.name"
+		}
 	}
 };
 
@@ -26,10 +45,7 @@ if (phpGets.action == "view") {
 				buildText(
 					intents[request].title,
 					intents[request].placeholders,
-					{
-						"api": data.body,
-						"get": phpGets
-					}
+					data.body
 				),
 				buildText(
 					intents[request].description,
@@ -39,10 +55,19 @@ if (phpGets.action == "view") {
 			);
 		},
 		function Error(data) {
-			if (!request) {
-				console.error("That intent doesn't exist!");
+			if (data.status == 403) {
+				buildPage(
+					"This message isn't meant for you!",
+					"Either you're being nosy, or something's gone wrong."
+				)
 			}
-			z
+			if (data.status == 404) {
+				buildPage(
+					"Oops!",
+					"Whatever you're looking for isn't there, yet."
+				)
+			}
+			document.querySelector(".btn-group").style.display = "none";
 			console.error(data);
 		}
 	);
@@ -52,29 +77,6 @@ else if (phpGets.action == "request") {
 }
 else {
 	console.error("That action doesn't exist")
-}
-
-function intentReply(response) {
-	console.log(response);
-	if (response == "accept") {
-		state = "accepted"
-	}
-	if (response == "decline") {
-		state = "declined"
-	}
-	else {
-		console.error("invalid response state");
-	}
-	API.PUT(
-		"/intent/" + requestId,
-		{"state": state},
-		function Success(data) {
-			console.log(data);
-		},
-		function Error(data) {
-			console.error(data);
-		}
-	);
 }
 
 function intentCreate(handler, data) {
@@ -90,16 +92,38 @@ function intentCreate(handler, data) {
 	)
 }
 
-function acceptIntent() {
-	console.log("Intent Accepted");
-	//intentReply(response);
+function intentAccept() {
+	API.PUT(
+		"/intent/" + requestId,
+		{state: "accepted"},
+		function Success(data) {
+			window.location.href = "/dashboard.php";
+		},
+		function Error(data) {
+			console.log("Failed to accept intent: ");
+			console.log(data);
+		}
+	)
 }
 
-function declineIntent() {
-	console.log("Intent Declined");
+function intentDecline() {
+	API.PUT(
+		"/intent/" + requestId,
+		{state: "rejected"},
+		function Success(data) {
+			window.location.href = "/dashboard.php";
+		},
+		function Error(data) {
+			console.log("Failed to reject intent: " + data);
+		}
+	)
 }
 
 function buildPage(title, description) {
-	innerTextForQuerySelector("#intentTitle", title);
-	innerTextForQuerySelector("#intentDescription", description);
+	qf("#intentTitle", function (element) {
+		element.innerText = title;
+	});
+	qf("#intentDescription", function (element) {
+		element.innerText = description;
+	});
 }
