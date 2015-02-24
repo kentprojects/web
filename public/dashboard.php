@@ -6,71 +6,74 @@ require_once __DIR__ . "/../private/bootstrap.php";
 $user = Auth::getUser();
 $years = KentProjects::getPotentialYears();
 
-if (!empty($_GET["year"]))
+if (!empty($user->years))
 {
-	$forcedYear = null;
-	foreach ($years as $year)
+
+	if (!empty($_GET["year"]))
 	{
-		if ($year->year == $_GET["year"])
+		$forcedYear = null;
+		foreach ($years as $year)
 		{
-			KentProjects::setForcedYear($_GET["year"]);
-			$forcedYear = $_GET["year"];
+			if ($year->year == $_GET["year"])
+			{
+				KentProjects::setForcedYear($_GET["year"]);
+				$forcedYear = $_GET["year"];
+				break;
+			}
+		}
+		if (empty($forcedYear))
+		{
+			redirect("/dashboard.php");
+		}
+	}
+	else
+	{
+		$forcedYear = KentProjects::getForcedYear();
+	}
+
+	$year = !empty($forcedYear) ? $forcedYear : KentProjects::getAcademicYearFromDate("today");
+	$roles = new stdClass;
+
+	foreach ($years as $y)
+	{
+		if ($y->year == $year)
+		{
+			foreach ($y as $key => $value)
+			{
+				if (strpos($key, "role_") === 0)
+				{
+					$roles->{substr($key, 5)} = boolval($value);
+				}
+			}
 			break;
 		}
 	}
-	if (empty($forcedYear))
-	{
-		redirect("/dashboard.php");
-	}
-}
-else
-{
-	$forcedYear = KentProjects::getForcedYear();
-}
 
-$year = !empty($forcedYear) ? $forcedYear : KentProjects::getAcademicYearFromDate("today");
-$roles = new stdClass;
+	$potentialRoles = KentProjects::getPotentialRoles($roles);
 
-foreach ($years as $y)
-{
-	if ($y->year == $year)
+	if (!empty($_GET["role"]))
 	{
-		foreach ($y as $key => $value)
+		$forcedRole = null;
+		if (!$roles->{$_GET["role"]})
 		{
-			if (strpos($key, "role_") === 0)
-			{
-				$roles->{substr($key, 5)} = boolval($value);
-			}
+			die("NO. YOU ARE NOT ALLOWED TO BE THAT PERSON.");
 		}
-		break;
+		KentProjects::setForcedRole($_GET["role"]);
+		$forcedRole = $_GET["role"];
 	}
-}
-
-$potentialRoles = KentProjects::getPotentialRoles($roles);
-
-if (!empty($_GET["role"]))
-{
-	$forcedRole = null;
-	if (!$roles->{$_GET["role"]})
+	else
 	{
-		die("NO. YOU ARE NOT ALLOWED TO BE THAT PERSON.");
+		$forcedRole = KentProjects::getForcedRole();
 	}
-	KentProjects::setForcedRole($_GET["role"]);
-	$forcedRole = $_GET["role"];
-}
-else
-{
-	$forcedRole = KentProjects::getForcedRole();
-}
 
-$yearData = API::Request(API::GET, "/year/$year");
+	$yearData = API::Request(API::GET, "/year/$year");
 
-if ($yearData->status !== 200)
-{
-	echo "Year not created.";
-	exit(1);
+	if ($yearData->status !== 200)
+	{
+		echo "Year not created.";
+		exit(1);
+	}
 }
-
 // Get header
 $title = "Dashboard";
 require PUBLIC_DIR . "/includes/php/header.php";
@@ -106,50 +109,57 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		</div>
 
 		<?php
-		if ($user->role == "staff")
+		if (empty($user->years))
 		{
-			switch ($forcedRole)
+			include VIEWS_DIR . "/dashboard/noYear.php";
+		}
+		else
+		{
+			if ($user->role == "staff")
 			{
-				case "secondmarker":
-					include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
-					break;
-				case "supervisor":
-					include VIEWS_DIR . "/dashboard/staff/supervisor.php";
-					break;
-				default:
-					if ($roles->convener)
-					{
-						include VIEWS_DIR . "/dashboard/staff/convener.php";
-					}
-					elseif ($roles->supervisor)
-					{
-						include VIEWS_DIR . "/dashboard/staff/supervisor.php";
-					}
-					elseif ($roles->secondmarker)
-					{
+				switch ($forcedRole)
+				{
+					case "secondmarker":
 						include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
+						break;
+					case "supervisor":
+						include VIEWS_DIR . "/dashboard/staff/supervisor.php";
+						break;
+					default:
+						if ($roles->convener)
+						{
+							include VIEWS_DIR . "/dashboard/staff/convener.php";
+						}
+						elseif ($roles->supervisor)
+						{
+							include VIEWS_DIR . "/dashboard/staff/supervisor.php";
+						}
+						elseif ($roles->secondmarker)
+						{
+							include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
+						}
+				}
+			}
+			if ($user->role == "student")
+			{
+				$user->group = null;
+				$user->project = null;
+				if ($user->group != null)
+				{
+					if ($user->project != null)
+					{
+						include VIEWS_DIR . "/dashboard/student/hasProject.php";
 					}
 					else
 					{
-						include VIEWS_DIR . "/dashboard/staff/noRole.php";
+						include VIEWS_DIR . "/dashboard/student/inGroup.php";
 					}
-			}
-		}
-		if ($user->role == "student")
-		{
-			$user->group = null;
-			$user->project = null;
-			if($user->group != null) {
-				if($user->project != null) {
-					include VIEWS_DIR . "/dashboard/student/hasProject.php";
-				}
-				else {
-					include VIEWS_DIR . "/dashboard/student/inGroup.php";
-				}
 
-			}
-			else {
-				include VIEWS_DIR . "/dashboard/student/noGroup.php";
+				}
+				else
+				{
+					include VIEWS_DIR . "/dashboard/student/noGroup.php";
+				}
 			}
 		}
 		?>

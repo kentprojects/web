@@ -50,12 +50,8 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					}
 					$content = "/request/undertakeAProject";
 					break;
-				case "joinAYear":
-					if (empty($_GET["year"]))
-					{
-						exit((string)new Exception("No year given."));
-					}
-					$content = "/request/joinAYear";
+				case "accessYear":
+					$content = "/request/accessYear";
 					break;
 				default:
 					exit((string)new Exception("Invalid request."));

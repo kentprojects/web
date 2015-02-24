@@ -23,12 +23,12 @@
 
 		confirmRequest = function confirmRequest() {
 			intentCreate(
-				"join_a_year",
+				"access_year",
 				{yearId: yearId}
 			);
 		};
 		cancelRequest = function cancelRequest() {
-			window.location.href = "/profile.php?type=group&id=" + groupId;
+			window.location.href = "dashboard.php";
 		};
 	});
 </script>

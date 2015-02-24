@@ -24,6 +24,13 @@ var intents = {
 			group_name: "group.name",
 			project_name: "project.name"
 		}
+	},
+	access_year: {
+		title: "person_name would like to access the current year",
+		description: "Do you want to allow person_name to access the current year?",
+		placeholders: {
+			person_name: "user.name"
+		}
 	}
 };
 
