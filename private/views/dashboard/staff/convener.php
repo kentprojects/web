@@ -176,8 +176,8 @@
 			max: total_students,
 			levelColors: [ "#ff0000", "#f9c802", "#a9d70b" ],
 			title: "Students in groups:",
-			label: "%",
-			relativeGaugeSize: true
+			relativeGaugeSize: true,
+			startAnimationTime: 0
 		});
 		var groupsWithProjects = new JustGage({
 			id: "groups-with-projects-gauge",
@@ -186,8 +186,8 @@
 			max: total_groups,
 			levelColors: [ "#ff0000", "#f9c802", "#a9d70b" ],
 			title: "Groups with projects:",
-			label: "%",
-			relativeGaugeSize: true
+			relativeGaugeSize: true,
+			startAnimationTime: 0
 		})
 
 	}

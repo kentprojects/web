@@ -18,10 +18,6 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 		{
 			exit((string)new Exception("No request given."));
 		}
-		if ($user->role == "staff")
-		{
-			exit((string)new Exception("Staff can't do that!"));
-		}
 		else {
 			switch ($_GET["request"])
 			{
@@ -37,6 +33,10 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					{
 						exit((string)new Exception("No group ID given."));
 					}
+					if ($user->role == "staff")
+					{
+						exit((string)new Exception("Staff can't do that!"));
+					}
 					$content = "/request/joinAGroup";
 					break;
 				case "undertakeAProject":
@@ -44,7 +44,18 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					{
 						exit((string)new Exception("No project ID given."));
 					}
+					if ($user->role == "staff")
+					{
+						exit((string)new Exception("Staff can't do that!"));
+					}
 					$content = "/request/undertakeAProject";
+					break;
+				case "joinAYear":
+					if (empty($_GET["year"]))
+					{
+						exit((string)new Exception("No year given."));
+					}
+					$content = "/request/joinAYear";
 					break;
 				default:
 					exit((string)new Exception("Invalid request."));

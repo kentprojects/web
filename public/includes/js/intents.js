@@ -16,6 +16,14 @@ var intents = {
 			person_name: "user.name",
 			group_name: "group.name"
 		}
+	},
+	undertake_a_project: {
+		title: "group_name would like to undertake project_name",
+		description: "Do you want to allow group_name to undertake project_name?",
+		placeholders: {
+			group_name: "group.name",
+			project_name: "project.name"
+		}
 	}
 };
 
@@ -77,7 +85,7 @@ function intentCreate(handler, data) {
 	)
 }
 
-function acceptIntent() {
+function intentAccept() {
 	API.PUT(
 		"/intent/" + requestId,
 		{state: "accepted"},
@@ -85,12 +93,13 @@ function acceptIntent() {
 			window.location.href = "/dashboard.php";
 		},
 		function Error(data) {
-			console.log("Failed to accept intent: " + data);
+			console.log("Failed to accept intent: ");
+			console.log(data);
 		}
 	)
 }
 
-function declineIntent() {
+function intentDecline() {
 	API.PUT(
 		"/intent/" + requestId,
 		{state: "rejected"},
