@@ -67,7 +67,7 @@
 		'*Why not comment on its creator\'s page and let them know?*'
 	].join('\n');
 	API.GET(
-		"/staff/" + profileId, {},
+		"/staff/" + phpGets.profileId, {},
 		function Success(data) {
 
 			// Set the user bio

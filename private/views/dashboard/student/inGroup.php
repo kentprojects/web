@@ -13,7 +13,7 @@
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title sideScrollerTitle">Projects</h3>
+				<h3 class="panel-title sideScrollerTitle"><a href="/list.php?type=projects">Projects</h3>
 			</div>
 			<div class="panel-body">
 				<div class="sideScroller" id="project-scroller">
@@ -29,7 +29,7 @@
 	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title sideScrollerTitle">Supervisors</h3>
+				<h3 class="panel-title sideScrollerTitle"><a href="/list.php?type=supervisors">Supervisors</h3>
 			</div>
 			<div class="panel-body">
 				<div class="sideScroller" id="project-scroller">
@@ -45,7 +45,7 @@
 	<div class="MyGroup col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title sideScrollerTitle">My Group</h3>
+				<h3 class="panel-title sideScrollerTitle"><a href="/list.php?type=groups">My Group</h3>
 			</div>
 			<div class="panel-body">
 				<div class="sideScroller" id="project-scroller">

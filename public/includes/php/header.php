@@ -31,14 +31,14 @@ $title = empty($title) ? "KentProjects" : $title;
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
         <title> <?php print $title ?> </title>
         <link rel="shortcut icon" href="/../includes/img/kp.ico">
-        <script src="/includes/js/cheet.min.js"></script>
+        <script src="/includes/js/lib/cheet.min.js"></script>
         <script src="/includes/js/dynamicCSS.js"></script>
 		<!-- Bootstrap -->
-        <link href="/includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Flat UI -->
-        <link href="/includes/css/flat-ui-pro.min.css" rel="stylesheet">
+        <link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
         <!-- jQuery -->
-        <script src="/includes/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
         <!-- Our Styles -->
         <link href="/includes/css/style.css" rel="stylesheet">
         <!-- Our Scripts -->

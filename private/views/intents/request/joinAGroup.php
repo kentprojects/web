@@ -1,4 +1,4 @@
-<h3 id="intentTitle">Ask to join <var class="groupName"">this group?</var></h3>
+<h3 id="intentTitle">Ask to join <var class="groupName"">this group</var>?</h3>
 
 <p id="intentDescription">Do you want to ask <a href="#" class="userName">the creator of this group</a> if you can join
 	<a href="#" class="groupName"> this group</a>?</p>

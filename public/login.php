@@ -84,8 +84,8 @@ $people = array(
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kent Projects Login</title>
         <link rel="shortcut icon" href="/includes/img/kp.ico">
-        <link href="/includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="/includes/css/flat-ui-pro.min.css" rel="stylesheet">
+        <link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
         <link href="/includes/css/style.css" rel="stylesheet">
         <link href="/includes/css/login.css" rel="stylesheet">
     </head>

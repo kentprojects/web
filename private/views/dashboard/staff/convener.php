@@ -164,9 +164,9 @@
 </script>
 
 <!-- For Raphael -->
-<script src="/includes/js/raphael.js"></script>
+<script src="/includes/js/lib/raphael.js"></script>
 <!-- For JustGage -->
-<script src="/includes/js/justgage.js"></script>
+<script src="/includes/js/lib/justgage.js"></script>
 
 <!-- Set the gauges -->
 <script>

@@ -75,9 +75,9 @@ $title = "Dashboard";
 require PUBLIC_DIR . "/includes/php/header.php";
 ?>
 
-	<script src="/includes/js/jquery-1.11.2.min.js" type="text/javascript"></script>
-	<script src="/includes/js/flat-ui-pro.min.js" type="text/javascript"></script>
-	<script src="/includes/js/sly.js" type="text/javascript"></script>
+	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
+	<script src="/includes/js/lib/flat-ui-pro.min.js" type="text/javascript"></script>
+	<script src="/includes/js/lib/sly.js" type="text/javascript"></script>
 	<script src="/includes/js/ajax.js" type="text/javascript"></script>
 	<script src="/includes/js/scroller.js" type="text/javascript"></script>
 	<script src="/includes/js/includes.php" type="text/javascript"></script>
