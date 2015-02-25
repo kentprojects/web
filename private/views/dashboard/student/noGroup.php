@@ -10,94 +10,89 @@
 	</div>
 </div>
 
-<div class="Projects">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-7 col-mg-8 col-lg-9">
-					<h3 class="panel-title sideScrollerTitle">Projects</h3>
-				</div>
-				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" id="project-searchbox" type="text" value=""
-						placeholder="Search Projects" /></div>
+<div class="row">
+	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Projects</h3>
 			</div>
-		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- Projects appear here -->
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="Groups">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-7 col-mg-8 col-lg-9">
-					<h3 class="panel-title sideScrollerTitle">Groups</h3>
+			<div class="panel-body">
+				<div class="frame" id="projectScroller">
+					<ul class="clearfix">
+					</ul>
 				</div>
-				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" id="group-searchbox" type="text" value=""
-						placeholder="Search Groups" />
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
 				</div>
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- Groups appear here -->
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="Students">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-7 col-mg-8 col-lg-9">
-					<h3 class="panel-title sideScrollerTitle">Students</h3>
-				</div>
-				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" id="student-searchbox" type="text" value=""
-						placeholder="Search Students" />
-				</div>
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- Students appear here -->
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="Supervisors">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<div class="row">
-				<div class="col-xs-12 col-sm-7 col-mg-8 col-lg-9">
-					<h3 class="panel-title sideScrollerTitle">Supervisors</h3>
-				</div>
-				<div class="col-xs-12 col-sm-5 col-mg-4 col-lg-3">
-					<input class="form-control sideScrollerSearchBox" type="text" value=""
-						placeholder="Search Supervisors" />
-				</div>
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class="sideScroller" id="project-scroller">
-				<ul class="list-inline noBottomMargin">
-					<!-- Supervisors appear here -->
-				</ul>
 			</div>
 		</div>
 	</div>
 </div>
 
+<div class="row">
+	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Groups</h3>
+			</div>
+			<div class="panel-body">
+				<div class="frame" id="groupScroller">
+					<ul class="clearfix">
+					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Students</h3>
+			</div>
+			<div class="panel-body">
+				<div class="frame" id="studentScroller">
+					<ul class="clearfix">
+					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Supervisors</h3>
+			</div>
+			<div class="panel-body">
+				<div class="frame" id="supervisorScroller">
+					<ul class="clearfix">
+					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 	<!-- *** App code goes here *** -->
 
@@ -106,7 +101,8 @@
 		"/projects", {"year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project");
-			document.querySelector(".Projects h3").innerText = 'Projects (' + data.body.length + ')';
+			document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
+			scroller("#projectScroller");
 		},
 		function (data) {
 			console.error(data);
@@ -118,7 +114,8 @@
 		"/groups", {"year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group");
-			document.querySelector(".Groups h3").innerText = 'Groups (' + data.body.length + ')';
+			document.querySelector(".Groups h3").innerText += ' (' + data.body.length + ')';
+			scroller("#groupScroller");
 		},
 		function (data) {
 			console.error(data);
@@ -130,7 +127,8 @@
 		"/students", {"year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student");
-			document.querySelector(".Students h3").innerText = 'Students (' + data.body.length + ')';
+			document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
+			scroller("#studentScroller");
 		},
 		function (data) {
 			console.error(data);
@@ -141,9 +139,9 @@
 	API.GET(
 		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
 		function (data) {
-			console.log(data);
 			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff");
-			document.querySelector(".Supervisors h3").innerText = 'Supervisors (' + data.body.length + ')';
+			document.querySelector(".Supervisors h3").innerText += ' (' + data.body.length + ')';
+			scroller("#supervisorScroller");
 		},
 		function (data) {
 			console.error(data);

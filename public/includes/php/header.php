@@ -33,7 +33,7 @@ $title = empty($title) ? "KentProjects" : $title;
         <link rel="shortcut icon" href="/../includes/img/kp.ico">
         <script src="/includes/js/cheet.min.js"></script>
         <script src="/includes/js/dynamicCSS.js"></script>
-        <!-- Bootstrap -->
+		<!-- Bootstrap -->
         <link href="/includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Flat UI -->
         <link href="/includes/css/flat-ui-pro.min.css" rel="stylesheet">
@@ -44,7 +44,24 @@ $title = empty($title) ? "KentProjects" : $title;
         <!-- Our Scripts -->
         <script src="/includes/js/snippets.js" type="text/javascript"></script>
 		<script>
-			var $buoop = {c:2};
+			var $buoop = {
+				vs: {c:2},   // browser versions to notify
+				reminder: 0,                   // atfer how many hours should the message reappear
+												// 0 = show all the time
+				reminderClosed: 1,             // if the user closes message it reappears after x hours
+				onshow: function(infos){},      // callback function after the bar has appeared
+				onclick: function(infos){},     // callback function if bar was clicked
+				onclose: function(infos){},     //
+
+				l: false,                       // set a language for the message, e.g. "en"
+												// overrides the default detection
+				test: false,                    // true = always show the bar (for testing)
+				text: "Your browser is outdated, and this site may not work as expected. Click here to learn more.", // custom notification html text
+				text_xx: "",                    // custom notification text for language "xx"
+												// e.g. text_de for german and text_it for italian
+				newwindow: true                 // open link in new window/tab
+			};
+
 			function $buo_f(){
 				var e = document.createElement("script");
 				e.src = "//browser-update.org/update.js";
