@@ -2,7 +2,7 @@
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
 		<div class="jumbotron convenorWelcome">
 			<div class="container">
-				<h3>Welcome to KentProjects!</h3>
+				<h3>Welcome to KentProjects!</a></h3>
 
 				<p>This is your <i>convener</i> dashboard, where you can quickly search through your projects, groups,
 					and students.</p>
@@ -28,7 +28,7 @@
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Projects</h3>
+				<h3 class="panel-title"><a href="/list.php?type=projects">Projects</a></h3>
 			</div>
 			<div class="panel-body">
 					<div class="frame" id="projectScroller">
@@ -48,7 +48,7 @@
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Groups</h3>
+				<h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3>
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="groupScroller">
@@ -69,7 +69,7 @@
 	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Students</h3>
+				<h3 class="panel-title"><a href="/list.php?type=students">Students</a></h3>
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="studentScroller">
@@ -90,7 +90,7 @@
 	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Supervisors</h3>
+				<h3 class="panel-title"><a href="/list.php?type=staff">Supervisors</a></h3>
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="supervisorScroller">
@@ -114,7 +114,7 @@
 		"/projects", {"year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project");
-			document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
+			document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 			scroller("#projectScroller");
 		},
 		function (data) {
@@ -127,7 +127,7 @@
 		"/groups", {"year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group");
-			document.querySelector(".Groups h3").innerText += ' (' + data.body.length + ')';
+			document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
 			scroller("#groupScroller");
 		},
 		function (data) {
@@ -140,7 +140,7 @@
 		"/students", {"year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student");
-			document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
+			document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
 			scroller("#studentScroller");
 		},
 		function (data) {
@@ -153,7 +153,7 @@
 		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff");
-			document.querySelector(".Supervisors h3").innerText += ' (' + data.body.length + ')';
+			document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
 			scroller("#supervisorScroller");
 		},
 		function (data) {

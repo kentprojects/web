@@ -11,7 +11,7 @@
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">My Projects</h3>
+				<h3 class="panel-title"><a href="/list.php?type=projects">My Projects</h3>
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="projectScroller">
@@ -31,7 +31,7 @@
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">My Groups</h3>
+				<h3 class="panel-title"><a href="/list.php?type=groups">My Groups</h3>
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="groupScroller">
@@ -52,7 +52,7 @@
 	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">My Students</h3>
+				<h3 class="panel-title"><a href="/list.php?type=students">My Students</h3>
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="studentScroller">
