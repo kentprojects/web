@@ -89,6 +89,4 @@ switch ($profileType)
 		redirect("dashboard.php");
 }
 
-?>
-
-<?php require PUBLIC_DIR . '/includes/php/footer.php'; ?>
+require PUBLIC_DIR . '/includes/php/footer.php'; ?>

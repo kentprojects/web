@@ -117,10 +117,61 @@ body {
 	background: rgba(255, 255, 255, .8);
 }
 
-.sideScroller {
-	overflow-x: scroll;
-	overflow-y: hidden;
+/* Scroller Styling */
+
+/* Frame */
+.frame {
+	height: 250px;
+	overflow: hidden;
 }
+.frame ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 20px;
+}
+.frame ul li {
+	float: left;
+	width: 200px;
+	height: 100%;
+	margin: 0 15px 0 0;
+	padding: 10px;
+	background: #eff0f2;
+	color: #333;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 6px;
+}
+/* Pages */
+.pages {
+	list-style: none;
+	margin: 5px 0;
+	padding: 0;
+	text-align: center;
+}
+.pages li {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin: 0 4px;
+	text-indent: -999px;
+	border-radius: 10px;
+	cursor: pointer;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
+}
+.pages li:hover {
+	background: #aaa;
+}
+.pages li.active {
+	background: #666;
+}
+
+.controls { margin: 0; text-align: center; }
+
+/* --------------- */
 
 .Meters {
 	padding: 0 0 0 0;
@@ -128,35 +179,6 @@ body {
 
 .gauge {
 	display: inline-block;
-}
-
-/* .sideScrollerTitle {
-	margin-top: 5px;
-	margin-bottom: 5px;
-} */
-
-.sideScrollerItem {
-	vertical-align: top;
-}
-
-.list-inline {
-	white-space: nowrap;
-}
-
-.scrollerTile {
-	height: 200px;
-	width: 200px;
-	margin: 5px;
-}
-
-.scrollerPlaceholder {
-	text-align: center;
-	height: 200px;
-	margin: 5px;
-}
-
-.scrollerTile .tile-title {
-	white-space: pre-wrap; /* CSS3 */
 }
 
 .panelHeadingButton {
