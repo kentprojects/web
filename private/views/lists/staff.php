@@ -17,7 +17,12 @@
 			console.log(data);
 			var output = "<table class='table table-striped'><thead><tr><th>Name</th><th class='mobileHide'>Interests</th></tr></thead><tbody>";
 				for (var i = 0; i < data.body.length; i++) {
-					output += "<tr><td>" + data.body[i].name + "</td><td class='mobileHide'>" + "Not specified" + "</td></tr>";
+					if (data.body[i].name != "") {
+					output += "<tr><td>" + data.body[i].name + "</td></tr>";
+				}
+				else {
+					output += "<tr><td>" + data.body[i].email + "</td></tr>";
+				}
 				};
 				output += "</tbody></table>";
 				document.getElementById('listContents').innerHTML = output;
