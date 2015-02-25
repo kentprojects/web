@@ -9,7 +9,7 @@
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">My Projects</h3>
+				<h3 class="panel-title"><a href="/list.php?type=projects">My Projects</a></h3>
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="projectScroller">
@@ -34,7 +34,7 @@
 		"/projects", {"year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project");
-			document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
+			document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 			scroller("#projectScroller");
 		},
 		function (data) {
