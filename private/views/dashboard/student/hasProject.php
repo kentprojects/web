@@ -48,7 +48,7 @@
 			<div class="panel-body">
 				<div class="sideScroller" id="project-scroller">
 					<ul class="list-inline noBottomMargin">
-						<!-- My group will appear here -->
+						<!-- My group members will appear here -->
 					</ul>
 				</div>
 			</div>

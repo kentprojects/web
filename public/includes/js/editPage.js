@@ -1,6 +1,3 @@
-/**
- * Created by house on 16/02/15.
- */
 var changes = {};
 
 function attemptReload() {
