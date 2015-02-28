@@ -10,6 +10,11 @@ machine:
   timezone:
       Europe/London
 #
+test:
+  override:
+    - echo "hehehe"
+    - exit 0
+#
 deployment:
 # Deploy the develop branch.
   development:
