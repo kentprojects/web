@@ -333,6 +333,12 @@ code {
 	color: #f66;
 }
 
+
+.lockTile {
+	background: #505050 !important; 
+}
+
+
 /* Mobile */
 @media (max-device-width: 568px) and (orientation: portrait) {
     .mobileHide {
