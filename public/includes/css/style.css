@@ -302,6 +302,22 @@ p {
 	border-radius: 6px;
 }
 
+#interestsInput {
+	display: none;
+}
+
+div.tokenfield.readonly {
+	border-color: transparent;
+}
+
+div.tokenfield.readonly span.token-label {
+	padding-right: 4px;
+}
+
+div.tokenfield.readonly a.close {
+	display: none;
+}
+
 textarea {
 	border: none;
 	border-right: 1px solid #ccc;

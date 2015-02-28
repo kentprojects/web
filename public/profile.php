@@ -59,15 +59,22 @@ else {
 
 <!-- Bootstrap Markdown Support -->
 <link href="/includes/css/lib/bootstrap-markdown.min.css" rel="stylesheet" type="text/css"/>
+<link href="/includes/css/lib/bootstrap-tokenfield.min.css" rel="stylesheet" type="text/css"/>
 <script src="/includes/js/lib/bootstrap-markdown.js" type="text/javascript"></script>
 <script src="/includes/js/lib/markdown.js" type="text/javascript"></script>
 <script src="/includes/js/lib/to-markdown.js" type="text/javascript"></script>
+<script src="/includes/js/lib/bootstrap-tokenfield.min.js" type="text/javascript"></script>
+<!-- Sly -->
+<script src="/includes/js/lib/sly.js" type="text/javascript"></script>
 <!-- Our scripts -->
 <script src="/includes/js/ajax.js" type="text/javascript"></script>
 <script src="/includes/js/includes.php" type="text/javascript"></script>
+
 <script src="/includes/js/scroller.js" type="text/javascript"></script>
 <script src="/includes/js/editPage.js" type="text/javascript"></script>
 <script src="/includes/js/markdownThingy.js" type="text/javascript"></script>
+<script src="/includes/js/tokensThingy.js" type="text/javascript"></script>
+
 
 
 <?php

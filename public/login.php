@@ -52,27 +52,27 @@ if (false && !$loginAsCas)
 $people = array(
 	"f4dfeada0e91e1791a80da1bb26a7d96" => array(
 		"role" => "convenor",
-		"username" => "J.C.Hernandez-Castro"
+		"username" => "Julio"
 	),
 	"1e9a755d73865da9068f079d81402ce7" => array(
 		"role" => "staff",
-		"username" => "J.S.Crawford"
+		"username" => "John"
 	),
 	"6f2653c2a1c64220e3d2a713cc52b438" => array(
 		"role" => "staff",
-		"username" => "supervisor2"
+		"username" => "Stuart"
 	),
 	"1f18ed87771daf095e090916cb9423e4" => array(
 		"role" => "student",
-		"username" => "mh471"
+		"username" => "House"
 	),
 	"1460357d62390ab9b3b33fa1a0618a8f" => array(
 		"role" => "student",
-		"username" => "jsd24"
+		"username" => "Dryden"
 	),
 	"930144ea545ce754789b15074106bc36" => array(
 		"role" => "student",
-		"username" => "mjw59"
+		"username" => "Weeks"
 	),
 );
 ?>

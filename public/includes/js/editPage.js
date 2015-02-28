@@ -19,7 +19,19 @@ function pushChanges() {
 	setInterval(attemptReload, 200);
 }
 
-function queueChange(saveName, saveCallback) {
+function queueChange(saveName, saveData, saveCallback) {
+	if (!saveCallback) {
+		console.error("No saveCallback.");
+		return;
+	}
+	changes[saveName] = {
+		callback: saveCallback,
+		data: saveData
+	};
+	document.getElementById("changeOptions").style.display = "block";
+}
+
+function queueMarkdownChange(saveName, saveCallback) {
 	if (!saveCallback) {
 		console.error("No saveCallback.");
 		return;

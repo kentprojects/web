@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12"><h1 id="userName">User Profile</h1></div>
+		<div class="col-xs-12"><h1 id="userName">&nbsp;</h1></div>
 
 	</div>
 	<div class="row" id="changeOptions">
@@ -16,7 +16,7 @@
 		<div class="userDetails col-xs-12 col-sm-3 col-md-2 col-lg-2">
 			<div class="panel panel-default" id="userPicture">
 				<div class="panel-body">
-					<img src="http://i.imgur.com/ldS4dWw.png"/>
+					<img src="http://i.imgur.com/ldS4dWw.png" />
 				</div>
 			</div>
 		</div>
@@ -46,9 +46,21 @@
 					<h3 class="panel-title">My Project:</h3>
 				</div>
 				<div class="panel-body">
-					<h6 id="projectName">Project Name</h6>
+					<h6 id="projectName">&nbsp;</h6>
 
-					<p id="projectBio">Project description</p>
+					<p id="projectBio">&nbsp;</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="userInterests col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Interests:</h3>
+				</div>
+				<div class="panel-body">
+					<input type="text" class="form-control" id="interestsInput"/>
 				</div>
 			</div>
 		</div>
@@ -82,16 +94,20 @@
 		"/student/" + profileId, {},
 		function Success(data) {
 
+
 			// Set the user bio
 			var userBio = data.body.bio || defaultUserBio;
+			// Set the user interests
+			var userInterests = data.body.interests;
+
 			if (data.body.permissions.update == 1) {
+
 				markdownThingy(
 					"userBio", userBio, "editUserBioButton",
-					queueChange("userBio", function SaveUserBio(saveData, next) {
+					queueMarkdownChange("userBio", function SaveUserBio(saveData, next) {
 						API.PUT(
 							"/student/" + profileId, {"bio": saveData},
 							function SaveUserBioSuccess(data) {
-								console.log(data);
 								next();
 							},
 							function SaveUserBioError(data) {
@@ -100,9 +116,24 @@
 						);
 					})
 				);
+
+				tokensThingy("#interestsInput", userInterests, function SaveUserInterests(interests, next) {
+					API.PUT(
+						"/student/" + profileId, {"interests": interests},
+						function SaveUserInterestsSuccess(data) {
+							next();
+						},
+						function SaveUserInterestsError(data) {
+							console.error(data);
+						}
+					);
+				});
+
+
 			}
 			else {
 				markdownThingy("userBio", userBio);
+				tokensThingy("#interestsInput", userInterests);
 			}
 			// Set the user's name
 			document.getElementById("userName").innerText = data.body.name;
