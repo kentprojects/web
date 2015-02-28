@@ -1,17 +1,47 @@
 /**
  * Created by house on 12/02/15.
  */
+function scrollerTile(item, type) {
+	var classList = "", tileHTML = [], tileImage = "";
+	// If colour required add to class list.
+	// If tile locked add locked to class list.
+	if ((type == "student")) {
+		if (item.group != null) {
+			// Padlock tile
+			classList += " statusX";
+		}
+	}
+	else if ((type == "project") && (item.group != null)) {
+		classList += " lockTile";	
+	}
+	else if (type == "group") {
+		classList += " locked";
+	}
+
+	// If image then add image tag
+	if (false)  { tileImage = "<img class='' id='' src=''/>"; }
+
+	// Set class list
+	if (classList != "") { classList = " class='" + classList + "'"; }
+
+	// Create tile from HTML segments and return as a string.
+	tileHTML.push(
+		'<li' + classList + '>',
+		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
+		'</div>',
+		'</li>'
+	);
+	return tileHTML.join("");
+}
+
 function scrollerHTML(data, type) {
+	console.log(type);
+	console.log(data);
 	if (data.length > 0) {
 		var item, HTML = [];
 		for (var i = 0; i < data.length; i++) {
 			item = data[i];
-			HTML.push(
-				'<li>',
-				'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
-				'</div>',
-				'</li>'
-			);
+			HTML.push(scrollerTile(item, type));
 		}
 		return HTML.join("");
 	}

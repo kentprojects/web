@@ -141,7 +141,7 @@
 		function (data) {
 			document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student");
 			document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
-			scroller("#studentScroller");
+			//scroller("#studentScroller");
 		},
 		function (data) {
 			console.error(data);

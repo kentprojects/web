@@ -17,6 +17,5 @@ Vagrant.configure("2") do |config|
 	end
 	config.vm.hostname = "kentprojects"
 	config.vm.network "forwarded_port", guest: 80, host: 8080
-	config.vm.network "private_network", ip: "172.16.1.12"
 	config.vm.provision "shell", path: "vagrant/provision.sh"
 end
