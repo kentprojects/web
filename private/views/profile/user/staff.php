@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12"><h1 id="userName">User Profile</h1></div>
+		<div class="col-xs-12"><h1 id="userName">&nbsp;</h1></div>
 
 	</div>
 	<div class="row" id="changeOptions">
@@ -42,6 +42,19 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="userInterests col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Interests:</h3>
+				</div>
+				<div class="panel-body">
+					<input type="text" class="form-control" id="interestsInput" />
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="commentsPublic col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -66,20 +79,24 @@
 		'',
 		'*Why not comment on its creator\'s page and let them know?*'
 	].join('\n');
+
 	API.GET(
-		"/staff/" + phpGets.profileId, {},
+		"/staff/" + profileId, {},
 		function Success(data) {
 
 			// Set the user bio
 			var userBio = data.body.bio || defaultUserBio;
+			// Set the user interests
+			var userInterests = data.body.interests;
+
 			if (data.body.permissions.update == 1) {
+
 				markdownThingy(
 					"userBio", userBio, "editUserBioButton",
-					queueChange("userBio", function SaveUserBio(saveData, next) {
+					queueMarkdownChange("userBio", function SaveUserBio(saveData, next) {
 						API.PUT(
 							"/staff/" + profileId, {"bio": saveData},
 							function SaveUserBioSuccess(data) {
-								console.log(data);
 								next();
 							},
 							function SaveUserBioError(data) {
@@ -88,9 +105,24 @@
 						);
 					})
 				);
+
+				tokensThingy("#interestsInput", userInterests, function SaveUserInterests(interests, next) {
+					alert(interests);
+					API.PUT(
+						"/staff/" + profileId, {"interests": interests},
+						function SaveUserInterestsSuccess(data) {
+							next();
+						},
+						function SaveUserInterestsError(data) {
+							console.error(data);
+						}
+					);
+				});
+
 			}
 			else {
 				markdownThingy("userBio", userBio);
+				tokensThingy("#interestsInput", userInterests);
 			}
 
 			document.getElementById("userName").innerText = data.body.name;

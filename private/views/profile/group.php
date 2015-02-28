@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12"><h1 id="group_name">Group Profile</h1></div>
+		<div class="col-xs-12"><h1 id="groupName">&nbsp;</h1></div>
 
 	</div>
 	<div class="row">
@@ -14,7 +14,8 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton" id="joinGroupButton"">Join This Group
+								<button class="btn btn-info panelHeadingButton" id="joinGroupButton">
+									Join This Group
 								</button>
 							</div>
 						</div>
@@ -22,10 +23,14 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<div class="sideScroller" id="project-scroller">
-						<ul class="list-inline noBottomMargin">
-							<!-- Group members will appear here -->
+					<div class="frame" id="groupMembersScroller">
+						<ul class="clearfix">
 						</ul>
+					</div>
+					<ul class="pages"></ul>
+					<div class="controls center">
+						<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+						<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
 					</div>
 				</div>
 			</div>
@@ -36,9 +41,9 @@
 					<h3 class="panel-title">Our Project:</h3>
 				</div>
 				<div class="panel-body">
-					<h6 id="projectName">Project Name</h6>
+					<h6 id="projectName">&nbsp;</h6>
 
-					<p id="projectBio">Project description</p>
+					<p id="projectBio">&nbsp;</p>
 				</div>
 			</div>
 		</div>
@@ -63,17 +68,17 @@
 		'',
 		'*Why not comment on its creator\'s page and let them know?*'
 	].join('\n');
-	if(me.user.role == "student" && !me.group.id){
+	if (me.user.role == "student" && !me.group.id) {
 		document.getElementById("joinGroupButton").style.display = "block";
 	}
 	API.GET(
 		"/group/" + profileId, {},
 		function Success(data) {
-			//console.log(data.body);
-			document.getElementById("group_name").innerText = data.body.name;
+			document.getElementById("groupName").innerText = data.body.name;
 			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
+			scroller("#groupMembersScroller");
 			document.getElementById('joinGroupButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;");
-			if(data.body.project) {
+			if (data.body.project) {
 				document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
 				// Set the project bio
 				var projectBio = data.body.project.description || defaultProjectBio;

@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h1 id="projectName">Project Profile</h1>
+			<h1 id="projectName">&nbsp;</h1>
 		</div>
 	</div>
 	<div class="row" id="changeOptions">
@@ -50,9 +50,9 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<h6 id="supervisorName">Supervisor Name</h6>
+					<h6 id="supervisorName">&nbsp;</h6>
 
-					<p id="supervisorBio">Supervisor bio</p>
+					<p id="supervisorBio">&nbsp;</p>
 
 				</div>
 			</div>
@@ -92,7 +92,7 @@
 			if(data.body.permissions.update == 1) {
 				markdownThingy(
 					"projectDescription", projectDescription, "editProjectBioButton",
-					queueChange("projectDescription", function SaveProjectDescription(saveData, next) {
+					queueMarkdownChange("projectDescription", function SaveProjectDescription(saveData, next) {
 						API.PUT(
 							"/project/" + profileId, {"description": saveData},
 							function SaveProjectDescriptionSuccess(data) {
