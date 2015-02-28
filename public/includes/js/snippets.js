@@ -1,6 +1,12 @@
 /**
  * Created by house on 17/02/15.
  */
+
+function addTileTest() {
+	var containerID = "";
+	var testJSON = "";
+}
+
 function innerTextForQuerySelector(query, text) {
 	var elements = document.querySelectorAll(query)
 	for (var i = 0; i < elements.length; i++) {
