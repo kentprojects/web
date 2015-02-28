@@ -1,0 +1,23 @@
+#
+# @author: James Dryden <james.dryden@kentprojects.com>
+# @license: Copyright KentProjects
+# @link: http://kentprojects.com
+#
+machine:
+# Machine specifics.
+  php:
+    version: 5.5.8
+  timezone:
+      Europe/London
+#
+deployment:
+# Deploy the develop branch.
+  development:
+    branch: develop
+    commands:
+      - ./scripts/deploy_develop.sh
+# Deploy the master branch.
+  production:
+    branch: master
+    commands:
+      - ./scripts/deploy_master.sh
