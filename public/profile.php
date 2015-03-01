@@ -92,7 +92,7 @@ else {
 <script src="/includes/js/ajax.js" type="text/javascript"></script>
 <script src="/includes/js/includes.php" type="text/javascript"></script>
 
-<script src="/includes/js/scroller.js" type="text/javascript"></script>
+<script src="/includes/js/scrollerThingy.js" type="text/javascript"></script>
 <script src="/includes/js/editPage.js" type="text/javascript"></script>
 <script src="/includes/js/markdownThingy.js" type="text/javascript"></script>
 <script src="/includes/js/tokensThingy.js" type="text/javascript"></script>

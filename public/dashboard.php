@@ -90,7 +90,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 	<script src="/includes/js/lib/flat-ui-pro.min.js" type="text/javascript"></script>
 	<script src="/includes/js/lib/sly.js" type="text/javascript"></script>
 	<script src="/includes/js/ajax.js" type="text/javascript"></script>
-	<script src="/includes/js/scroller.js" type="text/javascript"></script>
+	<script src="/includes/js/scrollerThingy.js" type="text/javascript"></script>
 	<script src="/includes/js/includes.php" type="text/javascript"></script>
 
 	<!-- Layout -->
