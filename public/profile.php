@@ -1,9 +1,9 @@
 <?php
 // Get authentication
-$prerequisites = array("authentication");
+$prerequisites = array("authentication", "me");
 require_once __DIR__ . "/../private/bootstrap.php";
 
-$user = Auth::getUser();
+$user = $meRequest->user;
 // Get header
 $title = "Profile";
 require PUBLIC_DIR . "/includes/php/header.php";
@@ -28,6 +28,28 @@ if (!empty($_GET["shortcut"]))
 			}
 			$profileId = $user->id;
 			break;
+		case "myGroup":
+			if ($user->role == "staff")
+			{
+				redirect("dashboard.php");
+			}
+			elseif ($user->role == "student")
+			{
+				if(!empty($meRequest->group))
+				{
+					$profileType = "group";
+					$profileId = $meRequest->group->id;
+					break;
+				}
+				else
+				{
+					redirect("dashboard.php");
+				}
+			}
+			else
+			{
+				redirect("dashboard.php");
+			}
 		default:
 			redirect("dashboard.php");
 	}

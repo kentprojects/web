@@ -1,88 +1,89 @@
 <?php
 // Get authentication
-$prerequisites = array("authentication");
+$prerequisites = array("authentication", "me");
 require_once __DIR__ . "/../private/bootstrap.php";
 
-$user = Auth::getUser();
+$user = $meRequest->user;
 $years = KentProjects::getPotentialYears();
+$year = null;
 
-$meRequest = API::Request(API::GET, "/me");
-if ($meRequest->status == 200)
+if (!empty($user->years))
 {
-	$meRequest = $meRequest->body;
-}
-else
-{
-	$meRequest = new stdClass;
-}
-
-if (!empty($_GET["year"]))
-{
-	$forcedYear = null;
-	foreach ($years as $year)
+	if (!empty($_GET["year"]))
 	{
-		if ($year->year == $_GET["year"])
+		$forcedYear = null;
+		foreach ($years as $year)
 		{
-			KentProjects::setForcedYear($_GET["year"]);
-			$forcedYear = $_GET["year"];
+			if ($year->year == $_GET["year"])
+			{
+				KentProjects::setForcedYear($_GET["year"]);
+				$forcedYear = $_GET["year"];
+				break;
+			}
+		}
+		if (empty($forcedYear))
+		{
+			redirect("/dashboard.php");
+		}
+	}
+	else
+	{
+		$forcedYear = KentProjects::getForcedYear();
+	}
+
+	$year = !empty($forcedYear) ? $forcedYear : KentProjects::getAcademicYearFromDate("today");
+	$roles = new stdClass;
+
+	foreach ($years as $y)
+	{
+		if ($y->year == $year)
+		{
+			foreach ($y as $key => $value)
+			{
+				if (strpos($key, "role_") === 0)
+				{
+					$roles->{substr($key, 5)} = boolval($value);
+				}
+			}
 			break;
 		}
 	}
-	if (empty($forcedYear))
-	{
-		redirect("/dashboard.php");
-	}
-}
-else
-{
-	$forcedYear = KentProjects::getForcedYear();
-}
 
-$year = !empty($forcedYear) ? $forcedYear : KentProjects::getAcademicYearFromDate("today");
-$roles = new stdClass;
-
-foreach ($years as $y)
-{
-	if ($y->year == $year)
+	if ($user->role === "staff")
 	{
-		foreach ($y as $key => $value)
+		$potentialRoles = KentProjects::getPotentialRoles($roles);
+
+		if (!empty($_GET["role"]))
 		{
-			if (strpos($key, "role_") === 0)
+			$forcedRole = null;
+			if (!$roles->{$_GET["role"]})
 			{
-				$roles->{substr($key, 5)} = boolval($value);
+				die("NO. YOU ARE NOT ALLOWED TO BE THAT PERSON.");
 			}
+			KentProjects::setForcedRole($_GET["role"]);
+			$forcedRole = $_GET["role"];
 		}
-		break;
+		else
+		{
+			$forcedRole = KentProjects::getForcedRole();
+		}
+
 	}
-}
 
-$potentialRoles = KentProjects::getPotentialRoles($roles);
+	$yearData = API::Request(API::GET, "/year/$year");
 
-if (!empty($_GET["role"]))
-{
-	$forcedRole = null;
-	if (!$roles->{$_GET["role"]})
+	if ($yearData->status !== 200)
 	{
-		die("NO. YOU ARE NOT ALLOWED TO BE THAT PERSON.");
+		echo "Year not created.";
+		exit(1);
 	}
-	KentProjects::setForcedRole($_GET["role"]);
-	$forcedRole = $_GET["role"];
-}
-else
-{
-	$forcedRole = KentProjects::getForcedRole();
 }
 
-$yearData = API::Request(API::GET, "/year/$year");
-
-if ($yearData->status !== 200)
-{
-	echo "Year not created.";
-	exit(1);
-}
 // Get header
 $title = "Dashboard";
 require PUBLIC_DIR . "/includes/php/header.php";
+
+
 ?>
 
 	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
@@ -117,50 +118,60 @@ require PUBLIC_DIR . "/includes/php/header.php";
 
 		<?php
 
-		if ($user->role == "staff")
+		if (empty($user->years))
 		{
-			switch ($forcedRole)
-			{
-				case "secondmarker":
-					include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
-					break;
-				case "supervisor":
-					include VIEWS_DIR . "/dashboard/staff/supervisor.php";
-					break;
-				default:
-					if ($roles->convener)
-					{
-						include VIEWS_DIR . "/dashboard/staff/convener.php";
-					}
-					elseif ($roles->supervisor)
-					{
-						include VIEWS_DIR . "/dashboard/staff/supervisor.php";
-					}
-					elseif ($roles->secondmarker)
-					{
-						include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
-					}
-			}
+			include VIEWS_DIR . "/dashboard/noYear.php";
 		}
-		if ($user->role == "student")
+
+
+		else
 		{
-			if ($meRequest->group != null)
+			if ($user->role === "staff")
 			{
-				if ($meRequest->project != null)
+				switch ($forcedRole)
 				{
-					include VIEWS_DIR . "/dashboard/student/hasProject.php";
+					case "secondmarker":
+						include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
+						break;
+					case "supervisor":
+						include VIEWS_DIR . "/dashboard/staff/supervisor.php";
+						break;
+					default:
+						if ($roles->convener)
+						{
+							include VIEWS_DIR . "/dashboard/staff/convener.php";
+						}
+						elseif ($roles->supervisor)
+						{
+							include VIEWS_DIR . "/dashboard/staff/supervisor.php";
+						}
+						elseif ($roles->secondmarker)
+						{
+							include VIEWS_DIR . "/dashboard/staff/secondMarker.php";
+						}
+				}
+			}
+			if ($user->role === "student")
+			{
+				if ($meRequest->group != null)
+				{
+					if ($meRequest->project != null)
+					{
+						include VIEWS_DIR . "/dashboard/student/hasProject.php";
+					}
+					else
+					{
+						include VIEWS_DIR . "/dashboard/student/inGroup.php";
+					}
+
 				}
 				else
 				{
-					include VIEWS_DIR . "/dashboard/student/inGroup.php";
+					include VIEWS_DIR . "/dashboard/student/noGroup.php";
 				}
-
-			}
-			else
-			{
-				include VIEWS_DIR . "/dashboard/student/noGroup.php";
 			}
 		}
+
 		?>
 
 
@@ -168,7 +179,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 
 	<script>
 		<!-- App code goes here -->
-		var year = "<?php echo $year ?>";
+		var year = "<?php echo $year; ?>";
 		// Populate the roles dropdown
 		<?php if (!empty($potentialRoles)) { ?>
 		(function () {

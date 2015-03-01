@@ -9,7 +9,7 @@
 
 $prerequisites = array("authentication");
 require_once __DIR__ . "/../private/bootstrap.php";
-$user = Auth::getUser();
+$user = $meRequest->user;
 
 switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 {

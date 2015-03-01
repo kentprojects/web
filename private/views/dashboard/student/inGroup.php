@@ -13,13 +13,17 @@
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title sideScrollerTitle"><a href="/list.php?type=projects">Projects</h3>
+				<h3 class="panel-title"><a href="/list.php?type=projects">Projects</a></h3>
 			</div>
 			<div class="panel-body">
-				<div class="sideScroller" id="project-scroller">
-					<ul class="list-inline noBottomMargin">
-						<!-- Projects will appear here -->
+				<div class="frame" id="projectScroller">
+					<ul class="clearfix">
 					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
 				</div>
 			</div>
 		</div>
@@ -29,13 +33,17 @@
 	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title sideScrollerTitle"><a href="/list.php?type=supervisors">Supervisors</h3>
+				<h3 class="panel-title"><a href="/list.php?type=staff">Supervisors</a></h3>
 			</div>
 			<div class="panel-body">
-				<div class="sideScroller" id="project-scroller">
-					<ul class="list-inline noBottomMargin">
-						<!-- Supervisors will appear here -->
+				<div class="frame" id="supervisorScroller">
+					<ul class="clearfix">
 					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
 				</div>
 			</div>
 		</div>
@@ -45,13 +53,17 @@
 	<div class="MyGroup col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title sideScrollerTitle"><a href="/list.php?type=groups">My Group</h3>
+				<h3 class="panel-title"><a href="/profile.php?shortcut=myGroup">My Group</a></h3>
 			</div>
 			<div class="panel-body">
-				<div class="sideScroller" id="project-scroller">
-					<ul class="list-inline noBottomMargin">
-						<!-- My group will appear here -->
+				<div class="frame" id="myGroupScroller">
+					<ul class="clearfix">
 					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
 				</div>
 			</div>
 		</div>
@@ -67,19 +79,8 @@
 		"/projects", {"year": <?php echo $year;?>},
 		function (data) {
 			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project");
-			document.querySelector(".Projects h3").innerText = 'Projects (' + data.body.length + ')';
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-	// List your group members
-	API.GET(
-		"/students", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(data.body, "student");
-			document.querySelector(".MyGroup h3").innerText = 'My Group';
+			document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
+			scroller("#projectScroller");
 		},
 		function (data) {
 			console.error(data);
@@ -90,12 +91,20 @@
 	API.GET(
 		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
 		function (data) {
-			console.log(data);
-			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data, "staff");
-			document.querySelector(".Supervisors h3").innerText = 'Supervisors (' + data.body.length + ')';
+			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff");
+			document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
+			scroller("#supervisorScroller");
 		},
 		function (data) {
 			console.error(data);
 		}
 	);
+
+	// List your group members
+	document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student");
+	document.querySelector(".MyGroup a").innerText = 'My Group';
+	scroller("#myGroupScroller");
+
+
+
 </script>

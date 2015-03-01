@@ -3,7 +3,7 @@
 $prerequisites = array("authentication");
 require_once __DIR__ . "/../private/bootstrap.php";
 
-$user = Auth::getUser();
+$user = $meRequest->user;
 // Get header
 $title = "List";
 require PUBLIC_DIR . "/includes/php/header.php";

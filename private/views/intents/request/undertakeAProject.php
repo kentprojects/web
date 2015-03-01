@@ -1,8 +1,7 @@
-<h3 id="intentTitle">Ask to undertake <var class="projectName"">this project?</var></h3>
+<h3 id="intentTitle">Ask to undertake <var class="projectName""></var></h3>
 
-<p id="intentDescription">Do you want to ask <a href="#" class="userName">the supervisor of this project</a> if your
-	group can
-	undertake <a href="#" class="projectName"> this project</a>?</p>
+<p id="intentDescription">Do you want to ask <a href="#" class="userName"></a> if your group can
+	undertake <a href="#" class="projectName"></a>?</p>
 
 <div class="btn-group">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
@@ -71,7 +70,8 @@
 							'Did you find a broken link? If so, please let the module convener know. ' +
 							'</br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
 					});
-				};
+				}
+				;
 				document.querySelector(".btn-group").style.display = "none";
 			}
 		);

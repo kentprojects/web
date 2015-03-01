@@ -1,7 +1,7 @@
 <?php
 $title = empty($title) ? "KentProjects" : $title;
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <!--
 

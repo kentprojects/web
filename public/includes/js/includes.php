@@ -5,31 +5,16 @@
  * @link: http://kentprojects.com
  *
  * Don't panic. There's a PHP file hiding in the middle of the Javascript files!
+ *
+ * @var stdClass $meRequest
  */
+$prerequisites = array("authentication");
 require_once __DIR__ . "/../../../private/bootstrap.php";
-$user = Auth::getUser();
-
 $variables = array(
-	"user" => (!empty($user) ? $user : new stdClass)
+	"user" => !empty($meRequest->user) ? $meRequest->user : new stdClass,
+	"group" => !empty($meRequest->group) ? $meRequest->group : new stdClass,
+	"project" => !empty($meRequest->project) ? $meRequest->project : new stdClass
 );
-
-if (!empty($user))
-{
-	$meRequest = API::Request(API::GET, "/me");
-	if ($meRequest->status == 200)
-	{
-		$meRequest = $meRequest->body;
-		Session::set("meRequest", $meRequest);
-	}
-	else
-	{
-		error_log((string)$meRequest);
-		$meRequest = null;
-	}
-
-	$variables["group"] = !empty($meRequest->group) ? $meRequest->group : new stdClass;
-	$variables["project"] = !empty($meRequest->project) ? $meRequest->project : new stdClass;
-}
 
 header("HTTP/1.1 200 OK");
 header("Content-Type: text/javascript");
