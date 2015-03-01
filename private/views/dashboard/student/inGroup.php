@@ -78,7 +78,7 @@
 	API.GET(
 		"/projects", {"year": <?php echo $year;?>},
 		function (data) {
-			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project");
+			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 			document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 			scroller("#projectScroller");
 		},
@@ -91,7 +91,7 @@
 	API.GET(
 		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
 		function (data) {
-			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff");
+			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
 			document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
 			scroller("#supervisorScroller");
 		},
@@ -101,7 +101,7 @@
 	);
 
 	// List your group members
-	document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student");
+	document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student", true);
 	document.querySelector(".MyGroup a").innerText = 'My Group';
 	scroller("#myGroupScroller");
 

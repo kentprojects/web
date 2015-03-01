@@ -75,7 +75,7 @@
 		"/group/" + profileId, {},
 		function Success(data) {
 			document.getElementById("groupName").innerText = data.body.name;
-			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
+			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student", false);
 			scroller("#groupMembersScroller");
 			document.getElementById('joinGroupButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;");
 			if (data.body.project) {

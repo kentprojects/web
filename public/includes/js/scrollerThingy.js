@@ -1,24 +1,45 @@
 /**
  * Created by house on 12/02/15.
  */
-function scrollerTile(item, type) {
+function scrollerTile(item, type, addStyle) {
 	var classList = "", lockedHTML = "", tileHTML = [], tileImage = "";
 	// If colour required add to class list.
 	// If tile locked add locked to class list.
-	if ((type == "student")) {
-		if (item.group != null) {
-			// Padlock tile
-			classList += " statusX";
+	if (addStyle) {
+		if ((type == "student")) {
+			// If group.
+			if (item.group != null) {
+				// If project.
+				if (item.group.project != null) { 
+					classList += " greenTile";
+				}
+				else {
+					classList += " yellowTile";
+				}
+			}
+			else {
+				classList += " redTile";
+			}
 		}
+		else if ((type == "project") && (item.group != null)) {
+			//classList += " lockTile";
+			lockedHTML = "<span class='banner'>Taken</span>";	
+		}
+		else if (type == "group") {
+			// If project.
+			if (item.project != null) { 
+				classList += " greenTile";
+			}
+			else {
+				classList += " yellowTile";
+			}
+		}
+		// REMOVE BEFORE SUBMISSION
+		if (item.name == "Declan Greenhalgh") {
+			classList += " decTile";
+		}
+		// REMOVE BEFORE SUBMISSION
 	}
-	else if ((type == "project") && (item.group != null)) {
-		//classList += " lockTile";
-		lockedHTML = "<span class='banner'>Taken</span>";	
-	}
-	else if (type == "group") {
-		classList += " locked";
-	}
-
 	// If image then add image tag
 	if (false)  { tileImage = "<img class='' id='' src=''/>"; }
 
@@ -36,12 +57,12 @@ function scrollerTile(item, type) {
 	return tileHTML.join("");
 }
 
-function scrollerHTML(data, type) {
+function scrollerHTML(data, type, addStyle) {
 	if (data.length > 0) {
 		var item, HTML = [];
 		for (var i = 0; i < data.length; i++) {
 			item = data[i];
-			HTML.push(scrollerTile(item, type));
+			HTML.push(scrollerTile(item, type, addStyle));
 		}
 		return HTML.join("");
 	}

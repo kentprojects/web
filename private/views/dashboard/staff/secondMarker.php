@@ -33,7 +33,7 @@
 	API.GET(
 		"/projects", {"year": <?php echo $year;?>},
 		function (data) {
-			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project");
+			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 			document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 			scroller("#projectScroller");
 		},

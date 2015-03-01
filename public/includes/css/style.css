@@ -382,14 +382,21 @@ code {
   z-index: -5;
 }
 
-.lockTile {
+.decTile {
 	background: #505050 !important;
 }
 
+.redTile {
+	background: #bd5351 !important;
+}
 
+.yellowTile {
+	background: #faa938 !important;
+}
 
-
-
+.greenTile {
+	background: #57a858 !important;
+}
 
 /* Mobile */
 @media (max-device-width: 568px) and (orientation: portrait) {
