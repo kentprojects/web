@@ -417,17 +417,17 @@ code {
 	width: 20px;
 }*/
 .greenStatus {
-	background: #f2faf2 !important;
+	background: #eaffea !important;
 	/*border: #393 5px solid;*/
 }
 
 .redStatus {
-	background: #faf2f2 !important;
+	background: #ffeaea !important;
 	/*border: #c33 5px solid;*/
 }
 
 .yellowStatus {
-	background: #fafaf2 !important;
+	background: #ffffea !important;
 	/*border: #fc1 5px solid;*/
 }
 
