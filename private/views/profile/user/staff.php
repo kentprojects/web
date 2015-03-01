@@ -107,7 +107,6 @@
 				);
 
 				tokensThingy("#interestsInput", userInterests, function SaveUserInterests(interests, next) {
-					alert(interests);
 					API.PUT(
 						"/staff/" + profileId, {"interests": interests},
 						function SaveUserInterestsSuccess(data) {

@@ -6,6 +6,16 @@ require_once __DIR__ . "/../private/bootstrap.php";
 $user = Auth::getUser();
 $years = KentProjects::getPotentialYears();
 
+$meRequest = API::Request(API::GET, "/me");
+if ($meRequest->status == 200)
+{
+	$meRequest = $meRequest->body;
+}
+else
+{
+	$meRequest = new stdClass;
+}
+
 if (!empty($_GET["year"]))
 {
 	$forcedYear = null;
@@ -134,9 +144,9 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		}
 		if ($user->role == "student")
 		{
-			if ($user->group != null)
+			if ($meRequest->group != null)
 			{
-				if ($user->project != null)
+				if ($meRequest->project != null)
 				{
 					include VIEWS_DIR . "/dashboard/student/hasProject.php";
 				}
