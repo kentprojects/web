@@ -61,6 +61,29 @@ while (!empty($prerequisites))
 					redirect("/new.php?type=user");
 				}
 			}
+
+			if (!empty($meRequest->user->years))
+			{
+				$roles = new stdClass;
+				$year = KentProjects::getAcademicYearFromDate("today");
+
+				foreach ($meRequest->user->years as $y)
+				{
+					if ($y->year == $year)
+					{
+						foreach ($y as $key => $value)
+						{
+							if (strpos($key, "role_") === 0)
+							{
+								$roles->{substr($key, 5)} = boolval($value);
+							}
+						}
+						break;
+					}
+				}
+
+				$meRequest->user->roles = $roles;
+			}
 			break;
 	}
 }

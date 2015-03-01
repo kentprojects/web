@@ -38,6 +38,12 @@
 					document.querySelector("#intentDescription").innerHTML = 'You need to leave your current group before you can join a new one! </br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
 					document.querySelector(".btn-group").style.display = "none";
 				}
+				console.log(data.body);
+				if (data.body.project.id) {
+					document.querySelector("#intentTitle").innerText = "You can't join a group that's already got a project"
+					document.querySelector("#intentDescription").innerHTML = 'How did you get here? </br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
+					document.querySelector(".btn-group").style.display = "none";
+				}
 			},
 			function Error(data) {
 				console.error("That group doesn't exist!");

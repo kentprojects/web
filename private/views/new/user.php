@@ -41,6 +41,7 @@
 				// Do nothing
 			}
 			else {
+				e.preventDefault();
 				var firstName = document.getElementById("firstName").value;
 				var lastName = document.getElementById("lastName").value;
 				API.PUT(
@@ -50,7 +51,6 @@
 						last_name: lastName
 					},
 					function SaveUserNameSuccess() {
-						e.preventDefault();
 						window.location.href = "/dashboard.php";
 					},
 					function SaveUserNameError(data) {

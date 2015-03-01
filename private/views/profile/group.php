@@ -14,8 +14,14 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton" id="joinGroupButton">
+								<button class="btn btn-info panelHeadingButton" id="joinGroupButton" onclick="joinGroup()">
 									Join This Group
+								</button>
+								<button class="btn btn-warning panelHeadingButton" id="leaveGroupButton" onclick="leaveGroup()">
+									Leave This Group
+								</button>
+								<button class="btn btn-danger panelHeadingButton" id="deleteGroupButton" onclick="deleteGroup()">
+									Delete This Group
 								</button>
 							</div>
 						</div>
@@ -68,8 +74,15 @@
 		'',
 		'*Why not comment on its creator\'s page and let them know?*'
 	].join('\n');
-	if (me.user.role == "student" && !me.group.id) {
-		document.getElementById("joinGroupButton").style.display = "block";
+	if (me.user.role == "student") {
+		if(me.group.id === profileId) {
+			if (me.group.creator.id === me.user.id) {
+				document.getElementById("deleteGroupButton").style.display = "block";
+			}
+			else {
+				document.getElementById("leaveGroupButton").style.display = "block";
+			}
+		}
 	}
 	API.GET(
 		"/group/" + profileId, {},
@@ -77,19 +90,58 @@
 			document.getElementById("groupName").innerText = data.body.name;
 			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
 			scroller("#groupMembersScroller");
-			document.getElementById('joinGroupButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;");
 			if (data.body.project) {
 				document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
 				// Set the project bio
 				var projectBio = data.body.project.description || defaultProjectBio;
 				markdownThingy("projectBio", projectBio);
+
 			}
 			else {
+				// Hide the project details
 				document.querySelector(".projectDetails").style.display = "none";
+				// Show the join group button
+				document.getElementById("joinGroupButton").style.display = "block";
 			}
 		},
 		function Error(data) {
 			console.error(data);
 		}
 	);
+
+	function joinGroup() {
+		window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;
+	};
+
+	function leaveGroup() {
+		if(confirm("Are you sure you want to leave this group?")){
+			API.POST(
+				"/intent/",
+				{handler: "leave_a_group",
+					data: {group_id: profileId}
+				},
+				function Success(data) {
+					window.location.href = '/dashboard.php'
+				},
+				function Error(data) {
+					console.error(data);
+				}
+			);
+		}
+	}
+
+	function deleteGroup() {
+		if(confirm("Are you sure you want to delete this group?")){
+			API.DELETE(
+				"/group/" + profileId, {},
+				function Success(data) {
+					window.location.href = '/dashboard.php'
+				},
+				function Error(data) {
+					console.error(data);
+				}
+			);
+		}
+	}
+
 </script>

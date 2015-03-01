@@ -286,17 +286,17 @@ p {
 	max-width: 100%;
 }
 
-#userPicture {
+#profilePicture {
 	border: none;
 }
 
-#userPicture > .panel-body {
+#profilePicture > .panel-body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
 }
 
-#userPicture > .panel-body > img {
+#profilePicture > .panel-body > img {
 	max-width: 100%;
 	height: auto;
 	border-radius: 6px;
