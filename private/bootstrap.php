@@ -46,7 +46,8 @@ while (!empty($prerequisites))
 
 			if (empty($meRequest->user) || empty($meRequest->user->id))
 			{
-				// RUh-OH
+				logout();
+				exit();
 			}
 
 			if (empty($meRequest->user->name))
