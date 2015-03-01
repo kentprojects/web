@@ -11,16 +11,19 @@ function scrollerTile(item, type, addStyle) {
 			if (item.group != null) {
 				// If project.
 				if (item.group.project != null) { 
-					classList += " greenTile";
+					//classList += " greenTile";
+					classList += " greenStatus";
 					//statusHTML += "<div class='circleStatus greenStatus'></div>";
 				}
 				else {
-					classList += " yellowTile";
+					//classList += " yellowTile";
+					classList += " yellowStatus";
 					//statusHTML += "<div class='circleStatus yellowStatus'></div>";
 				}
 			}
 			else {
-				classList += " redTile";
+				//classList += " redTile";
+				classList += " redStatus";
 				//statusHTML += "<div class='circleStatus redStatus'></div>";
 			}
 		}
@@ -31,20 +34,23 @@ function scrollerTile(item, type, addStyle) {
 		else if (type == "group") {
 			// If project.
 			if (item.project != null) { 
-				classList += " greenTile";
+				//classList += " greenTile";
+				classList += " greenStatus";
 				//statusHTML += "<div class='circleStatus greenStatus'></div>";
 			}
 			else {
-				classList += " yellowTile";
+				classList += " yellowStatus";
+				//classList += " yellowTile";
 				//statusHTML += "<div class='circleStatus yellowStatus'></div>";
 			}
 		}
 
-		// REMOVE BEFORE SUBMISSION
-		if (item.name == "Declan Greenhalgh") {
+		// TODO: REMOVE BEFORE SUBMISSION
+		if ((item.name == "Declan Greenhalgh") && (classList=="")) {
 			classList += " decTile";
+			//classList += " redStatus";
 		}
-		// REMOVE BEFORE SUBMISSION
+		// TODO: REMOVE BEFORE SUBMISSION
 
 	}
 	// If image then add image tag
