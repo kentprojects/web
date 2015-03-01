@@ -405,6 +405,16 @@ code {
 	background: #57a858 !important;
 }
 
+/*.tileLink {
+	margin: 0px;
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 250px;
+}*/
+
 /* TODO: Remove once verified */
 /*.circleStatus {
 	border-radius: 50%;
@@ -427,7 +437,7 @@ code {
 }
 
 .yellowStatus {
-	background: #fff8ea !important;
+	background: #ffffea !important;
 	/*border: #fc1 5px solid;*/
 }
 

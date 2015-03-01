@@ -61,14 +61,45 @@ function scrollerTile(item, type, addStyle) {
 
 	// Create tile from HTML segments and return as a string.
 	tileHTML.push(
-		'<li' + classList + '>',
+		'<li id="' + type + item.id + '"' + classList + ' onclick="openLink(\'' + type + item.id + '\');">',
+		// '<a id="' + type + item.id + '" class="tileLink" href="javascript:openLink(\'' + type + item.id + '\');"></a>',
 		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
 		'</div>',
 		lockedHTML,
 		statusHTML,
+		'</a>',
 		'</li>'
 	);
 	return tileHTML.join("");
+}
+
+function openLink(x) {
+	// console.log(document.getElementById(x));
+	// console.log(document.getElementById(x).parentNode);
+
+	var myNode = document.getElementById(x);
+	// console.log('x1: ' + myNode.offsetLeft);
+	// console.log('y1: ' + myNode.offsetTop);
+	// console.log('x2: ' + (myNode.offsetLeft + myNode.offsetWidth));
+	// console.log('y2: ' + (myNode.offsetTop + myNode.offsetHeight));
+
+	var parentNode = document.getElementById(x).parentNode;
+	// console.log('x1: ' + parentNode.offsetLeft);
+	// console.log('y1: ' + parentNode.offsetTop);
+	// console.log('x2: ' + (parentNode.offsetWidth));
+	// console.log('y2: ' + (parentNode.offsetHeight));
+
+	// console.log(window.getComputedStyle(parentNode).getPropertyValue('transform'));
+
+	var matrix = window.getComputedStyle(parentNode).getPropertyValue('transform');
+
+    if(matrix !== 'none') {
+        var values = matrix.toString();
+        var translationValue = parseInt(values.split(",")[4].substr(1));
+        //console.log(translationValue);
+
+        // Discus thin page / mobile view handling.
+    }
 }
 
 function scrollerHTML(data, type, addStyle) {
