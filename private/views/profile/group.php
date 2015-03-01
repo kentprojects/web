@@ -61,7 +61,7 @@
 					<h3 class="panel-title">Public Discussion:</h3>
 				</div>
 				<div class="panel-body">
-					<p>Comments here</p>
+					<div class="row" id="commentsBody"></div>
 				</div>
 			</div>
 		</div>
@@ -105,6 +105,7 @@
 			else {
 				document.querySelector(".projectDetails").style.display = "none";
 			}
+			commentsThingy("commentsBody", "group/" + data.body.id);
 		},
 		function Error(data) {
 			console.error(data);

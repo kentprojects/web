@@ -7,7 +7,8 @@
 	<div class="row" id="changeOptions">
 		<div class="col-xs-12 text-center">
 			<div class="panel">
-				<button class="btn btn-default" onclick="location.reload()"><span class="fui-cross"></span> Revert</button>
+				<button class="btn btn-default" onclick="location.reload()"><span class="fui-cross"></span> Revert
+				</button>
 				<button class="btn btn-success" onclick="pushChanges()"><span class="fui-check"></span> Save</button>
 			</div>
 		</div>
@@ -43,7 +44,8 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton" id="doProjectButton">Do This Project</button>
+								<button class="btn btn-info panelHeadingButton" id="doProjectButton">Do This Project
+								</button>
 							</div>
 						</div>
 						<div class="col-xs-3 col-sm-0"></div>
@@ -65,7 +67,7 @@
 					<h3 class="panel-title">Public Discussion:</h3>
 				</div>
 				<div class="panel-body">
-					<p>Comments here</p>
+					<div class="row" id="commentsBody"></div>
 				</div>
 			</div>
 		</div>
@@ -73,10 +75,10 @@
 </div>
 <script type="text/javascript">
 	var defaultProjectDescription = [
-	 '**Click the edit button above to set a project description**',
-	 '',
-	 'Use [Markdown](http://daringfireball.net/projects/markdown/syntax) for formatting'
-	 ].join('\n');
+		'**Click the edit button above to set a project description**',
+		'',
+		'Use [Markdown](http://daringfireball.net/projects/markdown/syntax) for formatting'
+	].join('\n');
 	var defaultUserBio = [
 		'This user hasn\'t set a bio yet',
 		'',
@@ -89,7 +91,7 @@
 			document.getElementById("supervisorName").innerHTML = '<a href="/profile.php?type=staff&id=' + data.body.creator.id + '">' + data.body.creator.name + '</a>';
 			// Set the project description
 			var projectDescription = data.body.description || defaultProjectDescription;
-			if(data.body.permissions.update == 1) {
+			if (data.body.permissions.update == 1) {
 				markdownThingy(
 					"projectDescription", projectDescription, "editProjectBioButton",
 					queueMarkdownChange("projectDescription", function SaveProjectDescription(saveData, next) {
@@ -106,7 +108,7 @@
 					})
 				);
 			}
-			else{
+			else {
 				markdownThingy("projectDescription", projectDescription);
 			}
 			// Set the supervisor's bio
@@ -115,12 +117,14 @@
 
 			// TODO: Show the do button if:
 			// The user isn't a student / doesn't have a project / it's already taken
-			if(me.user.role == "student" && me.group.id && !me.project.id && !data.body.group){
-				if(me.group.creator.id == me.user.id) {
+			if (me.user.role == "student" && me.group.id && !me.project.id && !data.body.group) {
+				if (me.group.creator.id == me.user.id) {
 					document.getElementById("doProjectButton").style.display = "block";
 				}
 			}
 			document.getElementById('doProjectButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;");
+
+			commentsThingy("commentsBody", "project/" + data.body.id);
 		},
 		function Error(data) {
 			console.error(data);
