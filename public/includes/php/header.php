@@ -37,6 +37,8 @@ $title = empty($title) ? "KentProjects" : $title;
         <link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Flat UI -->
         <link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
+        <!-- Hint.css -->
+        <link href="/includes/css/lib/hint.min.css" rel="stylesheet">
         <!-- jQuery -->
         <script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
         <!-- Our Styles -->
