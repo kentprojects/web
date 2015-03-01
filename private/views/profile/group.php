@@ -75,7 +75,10 @@
 		'*Why not comment on its creator\'s page and let them know?*'
 	].join('\n');
 	if (me.user.role == "student") {
-		if(me.group.id === profileId) {
+		if (!me.group.id) {
+			document.getElementById("joinGroupButton").style.display = "block";
+		}
+		else if(me.group.id === profileId) {
 			if (me.group.creator.id === me.user.id) {
 				document.getElementById("deleteGroupButton").style.display = "block";
 			}
@@ -88,20 +91,19 @@
 		"/group/" + profileId, {},
 		function Success(data) {
 			document.getElementById("groupName").innerText = data.body.name;
-			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student", false);
+			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
 			scroller("#groupMembersScroller");
 			if (data.body.project) {
 				document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
 				// Set the project bio
 				var projectBio = data.body.project.description || defaultProjectBio;
 				markdownThingy("projectBio", projectBio);
+				// Hide the join group button
+				document.getElementById("joinGroupButton").style.display = "none";
 
 			}
 			else {
-				// Hide the project details
 				document.querySelector(".projectDetails").style.display = "none";
-				// Show the join group button
-				document.getElementById("joinGroupButton").style.display = "block";
 			}
 		},
 		function Error(data) {
