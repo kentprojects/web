@@ -9,7 +9,7 @@
 
 			<div class="col-xs-12 col-sm-6 col-md-4">
 				<input type="text" class="form-control" id="groupName" placeholder="Group Name"
-					pattern="^[A-z\ ]+$" maxlength="20" data-error="Please enter a valid name" required>
+					pattern="^[A-z\ ]+$" maxlength="100" data-error="Please enter a valid name" required>
 
 				<div class="help-block with-errors"></div>
 			</div>

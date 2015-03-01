@@ -8,8 +8,8 @@
 			<label for="projectName" class="control-label col-xs-12 col-sm-3 col-md-4 text-center">Project Name</label>
 
 			<div class="col-xs-12 col-sm-6 col-md-4">
-				<input type="text" class="form-control" id="firstName" placeholder="Project Name"
-					pattern="^[A-z\ ]+$" maxlength="20" data-error="Please enter a valid name" required>
+				<input type="text" class="form-control" id="projectName" placeholder="Project Name"
+					pattern="^[A-z\ ]+$" maxlength="100" data-error="Please enter a valid name" required>
 
 				<div class="help-block with-errors"></div>
 			</div>
