@@ -2,7 +2,7 @@
  * Created by house on 12/02/15.
  */
 function scrollerTile(item, type, addStyle) {
-	var classList = "", lockedHTML = "", tileHTML = [], tileImage = "";
+	var classList = "", lockedHTML = "", statusHTML= "", tileHTML = [], tileImage = "";
 	// If colour required add to class list.
 	// If tile locked add locked to class list.
 	if (addStyle) {
@@ -12,13 +12,16 @@ function scrollerTile(item, type, addStyle) {
 				// If project.
 				if (item.group.project != null) { 
 					classList += " greenTile";
+					//statusHTML += "<div class='circleStatus greenStatus'></div>";
 				}
 				else {
 					classList += " yellowTile";
+					//statusHTML += "<div class='circleStatus yellowStatus'></div>";
 				}
 			}
 			else {
 				classList += " redTile";
+				//statusHTML += "<div class='circleStatus redStatus'></div>";
 			}
 		}
 		else if ((type == "project") && (item.group != null)) {
@@ -29,16 +32,20 @@ function scrollerTile(item, type, addStyle) {
 			// If project.
 			if (item.project != null) { 
 				classList += " greenTile";
+				//statusHTML += "<div class='circleStatus greenStatus'></div>";
 			}
 			else {
 				classList += " yellowTile";
+				//statusHTML += "<div class='circleStatus yellowStatus'></div>";
 			}
 		}
+
 		// REMOVE BEFORE SUBMISSION
 		if (item.name == "Declan Greenhalgh") {
 			classList += " decTile";
 		}
 		// REMOVE BEFORE SUBMISSION
+
 	}
 	// If image then add image tag
 	if (false)  { tileImage = "<img class='' id='' src=''/>"; }
@@ -52,6 +59,7 @@ function scrollerTile(item, type, addStyle) {
 		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
 		'</div>',
 		lockedHTML,
+		statusHTML,
 		'</li>'
 	);
 	return tileHTML.join("");
