@@ -72,7 +72,7 @@
 					<h3 class="panel-title">Public Discussion:</h3>
 				</div>
 				<div class="panel-body">
-					<p>Comments here</p>
+					<div class="row" id="commentsBody"></div>
 				</div>
 			</div>
 		</div>
@@ -150,6 +150,8 @@
 				document.querySelector(".projectDetails").style.display = "none";
 				document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-10 col-lg-10"
 			}
+
+			commentsThingy("commentsBody", "user/" + data.body.id);
 		},
 		function Error(data) {
 			console.error(data);
