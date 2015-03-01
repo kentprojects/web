@@ -8,7 +8,7 @@
  */
 define("PRIVATE_DIR", __DIR__);
 define("PUBLIC_DIR", __DIR__ . "/../public");
-define("VIEWS_DIR", PRIVATE_DIR."/views");
+define("VIEWS_DIR", PRIVATE_DIR . "/views");
 
 /**
  * Display and report all of the errors.
@@ -16,15 +16,15 @@ define("VIEWS_DIR", PRIVATE_DIR."/views");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once __DIR__."/api.php";
-require_once __DIR__."/auth.php";
-require_once __DIR__."/functions.php";
-require_once __DIR__."/kentprojects.php";
-require_once __DIR__."/session.php";
+require_once __DIR__ . "/api.php";
+require_once __DIR__ . "/auth.php";
+require_once __DIR__ . "/functions.php";
+require_once __DIR__ . "/kentprojects.php";
+require_once __DIR__ . "/session.php";
 
-while(!empty($prerequisites))
+while (!empty($prerequisites))
 {
-	switch(array_shift($prerequisites))
+	switch (array_shift($prerequisites))
 	{
 		case "authentication":
 			if (!Auth::isLoggedIn())
@@ -33,8 +33,33 @@ while(!empty($prerequisites))
 				redirect("/login.php");
 				exit();
 			}
-			break;
-		case "supervisor":
+
+			$meRequest = API::Request(API::GET, "/me");
+			if ($meRequest->status == 200)
+			{
+				$meRequest = $meRequest->body;
+			}
+			else
+			{
+				$meRequest = new stdClass;
+			}
+
+			if (empty($meRequest->user) || empty($meRequest->user->id))
+			{
+				// RUh-OH
+			}
+
+			if (empty($meRequest->user->name))
+			{
+				if (
+					(strpos($_SERVER["SCRIPT_NAME"], "/includes") !== 0) &&
+					($_SERVER["SCRIPT_NAME"] != "/new.php") &&
+					($_GET["type"] != "user")
+				)
+				{
+					redirect("/new.php?type=user");
+				}
+			}
 			break;
 	}
 }

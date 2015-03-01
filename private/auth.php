@@ -22,8 +22,6 @@ final class Auth
 			}
 
 			Session::set("logged-in", true);
-			Session::set("user", $response->body->user);
-
 			Session::set(API::USERTOKEN_SESSIONKEY, $response->body->token);
 
 			if (Session::has("redirect-from"))
@@ -40,14 +38,6 @@ final class Auth
 		{
 			error_log((string)$response);
 		}
-	}
-
-	/**
-	 * @return stdClass|null
-	 */
-	public static function getUser()
-	{
-		return Session::get("user");
 	}
 
 	/**
