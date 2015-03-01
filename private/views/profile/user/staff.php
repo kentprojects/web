@@ -14,9 +14,9 @@
 	</div>
 	<div class="row">
 		<div class="userDetails col-xs-12 col-sm-3 col-md-2 col-lg-2">
-			<div class="panel panel-default" id="userPicture">
+			<div class="panel panel-default" id="profilePicture">
 				<div class="panel-body">
-					<img src=http://i.imgur.com/ldS4dWw.png"/>
+					<img src="https://www.arceuropenews.com/files/ProfilePhotos/placeholder-user.jpg"></img>
 				</div>
 			</div>
 		</div>

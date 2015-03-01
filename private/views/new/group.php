@@ -1,14 +1,14 @@
-<h3 class="text-center" id="newTitle">Create a new project</h3>
+<h3 class="text-center" id="newTitle">Create a new group</h3>
 
-<p class="text-center" id="newDescription">What would you like to call your new project proposal?</p>
+<p class="text-center" id="newDescription">What would you like to call your new group?</p>
 
 <div class="row">
 	<form class="form-horizontal" role="form" id="userName">
 		<div class="form-group">
-			<label for="projectName" class="control-label col-xs-12 col-sm-3 col-md-4 text-center">Project Name</label>
+			<label for="groupName" class="control-label col-xs-12 col-sm-3 col-md-4 text-center">Group Name</label>
 
 			<div class="col-xs-12 col-sm-6 col-md-4">
-				<input type="text" class="form-control" id="firstName" placeholder="Project Name"
+				<input type="text" class="form-control" id="groupName" placeholder="Group Name"
 					pattern="^[A-z\ ]+$" maxlength="20" data-error="Please enter a valid name" required>
 
 				<div class="help-block with-errors"></div>
@@ -32,14 +32,15 @@
 			}
 			else {
 				e.preventDefault();
-				var projectName = document.getElementById("projectName").value;
+				var groupName = document.getElementById("groupName").value;
 				API.POST(
-					"/project",
+					"/group",
 					{
-						name: projectName
+						name: groupName
 					},
 					function SaveProjectNameSuccess(data) {
-						window.location.href = "/profile.php?type=project&id=" + data.body.id;
+						console.log(data);
+						window.location.href = "/profile.php?type=group&id=" + data.body.id;
 					},
 					function SaveProjectNameError(data) {
 						console.error(data);

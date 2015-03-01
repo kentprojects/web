@@ -13,9 +13,24 @@ require_once __DIR__ . "/../private/bootstrap.php";
 switch (!empty($_GET["type"]) ? $_GET["type"] : null)
 {
 	case "project":
+		if ($meRequest->user->role == "student")
+		{
+			exit((string)new Exception("Students can't do that!"));
+		}
+		elseif ($meRequest->user->roles->supervisor !== true)
+		{
+			exit((string)new Exception("You need to be a supervisor to do that!"));
+		}
 		$content = "project";
 		break;
 	case "group":
+		if ($meRequest->user->role == "staff")
+		{
+			exit((string)new Exception("Only students can do that!"));
+		}
+		if (!empty($meRequest->group->id)) {
+			exit((string)new Exception("You're already in a group!"));
+		}
 		$content = "group";
 		break;
 	case "user":
