@@ -5,5 +5,4 @@
  * @link: http://kentprojects.com
  */
 require_once __DIR__."/../private/bootstrap.php";
-Session::destroy();
-redirect("/");
+logout();
