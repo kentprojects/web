@@ -12,7 +12,6 @@ machine:
 #
 test:
   override:
-    - echo "hehehe"
     - exit 0
 #
 deployment:
@@ -20,9 +19,9 @@ deployment:
   development:
     branch: develop
     commands:
-      - ./scripts/deploy_develop.sh
+      - ./kentprojects.sh circleci deployDevelop
 # Deploy the master branch.
   production:
     branch: master
     commands:
-      - ./scripts/deploy_master.sh
+      - ./kentprojects.sh circleci deployMaster

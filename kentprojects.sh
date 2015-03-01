@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 pushd "$BASE_PATH" > /dev/null
@@ -33,6 +33,29 @@ function Question()
 		"Y") return 0 ;;
 		*) printf "$FAIL $2\n"; exit 1 ;;
 	esac
+}
+
+#
+# Internal function to deploy the develop branch.
+#
+# @return void
+#
+function circleCiDeployDevelop()
+{
+    ssh kentprojects@kentprojects.com <<'ENDSSH'
+cd /var/www/kentprojects-web-dev && sudo -u www-data git pull
+ENDSSH
+}
+#
+# Internal function to deploy the master branch.
+#
+# @return void
+#
+function circleCiDeployMaster()
+{
+    ssh kentprojects@kentprojects.com <<'ENDSSH'
+cd /var/www/kentprojects-web && sudo -u www-data git pull
+ENDSSH
 }
 
 #
@@ -139,6 +162,16 @@ function hotfix()
 }
 
 case "$1" in
+    "circleci")
+        case "$2" in
+            "deployDevelop") circleCiDeployDevelop ;;
+            "deployMaster") circleCiDeployMaster ;;
+            *)
+                printf "$FAIL Unknown CircleCi action"
+                exit 6
+                ;;
+        esac
+        ;;
 	"deploy") deploy ;;
 	"hotfix") hotfix ;;
 #	"test") sh tests/run.sh ;;
