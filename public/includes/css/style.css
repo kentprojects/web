@@ -333,10 +333,62 @@ code {
 	color: #f66;
 }
 
+.banner {
+	background-color: #0ff !important;
+	color: #fff !important;
+	display: block !important;
+	margin-left: -12px;
+	width: 204px !important;
+
+
+  -moz-box-shadow: 0 5px 0 #000;
+  -webkit-box-shadow: 0 5px 0 #000;
+  box-shadow: 0 5px 0 #000;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 204px;
+  -webkit-transform: rotate(-11deg) skew(-11deg);
+  -moz-transform: rotate(-11deg) skew(-11deg);
+  -o-transform: rotate(-11deg) skew(-11deg);
+  -ms-transform: rotate(-11deg) skew(-11deg);
+  transform: rotate(-11deg) skew(-11deg);
+  position: absolute;
+  top: 105px;
+  z-index: 10;
+}
+
+.banner:after {
+  background-color: #0550b4;
+  content: "";
+  display: block;
+  height: 40px;
+  position: absolute;
+  width: 204px;
+  top:0px;
+  z-index: -10;
+}
+
+.banner:before {
+  background-color: red;
+  content: "";
+  display: block;
+  position: absolute;
+  -webkit-transform: rotate(90deg) skew(29deg);
+  -moz-transform: rotate(90deg) skew(29deg);
+  -o-transform: rotate(90deg) skew(29deg);
+  -ms-transform: rotate(90deg) skew(29deg);
+  transform: rotate(90deg) skew(29deg);
+  z-index: -5;
+}
 
 .lockTile {
-	background: #505050 !important; 
+	background: #505050 !important;
 }
+
+
+
+
 
 
 /* Mobile */

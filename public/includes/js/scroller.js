@@ -2,7 +2,7 @@
  * Created by house on 12/02/15.
  */
 function scrollerTile(item, type) {
-	var classList = "", tileHTML = [], tileImage = "";
+	var classList = "", lockedHTML = "", tileHTML = [], tileImage = "";
 	// If colour required add to class list.
 	// If tile locked add locked to class list.
 	if ((type == "student")) {
@@ -12,7 +12,8 @@ function scrollerTile(item, type) {
 		}
 	}
 	else if ((type == "project") && (item.group != null)) {
-		classList += " lockTile";	
+		//classList += " lockTile";
+		lockedHTML = "<span class='banner'>Taken</span>";	
 	}
 	else if (type == "group") {
 		classList += " locked";
@@ -29,14 +30,13 @@ function scrollerTile(item, type) {
 		'<li' + classList + '>',
 		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
 		'</div>',
+		lockedHTML,
 		'</li>'
 	);
 	return tileHTML.join("");
 }
 
 function scrollerHTML(data, type) {
-	console.log(type);
-	console.log(data);
 	if (data.length > 0) {
 		var item, HTML = [];
 		for (var i = 0; i < data.length; i++) {
