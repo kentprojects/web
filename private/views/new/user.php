@@ -9,7 +9,7 @@
 
 			<div class="col-xs-12 col-sm-6 col-md-4">
 				<input type="text" class="form-control" id="firstName" placeholder="First Name"
-					pattern="^[A-z]+$" maxlength="20" data-error="Please enter a valid name" required>
+					pattern="^[A-z\-]+$" maxlength="20" data-error="Please enter a valid name" required>
 
 				<div class="help-block with-errors"></div>
 			</div>
@@ -19,7 +19,7 @@
 
 			<div class="col-xs-12 col-sm-6 col-md-4">
 				<input type="text" class="form-control" id="lastName" placeholder="Last Name"
-					pattern="^[A-z]+$" maxlength="20" data-error="Please enter a valid name" required>
+					pattern="^[A-z\-]+$" maxlength="20" data-error="Please enter a valid name" required>
 
 				<div class="help-block with-errors"></div>
 			</div>
