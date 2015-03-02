@@ -1,10 +1,13 @@
 <?php
-// Get header
+/**
+ * @var stdClass $meRequest
+ */
+$prerequisites = array("authentication");
 require_once __DIR__ . "/../private/bootstrap.php";
 
 if (!empty($_GET["upload"]) && ($_GET["upload"] === "avatar"))
 {
-	$response = KentProjects::uploadUserAvatar();
+	$response = KentProjects::uploadUserAvatar($meRequest->user);
 	header(sprintf("HTTP/1.1 %d %s", $response->status, $response->getStatusMessage()));
 	header("Content-Type: application/json");
 	echo json_encode($response->body);
@@ -36,7 +39,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			<div class="col-xs-12 col-sm-4">
 				<h4>Current Avatar</h4>
 
-				<img src="http://i.imgur.com/ldS4dWw.png" />
+				<img id="imageAvatar" src="/uploads/<?php echo md5($meRequest->user->email); ?>.png" />
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<h4>New Avatar</h4>
@@ -55,10 +58,8 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			acceptedFiles: 'image/*',
 			maxFilesize: 5.5,
 			init: function () {
-				var zone = this;
-				zone.on('success', function (file) {
-					console.log(file);
-					zone.removeFile(file);
+				this.on('success', function (file, result) {
+					console.log(file, result);
 				});
 			},
 			parallelUploads: 1,
