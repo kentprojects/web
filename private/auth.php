@@ -6,6 +6,11 @@
  */
 final class Auth
 {
+	private static /** @noinspection SpellCheckingInspection */
+		$simpleSamlAPI = "https://api.kentprojects.com/simplesaml";
+	private static /** @noinspection SpellCheckingInspection */
+		$simpleSamlLogout = "/module.php/core/authenticate.php?as=default-sp&logout";
+
 	/**
 	 * @param string $code
 	 * @return void
@@ -41,6 +46,22 @@ final class Auth
 	}
 
 	/**
+	 * @return string
+	 */
+	public static function getLogoutUrl()
+	{
+		if (Session::get("login-via-sso") === true)
+		{
+			$dev = (config("environment") === "development") ? "dev." : "";
+			return static::$simpleSamlAPI . static::$simpleSamlLogout . "&ReturnTo=http://{$dev}kentprojects.com";
+		}
+		else
+		{
+			return "/";
+		}
+	}
+
+	/**
 	 * @return bool
 	 */
 	public static function isLoggedIn()
@@ -54,6 +75,7 @@ final class Auth
 	 */
 	public static function redirect($code = null)
 	{
+		Session::set("login-via-sso", empty($code));
 		redirect(API::GetURL() . (empty($code) ? "/auth/sso" : "/auth/internal?auth=" . $code));
 	}
 }

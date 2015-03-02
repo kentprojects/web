@@ -152,8 +152,9 @@ function getHttpStatusForCode($code)
  */
 function logout()
 {
+	$logoutUrl = Auth::getLogoutUrl();
 	Session::destroy();
-	redirect("/");
+	redirect($logoutUrl);
 }
 
 /**
