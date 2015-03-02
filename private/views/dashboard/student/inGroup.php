@@ -101,7 +101,7 @@
 	);
 
 	// List your group members
-	document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student", true);
+	document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student", false);
 	document.querySelector(".MyGroup a").innerText = 'My Group';
 	scroller("#myGroupScroller");
 

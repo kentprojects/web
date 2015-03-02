@@ -1,31 +1,60 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-8 col-sm-8 col-md-8">
-			<h1 class="reduceHeading hideEdit"> View Projects </h1>
-		</div>
-		<!--<div class="col-xs-4 col-md-4 alignRight">
-			<button style="margin-top:40px;"> Edit</button>
-		</div>-->
-
-		<script type="text/javascript">
-		API.GET(
-		//"/groups/", {},
-		"/projects/", {},
-		//"/staff/", {},
-		//"/students/", {},
-		function (data) {
-			console.log(data);
-			var output = "<table class='table table-striped'><thead><tr><th>Name</th></tr></thead><tbody>";
-				for (var i = 0; i < data.body.length; i++) {
-					output += "<tr><td>" + data.body[i].name + "</td></tr>";
-				};
-				output += "</tbody></table>";
-				document.getElementById('listContents').innerHTML = output;
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-		</script>
+<div class="row">
+	<div class="col-xs-9 col-sm-9 col-md-9">
+		<h1 class="reduceHeading hideEdit"> View Projects </h1>
 	</div>
+	<div class="bigTopMargin col-xs-3 col-sm-3 col-md-3 alignRight">
+		<div class="floatRight fui-new listButtons" onclick="alert();"></div>
+		<div class="floatRight fui-eye listButtons marginRight"onclick="changeListView();"></div>
+	</div>
+
+	<script type="text/javascript">
+		var tileView = true;
+		var listData = "";
+
+		API.GET(
+			"/projects/", {},
+			function sucess(data) {
+				listData = data;
+				if (getWidth() < 550) {
+					// View as list
+					viewList(listData);
+				}
+				else {
+					// View as tiles
+					viewTiles(listData);
+				}
+			},
+			function error(data) {
+				console.error(data);
+			}
+		);
+
+		function changeListView() {
+			if (tileView) {
+				viewList(listData);
+			}
+			else {
+				viewTiles(listData);
+			}
+		}
+
+		function viewList(listData) {
+			tileView = false;
+			var output = "<table class='table table-striped'><thead><tr><th>Name</th></tr></thead><tbody>";
+			for (var i = 0; i < listData.body.length; i++) {
+				output += "<tr><td>" + listData.body[i].name + "</td></tr>";
+			};
+			output += "</tbody></table>";
+			document.getElementById('listContents').innerHTML = output;	
+		}
+
+		function viewTiles(listData) {
+			tileView = true;
+			var output = '<div class="row"><div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12"><div class="flowDown frame" id="projectScroller"><ul class="clearfix tileListItems"></ul></div></div></div>';
+
+			document.getElementById('listContents').innerHTML = output;	
+
+			document.querySelector(".Projects ul").innerHTML = scrollerHTML(listData.body, "project", true);
+		}
+	</script>
 </div>

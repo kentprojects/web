@@ -31,11 +31,12 @@ else
 ?>
 
 <script src="/includes/js/ajax.js" type="text/javascript"></script>
+<script src="/includes/js/scrollerThingy.js" type="text/javascript"></script>
 
 <script>
 	var listType = '<?php echo $listType; ?>';
 </script>
-
+<div class="container">
 <!-- Include things -->
 
 <?php
@@ -61,5 +62,5 @@ switch ($listType)
 <script type="text/javascript" src="/includes/js/viewEdit.js"></script>
 
 <div id="listContents">Retrieving list...</div>
-
+</div>
 <?php require PUBLIC_DIR . '/includes/php/footer.php'; ?>
