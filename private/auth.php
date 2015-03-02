@@ -50,7 +50,7 @@ final class Auth
 	 */
 	public static function getLogoutUrl()
 	{
-		if (Session::get("login-via-sso") === true)
+		if (Session::get("login-via-sso", 0) == 1)
 		{
 			$dev = (config("environment") === "development") ? "dev." : "";
 			return static::$simpleSamlAPI . static::$simpleSamlLogout . "&ReturnTo=http://{$dev}kentprojects.com";
@@ -75,7 +75,7 @@ final class Auth
 	 */
 	public static function redirect($code = null)
 	{
-		Session::set("login-via-sso", empty($code));
+		Session::set("login-via-sso", empty($code) ? 1 : 0);
 		redirect(API::GetURL() . (empty($code) ? "/auth/sso" : "/auth/internal?auth=" . $code));
 	}
 }
