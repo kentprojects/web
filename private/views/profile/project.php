@@ -172,7 +172,7 @@
 				data: {project_id: profileId}
 			},
 			function Success(data) {
-				window.history.back();
+				window.location.href = '/dashboard.php'
 			},
 			function Error(data) {
 				console.error(data.body);
