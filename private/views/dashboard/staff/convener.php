@@ -195,7 +195,7 @@
 			value: students_in_groups,
 			min: 0,
 			max: total_students,
-			levelColors: ["#ff0000", "#f9c802", "#a9d70b"],
+			levelColors: ["#ee0000", "#eeaa00", "#00ee00"],
 			title: "Students in groups:",
 			relativeGaugeSize: true,
 			startAnimationTime: 0
@@ -205,7 +205,7 @@
 			value: groups_with_projects,
 			min: 0,
 			max: total_groups,
-			levelColors: ["#ff0000", "#f9c802", "#a9d70b"],
+			levelColors: ["#ee0000", "#eeaa00", "#00ee00"],
 			title: "Groups with projects:",
 			relativeGaugeSize: true,
 			startAnimationTime: 0
