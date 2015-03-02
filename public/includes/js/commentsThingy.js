@@ -8,10 +8,8 @@ var commentsThingy = function EmptyCommentsThingy() {
 };
 
 (function () {
-	var commentRoot, containerDiv, containerId, id, newCommentCount, q, writeBox;
-	id = document.getElementById;
+	var commentRoot, containerDiv, containerId, newCommentCount, writeBox;
 	newCommentCount = 250;
-	q = document.querySelector;
 	writeBox = [
 		'<div class="col-xs-12 col-sm-10 col-sm-offset-1" id="commentWriteBox">',
 		'<div class="new-com-bt">',
@@ -46,53 +44,53 @@ var commentsThingy = function EmptyCommentsThingy() {
 	function initWriteBox() {
 		containerDiv.innerHTML += writeBox;
 
-		q('#' + containerId + ' .new-com-bt').onclick(function () {
-			q('#' + containerId + ' .new-com-bt').style.display = 'none';
-			q('#' + containerId + ' .new-com-cnt').style.display = 'block';
-			id('newCommentBody').focus();
+		document.querySelector('#' + containerId + ' .new-com-bt').onclick(function () {
+			document.querySelector('#' + containerId + ' .new-com-bt').style.display = 'none';
+			document.querySelector('#' + containerId + ' .new-com-cnt').style.display = 'block';
+			document.getElementById('newCommentBody').focus();
 		});
 
-		id('newCommentBody').on('keyup', function () {
+		document.getElementById('newCommentBody').on('keyup', function () {
 			var commentLength, opacity;
-			commentLength = id('newCommentBody').value.length;
+			commentLength = document.getElementById('newCommentBody').value.length;
 
 			if (commentLength > 0) {
 				if (commentLength > newCommentCount) {
 					opacity = 0.6;
-					id('commentError').innerText = 'Please enter a shorter comment.';
-					id('newCommentCount').innerText = "-" + (commentLength - newCommentCount);
+					document.getElementById('commentError').innerText = 'Please enter a shorter comment.';
+					document.getElementById('newCommentCount').innerText = "-" + (commentLength - newCommentCount);
 				}
 				else {
 					opacity = 1;
-					id('commentError').innerText = '';
-					id('newCommentCount').innerText = '' + (newCommentCount - commentLength);
+					document.getElementById('commentError').innerText = '';
+					document.getElementById('newCommentCount').innerText = '' + (newCommentCount - commentLength);
 				}
 			}
 			else {
 				opacity = 0.6;
-				id('newCommentCount').innerText = '' + newCommentCount;
+				document.getElementById('newCommentCount').innerText = '' + newCommentCount;
 			}
 
-			q('#' + containerId + ' .bt-add-com').style.opacity = opacity;
+			document.querySelector('#' + containerId + ' .bt-add-com').style.opacity = opacity;
 		});
 
-		q('#' + containerId + ' .bt-cancel-com').onclick(function () {
-			id('newCommentBody').value = '';
-			id('newCommentCount').innerText = '' + newCommentCount;
-			id('commentError').innerText = '';
-			q('#' + containerId + ' .new-com-cnt').style.display = 'none';
-			q('#' + containerId + ' .new-com-bt').style.display = 'block';
+		document.querySelector('#' + containerId + ' .bt-cancel-com').onclick(function () {
+			document.getElementById('newCommentBody').value = '';
+			document.getElementById('newCommentCount').innerText = '' + newCommentCount;
+			document.getElementById('commentError').innerText = '';
+			document.querySelector('#' + containerId + ' .new-com-cnt').style.display = 'none';
+			document.querySelector('#' + containerId + ' .new-com-bt').style.display = 'block';
 		});
 
-		q('#' + containerId + ' .bt-add-com').onclick(function () {
+		document.querySelector('#' + containerId + ' .bt-add-com').onclick(function () {
 			var commentBody, writeBoxElem;
 
-			commentBody = id('newCommentBody').value;
+			commentBody = document.getElementById('newCommentBody').value;
 			if ((commentBody.length == 0) || (commentBody.length > newCommentCount)) {
 				return false;
 			}
 
-			writeBoxElem = id('commentWriteBox');
+			writeBoxElem = document.getElementById('commentWriteBox');
 			writeBoxElem.innerHTML = '<div class="loader">Sending...</div>';
 			API.POST(
 				"/comment", {root: commentRoot, comment: commentBody},
@@ -111,7 +109,7 @@ var commentsThingy = function EmptyCommentsThingy() {
 
 	commentsThingy = function CommentsThingy(commentBodyId, root) {
 		containerId = commentBodyId;
-		containerDiv = id(commentBodyId);
+		containerDiv = document.getElementById(commentBodyId);
 		commentRoot = root;
 		API.GET(
 			"/comment/thread", {root: root},
