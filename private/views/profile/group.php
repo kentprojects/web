@@ -14,13 +14,16 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton" id="joinGroupButton" onclick="joinGroup()">
+								<button class="btn btn-info panelHeadingButton" id="joinGroupButton"
+									onclick="joinGroup()">
 									Join This Group
 								</button>
-								<button class="btn btn-warning panelHeadingButton" id="leaveGroupButton" onclick="leaveGroup()">
+								<button class="btn btn-warning panelHeadingButton" id="leaveGroupButton"
+									onclick="leaveGroup()">
 									Leave This Group
 								</button>
-								<button class="btn btn-danger panelHeadingButton" id="deleteGroupButton" onclick="deleteGroup()">
+								<button class="btn btn-danger panelHeadingButton" id="deleteGroupButton"
+									onclick="deleteGroup()">
 									Delete This Group
 								</button>
 							</div>
@@ -78,7 +81,7 @@
 		if (!me.group.id) {
 			document.getElementById("joinGroupButton").style.display = "block";
 		}
-		else if(me.group.id === profileId) {
+		else if (me.group.id === profileId) {
 			if (me.group.creator.id === me.user.id) {
 				document.getElementById("deleteGroupButton").style.display = "block";
 			}
@@ -114,13 +117,14 @@
 
 	function joinGroup() {
 		window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;
-	};
+	}
 
 	function leaveGroup() {
-		if(confirm("Are you sure you want to leave this group?")){
+		if (confirm("Are you sure you want to leave this group?")) {
 			API.POST(
 				"/intent/",
-				{handler: "leave_a_group",
+				{
+					handler: "leave_a_group",
 					data: {group_id: profileId}
 				},
 				function Success(data) {
@@ -134,11 +138,16 @@
 	}
 
 	function deleteGroup() {
-		if(confirm("Are you sure you want to delete this group?")){
+		if (confirm("Are you sure you want to delete this group?")) {
 			API.DELETE(
 				"/group/" + profileId, {},
 				function Success(data) {
-					window.location.href = '/dashboard.php'
+					if (data.status == 204) {
+						window.location.href = '/dashboard.php';
+					}
+					else {
+						console.error(data);
+					}
 				},
 				function Error(data) {
 					console.error(data);

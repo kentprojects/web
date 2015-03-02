@@ -82,6 +82,13 @@ catch (Exception $e)
 	$response = new ApiResponse(500, (string)$e);
 }
 
-header(sprintf("HTTP/1.1 %d %s", $response->status, $response->getStatusMessage()));
+if (($response->status >= 200) && ($response->status < 300))
+{
+	header("HTTP/1.1 200 OK");
+}
+else
+{
+	header(sprintf("HTTP/1.1 %d %s", $response->status, $response->getStatusMessage()));
+}
 header("Content-Type: application/json");
 echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
