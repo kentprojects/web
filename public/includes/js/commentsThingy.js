@@ -53,7 +53,7 @@ var commentsThingy = function EmptyCommentsThingy() {
 				document.getElementById('newCommentBody').focus();
 			};
 
-			document.getElementById('newCommentBody').on('keyup', function () {
+			document.getElementById('newCommentBody').onkeyup = function OnNewCommentBodyKeyUp() {
 				var commentLength, opacity;
 				commentLength = document.getElementById('newCommentBody').value.length;
 
@@ -75,7 +75,7 @@ var commentsThingy = function EmptyCommentsThingy() {
 				}
 
 				document.querySelector('#commentWriteBox .bt-add-com').style.opacity = opacity;
-			});
+			};
 
 			document.querySelector('#commentWriteBox .bt-cancel-com').onclick = function OnNewCommentCancelClick() {
 				document.getElementById('newCommentBody').value = '';
