@@ -42,7 +42,7 @@
 					<div class="col-xs-2">
 						<div class="text-right">
 							<a class="btn btn-info panelHeadingButton" id="addGroupButton"
-								href="/new.php?type=group"><span class="fui-plus"></span> Add Group</a>
+								href="/new.php?type=group"><span class="fui-plus"></span> Add</a>
 						</div>
 					</div>
 				</div>

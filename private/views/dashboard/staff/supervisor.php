@@ -18,7 +18,7 @@
 					</div>
 					<div class="col-xs-2">
 						<div class="text-right">
-							<a class="btn btn-info panelHeadingButton" id="addProjectButton" href="/new.php?type=project"><span class="fui-plus"></span> Add Project</a>
+							<a class="btn btn-info panelHeadingButton" id="addProjectButton" href="/new.php?type=project"><span class="fui-plus"></span> Add</a>
 						</div>
 					</div>
 				</div>
