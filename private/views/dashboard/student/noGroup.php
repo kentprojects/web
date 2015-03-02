@@ -35,7 +35,17 @@
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Groups</h3>
+				<div class="row">
+					<div class="col-xs-10">
+						<div><h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3></div>
+					</div>
+					<div class="col-xs-2">
+						<div class="text-right">
+							<a class="btn btn-info panelHeadingButton" id="addGroupButton"
+								href="/new.php?type=group"><span class="fui-plus"></span> Add Group</a>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="groupScroller">
@@ -116,6 +126,7 @@
 			document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
 			document.querySelector(".Groups h3").innerText += ' (' + data.body.length + ')';
 			scroller("#groupScroller");
+			document.getElementById("addGroupButton").style.display = "block";
 		},
 		function (data) {
 			console.error(data);
