@@ -441,6 +441,10 @@ code {
 	/*border: #fc1 5px solid;*/
 }
 
+.tileLi {
+	cursor: default !important;
+}
+
 /* Mobile */
 @media (max-device-width: 568px) and (orientation: portrait) {
     .mobileHide {
