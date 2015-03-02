@@ -82,4 +82,48 @@ final class KentProjects
 
 		return $years;
 	}
+
+	/**
+	 * @param stdClass $user
+	 * @return ApiResponse
+	 */
+	public static function uploadUserAvatar(stdClass $user)
+	{
+		if (empty($_FILES))
+		{
+			return new ApiResponse(400, '"No uploaded files found."');
+		}
+
+		if (empty($_FILES["file"]))
+		{
+			return new ApiResponse(400, '"No uploaded file found."');
+		}
+
+		if (isset($_FILES["file"]["error"]) && ($_FILES["file"]["error"] > UPLOAD_ERR_OK))
+		{
+			switch ($_FILES["file"]["error"])
+			{
+				case UPLOAD_ERR_INI_SIZE:
+				case UPLOAD_ERR_FORM_SIZE:
+					$error = "File exceeds file size limits";
+					break;
+				default:
+					$error = "An error occurred.";
+			}
+			return new ApiResponse(400, '"' . $error . '"');
+		}
+
+		$filename = md5($user->email) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+
+		if (move_uploaded_file($_FILES["file"]["tmp_name"], UPLOADS_DIR . "/" . $filename))
+		{
+			return new ApiResponse(200, json_encode((object)array(
+				"file" => "/uploads/" . $filename
+			)));
+		}
+		else
+		{
+			return new ApiResponse(500, '"Failed to upload."');
+		}
+	}
 }
