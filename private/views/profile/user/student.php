@@ -28,7 +28,7 @@
 							<div><h3 class="panel-title">Bio</h3></div>
 						</div>
 						<div class="col-xs-2">
-							<div class="alignRight editBioButton" id="editUserBioButton">
+							<div class="text-right editBioButton" id="editUserBioButton">
 								<span class="fui-new"></span>
 							</div>
 						</div>

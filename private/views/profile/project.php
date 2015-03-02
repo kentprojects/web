@@ -18,11 +18,14 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-xs-10">
+						<div class="col-xs-8">
 							<div><h3 class="panel-title">Bio</h3></div>
 						</div>
-						<div class="col-xs-2">
-							<div class="alignRight editBioButton" id="editProjectBioButton">
+						<div class="col-xs-4">
+							<div class="floatRight text-right ownershipButtons" id="deleteProjectButton" onclick="deleteProject()">
+								<span class="fui-cross"></span>
+							</div>
+							<div class="floatRight text-right ownershipButtons" id="editProjectBioButton">
 								<span class="fui-new"></span>
 							</div>
 						</div>
@@ -107,6 +110,7 @@
 						);
 					})
 				);
+				document.getElementById("deleteProjectButton").style.display = "block";
 			}
 			else {
 				markdownThingy("projectDescription", projectDescription);
@@ -130,4 +134,18 @@
 			console.error(data);
 		}
 	);
+
+	function deleteProject() {
+		if(confirm("Are you sure you want to delete this project?")){
+			API.DELETE(
+				"/project/" + profileId, {},
+				function Success(data) {
+					window.location.href = '/dashboard.php'
+				},
+				function Error(data) {
+					console.error(data);
+				}
+			);
+		}
+	}
 </script>

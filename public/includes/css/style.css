@@ -3,8 +3,8 @@ body {
 	width: 100%;
 }
 
-.alignRight {
-	text-align: right;
+.floatRight {
+	float: right;
 }
 
 .hoverHand:hover {
@@ -256,8 +256,9 @@ body {
 	display: none;
 }
 
-.editBioButton {
+.ownershipButtons {
 	display: none;
+	margin-left: 15px;
 }
 
 p {
