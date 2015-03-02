@@ -87,7 +87,6 @@ $people = array(
         <link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
         <link href="/includes/css/style.css" rel="stylesheet">
-        <link href="/includes/css/login.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
