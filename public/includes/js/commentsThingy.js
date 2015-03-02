@@ -44,67 +44,69 @@ var commentsThingy = function EmptyCommentsThingy() {
 	function initWriteBox() {
 		containerDiv.innerHTML += writeBox;
 
-		document.querySelector('#commentWriteBox .new-com-bt').on('click', function () {
-			document.querySelector('#commentWriteBox .new-com-bt').style.display = 'none';
-			document.querySelector('#commentWriteBox .new-com-cnt').style.display = 'block';
-			document.getElementById('newCommentBody').focus();
-		});
+		setTimeout(function () {
+			document.querySelector('#commentWriteBox .new-com-bt').onclick = function OnNewCommentButtonClick() {
+				document.querySelector('#commentWriteBox .new-com-bt').style.display = 'none';
+				document.querySelector('#commentWriteBox .new-com-cnt').style.display = 'block';
+				document.getElementById('newCommentBody').focus();
+			};
 
-		document.getElementById('newCommentBody').on('keyup', function () {
-			var commentLength, opacity;
-			commentLength = document.getElementById('newCommentBody').value.length;
+			document.getElementById('newCommentBody').on('keyup', function () {
+				var commentLength, opacity;
+				commentLength = document.getElementById('newCommentBody').value.length;
 
-			if (commentLength > 0) {
-				if (commentLength > newCommentCount) {
-					opacity = 0.6;
-					document.getElementById('commentError').innerText = 'Please enter a shorter comment.';
-					document.getElementById('newCommentCount').innerText = "-" + (commentLength - newCommentCount);
+				if (commentLength > 0) {
+					if (commentLength > newCommentCount) {
+						opacity = 0.6;
+						document.getElementById('commentError').innerText = 'Please enter a shorter comment.';
+						document.getElementById('newCommentCount').innerText = "-" + (commentLength - newCommentCount);
+					}
+					else {
+						opacity = 1;
+						document.getElementById('commentError').innerText = '';
+						document.getElementById('newCommentCount').innerText = '' + (newCommentCount - commentLength);
+					}
 				}
 				else {
-					opacity = 1;
-					document.getElementById('commentError').innerText = '';
-					document.getElementById('newCommentCount').innerText = '' + (newCommentCount - commentLength);
+					opacity = 0.6;
+					document.getElementById('newCommentCount').innerText = '' + newCommentCount;
 				}
-			}
-			else {
-				opacity = 0.6;
+
+				document.querySelector('#commentWriteBox .bt-add-com').style.opacity = opacity;
+			});
+
+			document.querySelector('#commentWriteBox .bt-cancel-com').onclick = function OnNewCommentCancelClick() {
+				document.getElementById('newCommentBody').value = '';
 				document.getElementById('newCommentCount').innerText = '' + newCommentCount;
-			}
+				document.getElementById('commentError').innerText = '';
+				document.querySelector('#' + containerId + ' .new-com-cnt').style.display = 'none';
+				document.querySelector('#' + containerId + ' .new-com-bt').style.display = 'block';
+			};
 
-			document.querySelector('#commentWriteBox .bt-add-com').style.opacity = opacity;
-		});
+			document.querySelector('#commentWriteBox .bt-add-com').onclick = function OnNewCommentSubmit() {
+				var commentBody, writeBoxElem;
 
-		document.querySelector('#commentWriteBox .bt-cancel-com').on('click', function () {
-			document.getElementById('newCommentBody').value = '';
-			document.getElementById('newCommentCount').innerText = '' + newCommentCount;
-			document.getElementById('commentError').innerText = '';
-			document.querySelector('#' + containerId + ' .new-com-cnt').style.display = 'none';
-			document.querySelector('#' + containerId + ' .new-com-bt').style.display = 'block';
-		});
-
-		document.querySelector('#commentWriteBox .bt-add-com').on('click', function () {
-			var commentBody, writeBoxElem;
-
-			commentBody = document.getElementById('newCommentBody').value;
-			if ((commentBody.length == 0) || (commentBody.length > newCommentCount)) {
-				return false;
-			}
-
-			writeBoxElem = document.getElementById('commentWriteBox');
-			writeBoxElem.innerHTML = '<div class="loader">Sending...</div>';
-			API.POST(
-				"/comment", {root: commentRoot, comment: commentBody},
-				function onCommentCreate(data) {
-					console.log("onCommentCreate", data.body);
-					writeBoxElem.parentNode.removeChild(writeBoxElem);
-					createComment(data.body);
-					initWriteBox();
-				},
-				function onCommentCreateError(data) {
-					console.error("onCommentCreateError", data);
+				commentBody = document.getElementById('newCommentBody').value;
+				if ((commentBody.length == 0) || (commentBody.length > newCommentCount)) {
+					return;
 				}
-			);
-		});
+
+				writeBoxElem = document.getElementById('commentWriteBox');
+				writeBoxElem.innerHTML = '<div class="loader">Sending...</div>';
+				API.POST(
+					"/comment", {root: commentRoot, comment: commentBody},
+					function onCommentCreate(data) {
+						console.log("onCommentCreate", data.body);
+						writeBoxElem.parentNode.removeChild(writeBoxElem);
+						createComment(data.body);
+						initWriteBox();
+					},
+					function onCommentCreateError(data) {
+						console.error("onCommentCreateError", data);
+					}
+				);
+			};
+		}, 200);
 	}
 
 	commentsThingy = function CommentsThingy(commentBodyId, root) {
