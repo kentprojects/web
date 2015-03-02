@@ -122,7 +122,7 @@
 			// TODO: Show the do button if:
 			// The user isn't a student / doesn't have a project / it's already taken
 			if (me.user.role == "student" && me.group.id && !me.project.id && !data.body.group) {
-				if (me.group.supervisor.id == me.user.id) {
+				if (me.group.creator.id == me.user.id) {
 					document.getElementById("doProjectButton").style.display = "block";
 				}
 			}
