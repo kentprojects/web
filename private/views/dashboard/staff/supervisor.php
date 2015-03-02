@@ -13,10 +13,10 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="row">
-					<div class="col-xs-10">
+					<div class="col-xs-8">
 						<div><h3 class="panel-title"><a href="/list.php?type=projects">My Projects</a></h3></div>
 					</div>
-					<div class="col-xs-2">
+					<div class="col-xs-4">
 						<div class="text-right">
 							<a class="btn btn-info panelHeadingButton" id="addProjectButton" href="/new.php?type=project"><span class="fui-plus"></span> Add</a>
 						</div>
