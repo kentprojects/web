@@ -3,3 +3,5 @@
 .vagrant/
 config.production.ini
 config.codekit
+private/uploads
+!private/uploads/README.md

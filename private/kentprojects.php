@@ -82,4 +82,12 @@ final class KentProjects
 
 		return $years;
 	}
+
+	/**
+	 * @return ApiResponse
+	 */
+	public static function uploadUserAvatar()
+	{
+		return new ApiResponse(400, '"No sir, that failed."');
+	}
 }
