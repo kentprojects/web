@@ -55,8 +55,8 @@
 						element.href = "/profile.php?type=project&id=" + data.body.id;
 					});
 					qf(".userName", function (element) {
-						element.innerText = data.body.creator.name;
-						element.href = "/profile.php?type=staff&id=" + data.body.creator.id;
+						element.innerText = data.body.supervisor.name;
+						element.href = "/profile.php?type=staff&id=" + data.body.supervisor.id;
 					});
 				}
 			},

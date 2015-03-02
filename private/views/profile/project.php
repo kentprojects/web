@@ -47,7 +47,11 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton" id="doProjectButton">Do This Project
+								<button class="btn btn-info panelHeadingButton" id="doProjectButton" onclick="doProject()">
+									Do This Project
+								</button>
+								<button class="btn btn-warning panelHeadingButton" id="giveUpProjectButton" onclick="giveUpProject()">
+									Give Up Project
 								</button>
 							</div>
 						</div>
@@ -126,7 +130,15 @@
 					document.getElementById("doProjectButton").style.display = "block";
 				}
 			}
-			document.getElementById('doProjectButton').setAttribute("onclick", "window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;");
+
+			// Show the 'give up' button if:
+			if (me.user.role == "student" &&
+				me.group.id &&
+				me.project.id == data.body.id) {
+				if (me.group.creator.id == me.user.id) {
+					document.getElementById("giveUpProjectButton").style.display = "block";
+				}
+			}
 
 			commentsThingy("commentsBody", "project/" + data.body.id);
 		},
@@ -134,6 +146,10 @@
 			console.error(data);
 		}
 	);
+
+	function doProject() {
+		window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;
+	}
 
 	function deleteProject() {
 		if(confirm("Are you sure you want to delete this project?")){
@@ -147,5 +163,20 @@
 				}
 			);
 		}
+	}
+
+	function giveUpProject() {
+		API.POST(
+			"/intent/", {
+				handler: "release_project",
+				data: {project_id: profileId}
+			},
+			function Success(data) {
+				window.history.back();
+			},
+			function Error(data) {
+				console.error(data.body);
+			}
+		);
 	}
 </script>

@@ -14,9 +14,8 @@ var API = {};
  * @param error The function to run upon error.
  * @return void
  */
-API.GET = function (url, query, success, error)
-{
-	API._Request("GET", url, query, {}, success, error)
+API.GET = function (url, query, success, error) {
+	API._Request("GET", url, query, {}, success, error);
 };
 
 /**
@@ -40,9 +39,8 @@ API.GET = function (url, query, success, error)
  * @param error The function to run upon error.
  * @return void
  */
-API.POST = function (url, post, success, error)
-{
-	API._Request("POST", url, {}, post, success, error)
+API.POST = function (url, post, success, error) {
+	API._Request("POST", url, {}, post, success, error);
 };
 
 /**
@@ -66,9 +64,8 @@ API.POST = function (url, post, success, error)
  * @param error The function to run upon error.
  * @return void
  */
-API.PUT = function (url, post, success, error)
-{
-	API._Request("PUT", url, {}, post, success, error)
+API.PUT = function (url, post, success, error) {
+	API._Request("PUT", url, {}, post, success, error);
 };
 
 /**
@@ -85,9 +82,8 @@ API.PUT = function (url, post, success, error)
  * @param error The function to run upon error.
  * @return void
  */
-API.DELETE = function (url, query, success, error)
-{
-	API._Request("DELETE", url, query, {}, success, error)
+API.DELETE = function (url, query, success, error) {
+	API._Request("DELETE", url, query, {}, success, error);
 };
 
 /**
@@ -102,23 +98,19 @@ API.DELETE = function (url, query, success, error)
  * @param error The function to run upon error.
  * @return void
  */
-API._Request = function (method, url, query, post, success, error)
-{
+API._Request = function (method, url, query, post, success, error) {
 	var r = new XMLHttpRequest();
 	r.open("POST", "/ajax.php", true);
-	r.onreadystatechange = function ()
-	{
-		if (r.readyState != 4)
-		{
+	//noinspection SpellCheckingInspection
+	r.onreadystatechange = function () {
+		if (r.readyState != 4) {
 			return;
 		}
 		// console.log(r.responseText);
-		if ((r.status >= 200) && (r.status < 300))
-		{
+		if (r.status == 200) {
 			success && success(JSON.parse(r.responseText));
 		}
-		else
-		{
+		else {
 			error && error(JSON.parse(r.responseText))
 		}
 	};
