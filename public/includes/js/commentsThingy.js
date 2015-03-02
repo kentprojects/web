@@ -44,9 +44,9 @@ var commentsThingy = function EmptyCommentsThingy() {
 	function initWriteBox() {
 		containerDiv.innerHTML += writeBox;
 
-		document.querySelector('#' + containerId + ' .new-com-bt').onclick(function () {
-			document.querySelector('#' + containerId + ' .new-com-bt').style.display = 'none';
-			document.querySelector('#' + containerId + ' .new-com-cnt').style.display = 'block';
+		document.querySelector('#commentWriteBox .new-com-bt').onclick(function () {
+			document.querySelector('#commentWriteBox .new-com-bt').style.display = 'none';
+			document.querySelector('#commentWriteBox .new-com-cnt').style.display = 'block';
 			document.getElementById('newCommentBody').focus();
 		});
 
@@ -71,10 +71,10 @@ var commentsThingy = function EmptyCommentsThingy() {
 				document.getElementById('newCommentCount').innerText = '' + newCommentCount;
 			}
 
-			document.querySelector('#' + containerId + ' .bt-add-com').style.opacity = opacity;
+			document.querySelector('#commentWriteBox .bt-add-com').style.opacity = opacity;
 		});
 
-		document.querySelector('#' + containerId + ' .bt-cancel-com').onclick(function () {
+		document.querySelector('#commentWriteBox .bt-cancel-com').onclick(function () {
 			document.getElementById('newCommentBody').value = '';
 			document.getElementById('newCommentCount').innerText = '' + newCommentCount;
 			document.getElementById('commentError').innerText = '';
@@ -82,7 +82,7 @@ var commentsThingy = function EmptyCommentsThingy() {
 			document.querySelector('#' + containerId + ' .new-com-bt').style.display = 'block';
 		});
 
-		document.querySelector('#' + containerId + ' .bt-add-com').onclick(function () {
+		document.querySelector('#commentWriteBox .bt-add-com').onclick(function () {
 			var commentBody, writeBoxElem;
 
 			commentBody = document.getElementById('newCommentBody').value;
