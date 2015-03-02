@@ -91,7 +91,7 @@
 		"/project/" + profileId, {},
 		function Success(data) {
 			document.getElementById("projectName").innerText = data.body.name;
-			document.getElementById("supervisorName").innerHTML = '<a href="/profile.php?type=staff&id=' + data.body.creator.id + '">' + data.body.creator.name + '</a>';
+			document.getElementById("supervisorName").innerHTML = '<a href="/profile.php?type=staff&id=' + data.body.supervisor.id + '">' + data.body.supervisor.name + '</a>';
 			// Set the project description
 			var projectDescription = data.body.description || defaultProjectDescription;
 			if (data.body.permissions.update == 1) {
@@ -116,13 +116,13 @@
 				markdownThingy("projectDescription", projectDescription);
 			}
 			// Set the supervisor's bio
-			var userBio = data.body.creator.bio || defaultUserBio;
+			var userBio = data.body.supervisor.bio || defaultUserBio;
 			markdownThingy("supervisorBio", userBio);
 
 			// TODO: Show the do button if:
 			// The user isn't a student / doesn't have a project / it's already taken
 			if (me.user.role == "student" && me.group.id && !me.project.id && !data.body.group) {
-				if (me.group.creator.id == me.user.id) {
+				if (me.group.supervisor.id == me.user.id) {
 					document.getElementById("doProjectButton").style.display = "block";
 				}
 			}
