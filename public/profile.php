@@ -28,14 +28,14 @@ if (!empty($_GET["shortcut"]))
 			}
 			else
 			{
-				redirect("dashboard.php");
+				redirect("/dashboard.php");
 			}
 			$profileId = $user->id;
 			break;
 		case "myGroup":
 			if ($user->role == "staff")
 			{
-				redirect("dashboard.php");
+				redirect("/dashboard.php");
 			}
 			elseif ($user->role == "student")
 			{
@@ -47,15 +47,37 @@ if (!empty($_GET["shortcut"]))
 				}
 				else
 				{
-					redirect("dashboard.php");
+					redirect("/dashboard.php");
 				}
 			}
 			else
 			{
-				redirect("dashboard.php");
+				redirect("/dashboard.php");
+			}
+		case "myProject":
+			if ($user->role == "staff")
+			{
+				redirect("/dashboard.php");
+			}
+			elseif ($user->role == "student")
+			{
+				if (!empty($meRequest->project))
+				{
+					$profileType = "project";
+					$profileId = $meRequest->project->id;
+					break;
+				}
+				else
+				{
+					redirect("/dashboard.php");
+				}
+			}
+			else
+			{
+				redirect("/dashboard.php");
 			}
 		default:
-			redirect("dashboard.php");
+			redirect("/dashboard.php");
 	}
 }
 else
