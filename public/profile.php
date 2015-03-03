@@ -10,7 +10,6 @@ $profileId = null;
 $user = $meRequest->user;
 // Get header
 $title = "Profile";
-require PUBLIC_DIR . "/includes/php/header.php";
 
 if (!empty($_GET["shortcut"]))
 {
@@ -82,14 +81,6 @@ if (!empty($_GET["shortcut"]))
 }
 else
 {
-	if (!empty($_GET["type"]))
-	{
-		$profileType = $_GET["type"];
-	}
-	else
-	{
-		redirect("dashboard.php");
-	}
 	if (!empty($_GET["id"]))
 	{
 		$profileId = $_GET["id"];
@@ -98,7 +89,41 @@ else
 	{
 		redirect("dashboard.php");
 	}
+	if (!empty($_GET["type"]))
+	{
+		if($_GET["type"] == "user") {
+			$response = API::Request(API::GET, "/user/" . $profileId);
+			if ($response->status == 200)
+			{
+				switch ($response->body->role)
+				{
+					case "student":
+						$profileType = "student";
+						break;
+					case "staff":
+						$profileType = "staff";
+						break;
+					default:
+						redirect("404.html");
+				}
+			}
+			else
+			{
+				redirect("404.html");
+			}
+		}
+		else
+		{
+			$profileType = $_GET["type"];
+		}
+	}
+	else
+	{
+		redirect("dashboard.php");
+	}
 }
+
+require PUBLIC_DIR . "/includes/php/header.php";
 ?>
 
 <script>
