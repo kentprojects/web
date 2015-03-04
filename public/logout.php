@@ -5,4 +5,6 @@
  * @link: http://kentprojects.com
  */
 require_once __DIR__."/../private/bootstrap.php";
-logout();
+Session::destroy();
+redirect(API::GetURL() . "/auth/logout");
+exit();

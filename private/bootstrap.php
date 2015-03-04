@@ -47,7 +47,8 @@ while (!empty($prerequisites))
 
 			if (empty($meRequest->user) || empty($meRequest->user->id))
 			{
-				logout();
+				Session::destroy();
+				redirect("/");
 				exit();
 			}
 

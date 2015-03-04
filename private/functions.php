@@ -147,17 +147,6 @@ function getHttpStatusForCode($code)
 }
 
 /**
- * Logout the current user.
- * @return void
- */
-function logout()
-{
-	$logoutUrl = Auth::getLogoutUrl();
-	Session::destroy();
-	redirect($logoutUrl);
-}
-
-/**
  * @param string $url The URL to redirect to.
  * @param int $code A 3xx redirect code.
  */
