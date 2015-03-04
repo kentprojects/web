@@ -4,12 +4,11 @@
  * @license: Copyright KentProjects
  * @link: http://kentprojects.com
  *
- * @var stdClass $user
+ * @var stdClass $meRequest->user
  */
 
 $prerequisites = array("authentication");
 require_once __DIR__ . "/../private/bootstrap.php";
-$user = $meRequest->user;
 
 switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 {
@@ -33,7 +32,7 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					{
 						exit((string)new Exception("No group ID given."));
 					}
-					if ($user->role == "staff")
+					if ($meRequest->user->role == "staff")
 					{
 						exit((string)new Exception("Staff can't do that!"));
 					}
@@ -44,7 +43,7 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					{
 						exit((string)new Exception("No project ID given."));
 					}
-					if ($user->role == "staff")
+					if ($meRequest->user->role == "staff")
 					{
 						exit((string)new Exception("Staff can't do that!"));
 					}
@@ -52,6 +51,21 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					break;
 				case "accessYear":
 					$content = "/request/accessYear";
+					break;
+				case "submitToCAS":
+					if ($meRequest->user->role == "staff")
+					{
+						exit((string)new Exception("Staff can't do that!"));
+					}
+					if (empty($meRequest->group))
+					{
+						exit((string)new Exception("You don't have a group yet!"));
+					}
+					if (empty($meRequest->project))
+					{
+						exit((string)new Exception("You don't have a project to submit yet!"));
+					}
+					$content = "/request/submitToCAS";
 					break;
 				default:
 					exit((string)new Exception("Invalid request."));

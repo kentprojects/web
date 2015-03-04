@@ -32,7 +32,7 @@ var commentsThingy = function EmptyCommentsThingy() {
 			'<div class="col-xs-12 col-sm-10 col-sm-offset-1 commentItem">',
 			'<img src="http://i.imgur.com/ldS4dWw.png">',
 			'<div class="commentText">', '<div class="commentHead">',
-			'<h5><a href="/profile.php?type=user&id=', data.author.id, '">',
+			'<h5><a href="/profile.php?type=' + data.author.role + '&id=', data.author.id, '">',
 			data.author.name,
 			'</a></h5>',
 			'<span class="com-dt">', data.created, '</span>',

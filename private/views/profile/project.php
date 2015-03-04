@@ -19,13 +19,13 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-xs-8">
-							<div><h3 class="panel-title">Bio</h3></div>
+							<div><h3 class="panel-title">Description</h3></div>
 						</div>
 						<div class="col-xs-4">
 							<div class="floatRight text-right ownershipButtons" id="deleteProjectButton" onclick="deleteProject()">
 								<span class="fui-cross"></span>
 							</div>
-							<div class="floatRight text-right ownershipButtons" id="editProjectBioButton">
+							<div class="floatRight text-right ownershipButtons" id="editProjectDescriptionButton">
 								<span class="fui-new"></span>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 			var projectDescription = data.body.description || defaultProjectDescription;
 			if (data.body.permissions.update == 1) {
 				markdownThingy(
-					"projectDescription", projectDescription, "editProjectBioButton",
+					"projectDescription", projectDescription, "editProjectDescriptionButton",
 					queueMarkdownChange("projectDescription", function SaveProjectDescription(saveData, next) {
 						API.PUT(
 							"/project/" + profileId, {"description": saveData},
@@ -143,6 +143,9 @@
 			commentsThingy("commentsBody", "project/" + data.body.id);
 		},
 		function Error(data) {
+			if(data.status == 404) {
+				window.location.href = '/404.html'
+			}
 			console.error(data);
 		}
 	);

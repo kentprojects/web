@@ -111,6 +111,9 @@
 			commentsThingy("commentsBody", "group/" + data.body.id);
 		},
 		function Error(data) {
+			if(data.status == 404) {
+				window.location.href = '/404.html'
+			}
 			console.error(data);
 		}
 	);
