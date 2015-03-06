@@ -88,18 +88,26 @@ $title = empty($title) ? "KentProjects" : $title;
 			window.attachEvent("onload", $buo_f)
 		}
 	</script>
-
+	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
+	<script src="/includes/js/lib/flat-ui-pro.min.js" type="text/javascript"></script>
 </head>
 <body>
 <header class="kentBlueBackground">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-7 col-sm-7 col-md-7 noRightPadding">
+			<div class="col-xs-6 col-sm-7 col-md-7 noRightPadding">
 				<a href="/dashboard.php"><h4 class="inlineHeading smallerMobileHeading whiteText"> Kent Projects </h4>
 				</a>
 			</div>
-			<div class="col-xs-5 col-sm-5 col-md-5 noLeftPadding text-right">
-				<a href="/profile.php?shortcut=myProfile"><span class="fui-user smallerMobileHeading whiteText"></span></a>
+			<div class="col-xs-6 col-sm-5 col-md-5 noLeftPadding text-right">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<span class="fui-chat smallerMobileHeading whiteText"></span>
+				</a>
+				<ul class="dropdown-menu" id="user-notifications" role="menu">
+					<li><a href="#">Loading notifications...</a></li>
+				</ul>
+				<a href="/profile.php?shortcut=myProfile"><span
+						class="fui-user marginLeft10 smallerMobileHeading whiteText"></span></a>
 				<a href="/settings.php"><span class="fui-gear marginLeft10 smallerMobileHeading whiteText"></span></a>
 				<span class="fui-exit hoverHand marginLeft10 smallerMobileHeading whiteText"
 					onclick="logoutUser()"></span>
