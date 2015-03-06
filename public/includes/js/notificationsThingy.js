@@ -1,8 +1,7 @@
 /**
  * Notifications. Thingy innit.
  */
-var loadQueue = loadQueue || [];
-loadQueue.push(function () {
+(function () {
 	var notificationsList = document.getElementById("user-notifications");
 	if (!notificationsList) {
 		console.error("No notification dropdown found. Aborting notificationsThingy.");
@@ -45,4 +44,4 @@ loadQueue.push(function () {
 
 	setInterval(CheckUnreadNotificationInterval, 10000);
 	GetNotifications();
-});
+})();
