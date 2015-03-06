@@ -11,6 +11,12 @@ loadQueue.push(function () {
 
 	function onNotificationsGetSuccess(data) {
 		console.log("notificationsThingy onNotificationsGetSuccess", data);
+		if (data.headers && data.headers["X-Notification-Count"] && (data.headers["X-Notification-Count"] > 0)) {
+			for (var i = 0; i < data.body.length; i++) {
+				var notification = data.body[i];
+				console.log(notification);
+			}
+		}
 	}
 
 	function onNotificationsGetError(data) {
@@ -23,16 +29,20 @@ loadQueue.push(function () {
 
 	function onCheckNotificationsSuccess(data) {
 		console.log("notificationsThingy onCheckNotificationsSuccess", data);
+		if (data.headers && data.headers["X-Notification-Count"] && (data.headers["X-Notification-Count"] > 0)) {
+			GetNotifications();
+		}
 	}
 
 	function onCheckNotificationsError(data) {
-		console.error("notificationsThingy onCheckNotificationsError", data);
+		// Meh. Who cares.
+		// console.error("notificationsThingy onCheckNotificationsError", data);
 	}
 
 	function CheckUnreadNotificationInterval() {
 		API.HEAD("/me/notifications?unread=1", {}, onCheckNotificationsSuccess, onCheckNotificationsError);
 	}
 
-	setInterval(CheckUnreadNotificationInterval, 1000);
+	setInterval(CheckUnreadNotificationInterval, 10000);
 	GetNotifications();
 });

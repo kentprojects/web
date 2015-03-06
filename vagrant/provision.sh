@@ -32,6 +32,7 @@ patch /etc/apache2/envvars <<'EOT'
  export APACHE_PID_FILE=/var/run/apache2/apache2$SUFFIX.pid
  export APACHE_RUN_DIR=/var/run/apache2$SUFFIX
 EOT
+chgrp -R vagrant /var/log/apache2
 rm /etc/apache2/sites-enabled/*
 ln -s /vagrant/vagrant/apache.conf /etc/apache2/sites-enabled/10-KentProjects.conf
 service apache2 restart

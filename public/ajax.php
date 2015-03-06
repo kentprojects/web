@@ -34,7 +34,7 @@ try
 	 *
 	 * @var array $methods
 	 */
-	$methods = array("GET", "POST", "PUT", "DELETE");
+	$methods = array("GET", "POST", "PUT", "DELETE", "HEAD");
 	/**
 	 * @var ApiResponse $response
 	 */
