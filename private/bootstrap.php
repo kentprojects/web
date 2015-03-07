@@ -47,6 +47,7 @@ while (!empty($prerequisites))
 
 			if (empty($meRequest->user) || empty($meRequest->user->id))
 			{
+				error_log("No user detected - emergency logout!");
 				Session::destroy();
 				redirect("/");
 				exit();
