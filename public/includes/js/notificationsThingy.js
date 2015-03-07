@@ -39,7 +39,7 @@
 	}
 
 	function CheckUnreadNotificationInterval() {
-		API.HEAD("/me/notifications?unread=1", {}, onCheckNotificationsSuccess, onCheckNotificationsError);
+		API.HEAD("/me/notifications", {"unread":1}, onCheckNotificationsSuccess, onCheckNotificationsError);
 	}
 
 	// setInterval(CheckUnreadNotificationInterval, 10000);
