@@ -42,6 +42,6 @@
 		API.HEAD("/me/notifications?unread=1", {}, onCheckNotificationsSuccess, onCheckNotificationsError);
 	}
 
-	setInterval(CheckUnreadNotificationInterval, 10000);
+	// setInterval(CheckUnreadNotificationInterval, 10000);
 	GetNotifications();
 })();
