@@ -49,7 +49,10 @@ function checkDynamicCSS() {
     }
 }
 
-checkDynamicCSS();
+window.onload =  function(event) {
+    checkDynamicCSS();
+};
+
 window.onresize = function(event) {
     checkDynamicCSS();
 };
