@@ -119,7 +119,7 @@
 					console.error(data);
 					document.querySelector(".btn-group").style.display = "none";
 				}
-			)
+			);
 		};
 		cancelRequest = function cancelRequest() {
 			window.location.href = "/profile.php?type=project&id=" + projectId;
