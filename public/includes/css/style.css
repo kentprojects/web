@@ -468,11 +468,24 @@ code {
 
 .flowDown {
 	overflow-y: visible;
+	height: auto;
 }
 
-.tileListItem li {
-	height: 250px !important;
+.tileListItems {
+	text-align: center !important;
 }
+
+.tileListItems li {
+	height: 250px !important;
+	margin: 8px !important;
+	display: inline-block !important;
+	float: none !important;
+	vertical-align: top !important;
+}
+
+
+
+
 
 /* Mobile */
 @media (max-device-width: 568px) and (orientation: portrait) {
