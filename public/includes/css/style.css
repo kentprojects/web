@@ -484,8 +484,13 @@ code {
 }
 
 
+.reduceHeading {
+	font-size: 54px;
+}
 
-
+.reduceTopMargin {
+	margin-top: 30px;
+}
 
 /* Mobile */
 @media (max-device-width: 568px) and (orientation: portrait) {

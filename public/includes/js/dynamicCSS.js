@@ -30,11 +30,21 @@ function checkDynamicCSS() {
         for (var i = 0; i < reduceHeadings.length; i++) {
             reduceHeadings[i].style.fontSize="42px";
         }
+
+        reduceTopMargins = document.getElementsByClassName('reduceTopMargin');
+        for (var i = 0; i < reduceTopMargins.length; i++) {
+            reduceTopMargins[i].style.marginTop="20px";
+        }
     }
     else {
         reduceHeadings = document.getElementsByClassName('reduceHeading');
         for (var i = 0; i < reduceHeadings.length; i++) {
             reduceHeadings[i].style.fontSize="61px";
+        }
+
+        reduceTopMargins = document.getElementsByClassName('reduceTopMargin');
+        for (var i = 0; i < reduceTopMargins.length; i++) {
+            reduceTopMargins[i].style.marginTop="30px";
         }
     }
 }
