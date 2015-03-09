@@ -25,16 +25,13 @@
 	</div>
 </header>
 <div id="pageContent">
-	<div class="jumbotron">
-		<div class="container">
+	<div class="bigTopMargin container ">
+		<div class="jumbotron">
 			<h1>Sorry!</h1>
-
 			<p>We can't find whatever it was that you were looking for :(</p>
-
 			<p>
 				<a class="btn btn-primary btn-lg" href="/dashboard.php">To the dashboard!</a>
 			</p>
-
 		</div>
 	</div>
 </div>
