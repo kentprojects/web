@@ -9,6 +9,7 @@
 define("PRIVATE_DIR", __DIR__);
 define("PUBLIC_DIR", __DIR__ . "/../public");
 define("VIEWS_DIR", PRIVATE_DIR . "/views");
+define("UPLOADS_DIR", PRIVATE_DIR . "/uploads");
 
 /**
  * Display and report all of the errors.
@@ -46,7 +47,9 @@ while (!empty($prerequisites))
 
 			if (empty($meRequest->user) || empty($meRequest->user->id))
 			{
-				logout();
+				error_log("No user detected - emergency logout!");
+				Session::destroy();
+				redirect("/");
 				exit();
 			}
 

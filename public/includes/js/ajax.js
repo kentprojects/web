@@ -87,6 +87,24 @@ API.DELETE = function (url, query, success, error) {
 };
 
 /**
+ * Perform a HEAD request. Which is exactly like a GET request, but without a `body`.
+ *
+ * API.HEAD("/user/1", {}, function(response) {
+ *     var user = response.body;
+ *     console.log(user.email);
+ * });
+ *
+ * @param url The endpoint to request.
+ * @param query Any query data (as an object).
+ * @param success The function to run upon success
+ * @param error The function to run upon error.
+ * @return void
+ */
+API.HEAD = function (url, query, success, error) {
+	API._Request("HEAD", url, query, {}, success, error);
+};
+
+/**
  * Performs the main request.
  * This should not be run by hand.
  *

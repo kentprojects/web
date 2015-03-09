@@ -34,7 +34,7 @@ try
 	 *
 	 * @var array $methods
 	 */
-	$methods = array("GET", "POST", "PUT", "DELETE");
+	$methods = array("GET", "POST", "PUT", "DELETE", "HEAD");
 	/**
 	 * @var ApiResponse $response
 	 */
@@ -79,7 +79,7 @@ try
 }
 catch (Exception $e)
 {
-	$response = new ApiResponse(500, (string)$e);
+	$response = new ApiResponse(500, array("Exception" => get_class($e)), (string)$e);
 }
 
 if (($response->status >= 200) && ($response->status < 300))

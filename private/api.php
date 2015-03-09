@@ -10,6 +10,7 @@ final class API
 	const POST = "api:request:post";
 	const PUT = "api:request:put";
 	const DELETE = "api:request:delete";
+	const HEAD = "api:request:head";
 
 	const USERTOKEN_SESSIONKEY = "token";
 
@@ -44,6 +45,60 @@ final class API
 	public static function GetURL()
 	{
 		return config("api", "url");
+	}
+
+	/**
+	 * @param resource $ch
+	 * @param string $response
+	 * @return array
+	 */
+	protected static function getResponse($ch, $response)
+	{
+		/**
+		 * Divide the response between header and body :)
+		 */
+		$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+		$curlHeaders = substr($response, 0, $header_size);
+		$body = substr($response, $header_size);
+
+		/**
+		 * Format the headers into key => value.
+		 */
+		$headers = array();
+		$curlHeaders = explode("\n", $curlHeaders);
+		array_shift($curlHeaders);
+		foreach ($curlHeaders as $header)
+		{
+			$header = trim($header);
+			if (empty($header))
+			{
+				continue;
+			}
+
+			$header = explode(":", $header, 2);
+			$headers[trim($header[0])] = trim($header[1]);
+		}
+
+		/**
+		 * Parse the body.
+		 */
+		if (!empty($body))
+		{
+			$body = json_decode($body);
+			if (empty($body))
+			{
+				$body = null;
+			}
+		}
+		else
+		{
+			$body = null;
+		}
+
+		/**
+		 * And return our findings!
+		 */
+		return array($headers, $body);
 	}
 
 	/**
@@ -155,6 +210,7 @@ final class API
 		/**
 		 * Set various CURL options.
 		 */
+		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
@@ -164,6 +220,9 @@ final class API
 		 */
 		switch ($method)
 		{
+			case API::HEAD:
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper(str_replace("api:request:", "", $method)));
+				break;
 			/**
 			 * For POST or DELETE requests, set the post fields.
 			 */
@@ -188,22 +247,15 @@ final class API
 		/**
 		 * Execute the CURL request, and get back the additional header information!
 		 */
-		$body = curl_exec($ch);
-		$headers = curl_getinfo($ch);
+		list($headers, $body) = static::getResponse($ch, curl_exec($ch));
+		static::$lastResponse = new ApiResponse(curl_getinfo($ch, CURLINFO_HTTP_CODE), $headers, $body);
 
 		/**
 		 * Close the handlers.
 		 */
-		if ($method === API::PUT)
-		{
-			fclose($fh);
-		}
+		!empty($fh) && fclose($fh);
 		curl_close($ch);
 
-		/**
-		 * Return a response.
-		 */
-		static::$lastResponse = new ApiResponse($headers["http_code"], $body);
 		return static::$lastResponse;
 	}
 }
@@ -215,9 +267,9 @@ final class ApiResponse implements JsonSerializable
 	 */
 	public $body;
 	/**
-	 * @var string
+	 * @var array
 	 */
-	protected $raw;
+	public $headers;
 	/**
 	 * @var int
 	 */
@@ -225,13 +277,14 @@ final class ApiResponse implements JsonSerializable
 
 	/**
 	 * @param int $status
+	 * @param array $headers
 	 * @param string $body
 	 */
-	public function __construct($status, $body)
+	public function __construct($status = 500, array $headers = array(), $body = null)
 	{
+		$this->body = $body;
+		$this->headers = $headers;
 		$this->status = $status;
-		$this->raw = $body;
-		$this->body = json_decode($body);
 	}
 
 	/**
@@ -240,19 +293,10 @@ final class ApiResponse implements JsonSerializable
 	public function __toString()
 	{
 		return sprintf(
-			"API Response %d %s with body: %s",
-			$this->status,
-			getHttpStatusForCode($this->status),
-			$this->raw
+			"API Response %d %s with headers %s and body %s",
+			$this->status, $this->getStatusMessage(),
+			json_encode($this->headers), json_encode($this->body)
 		);
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getRawData()
-	{
-		return $this->raw;
 	}
 
 	/**
@@ -268,7 +312,8 @@ final class ApiResponse implements JsonSerializable
 		return array(
 			"status" => $this->status,
 			"message" => $this->getStatusMessage(),
-			"body" => ($this->body !== null) ? $this->body : $this->raw
+			"headers" => $this->headers,
+			"body" => $this->body
 		);
 	}
 }

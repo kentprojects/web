@@ -6,6 +6,11 @@
  */
 final class Auth
 {
+	private static /** @noinspection SpellCheckingInspection */
+		$simpleSamlAPI = "https://api.kentprojects.com/simplesaml";
+	private static /** @noinspection SpellCheckingInspection */
+		$simpleSamlLogout = "/module.php/core/authenticate.php?as=default-sp&logout";
+
 	/**
 	 * @param string $code
 	 * @return void
@@ -16,6 +21,8 @@ final class Auth
 
 		if ($response->status === 200)
 		{
+			error_log($response->body);
+
 			if (!is_object($response->body))
 			{
 				$response->body = json_decode($response->body);
