@@ -34,14 +34,15 @@ $title = empty($title) ? "KentProjects" : $title;
 	<link rel="shortcut icon" href="/../includes/img/kp.ico">
 	<script src="/includes/js/lib/cheet.min.js"></script>
 	<script src="/includes/js/dynamicCSS.js"></script>
+	<!-- jQuery -->
+	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
 	<!-- Bootstrap -->
 	<link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!-- Flat UI -->
 	<link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
+	<script src="/includes/js/lib/flat-ui-pro.min.js" type="text/javascript"></script>
 	<!-- Hint.css -->
 	<link href="/includes/css/lib/hint.min.css" rel="stylesheet">
-	<!-- jQuery -->
-	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
 
 	<?php if ($includeDropZoneJs)
 	{ ?>
@@ -100,18 +101,32 @@ $title = empty($title) ? "KentProjects" : $title;
 				</a>
 			</div>
 			<div class="col-xs-6 col-sm-5 col-md-5 noLeftPadding text-right">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					<span class="fui-chat smallerMobileHeading whiteText"></span>
-				</a>
-				<ul class="dropdown-menu" id="user-notifications" role="menu">
-					<li><a href="#">Loading notifications...</a></li>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown" id="notificationsDropdown">
+						<a class="navLink" id="testttt" href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="fui-chat smallerMobileHeading whiteText"></span>
+						</a>
+						<ul class="dropdown-menu" id="user-notifications">
+						</ul>
+					</li>
+					<li>
+						<a class="navLink" href="/profile.php?shortcut=myProfile">
+							<span class="fui-user marginLeft10 smallerMobileHeading whiteText"></span>
+						</a>
+					</li>
+					<li>
+						<a class="navLink" href="/settings.php">
+							<span class="fui-gear marginLeft10 smallerMobileHeading whiteText"></span>
+						</a>
+					</li>
+					<li>
+						<a class="navLink" href="#"><span class="fui-exit hoverHand marginLeft10 smallerMobileHeading whiteText"
+							onclick="logoutUser()"></span></a>
+					</li>
 				</ul>
-				<a href="/profile.php?shortcut=myProfile"><span
-						class="fui-user marginLeft10 smallerMobileHeading whiteText"></span></a>
-				<a href="/settings.php"><span class="fui-gear marginLeft10 smallerMobileHeading whiteText"></span></a>
-				<span class="fui-exit hoverHand marginLeft10 smallerMobileHeading whiteText"
-					onclick="logoutUser()"></span>
+
 			</div>
+
 		</div>
 	</div>
 </header>
@@ -133,5 +148,15 @@ $title = empty($title) ? "KentProjects" : $title;
 			window.location.href = ("/logout.php");
 		}
 	}
+
+	$(function () {
+		$(".notifications .messages").hide();
+		$(".notifications").click(function () {
+			if ($(this).children(".messages").children().length > 0) {
+				$(this).children(".messages").fadeToggle(0);
+			}
+		});
+	});
+
 </script>
 <div id="pageContent">
