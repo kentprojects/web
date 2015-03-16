@@ -115,6 +115,8 @@ final class KentProjects
 
 		$filename = md5($user->email) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
+		exec(sprintf("rm -f %s/%s*", UPLOADS_DIR, md5($user->email)));
+
 		if (move_uploaded_file($_FILES["file"]["tmp_name"], UPLOADS_DIR . "/" . $filename))
 		{
 			return new ApiResponse(200, array(), json_encode((object)array(
