@@ -91,12 +91,12 @@ final class KentProjects
 	{
 		if (empty($_FILES))
 		{
-			return new ApiResponse(400, '"No uploaded files found."');
+			return new ApiResponse(400, array(), '"No uploaded files found."');
 		}
 
 		if (empty($_FILES["file"]))
 		{
-			return new ApiResponse(400, '"No uploaded file found."');
+			return new ApiResponse(400, array(), '"No uploaded file found."');
 		}
 
 		if (isset($_FILES["file"]["error"]) && ($_FILES["file"]["error"] > UPLOAD_ERR_OK))
@@ -110,20 +110,20 @@ final class KentProjects
 				default:
 					$error = "An error occurred.";
 			}
-			return new ApiResponse(400, '"' . $error . '"');
+			return new ApiResponse(400, array(), '"' . $error . '"');
 		}
 
 		$filename = md5($user->email) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
 		if (move_uploaded_file($_FILES["file"]["tmp_name"], UPLOADS_DIR . "/" . $filename))
 		{
-			return new ApiResponse(200, json_encode((object)array(
+			return new ApiResponse(200, array(), json_encode((object)array(
 				"file" => "/uploads/" . $filename
 			)));
 		}
 		else
 		{
-			return new ApiResponse(500, '"Failed to upload."');
+			return new ApiResponse(500, array(), '"Failed to upload."');
 		}
 	}
 }
