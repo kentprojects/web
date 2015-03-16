@@ -744,6 +744,7 @@ header .navbar-nav>li>.dropdown-menu {
 }
 
 .notificationsBadge {
+	display: none;
 	position:absolute;
 	top: 3px;
 	right: -5px;

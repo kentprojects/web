@@ -103,11 +103,12 @@ $title = empty($title) ? "KentProjects" : $title;
 			<div class="col-xs-6 col-sm-5 col-md-5 noLeftPadding text-right">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown" id="notificationsDropdown">
-						<a class="navLink" id="testttt" href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<a class="navLink" href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<span class="fui-chat smallerMobileHeading whiteText"></span>
 						</a>
 						<ul class="dropdown-menu" id="user-notifications">
 						</ul>
+						<span class="notificationsBadge" id="notificationsBadge"></span>
 					</li>
 					<li>
 						<a class="navLink" href="/profile.php?shortcut=myProfile">
