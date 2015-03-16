@@ -72,51 +72,55 @@
 </div>
 
 <script type="text/javascript">
-	var defaultProjectBio = [
-		'This project doesn\'t have a bio yet',
-		'',
-		'*Why not comment on its creator\'s page and let them know?*'
-	].join('\n');
-	if (me.user.role == "student") {
-		if (!me.group.id) {
-			document.getElementById("joinGroupButton").style.display = "block";
-		}
-		else if (me.group.id === profileId) {
-			if (me.group.creator.id === me.user.id) {
-				document.getElementById("deleteGroupButton").style.display = "block";
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		var defaultProjectBio = [
+			'This project doesn\'t have a bio yet',
+			'',
+			'*Why not comment on its creator\'s page and let them know?*'
+		].join('\n');
+		if (me.user.role == "student") {
+			if (!me.group.id) {
+				document.getElementById("joinGroupButton").style.display = "block";
 			}
-			else {
-				document.getElementById("leaveGroupButton").style.display = "block";
+			else if (me.group.id === profileId) {
+				if (me.group.creator.id === me.user.id) {
+					document.getElementById("deleteGroupButton").style.display = "block";
+				}
+				else {
+					document.getElementById("leaveGroupButton").style.display = "block";
+				}
 			}
 		}
-	}
-	API.GET(
-		"/group/" + profileId, {},
-		function Success(data) {
-			document.getElementById("groupName").innerText = data.body.name;
-			document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
-			scroller("#groupMembersScroller");
-			if (data.body.project) {
-				document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
-				// Set the project bio
-				var projectBio = data.body.project.description || defaultProjectBio;
-				markdownThingy("projectBio", projectBio);
-				// Hide the join group button
-				document.getElementById("joinGroupButton").style.display = "none";
+		API.GET(
+			"/group/" + profileId, {},
+			function Success(data) {
+				document.getElementById("groupName").innerText = data.body.name;
+				document.querySelector(".groupMembers ul").innerHTML = scrollerHTML(data.body.students, "student");
+				scroller("#groupMembersScroller");
+				if (data.body.project) {
+					document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
+					// Set the project bio
+					var projectBio = data.body.project.description || defaultProjectBio;
+					markdownThingy("projectBio", projectBio);
+					// Hide the join group button
+					document.getElementById("joinGroupButton").style.display = "none";
 
+				}
+				else {
+					document.querySelector(".projectDetails").style.display = "none";
+				}
+				commentsThingy("commentsBody", "group/" + data.body.id);
+			},
+			function Error(data) {
+				if (data.status == 404) {
+					window.location.href = '/404.html'
+				}
+				console.error(data);
 			}
-			else {
-				document.querySelector(".projectDetails").style.display = "none";
-			}
-			commentsThingy("commentsBody", "group/" + data.body.id);
-		},
-		function Error(data) {
-			if(data.status == 404) {
-				window.location.href = '/404.html'
-			}
-			console.error(data);
-		}
-	);
+		);
+	});
+
 
 	function joinGroup() {
 		window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;

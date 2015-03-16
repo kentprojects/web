@@ -91,7 +91,8 @@ else
 	}
 	if (!empty($_GET["type"]))
 	{
-		if($_GET["type"] == "user") {
+		if ($_GET["type"] == "user")
+		{
 			$response = API::Request(API::GET, "/user/" . $profileId);
 			if ($response->status == 200)
 			{
@@ -126,29 +127,29 @@ else
 require PUBLIC_DIR . "/includes/php/header.php";
 ?>
 
-<script>
-	var profileId = <?php echo $profileId; ?>;
-	var profileType = "<?php echo $profileType; ?>";
-</script>
+	<script>
+		var profileId = <?php echo $profileId; ?>;
+		var profileType = "<?php echo $profileType; ?>";
+	</script>
 
-<!-- Bootstrap Markdown Support -->
+	<!-- Bootstrap Markdown Support -->
 	<link href="/includes/css/lib/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
 	<link href="/includes/css/lib/bootstrap-tokenfield.min.css" rel="stylesheet" type="text/css" />
-<script src="/includes/js/lib/bootstrap-markdown.js" type="text/javascript"></script>
-<script src="/includes/js/lib/markdown.js" type="text/javascript"></script>
-<script src="/includes/js/lib/to-markdown.js" type="text/javascript"></script>
-<script src="/includes/js/lib/bootstrap-tokenfield.min.js" type="text/javascript"></script>
-<!-- Sly -->
-<script src="/includes/js/lib/sly.js" type="text/javascript"></script>
-<!-- Our scripts -->
-<script src="/includes/js/ajax.js" type="text/javascript"></script>
-<script src="/includes/js/includes.php" type="text/javascript"></script>
 
-<script src="/includes/js/commentsThingy.js" type="text/javascript"></script>
-<script src="/includes/js/editsThingy.js" type="text/javascript"></script>
-<script src="/includes/js/markdownThingy.js" type="text/javascript"></script>
-<script src="/includes/js/tokensThingy.js" type="text/javascript"></script>
-<script src="/includes/js/scrollerThingy.js" type="text/javascript"></script>
+	<script>
+		var scriptQueue = scriptQueue || [];
+		scriptQueue.push(
+			"/includes/js/lib/bootstrap-markdown.js",
+			"/includes/js/lib/markdown.js",
+			"/includes/js/lib/to-markdown.js",
+			"/includes/js/lib/bootstrap-tokenfield.min.js",
+
+			"/includes/js/commentsThingy.js",
+			"/includes/js/editsThingy.js",
+			"/includes/js/markdownThingy.js",
+			"/includes/js/tokensThingy.js"
+		)
+	</script>
 
 <?php
 switch ($profileType)
@@ -169,7 +170,4 @@ switch ($profileType)
 		redirect("dashboard.php");
 }
 
-?>
-	<script src="/includes/js/script.js" type="text/javascript"></script>
-<?php
 require PUBLIC_DIR . '/includes/php/footer.php';

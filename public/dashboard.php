@@ -82,17 +82,7 @@ if (!empty($user->years))
 // Get header
 $title = "Dashboard";
 require PUBLIC_DIR . "/includes/php/header.php";
-
-
 ?>
-
-	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
-	<script src="/includes/js/lib/flat-ui-pro.min.js" type="text/javascript"></script>
-	<script src="/includes/js/lib/sly.js" type="text/javascript"></script>
-	<script src="/includes/js/ajax.js" type="text/javascript"></script>
-	<script src="/includes/js/scrollerThingy.js" type="text/javascript"></script>
-	<script src="/includes/js/includes.php" type="text/javascript"></script>
-
 	<!-- Layout -->
 
 	<div class="container">
@@ -177,35 +167,36 @@ require PUBLIC_DIR . "/includes/php/header.php";
 
 	</div>
 
-	<script>
-		<!-- App code goes here -->
-		var year = "<?php echo $year; ?>";
-		// Populate the roles dropdown
-		<?php if (!empty($potentialRoles)) { ?>
-		(function () {
-			var roles = <?php echo json_encode($potentialRoles);?>;
-			var HTML = [];
-			for (var p in roles) {
-				if (roles.hasOwnProperty(p)) {
-					HTML.push(
-						'<li role="presentation">',
-						'<a role="menuitem" href="?role=', p, '">',
-						roles[p],
-						'</a>',
-						'</li>'
-					);
+	<script type="text/javascript">
+		var loadQueue = loadQueue || [];
+		loadQueue.push(function () {
+			<!-- App code goes here -->
+			var year = "<?php echo $year; ?>";
+			// Populate the roles dropdown
+			<?php if (!empty($potentialRoles)) { ?>
+			(function () {
+				var roles = <?php echo json_encode($potentialRoles);?>;
+				var HTML = [];
+				for (var p in roles) {
+					if (roles.hasOwnProperty(p)) {
+						HTML.push(
+							'<li role="presentation">',
+							'<a role="menuitem" href="?role=', p, '">',
+							roles[p],
+							'</a>',
+							'</li>'
+						);
+					}
 				}
-			}
-			document.getElementById("roleSelectorDropdown").innerHTML += HTML.join("");
-		})();
-		<?php }
-		else { ?>
-		document.getElementById("roleSelector").style.display = "none";
-		document.getElementById("roleSelectorDiv").className = "col-lg-0 col-md-0 col-sm-0 col-xs-0";
-		document.getElementById("headerPadLeft").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
-		document.getElementById("headerPadRight").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
-		<?php } ?>
+				document.getElementById("roleSelectorDropdown").innerHTML += HTML.join("");
+			})();
+			<?php }
+			else { ?>
+			document.getElementById("roleSelector").style.display = "none";
+			document.getElementById("roleSelectorDiv").className = "col-lg-0 col-md-0 col-sm-0 col-xs-0";
+			document.getElementById("headerPadLeft").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
+			document.getElementById("headerPadRight").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
+			<?php } ?>
+		});
 	</script>
-
-
 <?php require PUBLIC_DIR . '/includes/php/footer.php';

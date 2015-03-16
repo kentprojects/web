@@ -71,40 +71,38 @@
 </div>
 
 <script>
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		// List the projects
+		API.GET(
+			"/projects", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
+				scroller("#projectScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
 
-	<!-- *** App code goes here *** -->
+		// List the supervisors
+		API.GET(
+			"/staff", {"supervisor": true, "year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
+				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
+				scroller("#supervisorScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
 
-	// List the projects
-	API.GET(
-		"/projects", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
-			document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
-			scroller("#projectScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
+		// List your group members
+		document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student", false);
+		document.querySelector(".MyGroup a").innerText = 'My Group';
+		scroller("#myGroupScroller");
 
-	// List the supervisors
-	API.GET(
-		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
-			document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
-			scroller("#supervisorScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-	// List your group members
-	document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student", false);
-	document.querySelector(".MyGroup a").innerText = 'My Group';
-	scroller("#myGroupScroller");
-
-
-
+	});
 </script>

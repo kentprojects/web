@@ -21,31 +21,33 @@
 		</div>
 	</form>
 </div>
-<script src="/includes/js/lib/validator.min.js"></script>
 <script>
-
-	$('#userName').validator()
-
-		.on('submit', function (e) {
-			if (e.isDefaultPrevented()) {
-				// Do nothing
-			}
-			else {
-				e.preventDefault();
-				var groupName = document.getElementById("groupName").value;
-				API.POST(
-					"/group",
-					{
-						name: groupName
-					},
-					function SaveProjectNameSuccess(data) {
-						console.log(data);
-						window.location.href = "/profile.php?type=group&id=" + data.body.id;
-					},
-					function SaveProjectNameError(data) {
-						console.error(data);
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		$.getScript('/includes/js/lib/validator.min.js', function() {
+			$('#userName').validator()
+				.on('submit', function (e) {
+					if (e.isDefaultPrevented()) {
+						// Do nothing
 					}
-				);
-			}
+					else {
+						e.preventDefault();
+						var groupName = document.getElementById("groupName").value;
+						API.POST(
+							"/group",
+							{
+								name: groupName
+							},
+							function SaveProjectNameSuccess(data) {
+								console.log(data);
+								window.location.href = "/profile.php?type=group&id=" + data.body.id;
+							},
+							function SaveProjectNameError(data) {
+								console.error(data);
+							}
+						);
+					}
+				});
 		});
+	});
 </script>

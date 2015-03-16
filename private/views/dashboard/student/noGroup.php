@@ -104,58 +104,59 @@
 	</div>
 </div>
 <script type="text/javascript">
-	<!-- *** App code goes here *** -->
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		// List the projects
+		API.GET(
+			"/projects", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
+				scroller("#projectScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
 
-	// List the projects
-	API.GET(
-		"/projects", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
-			document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
-			scroller("#projectScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
+		// List the groups
+		API.GET(
+			"/groups", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
+				document.querySelector(".Groups h3").innerText += ' (' + data.body.length + ')';
+				scroller("#groupScroller");
+				document.getElementById("addGroupButton").style.display = "block";
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
 
-	// List the groups
-	API.GET(
-		"/groups", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
-			document.querySelector(".Groups h3").innerText += ' (' + data.body.length + ')';
-			scroller("#groupScroller");
-			document.getElementById("addGroupButton").style.display = "block";
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
+		// List the students
+		API.GET(
+			"/students", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
+				document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
+				scroller("#studentScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
 
-	// List the students
-	API.GET(
-		"/students", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
-			document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
-			scroller("#studentScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-	// List the supervisors
-	API.GET(
-		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
-			document.querySelector(".Supervisors h3").innerText += ' (' + data.body.length + ')';
-			scroller("#supervisorScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
+		// List the supervisors
+		API.GET(
+			"/staff", {"supervisor": true, "year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
+				document.querySelector(".Supervisors h3").innerText += ' (' + data.body.length + ')';
+				scroller("#supervisorScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
+	});
 </script>

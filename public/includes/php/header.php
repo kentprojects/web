@@ -6,7 +6,7 @@ $title = empty($title) ? "KentProjects" : $title;
 <html lang="en">
 <!--
 
-    Hey there! We'd love you to have a poke around in our source code - it was our final year project and I'm sure
+    Hey there! We\'d love you to have a poke around in our source code - it was our final year project and I'm sure
     we've made some mistakes! If you notice anything dodgy please let the current convenor for the module know.
 
     **ONE IMPORTANT THING TO NOTE, HOWEVER**
@@ -32,16 +32,12 @@ $title = empty($title) ? "KentProjects" : $title;
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<title> <?php print $title ?> </title>
 	<link rel="shortcut icon" href="/../includes/img/kp.ico">
-	<script src="/includes/js/lib/cheet.min.js"></script>
-	<script src="/includes/js/dynamicCSS.js"></script>
 	<!-- Bootstrap -->
 	<link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!-- Flat UI -->
 	<link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
 	<!-- Hint.css -->
 	<link href="/includes/css/lib/hint.min.css" rel="stylesheet">
-	<!-- jQuery -->
-	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
 
 	<?php if ($includeDropZoneJs)
 	{ ?>
@@ -51,8 +47,7 @@ $title = empty($title) ? "KentProjects" : $title;
 
 	<!-- Our Styles -->
 	<link href="/includes/css/style.css" rel="stylesheet">
-	<!-- Our Scripts -->
-	<script src="/includes/js/snippets.js" type="text/javascript"></script>
+
 	<script>
 		var $buoop = {
 			vs: {c: 2},   // browser versions to notify
@@ -80,7 +75,7 @@ $title = empty($title) ? "KentProjects" : $title;
 			e.src = "//browser-update.org/update.js";
 			document.body.appendChild(e);
 		}
-		;
+
 		try {
 			document.addEventListener("DOMContentLoaded", $buo_f, false)
 		}
@@ -88,8 +83,6 @@ $title = empty($title) ? "KentProjects" : $title;
 			window.attachEvent("onload", $buo_f)
 		}
 	</script>
-	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
-	<script src="/includes/js/lib/flat-ui-pro.min.js" type="text/javascript"></script>
 </head>
 <body>
 <header class="kentBlueBackground">
@@ -100,38 +93,34 @@ $title = empty($title) ? "KentProjects" : $title;
 				</a>
 			</div>
 			<div class="col-xs-6 col-sm-5 col-md-5 noLeftPadding text-right">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					<span class="fui-chat smallerMobileHeading whiteText"></span>
-				</a>
-				<ul class="dropdown-menu" id="user-notifications" role="menu">
-					<li><a href="#">Loading notifications...</a></li>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown" id="notificationsDropdown">
+						<a class="navLink" href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="fui-chat smallerMobileHeading whiteText"></span>
+						</a>
+						<ul class="dropdown-menu" id="user-notifications">
+						</ul>
+						<span class="notificationsBadge" id="notificationsBadge"></span>
+					</li>
+					<li>
+						<a class="navLink" href="/profile.php?shortcut=myProfile">
+							<span class="fui-user marginLeft10 smallerMobileHeading whiteText"></span>
+						</a>
+					</li>
+					<li>
+						<a class="navLink" href="/settings.php">
+							<span class="fui-gear marginLeft10 smallerMobileHeading whiteText"></span>
+						</a>
+					</li>
+					<li>
+						<a class="navLink" href="#"><span class="fui-exit hoverHand marginLeft10 smallerMobileHeading whiteText"
+							onclick="logoutUser()"></span></a>
+					</li>
 				</ul>
-				<a href="/profile.php?shortcut=myProfile"><span
-						class="fui-user marginLeft10 smallerMobileHeading whiteText"></span></a>
-				<a href="/settings.php"><span class="fui-gear marginLeft10 smallerMobileHeading whiteText"></span></a>
-				<span class="fui-exit hoverHand marginLeft10 smallerMobileHeading whiteText"
-					onclick="logoutUser()"></span>
+
 			</div>
+
 		</div>
 	</div>
 </header>
-<script>
-	/**
-	 * No easter eggs here, no sir.
-	 */
-	cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
-		alert('Cool video game reference number 1!');
-	});
-	cheet('i d d q d', function () {
-		alert('Cool video game reference number 2!');
-	});
-	/**
-	 * Confirm the user wants to log out, if so logs the user out of the system.
-	 */
-	function logoutUser() {
-		if (confirm("Are you sure you want to log out?")) {
-			window.location.href = ("/logout.php");
-		}
-	}
-</script>
 <div id="pageContent">

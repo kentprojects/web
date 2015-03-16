@@ -23,28 +23,32 @@
 </div>
 <script src="/includes/js/lib/validator.min.js"></script>
 <script>
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		$.getScript('/includes/js/lib/validator.min.js', function () {
+			$('#userName').validator()
 
-	$('#userName').validator()
-
-		.on('submit', function (e) {
-			if (e.isDefaultPrevented()) {
-				// Do nothing
-			}
-			else {
-				e.preventDefault();
-				var projectName = document.getElementById("projectName").value;
-				API.POST(
-					"/project",
-					{
-						name: projectName
-					},
-					function SaveProjectNameSuccess(data) {
-						window.location.href = "/profile.php?type=project&id=" + data.body.id;
-					},
-					function SaveProjectNameError(data) {
-						console.error(data);
+				.on('submit', function (e) {
+					if (e.isDefaultPrevented()) {
+						// Do nothing
 					}
-				);
-			}
+					else {
+						e.preventDefault();
+						var projectName = document.getElementById("projectName").value;
+						API.POST(
+							"/project",
+							{
+								name: projectName
+							},
+							function SaveProjectNameSuccess(data) {
+								window.location.href = "/profile.php?type=project&id=" + data.body.id;
+							},
+							function SaveProjectNameError(data) {
+								console.error(data);
+							}
+						);
+					}
+				});
 		});
+	});
 </script>

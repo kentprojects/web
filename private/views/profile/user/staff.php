@@ -69,70 +69,73 @@
 </div>
 
 <script type="text/javascript">
-	var defaultUserBio = [
-		'This user hasn\'t set a bio yet',
-		'',
-		'*Why not comment on their page and let them know?*'
-	].join('\n');
-	var defaultProjectBio = [
-		'This project doesn\'t have a bio yet',
-		'',
-		'*Why not comment on its creator\'s page and let them know?*'
-	].join('\n');
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		var defaultUserBio = [
+			'This user hasn\'t set a bio yet',
+			'',
+			'*Why not comment on their page and let them know?*'
+		].join('\n');
+		var defaultProjectBio = [
+			'This project doesn\'t have a bio yet',
+			'',
+			'*Why not comment on its creator\'s page and let them know?*'
+		].join('\n');
 
-	API.GET(
-		"/staff/" + profileId, {},
-		function Success(data) {
+		API.GET(
+			"/staff/" + profileId, {},
+			function Success(data) {
 
-			// Set the user bio
-			var userBio = data.body.bio || defaultUserBio;
-			// Set the user interests
-			var userInterests = data.body.interests;
+				// Set the user bio
+				var userBio = data.body.bio || defaultUserBio;
+				// Set the user interests
+				var userInterests = data.body.interests;
 
-			if (data.body.permissions.update == 1) {
+				if (data.body.permissions.update == 1) {
 
-				markdownThingy(
-					"userBio", userBio, "editUserBioButton",
-					queueMarkdownChange("userBio", function SaveUserBio(saveData, next) {
+					markdownThingy(
+						"userBio", userBio, "editUserBioButton",
+						queueMarkdownChange("userBio", function SaveUserBio(saveData, next) {
+							API.PUT(
+								"/staff/" + profileId, {"bio": saveData},
+								function SaveUserBioSuccess(data) {
+									next();
+								},
+								function SaveUserBioError(data) {
+									console.error(data);
+								}
+							);
+						})
+					);
+
+					tokensThingy("#interestsInput", userInterests, function SaveUserInterests(interests, next) {
 						API.PUT(
-							"/staff/" + profileId, {"bio": saveData},
-							function SaveUserBioSuccess(data) {
+							"/staff/" + profileId, {"interests": interests},
+							function SaveUserInterestsSuccess(data) {
 								next();
 							},
-							function SaveUserBioError(data) {
+							function SaveUserInterestsError(data) {
 								console.error(data);
 							}
 						);
-					})
-				);
+					});
 
-				tokensThingy("#interestsInput", userInterests, function SaveUserInterests(interests, next) {
-					API.PUT(
-						"/staff/" + profileId, {"interests": interests},
-						function SaveUserInterestsSuccess(data) {
-							next();
-						},
-						function SaveUserInterestsError(data) {
-							console.error(data);
-						}
-					);
-				});
+				}
+				else {
+					markdownThingy("userBio", userBio);
+					tokensThingy("#interestsInput", userInterests);
+				}
 
+				document.getElementById("userName").innerText = data.body.name;
+
+				commentsThingy("commentsBody", "user/" + data.body.id);
+			},
+			function Error(data) {
+				if (data.status == 404) {
+					window.location.href = '/404.html'
+				}
+				console.error(data);
 			}
-			else {
-				markdownThingy("userBio", userBio);
-				tokensThingy("#interestsInput", userInterests);
-			}
-
-			document.getElementById("userName").innerText = data.body.name;
-
-			commentsThingy("commentsBody", "user/" + data.body.id);
-		},
-		function Error(data) {
-			if(data.status == 404) {
-				window.location.href = '/404.html'
-			}
-			console.error(data);
-		}
-	);
+		);
+	});
 </script>

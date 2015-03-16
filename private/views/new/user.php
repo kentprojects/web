@@ -33,30 +33,33 @@
 </div>
 <script src="/includes/js/lib/validator.min.js"></script>
 <script>
-
-	$('#userName').validator()
-
-		.on('submit', function (e) {
-			if (e.isDefaultPrevented()) {
-				// Do nothing
-			}
-			else {
-				e.preventDefault();
-				var firstName = document.getElementById("firstName").value;
-				var lastName = document.getElementById("lastName").value;
-				API.PUT(
-					"/me/",
-					{
-						first_name: firstName,
-						last_name: lastName
-					},
-					function SaveUserNameSuccess() {
-						window.location.href = "/dashboard.php";
-					},
-					function SaveUserNameError(data) {
-						console.error(data);
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		$.getScript('/includes/js/lib/validator.min.js', function () {
+			$('#userName').validator()
+				.on('submit', function (e) {
+					if (e.isDefaultPrevented()) {
+						// Do nothing
 					}
-				);
-			}
-		});
+					else {
+						e.preventDefault();
+						var firstName = document.getElementById("firstName").value;
+						var lastName = document.getElementById("lastName").value;
+						API.PUT(
+							"/me/",
+							{
+								first_name: firstName,
+								last_name: lastName
+							},
+							function SaveUserNameSuccess() {
+								window.location.href = "/dashboard.php";
+							},
+							function SaveUserNameError(data) {
+								console.error(data);
+							}
+						);
+					}
+				})
+		})
+	});
 </script>

@@ -106,110 +106,111 @@
 		</div>
 	</div>
 </div>
-<script>
-	<!-- *** App code goes here *** -->
-
-	// List the projects
-	API.GET(
-		"/projects", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
-			document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
-			scroller("#projectScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-	// List the groups
-	API.GET(
-		"/groups", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
-			document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
-			scroller("#groupScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-	// List the students
-	API.GET(
-		"/students", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
-			document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
-			scroller("#studentScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-	// List the supervisors
-	API.GET(
-		"/staff", {"supervisor": true, "year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
-			document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
-			scroller("#supervisorScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-</script>
 
 <!-- For Raphael -->
 <script src="/includes/js/lib/raphael.js"></script>
 <!-- For JustGage -->
 <script src="/includes/js/lib/justgage.js"></script>
-
-<!-- Set the gauges -->
 <script>
-	var total_students = 0;
-	var total_groups = 0;
-	var students_in_groups = 0;
-	var groups_with_projects = 0;
-	// Get the stats
-	API.GET(
-		"/year/<?php echo $year;?>/stats", {},
-		function (data) {
-			total_students = data.body.total_students;
-			total_groups = data.body.total_groups;
-			students_in_groups = data.body.total_students_in_groups;
-			groups_with_projects = data.body.total_groups_with_projects;
+	<!-- *** App code goes here *** -->
 
-			setGauges();
-		},
-		function (data) {
-			console.error(data);
+	var loadQueue = loadQueue || [];
+
+	loadQueue.push(function () {
+		var total_students = 0;
+		var total_groups = 0;
+		var students_in_groups = 0;
+		var groups_with_projects = 0;
+
+		function setGauges() {
+			var studentsInGroupsGauge = new JustGage({
+				id: "students-in-group-gauge",
+				value: students_in_groups,
+				min: 0,
+				max: total_students,
+				levelColors: ["#ee0000", "#eeaa00", "#00ee00"],
+				title: "Students in groups:",
+				relativeGaugeSize: true,
+				startAnimationTime: 0
+			});
+			var groupsWithProjects = new JustGage({
+				id: "groups-with-projects-gauge",
+				value: groups_with_projects,
+				min: 0,
+				max: total_groups,
+				levelColors: ["#ee0000", "#eeaa00", "#00ee00"],
+				title: "Groups with projects:",
+				relativeGaugeSize: true,
+				startAnimationTime: 0
+			})
 		}
-	);
-	function setGauges() {
-		var studentsInGroupsGauge = new JustGage({
-			id: "students-in-group-gauge",
-			value: students_in_groups,
-			min: 0,
-			max: total_students,
-			levelColors: ["#ee0000", "#eeaa00", "#00ee00"],
-			title: "Students in groups:",
-			relativeGaugeSize: true,
-			startAnimationTime: 0
-		});
-		var groupsWithProjects = new JustGage({
-			id: "groups-with-projects-gauge",
-			value: groups_with_projects,
-			min: 0,
-			max: total_groups,
-			levelColors: ["#ee0000", "#eeaa00", "#00ee00"],
-			title: "Groups with projects:",
-			relativeGaugeSize: true,
-			startAnimationTime: 0
-		})
 
-	}
+		// Get the stats
+		API.GET(
+			"/year/<?php echo $year;?>/stats", {},
+			function (data) {
+				total_students = data.body.total_students;
+				total_groups = data.body.total_groups;
+				students_in_groups = data.body.total_students_in_groups;
+				groups_with_projects = data.body.total_groups_with_projects;
+
+				setGauges();
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
+
+		// List the projects
+		API.GET(
+			"/projects", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
+				scroller("#projectScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
+
+		// List the groups
+		API.GET(
+			"/groups", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
+				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
+				scroller("#groupScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
+
+		// List the students
+		API.GET(
+			"/students", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
+				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
+				scroller("#studentScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
+
+		// List the supervisors
+		API.GET(
+			"/staff", {"supervisor": true, "year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
+				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
+				scroller("#supervisorScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
+	});
 </script>

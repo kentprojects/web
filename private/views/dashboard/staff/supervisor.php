@@ -88,47 +88,46 @@
 </div>
 
 <script>
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		// List the projects
+		API.GET(
+			"/projects", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
+				scroller("#projectScroller");
+				document.getElementById("addProjectButton").style.display = "block";
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
 
-	<!-- *** App code goes here *** -->
+		// List the groups
+		API.GET(
+			"/groups", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
+				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
+				scroller("#groupScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
 
-
-	// List the projects
-	API.GET(
-		"/projects", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
-			document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
-			scroller("#projectScroller");
-			document.getElementById("addProjectButton").style.display = "block";
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-	// List the groups
-	API.GET(
-		"/groups", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
-			document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
-			scroller("#groupScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
-
-	// List the students
-	API.GET(
-		"/students", {"year": <?php echo $year;?>},
-		function (data) {
-			document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
-			document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
-			scroller("#studentScroller");
-		},
-		function (data) {
-			console.error(data);
-		}
-	);
+		// List the students
+		API.GET(
+			"/students", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
+				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
+				scroller("#studentScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
+	});
 </script>
