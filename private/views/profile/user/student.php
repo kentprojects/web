@@ -60,7 +60,7 @@
 					<h3 class="panel-title">Interests:</h3>
 				</div>
 				<div class="panel-body">
-					<input type="text" class="form-control" id="interestsInput"/>
+					<input type="text" class="form-control" id="interestsInput" />
 				</div>
 			</div>
 		</div>
@@ -80,84 +80,87 @@
 </div>
 
 <script type="text/javascript">
-	var defaultUserBio = [
-		'This user hasn\'t set a bio yet',
-		'',
-		'*Why not comment on their page and let them know?*'
-	].join('\n');
-	var defaultProjectBio = [
-		'This project doesn\'t have a bio yet',
-		'',
-		'*Why not comment on its creator\'s page and let them know?*'
-	].join('\n');
-	API.GET(
-		"/student/" + profileId, {},
-		function Success(data) {
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function () {
+		var defaultUserBio = [
+			'This user hasn\'t set a bio yet',
+			'',
+			'*Why not comment on their page and let them know?*'
+		].join('\n');
+		var defaultProjectBio = [
+			'This project doesn\'t have a bio yet',
+			'',
+			'*Why not comment on its creator\'s page and let them know?*'
+		].join('\n');
+		API.GET(
+			"/student/" + profileId, {},
+			function Success(data) {
 
 
-			// Set the user bio
-			var userBio = data.body.bio || defaultUserBio;
-			// Set the user interests
-			var userInterests = data.body.interests;
+				// Set the user bio
+				var userBio = data.body.bio || defaultUserBio;
+				// Set the user interests
+				var userInterests = data.body.interests;
 
-			if (data.body.permissions.update == 1) {
+				if (data.body.permissions.update == 1) {
 
-				markdownThingy(
-					"userBio", userBio, "editUserBioButton",
-					queueMarkdownChange("userBio", function SaveUserBio(saveData, next) {
+					markdownThingy(
+						"userBio", userBio, "editUserBioButton",
+						queueMarkdownChange("userBio", function SaveUserBio(saveData, next) {
+							API.PUT(
+								"/student/" + profileId, {"bio": saveData},
+								function SaveUserBioSuccess(data) {
+									next();
+								},
+								function SaveUserBioError(data) {
+									console.error(data);
+								}
+							);
+						})
+					);
+
+					tokensThingy("#interestsInput", userInterests, function SaveUserInterests(interests, next) {
 						API.PUT(
-							"/student/" + profileId, {"bio": saveData},
-							function SaveUserBioSuccess(data) {
+							"/student/" + profileId, {"interests": interests},
+							function SaveUserInterestsSuccess(data) {
 								next();
 							},
-							function SaveUserBioError(data) {
+							function SaveUserInterestsError(data) {
 								console.error(data);
 							}
 						);
-					})
-				);
-
-				tokensThingy("#interestsInput", userInterests, function SaveUserInterests(interests, next) {
-					API.PUT(
-						"/student/" + profileId, {"interests": interests},
-						function SaveUserInterestsSuccess(data) {
-							next();
-						},
-						function SaveUserInterestsError(data) {
-							console.error(data);
-						}
-					);
-				});
+					});
 
 
-			}
-			else {
-				markdownThingy("userBio", userBio);
-				tokensThingy("#interestsInput", userInterests);
-			}
-			// Set the user's name
-			document.getElementById("userName").innerText = data.body.name;
+				}
+				else {
+					markdownThingy("userBio", userBio);
+					tokensThingy("#interestsInput", userInterests);
+				}
+				// Set the user's name
+				document.getElementById("userName").innerText = data.body.name;
 
-			// Set their project bio if they have one
-			if (data.body.project) {
-				document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
-				// Set the project bio
-				var projectBio = data.body.project.description || defaultProjectBio;
-				markdownThingy("projectBio", projectBio);
-			}
-			else {
-				// Otherwise, hide the bio
-				document.querySelector(".projectDetails").style.display = "none";
-				document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-10 col-lg-10"
-			}
+				// Set their project bio if they have one
+				if (data.body.project) {
+					document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
+					// Set the project bio
+					var projectBio = data.body.project.description || defaultProjectBio;
+					markdownThingy("projectBio", projectBio);
+				}
+				else {
+					// Otherwise, hide the bio
+					document.querySelector(".projectDetails").style.display = "none";
+					document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-10 col-lg-10"
+				}
 
-			commentsThingy("commentsBody", "user/" + data.body.id);
-		},
-		function Error(data) {
-			if(data.status == 404) {
-				window.location.href = '/404.html'
+				commentsThingy("commentsBody", "user/" + data.body.id);
+			},
+			function Error(data) {
+				if (data.status == 404) {
+					window.location.href = '/404.html'
+				}
+				console.error(data);
 			}
-			console.error(data);
-		}
-	);
+		);
+	});
 </script>

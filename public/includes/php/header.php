@@ -6,7 +6,7 @@ $title = empty($title) ? "KentProjects" : $title;
 <html lang="en">
 <!--
 
-    Hey there! We'd love you to have a poke around in our source code - it was our final year project and I'm sure
+    Hey there! We\'d love you to have a poke around in our source code - it was our final year project and I'm sure
     we've made some mistakes! If you notice anything dodgy please let the current convenor for the module know.
 
     **ONE IMPORTANT THING TO NOTE, HOWEVER**
@@ -32,15 +32,10 @@ $title = empty($title) ? "KentProjects" : $title;
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<title> <?php print $title ?> </title>
 	<link rel="shortcut icon" href="/../includes/img/kp.ico">
-	<script src="/includes/js/lib/cheet.min.js"></script>
-	<script src="/includes/js/dynamicCSS.js"></script>
-	<!-- jQuery -->
-	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
 	<!-- Bootstrap -->
 	<link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!-- Flat UI -->
 	<link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
-	<script src="/includes/js/lib/flat-ui-pro.min.js" type="text/javascript"></script>
 	<!-- Hint.css -->
 	<link href="/includes/css/lib/hint.min.css" rel="stylesheet">
 
@@ -52,8 +47,7 @@ $title = empty($title) ? "KentProjects" : $title;
 
 	<!-- Our Styles -->
 	<link href="/includes/css/style.css" rel="stylesheet">
-	<!-- Our Scripts -->
-	<script src="/includes/js/snippets.js" type="text/javascript"></script>
+
 	<script>
 		var $buoop = {
 			vs: {c: 2},   // browser versions to notify
@@ -81,7 +75,7 @@ $title = empty($title) ? "KentProjects" : $title;
 			e.src = "//browser-update.org/update.js";
 			document.body.appendChild(e);
 		}
-		;
+
 		try {
 			document.addEventListener("DOMContentLoaded", $buo_f, false)
 		}
@@ -89,8 +83,6 @@ $title = empty($title) ? "KentProjects" : $title;
 			window.attachEvent("onload", $buo_f)
 		}
 	</script>
-	<script src="/includes/js/lib/jquery-1.11.2.min.js" type="text/javascript"></script>
-	<script src="/includes/js/lib/flat-ui-pro.min.js" type="text/javascript"></script>
 </head>
 <body>
 <header class="kentBlueBackground">
@@ -131,33 +123,4 @@ $title = empty($title) ? "KentProjects" : $title;
 		</div>
 	</div>
 </header>
-<script>
-	/**
-	 * No easter eggs here, no sir.
-	 */
-	cheet('↑ ↑ ↓ ↓ ← → ← → b a', function () {
-		alert('Cool video game reference number 1!');
-	});
-	cheet('i d d q d', function () {
-		alert('Cool video game reference number 2!');
-	});
-	/**
-	 * Confirm the user wants to log out, if so logs the user out of the system.
-	 */
-	function logoutUser() {
-		if (confirm("Are you sure you want to log out?")) {
-			window.location.href = ("/logout.php");
-		}
-	}
-
-	$(function () {
-		$(".notifications .messages").hide();
-		$(".notifications").click(function () {
-			if ($(this).children(".messages").children().length > 0) {
-				$(this).children(".messages").fadeToggle(0);
-			}
-		});
-	});
-
-</script>
 <div id="pageContent">

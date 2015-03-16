@@ -56,10 +56,15 @@ function onNotificationsGetSuccess(data) {
 			'<li class="text-center"><a href="/notifications.php"><i>See All</i></a></li>'
 		)
 		notificationsList.innerHTML = HTML.join("");
-		notificationsBadge.innerText = notificationIds.length.toString();
-		notificationsBadge.style.display = "block";
-		notificationsDropdown.setAttribute('onclick', 'setReadStatus([' + notificationIds + '])');
-		updatedReadStatus = false;
+		if (notificationIds > 0) {
+			notificationsBadge.innerText = notificationIds.length.toString();
+			notificationsBadge.style.display = "block";
+			notificationsDropdown.setAttribute('onclick', 'setReadStatus([' + notificationIds + '])');
+			updatedReadStatus = false;
+		}
+		else {
+			notificationsBadge.style.display = "none";
+		}
 	}
 	else {
 		notificationsList.innerHTML = '<li class="text-center"><a href="#">You have no notifications</a></li>'
@@ -100,6 +105,7 @@ function setReadStatus(ids) {
 			}
 		)
 	}
+	GetNotifications();
 }
 
 function CheckUnreadNotificationInterval() {
