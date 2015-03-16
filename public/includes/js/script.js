@@ -54,6 +54,7 @@ loadQueue.push(function OnScriptLoad() {
 	"/includes/js/lib/flat-ui-pro.min.js",
 	"/includes/js/lib/cheet.min.js",
 	"/includes/js/lib/sly.js",
+	"/includes/js/lib/md5.js",
 
 	"/includes/js/ajax.js",
 	"/includes/js/includes.php",
@@ -64,42 +65,3 @@ loadQueue.push(function OnScriptLoad() {
 ].concat(scriptQueue), function scriptsHaveLoaded() {
 	loadQueue.execute();
 });
-
-/*(function runLoadScripts() {
-	if (window.jQuery) {
-		(function loadScripts(scripts, callback) {
-			var script = scripts.shift();
-			if (!script) {
-				return callback && callback();
-			}
-			else {
-				jQuery.getScript(script, function () {
-					loadScripts(scripts, callback);
-				});
-			}
-		})([
-			"/includes/js/lib/flat-ui-pro.min.js",
-			"/includes/js/lib/cheet.min.js",
-			"/includes/js/lib/sly.js",
-
-			"/includes/js/ajax.js",
-			"/includes/js/includes.php",
-			"/includes/js/dynamicCSS.js",
-			"/includes/js/notificationsThingy.js",
-			"/includes/js/scrollerThingy.js",
-			"/includes/js/snippets.js"
-		], function scriptsHaveLoaded() {
-			loadQueue.execute();
-		});
-	}
-	else {
-		window.setTimeout(function () {
-			/**
-			 * For those times when jQuery is getting out of bed and hasn't had it's morning cup of coffee.
-			 * I, James Dryden, do hereby accept full responsibility for any crimes against code committed herein.
-			 * I am truly sorry.
-			 *
-			runLoadScripts();
-		}, 50);
-	}
-})(); */
