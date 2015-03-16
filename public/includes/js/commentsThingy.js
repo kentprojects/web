@@ -119,8 +119,10 @@ var commentsThingy = function EmptyCommentsThingy() {
 			"/comment/thread", {root: root},
 			function onCommentGet(data) {
 				console.log("onCommentGet", data);
-				for (var i = 0; i < data.body.length; i++) {
-					createComment(data.body[i]);
+				if (data.body && data.body.length) {
+					for (var i = 0; i < data.body.length; i++) {
+						createComment(data.body[i]);
+					}
 				}
 				initWriteBox();
 			},
