@@ -544,6 +544,14 @@ code {
 	color: #ccc;
 }
 
+#commentsBody .commentText .com-dt-delete {
+	display: inline;
+	float: right;
+	font-size: 12px;
+	line-height: 18px;
+	color: #ccc;
+}
+
 #commentsBody .commentText p {
 	width: auto;
 	margin: 5px 5px 5px 45px;

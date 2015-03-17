@@ -9,6 +9,10 @@ var commentsThingy = function EmptyCommentsThingy() {
 	console.error("Failed to build the native Comments function.");
 };
 
+var deleteComment = function emptyDeleteComment() {
+	console.error("Failed to build the native Delete Comments function.");
+};
+
 (function () {
 	var commentRoot, containerDiv, containerId, newCommentCount, writeBox;
 	newCommentCount = 250;
@@ -28,6 +32,7 @@ var commentsThingy = function EmptyCommentsThingy() {
 	].join('');
 
 	function createComment(data) {
+		console.log(data);
 		containerDiv.innerHTML += [
 			'<div class="col-xs-12 col-sm-10 col-sm-offset-1 commentItem">',
 			'<img src="/uploads/', md5(data.author.email), '">',
@@ -36,6 +41,7 @@ var commentsThingy = function EmptyCommentsThingy() {
 			data.author.name,
 			'</a></h5>',
 			'<span class="com-dt">', data.created, '</span>',
+			((data.permissions.delete) ? '<span class="com-dt-delete"><a href="#" onclick="deleteComment(' + data.id + ');">Delete </a> </span>' : ''),
 			'</div>',
 			'<p>', data.comment, '</p>',
 			'</div>',
@@ -108,6 +114,10 @@ var commentsThingy = function EmptyCommentsThingy() {
 				);
 			};
 		}, 200);
+	}
+
+	deleteComment = function deleteComment(id) {
+		console.log(id);
 	}
 
 	commentsThingy = function CommentsThingy(commentBodyId, root) {
