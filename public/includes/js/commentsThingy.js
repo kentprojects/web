@@ -33,7 +33,7 @@ var deleteComment = function emptyDeleteComment() {
 
 	function createComment(data) {
 		containerDiv.innerHTML += [
-			'<div class="col-xs-12 col-sm-10 col-sm-offset-1 commentItem">',
+			'<div class="col-xs-12 col-sm-10 col-sm-offset-1 commentItem" id="comment_' + data.id + '">',
 			'<img src="/uploads/', md5(data.author.email), '">',
 			'<div class="commentText">', '<div class="commentHead">',
 			'<h5><a href="/profile.php?type=' + data.author.role + '&id=', data.author.id, '">',
@@ -116,7 +116,16 @@ var deleteComment = function emptyDeleteComment() {
 	}
 
 	deleteComment = function deleteComment(id) {
-		console.log(id);
+		API.DELETE("/comment/" + id, {},
+			function Success(){
+				var element = document.getElementById("comment_" + id);
+				element.parentNode.removeChild(element);
+
+			},
+			function Error(){
+				console.error("Failed to delete comment with ID " + id);
+			}
+		);
 	}
 
 	commentsThingy = function CommentsThingy(commentBodyId, root) {
