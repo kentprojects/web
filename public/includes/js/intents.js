@@ -40,19 +40,28 @@ if (phpGets.action == "view") {
 	API.GET(
 		'/intent/' + requestId, {},
 		function Success(data) {
-			var request = data.body.handler;
-			buildPage(
-				buildText(
-					intents[request].title,
-					intents[request].placeholders,
-					data.body
-				),
-				buildText(
-					intents[request].description,
-					intents[request].placeholders,
-					data.body
-				)
-			);
+			if (data.body.state == "open"){
+				var request = data.body.handler;
+				buildPage(
+					buildText(
+						intents[request].title,
+						intents[request].placeholders,
+						data.body
+					),
+					buildText(
+						intents[request].description,
+						intents[request].placeholders,
+						data.body
+					)
+				);
+				document.querySelector(".btn-group").style.display = "block";
+			}
+			else {
+				buildPage(
+					"You can't do that again!",
+					"You've already responded to this notification"
+				);
+			}
 		},
 		function Error(data) {
 			if (data.status == 403) {
@@ -67,7 +76,6 @@ if (phpGets.action == "view") {
 					"Whatever you're looking for isn't there, yet."
 				)
 			}
-			document.querySelector(".btn-group").style.display = "none";
 			console.error(data);
 		}
 	);

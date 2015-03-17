@@ -2,7 +2,7 @@
 
 <p id="intentDescription"></p>
 
-<div class="btn-group">
+<div class="btn-group intentResponseButtons">
 	<button class="btn btn-primary intentAccept" onclick="intentAccept();" value="accept">
 		Accept
 	</button>
