@@ -154,38 +154,38 @@
 				console.error(data);
 			}
 		);
+	});
 
-		function doProject() {
-			window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;
-		}
-
-		function deleteProject() {
-			if (confirm("Are you sure you want to delete this project?")) {
-				API.DELETE(
-					"/project/" + profileId, {},
-					function Success(data) {
-						window.location.href = '/dashboard.php'
-					},
-					function Error(data) {
-						console.error(data);
-					}
-				);
-			}
-		}
-
-		function giveUpProject() {
-			API.POST(
-				"/intent/", {
-					handler: "release_project",
-					data: {project_id: profileId}
-				},
+	function deleteProject() {
+		if (confirm("Are you sure you want to delete this project?")) {
+			API.DELETE(
+				"/project/" + profileId, {},
 				function Success(data) {
 					window.location.href = '/dashboard.php'
 				},
 				function Error(data) {
-					console.error(data.body);
+					console.error(data);
 				}
 			);
 		}
-	});
+	}
+
+	function giveUpProject() {
+		API.POST(
+			"/intent/", {
+				handler: "release_project",
+				data: {project_id: profileId}
+			},
+			function Success(data) {
+				window.location.href = '/dashboard.php'
+			},
+			function Error(data) {
+				console.error(data.body);
+			}
+		);
+	}
+
+	function doProject() {
+		window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;
+	}
 </script>
