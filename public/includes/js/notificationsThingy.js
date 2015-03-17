@@ -31,6 +31,7 @@ function onNotificationsGetSuccess(data) {
 						break;
 					case "user_wants_to_access_a_year":
 					case "group_wants_to_undertake_a_project":
+					case "user_wants_another_to_join_a_group":
 					case "user_wants_to_join_a_group":
 						url = '/intents.php?action=view&id=' + notification.intent.id;
 						break;
