@@ -18,37 +18,39 @@ function onNotificationsGetSuccess(data) {
 			'<li class="text-center"><a href="/notifications.php"><strong>Notifications</strong></a></li> ' +
 			'<li class="divider"></li>'
 		)
-		for (var i = 0; i < data.body.length; i++) {
-			var notification = data.body[i];
-			var url = "#";
-			switch (notification.type) {
-				case "user_got_a_notification":
-					break;
-				case "user_approved_access_to_year":
-				case "user_rejected_access_to_year":
-					url = '/dashboard.php';
-					break;
-				case "user_wants_to_access_a_year":
-				case "group_wants_to_undertake_a_project":
-				case "user_wants_to_join_a_group":
-					url = '/intents.php?action=view&id=' + notification.intent.id;
-					break;
-				case "user_approved_another_to_join_a_group":
-				case "user_rejected_another_to_join_a_group":
-				case "user_joined_a_group":
-				case "user_left_a_group":
-					url = '/profile.php?type=group&id=' + notification.group.id;
-					break;
-				case "group_undertaken_project_approved":
-				case "group_undertaken_project_rejected":
-				case "group_released_project":
-					url = '/profile.php?type=project&id=' + notification.project.id;
-					break;
-			}
+		for (var i = 0; i < 10; i++) {
+			if (data.body[i]) {
+				var notification = data.body[i];
+				var url = "#";
+				switch (notification.type) {
+					case "user_got_a_notification":
+						break;
+					case "user_approved_access_to_year":
+					case "user_rejected_access_to_year":
+						url = '/dashboard.php';
+						break;
+					case "user_wants_to_access_a_year":
+					case "group_wants_to_undertake_a_project":
+					case "user_wants_to_join_a_group":
+						url = '/intents.php?action=view&id=' + notification.intent.id;
+						break;
+					case "user_approved_another_to_join_a_group":
+					case "user_rejected_another_to_join_a_group":
+					case "user_joined_a_group":
+					case "user_left_a_group":
+						url = '/profile.php?type=group&id=' + notification.group.id;
+						break;
+					case "group_undertaken_project_approved":
+					case "group_undertaken_project_rejected":
+					case "group_released_project":
+						url = '/profile.php?type=project&id=' + notification.project.id;
+						break;
+				}
 
-			HTML.push('<li><a href="' + url + '">' + notification.text + '</a></li>');
-			if (!data.body[i].read) {
-				notificationIds.push(data.body[i].id);
+				HTML.push('<li><a href="' + url + '">' + notification.text + '</a></li>');
+				if (!data.body[i].read) {
+					notificationIds.push(data.body[i].id);
+				}
 			}
 		}
 		HTML.push(
