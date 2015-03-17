@@ -30,7 +30,7 @@ var commentsThingy = function EmptyCommentsThingy() {
 	function createComment(data) {
 		containerDiv.innerHTML += [
 			'<div class="col-xs-12 col-sm-10 col-sm-offset-1 commentItem">',
-			'<img src="http://i.imgur.com/ldS4dWw.png">',
+			'<img src="/uploads/', md5(data.author.email), '">',
 			'<div class="commentText">', '<div class="commentHead">',
 			'<h5><a href="/profile.php?type=' + data.author.role + '&id=', data.author.id, '">',
 			data.author.name,
