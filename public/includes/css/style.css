@@ -791,3 +791,7 @@ header .navbar-nav>li>.dropdown-menu {
 
 	border:1px solid #ce4f5e;
 }
+
+.intentResponseButtons {
+	display: none;
+}
