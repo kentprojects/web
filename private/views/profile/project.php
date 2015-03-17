@@ -22,11 +22,11 @@
 							<div><h3 class="panel-title">Description</h3></div>
 						</div>
 						<div class="col-xs-4">
-							<div class="floatRight text-right ownershipButtons" id="deleteProjectButton"
+							<div class="floatRight text-right hiddenActionButtons" id="deleteProjectButton"
 								onclick="deleteProject()">
 								<span class="fui-cross"></span>
 							</div>
-							<div class="floatRight text-right ownershipButtons" id="editProjectDescriptionButton">
+							<div class="floatRight text-right hiddenActionButtons" id="editProjectDescriptionButton">
 								<span class="fui-new"></span>
 							</div>
 						</div>
