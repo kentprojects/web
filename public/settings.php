@@ -39,7 +39,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			<div class="col-xs-12 col-sm-4">
 				<h4>Current Avatar</h4>
 
-				<img id="imageAvatar" src="/uploads/<?php echo md5($meRequest->user->email); ?>.png" />
+				<img id="imageAvatar" src="/uploads/<?php echo md5($meRequest->user->email); ?>" />
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<h4>New Avatar</h4>
@@ -50,24 +50,21 @@ require PUBLIC_DIR . "/includes/php/header.php";
 	</div>
 	<!--suppress SpellCheckingInspection -->
 	<script type="text/javascript">
-		var loadQueue = loadQueue || [];
-		loadQueue.push(function() {
-			Dropzone.options.userAvatarUpload = {
-				accept: function (file, done) {
-					console.log(file);
-					done();
-				},
-				acceptedFiles: 'image/*',
-				maxFilesize: 5.5,
-				init: function () {
-					this.on('success', function (file, result) {
-						console.log(file, result);
-					});
-				},
-				parallelUploads: 1,
-				uploadMultiple: false,
-				url: '/settings.php?upload=avatar'
-			};
-		});
+		Dropzone.options.userAvatarUpload = {
+			accept: function (file, done) {
+				console.log(file);
+				done();
+			},
+			acceptedFiles: 'image/*',
+			maxFilesize: 5.5,
+			init: function () {
+				this.on('success', function (file, result) {
+					console.log(file, result);
+				});
+			},
+			parallelUploads: 1,
+			uploadMultiple: false,
+			url: '/settings.php?upload=avatar'
+		};
 	</script>
 <?php require PUBLIC_DIR . '/includes/php/footer.php'; ?>
