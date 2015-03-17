@@ -98,7 +98,6 @@ var commentsThingy = function EmptyCommentsThingy() {
 				API.POST(
 					"/comment", {root: commentRoot, comment: commentBody},
 					function onCommentCreate(data) {
-						console.log("onCommentCreate", data.body);
 						writeBoxElem.parentNode.removeChild(writeBoxElem);
 						createComment(data.body);
 						initWriteBox();
@@ -118,7 +117,6 @@ var commentsThingy = function EmptyCommentsThingy() {
 		API.GET(
 			"/comment/thread", {root: root},
 			function onCommentGet(data) {
-				console.log("onCommentGet", data);
 				if (data.body && data.body.length) {
 					for (var i = 0; i < data.body.length; i++) {
 						createComment(data.body[i]);
