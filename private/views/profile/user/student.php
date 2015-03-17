@@ -162,6 +162,11 @@
 					document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-10 col-lg-10"
 				}
 
+				if(me.group.creator.id == me.user.id && profileId !== me.user.id && !data.body.group) {
+					document.getElementById("inviteToGroupDiv").style.display = "block";
+					document.getElementById("inviteToGroupButton").style.display = "block";
+				}
+
 				commentsThingy("commentsBody", "user/" + data.body.id);
 			},
 			function Error(data) {
@@ -171,11 +176,6 @@
 				console.error(data);
 			}
 		);
-
-		if(me.group.creator.id == me.user.id && profileId !== me.user.id) {
-			document.getElementById("inviteToGroupDiv").style.display = "block";
-			document.getElementById("inviteToGroupButton").style.display = "block";
-		}
 	});
 
 	function inviteToGroup() {
