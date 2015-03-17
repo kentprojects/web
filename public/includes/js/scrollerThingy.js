@@ -54,8 +54,8 @@ function scrollerTile(item, type, addStyle) {
 
 	}
 	// If image then add image tag
-	if (false)  { tileImage = "<img class='' id='' src=''/>"; }
-
+	if (item.role)  { tileImage = '<img src="/uploads/' + md5(item.email) + '"/>'; }
+	else { tileImage = ''};
 	// Set class list
 	classList = " class='tileLi " + classList + "'";
 
@@ -65,7 +65,7 @@ function scrollerTile(item, type, addStyle) {
 		// '<a id="' + type + item.id + '" class="tileLink" href="javascript:openLink(\'' + type + item.id + '\');"></a>',
 		'<li ' + classList + '>',
 		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
-		'</div>',
+		tileImage,
 		lockedHTML,
 		statusHTML,
 		'</a>',

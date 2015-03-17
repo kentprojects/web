@@ -32,7 +32,6 @@ var deleteComment = function emptyDeleteComment() {
 	].join('');
 
 	function createComment(data) {
-		console.log(data);
 		containerDiv.innerHTML += [
 			'<div class="col-xs-12 col-sm-10 col-sm-offset-1 commentItem">',
 			'<img src="/uploads/', md5(data.author.email), '">',
