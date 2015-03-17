@@ -16,7 +16,7 @@ $title = empty($title) ? "KentProjects" : $title;
 
     Just a little FYI.
 
-    We are sure you wouldn't even try that.
+    We are sure you would never even try that.
 
 	If you do, however, and find that you can, it would be awesome if you could let the powers that be know about it. :)
 
