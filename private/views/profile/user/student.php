@@ -16,7 +16,7 @@
 		<div class="userDetails col-xs-12 col-sm-3 col-md-2 col-lg-2">
 			<div class="panel panel-default" id="profilePicture">
 				<div class="panel-body">
-					<img/>
+					<img />
 				</div>
 			</div>
 		</div>
@@ -162,8 +162,13 @@
 					document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-10 col-lg-10"
 				}
 
-				if(me.user.role == "student") {
-					if(me.group.creator.id == me.user.id && profileId !== me.user.id && !data.body.group) {
+				if (me.user.role == "student") {
+					if (me.group &&
+						me.group.creator &&
+						me.group.creator.id == me.user.id &&
+						profileId !== me.user.id &&
+						!data.body.group
+					) {
 						document.getElementById("inviteToGroupDiv").style.display = "block";
 						document.getElementById("inviteToGroupButton").style.display = "block";
 					}
