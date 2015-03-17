@@ -50,22 +50,24 @@ require PUBLIC_DIR . "/includes/php/header.php";
 	</div>
 	<!--suppress SpellCheckingInspection -->
 	<script type="text/javascript">
-		Dropzone.options.userAvatarUpload = {
-			accept: function (file, done) {
-				console.log(file);
-				done();
-			},
-			acceptedFiles: 'image/*',
-			maxFilesize: 5.5,
-			init: function () {
-				this.on('success', function (file, result) {
-					console.log(file, result);
-				});
-			},
-			parallelUploads: 1,
-			uploadMultiple: false,
-			url: '/settings.php?upload=avatar'
-		};
+		var loadQueue = loadQueue || [];
+		loadQueue.push(function() {
+			Dropzone.options.userAvatarUpload = {
+				accept: function (file, done) {
+					console.log(file);
+					done();
+				},
+				acceptedFiles: 'image/*',
+				maxFilesize: 5.5,
+				init: function () {
+					this.on('success', function (file, result) {
+						console.log(file, result);
+					});
+				},
+				parallelUploads: 1,
+				uploadMultiple: false,
+				url: '/settings.php?upload=avatar'
+			};
+		});
 	</script>
-	<script src="/includes/js/script.js" type="text/javascript"></script>
 <?php require PUBLIC_DIR . '/includes/php/footer.php'; ?>
