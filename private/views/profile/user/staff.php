@@ -16,7 +16,7 @@
 		<div class="userDetails col-xs-12 col-sm-3 col-md-2 col-lg-2">
 			<div class="panel panel-default" id="profilePicture">
 				<div class="panel-body">
-					<img src="https://www.arceuropenews.com/files/ProfilePhotos/placeholder-user.jpg"></img>
+					<img/>
 				</div>
 			</div>
 		</div>
@@ -88,6 +88,7 @@
 
 				// Set the user bio
 				var userBio = data.body.bio || defaultUserBio;
+
 				// Set the user interests
 				var userInterests = data.body.interests;
 
@@ -127,6 +128,9 @@
 				}
 
 				document.getElementById("userName").innerText = data.body.name;
+
+				// Set the user's profile picture
+				document.querySelector("#profilePicture img").setAttribute("src", '/uploads/' + md5(data.body.email));
 
 				commentsThingy("commentsBody", "user/" + data.body.id);
 			},
