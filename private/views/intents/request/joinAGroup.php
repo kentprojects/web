@@ -3,7 +3,7 @@
 <p id="intentDescription">Do you want to ask <a href="#" class="userName"></a> if you can join
 	<a href="#" class="groupName"></a>?</p>
 
-<div class="btn-group">
+<div class="btn-group intentResponseButtons">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
 		Confirm
 	</button>
@@ -25,24 +25,24 @@
 		API.GET(
 			"/group/" + groupId, {},
 			function Success(data) {
-				qf(".groupName", function (element) {
-					element.innerText = data.body.name;
-					element.href = "/profile.php?type=group&id=" + data.body.id;
-				});
-				qf(".userName", function (element) {
-					element.innerText = data.body.creator.name;
-					element.href = "/profile.php?type=student&id=" + data.body.creator.id;
-				});
 				if (me.group.id) {
 					document.querySelector("#intentTitle").innerText = "You're already in a group!"
 					document.querySelector("#intentDescription").innerHTML = 'You need to leave your current group before you can join a new one! </br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
-					document.querySelector(".btn-group").style.display = "none";
 				}
-				console.log(data.body);
-				if (data.body.project.id) {
+				else if (data.body.project && data.body.project.id) {
 					document.querySelector("#intentTitle").innerText = "You can't join a group that's already got a project"
 					document.querySelector("#intentDescription").innerHTML = 'How did you get here? </br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
-					document.querySelector(".btn-group").style.display = "none";
+				}
+				else {
+					qf(".groupName", function (element) {
+						element.innerText = data.body.name;
+						element.href = "/profile.php?type=group&id=" + data.body.id;
+					});
+					qf(".userName", function (element) {
+						element.innerText = data.body.creator.name;
+						element.href = "/profile.php?type=student&id=" + data.body.creator.id;
+					});
+					document.querySelector(".intentResponseButtons").style.display = "block";
 				}
 			},
 			function Error(data) {

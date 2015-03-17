@@ -4,7 +4,7 @@
  * @license: Copyright KentProjects
  * @link: http://kentprojects.com
  *
- * @var stdClass $meRequest->user
+ * @var stdClass $meRequest ->user
  */
 
 $prerequisites = array("authentication");
@@ -17,7 +17,8 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 		{
 			exit((string)new Exception("No request given."));
 		}
-		else {
+		else
+		{
 			switch ($_GET["request"])
 			{
 				case "generic":
@@ -97,10 +98,21 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		</div>
 	</div>
 	<!-- TODO: SANITIZE SANITIZE SANITIZE -->
-	<script> var phpGets = <?php echo(json_encode($_GET)); ?>;</script>
-	<script src="/includes/js/ajax.js" type="text/javascript"></script>
-	<script src="/includes/js/includes.php" type="text/javascript"></script>
-	<script src="/includes/js/intents.js"></script>
-	<script src="/includes/js/script.js"></script>
+<?php
+$allowedKeys = array("action", "id", "request", "groupId", "projectId");
+$phpGets = array();
+foreach ($_GET as $k => $v)
+{
+	if (in_array($k, $allowedKeys))
+	{
+		$phpGets[$k] = $v;
+	}
+}
+?>
+	<script>
+		var phpGets = <?php echo(json_encode($phpGets)); ?>;
+		var scriptQueue = scriptQueue || [];
+		scriptQueue.push("/includes/js/intents.js");
+	</script>
 
 <?php require PUBLIC_DIR . "/includes/php/footer.php"; ?>
