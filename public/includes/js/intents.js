@@ -17,6 +17,14 @@ var intents = {
 			group_name: "group.name"
 		}
 	},
+	invite_to_group: {
+		title: "person_name would like you to join group_name",
+		description: "Do you want to join group_name?",
+		placeholders: {
+			person_name: "group.creator.name",
+			group_name: "group.name"
+		}
+	},
 	undertake_a_project: {
 		title: "group_name would like to undertake project_name",
 		description: "Do you want to allow group_name to undertake project_name?",
@@ -67,7 +75,7 @@ if (phpGets.action == "view") {
 			if (data.status == 403) {
 				buildPage(
 					"This message isn't meant for you!",
-					"Either you're being nosy, or something's gone wrong."
+					"Either you're being nosy, or something\'s gone wrong."
 				)
 			}
 			if (data.status == 404) {

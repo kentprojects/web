@@ -265,7 +265,7 @@ body {
 	display: none;
 }
 
-.ownershipButtons {
+.hiddenActionButtons {
 	display: none;
 	margin-left: 15px;
 }

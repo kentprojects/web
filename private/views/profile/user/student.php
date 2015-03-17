@@ -24,11 +24,17 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-xs-10">
+						<div class="col-xs-8">
 							<div><h3 class="panel-title">Bio</h3></div>
 						</div>
-						<div class="col-xs-2">
-							<div class="text-right editBioButton" id="editUserBioButton">
+						<div class="col-xs-4">
+							<div class="floatRight text-right hiddenActionButtons" id="inviteToGroupDiv">
+								<button class="btn btn-info panelHeadingButton" id="inviteToGroupButton"
+									onclick="inviteToGroup()">
+									Invite To Join Your Group
+								</button>
+							</div>
+							<div class="floatRight text-right hiddenActionButtons" id="editUserBioButton">
 								<span class="fui-new"></span>
 							</div>
 						</div>
@@ -162,5 +168,14 @@
 				console.error(data);
 			}
 		);
+
+		if(me.group.creator.id == me.user.id && profileId !== me.user.id) {
+			document.getElementById("inviteToGroupDiv").style.display = "block";
+			document.getElementById("inviteToGroupButton").style.display = "block";
+		}
 	});
+
+	function inviteToGroup() {
+		window.location.href = '/intents.php?action=request&request=inviteToGroup&studentId=' + profileId;
+	}
 </script>

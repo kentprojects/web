@@ -39,6 +39,17 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					}
 					$content = "/request/joinAGroup";
 					break;
+				case "inviteToGroup":
+					if (empty($_GET["studentId"]))
+					{
+						exit((string)new Exception("No student ID given."));
+					}
+					if ($meRequest->user->role == "staff")
+					{
+						exit((string)new Exception("Staff can't do that!"));
+					}
+					$content = "/request/inviteToGroup";
+					break;
 				case "undertakeAProject":
 					if (empty($_GET["projectId"]))
 					{
@@ -99,7 +110,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 	</div>
 	<!-- TODO: SANITIZE SANITIZE SANITIZE -->
 <?php
-$allowedKeys = array("action", "id", "request", "groupId", "projectId");
+$allowedKeys = array("action", "id", "request", "groupId", "projectId", "studentId");
 $phpGets = array();
 foreach ($_GET as $k => $v)
 {
