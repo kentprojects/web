@@ -9,7 +9,6 @@ function stuff() {
 	var $frame = $('#projectScroller');
 	removeEDR(document.getElementById('navbarInput-01').value, "tileLiproject");
 	$frame.sly('reload');
-	console.log("slyd")
 }
 
 function removeEDR(stringFind, tileClass) {
