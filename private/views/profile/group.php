@@ -4,7 +4,7 @@
 
 	</div>
 	<div class="row">
-		<div class="groupMembers col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div class="groupMembers col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
@@ -44,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="projectDetails col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div class="projectDetails col-xs-12 col-sm-12 col-md-6 col-lg-6" id="embeddedProjectDescription">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Our Project:</h3>
@@ -105,10 +105,8 @@
 					markdownThingy("projectBio", projectBio);
 					// Hide the join group button
 					document.getElementById("joinGroupButton").style.display = "none";
-
-				}
-				else {
-					document.querySelector(".projectDetails").style.display = "none";
+					document.querySelector(".groupMembers").className = "groupMembers col-xs-12 col-sm-12 col-md-6 col-lg-6";
+					document.querySelector("#embeddedProjectDescription").style.display = "block";
 				}
 				commentsThingy("commentsBody", "group/" + data.body.id);
 			},

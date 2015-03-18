@@ -124,7 +124,12 @@
 				}
 				else {
 					markdownThingy("userBio", userBio);
-					tokensThingy("#interestsInput", userInterests);
+					if (userInterests.length > 0) {
+						tokensThingy("#interestsInput", userInterests);
+					}
+					else {
+						document.querySelector(".userInterests .panel-body").innerHTML = '<p class="text-info">I haven\'t set my interests yet</p>';
+					}
 				}
 
 				document.getElementById("userName").innerText = data.body.name;

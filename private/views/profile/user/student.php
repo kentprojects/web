@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5" id="userProjectDescription">
+		<div class="projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5" id="embeddedProjectDescription">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">My Project:</h3>
@@ -163,7 +163,7 @@
 					markdownThingy("projectBio", projectBio);
 					document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-5 col-lg-5";
 					document.querySelector(".projectDetails").className = "projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5";
-					document.getElementById("userProjectDescription").style.display = "block";
+					document.getElementById("embeddedProjectDescription").style.display = "block";
 
 				}
 
