@@ -57,7 +57,7 @@ function scrollerTile(item, type, addStyle) {
 	if (item.role)  { tileImage = '<img src="/uploads/' + md5(item.email) + '"/>'; }
 	else { tileImage = ''};
 	// Set class list
-	classList = " class='tileLi " + classList + "'";
+	classList = " class='tileLi tileLi" + type + classList + "'";
 
 	// Create tile from HTML segments and return as a string.
 	tileHTML.push(

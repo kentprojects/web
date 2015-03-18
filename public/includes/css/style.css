@@ -101,6 +101,18 @@ body {
 	margin-bottom: 0;
 }
 
+.noTopMargin {
+	margin-top: 0;
+}
+
+.noBottomPadding {
+	padding-bottom: 0;
+}
+
+.noTopPadding {
+	padding-top: 0;
+}
+
 .restrictedWidth {
 	max-width: 400px;
 }
@@ -424,6 +436,10 @@ code {
 
 .greenTile {
 	background: #57a858 !important;
+}
+
+.hideTile {
+	display: none;
 }
 
 /*.tileLink {

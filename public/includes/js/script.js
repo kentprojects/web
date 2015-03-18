@@ -61,6 +61,7 @@ loadQueue.push(function OnScriptLoad() {
 	"/includes/js/dynamicCSS.js",
 	"/includes/js/notificationsThingy.js",
 	"/includes/js/scrollerThingy.js",
+	"/includes/js/searchThingy.js",
 	"/includes/js/snippets.js"
 ].concat(scriptQueue), function scriptsHaveLoaded() {
 	loadQueue.execute();
