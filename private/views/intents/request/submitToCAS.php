@@ -21,10 +21,7 @@
 		console.log(me.user);
 
 		confirmRequest = function confirmRequest() {
-			intentCreate(
-				"submit_to_cas",
-				{groupId: me.group.id}
-			);
+			intentCreate("submit_to_cas", {groupId: me.group.id}, undefined);
 		};
 		cancelRequest = function cancelRequest() {
 			window.location.href = "dashboard.php";

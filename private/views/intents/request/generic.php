@@ -30,10 +30,7 @@
 			}
 		);
 		confirmRequest = function confirmRequest() {
-			intentCreate(
-				"generic",
-				{user_id: userId}
-			);
+			intentCreate("generic", {user_id: userId}, undefined);
 		};
 		cancelRequest = function cancelRequest() {
 		};

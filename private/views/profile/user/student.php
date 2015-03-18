@@ -156,7 +156,7 @@
 				document.querySelector("#profilePicture img").setAttribute("src", '/uploads/' + md5(data.body.email));
 
 				// Set their project bio if they have one
-				if (data.body.group.project) {
+				if (data.body.group && data.body.group.project) {
 					document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.group.project.id + '">' + data.body.group.project.name + '</a>';
 					// Set the project bio
 					var projectBio = data.body.group.project.description || defaultProjectBio;
@@ -168,13 +168,20 @@
 				}
 
 				if (me.user.role == "student") {
-					if (me.group &&
-						me.group.creator &&
-						me.group.creator.id == me.user.id &&
-						profileId !== me.user.id &&
-						!data.body.group) {
-						document.getElementById("inviteToGroupDiv").style.display = "block";
-						document.getElementById("inviteToGroupButton").style.display = "block";
+					if(!data.body.group) {
+						if(profileId !== me.user.id) {
+							if (me.group &&	me.group.creator && (me.group.creator.id == me.user.id)) {
+								if (hasIntent("invite_to_group")) {
+									filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function(intent) {
+										document.getElementById("inviteToGroupButton").className = "btn btn-warning panelHeadingButton";
+										document.getElementById("inviteToGroupButton").innerText = "Cancel Invitation";
+										document.getElementById("inviteToGroupButton").setAttribute("onclick", "cancelInvite()");
+									});
+								}
+								document.getElementById("inviteToGroupDiv").style.display = "block";
+								document.getElementById("inviteToGroupButton").style.display = "block";
+							}
+						}
 					}
 				}
 
@@ -191,5 +198,21 @@
 
 	function inviteToGroup() {
 		window.location.href = '/intents.php?action=request&request=inviteToGroup&studentId=' + profileId;
+	}
+
+	function cancelInvite() {
+		if (confirm("Are you sure you want to cancel this invitation?")) {
+			filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function(intent) {
+				API.DELETE(
+					"/intent/" + intent.id, {},
+					function Success(data) {
+						window.location.reload();
+					},
+					function Error(data) {
+						console.error(data);
+					}
+				);
+			});
+		}
 	}
 </script>

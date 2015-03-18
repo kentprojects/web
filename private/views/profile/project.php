@@ -132,6 +132,13 @@
 				// The user isn't a student / doesn't have a project / it's already taken
 				if (me.user.role == "student" && me.group.id && !me.project.id && !data.body.group) {
 					if (me.group.creator.id == me.user.id) {
+						if (hasIntent("undertake_a_project")) {
+							filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function(intent) {
+								document.getElementById("doProjectButton").className = "btn btn-warning panelHeadingButton";
+								document.getElementById("doProjectButton").innerText = "Cancel Request";
+								document.getElementById("doProjectButton").setAttribute("onclick", "cancelRequest()");
+							});
+						}
 						document.getElementById("doProjectButton").style.display = "block";
 					}
 				}
@@ -155,6 +162,22 @@
 			}
 		);
 	});
+
+	function cancelRequest() {
+		if (confirm("Are you sure you want to cancel this request?")) {
+			filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function(intent) {
+				API.DELETE(
+					"/intent/" + intent.id, {},
+					function Success(data) {
+						window.location.reload();
+					},
+					function Error(data) {
+						console.error(data);
+					}
+				);
+			});
+		}
+	}
 
 	function deleteProject() {
 		if (confirm("Are you sure you want to delete this project?")) {
