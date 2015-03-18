@@ -28,7 +28,29 @@
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><a href="/list.php?type=projects">Projects</a></h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<h3 class="panel-title" style="clear:none;"><a href="/list.php?type=projects">Projects</a></h3>
+					</div>
+
+
+
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+						<form class="navbar-form navbar-right noLeftPadding noTopPadding noBottomPadding" action="#" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+									<span class="input-group-btn">
+										<button type="submit" class="btn"><span class="fui-search"></span></button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+
 			</div>
 			<div class="panel-body">
 					<div class="frame" id="projectScroller">
