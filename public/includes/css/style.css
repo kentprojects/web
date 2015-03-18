@@ -439,6 +439,12 @@ code {
 }
 
 .hideTile {
+	width: 0px !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.hideTile div {
 	display: none;
 }
 

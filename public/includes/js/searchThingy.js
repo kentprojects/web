@@ -6,7 +6,10 @@
 
 
 function stuff() {
+	var $frame = $('#projectScroller');
 	removeEDR(document.getElementById('navbarInput-01').value, "tileLiproject");
+	$frame.sly('reload');
+	console.log("slyd")
 }
 
 function removeEDR(stringFind, tileClass) {
@@ -15,7 +18,6 @@ function removeEDR(stringFind, tileClass) {
 		for (i = 0; i < tiles.length; i++) {
 			var tile = tiles[i];
 			tile.className = tile.className.replace(" hideTile", "");
-			// console.log(tile.firstChild.innerText)
 			if (tile.firstChild.innerText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1) {
 				tile.className = tile.className + " hideTile";
 			}
