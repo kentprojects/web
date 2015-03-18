@@ -90,8 +90,8 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			<div class="col-sm-12 col-xs-12">
 				<h1 class="text-center Heading">Dashboard</h1>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-0" id="headerPadLeft"></div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="roleSelectorDiv">
+			<div class="col-lg-5 col-md-4 col-sm-3 col-xs-0" id="headerPadLeft"></div>
+			<div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"; id="roleSelectorDiv">
 				<div class="dropdown dashboardSelector Heading">
 					<button class="btn btn-default dropdown-toggle dashboardSelector"
 						type="button" id="roleSelector" data-toggle="dropdown">
@@ -103,7 +103,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-0" id="headerPadRight"></div>
+			<div class="col-lg-5 col-md-4 col-sm-3 col-xs-0" id="headerPadRight"></div>
 		</div>
 
 		<?php
@@ -189,14 +189,13 @@ require PUBLIC_DIR . "/includes/php/header.php";
 					}
 				}
 				document.getElementById("roleSelectorDropdown").innerHTML += HTML.join("");
+
+				document.getElementById("headerPadLeft").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0";
+				document.getElementById("roleSelectorDiv").className = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
+				document.getElementById("headerPadRight").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0"
+				document.getElementById("roleSelector").style.display = "block";
 			})();
-			<?php }
-			else { ?>
-			document.getElementById("roleSelector").style.display = "none";
-			document.getElementById("roleSelectorDiv").className = "col-lg-0 col-md-0 col-sm-0 col-xs-0";
-			document.getElementById("headerPadLeft").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
-			document.getElementById("headerPadRight").className = "col-lg-5 col-md-4 col-sm-3 col-xs-0";
-			<?php } ?>
+			<?php }?>
 		});
 	</script>
 <?php require PUBLIC_DIR . '/includes/php/footer.php';

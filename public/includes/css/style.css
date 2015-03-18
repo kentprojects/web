@@ -117,6 +117,14 @@ body {
 	background: rgba(255, 255, 255, .8);
 }
 
+#roleSelector {
+	display: none;
+}
+
+#userProjectDescription {
+	display: none;
+}
+
 /* Scroller Styling */
 
 /* Frame */

@@ -20,7 +20,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="userBio col-xs-12 col-sm-9 col-md-5 col-lg-5">
+		<div class="userBio col-xs-12 col-sm-9 col-md-10 col-lg-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5">
+		<div class="projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5" id="userProjectDescription">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">My Project:</h3>
@@ -108,6 +108,7 @@
 				// Set the user interests
 				var userInterests = data.body.interests;
 
+
 				if (data.body.permissions.update == 1) {
 
 					markdownThingy(
@@ -141,7 +142,12 @@
 				}
 				else {
 					markdownThingy("userBio", userBio);
-					tokensThingy("#interestsInput", userInterests);
+					if (userInterests.length > 0) {
+						tokensThingy("#interestsInput", userInterests);
+					}
+					else {
+						document.querySelector(".userInterests .panel-body").innerHTML = '<p class="text-info">I haven\'t set my interests yet</p>';
+					}
 				}
 				// Set the user's name
 				document.getElementById("userName").innerText = data.body.name;
@@ -150,16 +156,15 @@
 				document.querySelector("#profilePicture img").setAttribute("src", '/uploads/' + md5(data.body.email));
 
 				// Set their project bio if they have one
-				if (data.body.project) {
-					document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
+				if (data.body.group.project) {
+					document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.group.project.id + '">' + data.body.group.project.name + '</a>';
 					// Set the project bio
-					var projectBio = data.body.project.description || defaultProjectBio;
+					var projectBio = data.body.group.project.description || defaultProjectBio;
 					markdownThingy("projectBio", projectBio);
-				}
-				else {
-					// Otherwise, hide the bio
-					document.querySelector(".projectDetails").style.display = "none";
-					document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-10 col-lg-10"
+					document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-5 col-lg-5";
+					document.querySelector(".projectDetails").className = "projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5";
+					document.getElementById("userProjectDescription").style.display = "block";
+
 				}
 
 				if (me.user.role == "student") {
@@ -167,8 +172,7 @@
 						me.group.creator &&
 						me.group.creator.id == me.user.id &&
 						profileId !== me.user.id &&
-						!data.body.group
-					) {
+						!data.body.group) {
 						document.getElementById("inviteToGroupDiv").style.display = "block";
 						document.getElementById("inviteToGroupButton").style.display = "block";
 					}
