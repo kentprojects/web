@@ -434,6 +434,10 @@ code {
 	background: #57a858 !important;
 }
 
+.hideTile {
+	display: none;
+}
+
 /*.tileLink {
 	margin: 0px;
 	position: absolute;

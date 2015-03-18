@@ -33,13 +33,11 @@
 						<h3 class="panel-title" style="clear:none;"><a href="/list.php?type=projects">Projects</a></h3>
 					</div>
 
-
-
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
 						<form class="navbar-form navbar-right noLeftPadding noTopPadding noBottomPadding" action="#" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="stuff();" oninput="stuff();" onkeydown="stuff();" onkeypress="stuff();" onpaste="stuff();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
@@ -48,8 +46,6 @@
 						</form>
 					</div>
 				</div>
-
-
 
 			</div>
 			<div class="panel-body">
