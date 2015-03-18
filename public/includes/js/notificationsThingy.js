@@ -21,6 +21,7 @@ function onNotificationsGetSuccess(data) {
 		for (var i = 0; i < 10; i++) {
 			if (data.body[i]) {
 				var notification = data.body[i];
+				//console.log(notification);
 				var url = "#";
 				switch (notification.type) {
 					case "user_got_a_notification":
@@ -49,8 +50,8 @@ function onNotificationsGetSuccess(data) {
 				}
 
 				HTML.push('<li><a href="' + url + '">' + notification.text + '</a></li>');
-				if (!data.body[i].read) {
-					notificationIds.push(data.body[i].id);
+				if (!notification.read) {
+					notificationIds.push(notification.id);
 				}
 			}
 		}
