@@ -137,6 +137,10 @@ body {
 	display: none;
 }
 
+#requestYearAccessButton {
+	display: none;
+}
+
 /* Scroller Styling */
 
 /* Frame */

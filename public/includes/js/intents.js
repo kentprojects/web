@@ -95,12 +95,17 @@ else {
 	console.error("That action doesn't exist")
 }
 
-function intentCreate(handler, data) {
+function intentCreate(handler, data, redirectUrl) {
 	API.POST(
 		'/intent',
 		{handler: handler, data: data},
 		function Success(data) {
-			window.history.back();
+			if (redirectUrl) {
+				window.location.href = redirectUrl;
+			}
+			else {
+				window.history.back();
+			}
 		},
 		function Error(data) {
 			console.error(data);

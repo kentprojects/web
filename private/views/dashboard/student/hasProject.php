@@ -16,7 +16,7 @@
 			<section><p>Are you ready to submit your project application to the CAS office?</p></section>
 
 			<section>
-				<a class="btn btn-success" href="/intents.php?action=request&request=submitToCAS">Lets do it!</a>
+				<a class="btn btn-success" href="/intents.php?action=request&request=submitToCAS">Let's do it!</a>
 			</section>
 		</div>
 	</div>

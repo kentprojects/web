@@ -22,13 +22,10 @@
 		console.log(me.user);
 
 		confirmRequest = function confirmRequest() {
-			intentCreate(
-				"access_year",
-				{yearId: yearId}
-			);
+			intentCreate("access_year", {yearId: yearId}, "/dashboard.php");
 		};
 		cancelRequest = function cancelRequest() {
-			window.location.href = "dashboard.php";
+			window.location.href = "/dashboard.php";
 		};
 	});
 </script>

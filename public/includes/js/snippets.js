@@ -85,3 +85,46 @@ var mapPlaceHolders = (function BuildMapFunction() {
 		return output;
 	};
 })();
+
+/**
+ * @param type
+ * @param entity
+ * @param entityId
+ * @param callback
+ * @returns boolean
+ */
+function filterIntentsByTypeAndEntity(type, entity, entityId, callback) {
+	var intents = getIntentsOfType(type);
+	for (var i = 0; i < intents.length; i++) {
+		if (!entity && !entityId) {
+			return callback && callback(intents[i]);
+		}
+		if (intents[i][entity] && intents[i][entity].id && intents[i][entity].id == entityId) {
+			return callback && callback(intents[i]);
+		}
+	}
+	return false;
+}
+
+function getIntentsOfType(type) {
+	if (!me || !me.intents) {
+		console.error("No intents loaded.");
+		return [];
+	}
+	else if (me.intents.length > 0) {
+		var intents = [];
+		for (var i = 0; i < me.intents.length; i++) {
+			if (me.intents[i].handler == type) {
+				intents.push(me.intents[i]);
+			}
+		}
+		return intents;
+	}
+	else {
+		return [];
+	}
+}
+
+function hasIntent(type) {
+	return (getIntentsOfType(type).length > 0);
+}

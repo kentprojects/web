@@ -81,7 +81,17 @@
 		].join('\n');
 		if (me.user.role == "student") {
 			if (!me.group.id) {
-				document.getElementById("joinGroupButton").style.display = "block";
+				if (hasIntent("join_a_group")) {
+					filterIntentsByTypeAndEntity("join_a_group", "group", profileId, function(intent) {
+						document.getElementById("joinGroupButton").className = "btn btn-warning panelHeadingButton";
+						document.getElementById("joinGroupButton").innerText = "Cancel Request";
+						document.getElementById("joinGroupButton").setAttribute("onclick", "cancelRequest()");
+						document.getElementById("joinGroupButton").style.display = "block";
+					});
+				}
+				else {
+					document.getElementById("joinGroupButton").style.display = "block";
+				}
 			}
 			else if (me.group.id === profileId) {
 				if (me.group.creator.id === me.user.id) {
@@ -120,8 +130,25 @@
 	});
 
 
+
 	function joinGroup() {
 		window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;
+	}
+
+	function cancelRequest() {
+		if (confirm("Are you sure you want to cancel this request?")) {
+			filterIntentsByTypeAndEntity("join_a_group", "group", profileId, function(intent) {
+				API.DELETE(
+					"/intent/" + intent.id, {},
+					function Success(data) {
+						window.location.reload();
+					},
+					function Error(data) {
+						console.error(data);
+					}
+				);
+			});
+		}
 	}
 
 	function leaveGroup() {

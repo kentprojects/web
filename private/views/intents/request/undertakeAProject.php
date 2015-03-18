@@ -90,7 +90,7 @@
 						qf("#intentDescription", function (element) {
 							element.innerHTML =
 								'You need to wait until your current request is accepted or declined ' +
-								'before doing doing it again </br><strong><a href=# onclick="cancelRequest();"> ' +
+								'before doing it again. </br><strong><a href=# onclick="cancelRequest();"> ' +
 								'Go back? </a></strong>';
 						});
 
