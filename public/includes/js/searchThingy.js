@@ -16,7 +16,7 @@ function removeEDR(stringFind, tileClass) {
 			var tile = tiles[i];
 			tile.className = tile.className.replace(" hideTile", "");
 			// console.log(tile.firstChild.innerText)
-			if (tile.firstChild.innerText.indexOf(stringFind) == -1) {
+			if (tile.firstChild.innerText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1) {
 				tile.className = tile.className + " hideTile";
 			}
 		}
