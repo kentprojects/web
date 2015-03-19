@@ -1,3 +1,11 @@
+<?php
+require_once __DIR__ . "/../private/bootstrap.php";
+if (Auth::isLoggedIn())
+{
+	redirect("/dashboard.php");
+	exit(0);
+}
+?>
 <!doctype html>
 <html lang="en">
     <head>
