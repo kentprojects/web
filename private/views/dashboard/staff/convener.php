@@ -175,7 +175,7 @@
 
 		// Get the stats
 		API.GET(
-			"/year/year>/stats", {},
+			"/year/"+ year +"/stats", {},
 			function (data) {
 				total_students = data.body.total_students;
 				total_groups = data.body.total_groups;
