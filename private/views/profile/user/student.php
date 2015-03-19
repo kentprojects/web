@@ -29,7 +29,7 @@
 						</div>
 						<div class="col-xs-4">
 							<div class="floatRight text-right hiddenActionButtons" id="inviteToGroupDiv">
-								<button class="btn btn-info panelHeadingButton" id="inviteToGroupButton"
+								<button class="btn btn-info panelHeadingButton displayNone" id="inviteToGroupButton"
 									onclick="inviteToGroup()">
 									Invite To Join Your Group
 								</button>
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5" id="embeddedProjectDescription">
+		<div class="projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5 displayNone" id="embeddedProjectDescription">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">My Project:</h3>
@@ -88,6 +88,11 @@
 <script type="text/javascript">
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function () {
+		var defaultOwnerBio = [
+			'You haven\'t set a bio yet',
+			'',
+			'*Click the edit button above to get started*'
+		].join('\n');
 		var defaultUserBio = [
 			'This user hasn\'t set a bio yet',
 			'',
@@ -102,14 +107,13 @@
 			"/student/" + profileId, {},
 			function Success(data) {
 
-
-				// Set the user bio
-				var userBio = data.body.bio || defaultUserBio;
 				// Set the user interests
 				var userInterests = data.body.interests;
 
 
 				if (data.body.permissions.update == 1) {
+					// Set the user bio
+					var userBio = data.body.bio || defaultOwnerBio;
 
 					markdownThingy(
 						"userBio", userBio, "editUserBioButton",
@@ -141,6 +145,8 @@
 
 				}
 				else {
+					var userBio = data.body.bio || defaultUserBio;
+
 					markdownThingy("userBio", userBio);
 					if (userInterests.length > 0) {
 						tokensThingy("#interestsInput", userInterests);
