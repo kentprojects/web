@@ -832,3 +832,9 @@ header .navbar-nav>li>.dropdown-menu {
 .intentResponseButtons {
 	display: none;
 }
+
+.tilePic {
+	border-radius: 5px;
+	max-width: 180px;
+	max-height: 180px;
+}

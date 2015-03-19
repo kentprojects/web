@@ -54,7 +54,7 @@ function scrollerTile(item, type, addStyle) {
 
 	}
 	// If image then add image tag
-	if (item.role)  { tileImage = '<img src="/uploads/' + md5(item.email) + '"/>'; }
+	if (item.role)  { tileImage = '<img class="tilePic" src="/uploads/' + md5(item.email) + '"/>'; }
 	else { tileImage = ''};
 	// Set class list
 	classList = " class='tileLi tileLi" + type + classList + "'";
