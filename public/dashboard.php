@@ -93,7 +93,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			<div class="col-lg-5 col-md-4 col-sm-3 col-xs-0" id="headerPadLeft"></div>
 			<div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"; id="roleSelectorDiv">
 				<div class="dropdown dashboardSelector Heading">
-					<button class="btn btn-default dropdown-toggle dashboardSelector"
+					<button class="btn btn-default dropdown-toggle dashboardSelector displayNone"
 						type="button" id="roleSelector" data-toggle="dropdown">
 						Role: <span class="caret"></span>
 					</button>

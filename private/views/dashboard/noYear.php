@@ -7,7 +7,7 @@
 		<p id="accessYearStatus"></p>
 
 		<p>
-			<a class="btn btn-primary btn-lg" href="intents.php?action=request&request=accessYear"
+			<a class="btn btn-primary btn-lg displayNone" href="intents.php?action=request&request=accessYear"
 				id="requestYearAccessButton">Request Access</a>
 		</p>
 	</div>

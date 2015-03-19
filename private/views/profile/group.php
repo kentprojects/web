@@ -14,15 +14,15 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton" id="joinGroupButton"
+								<button class="btn btn-info panelHeadingButton displayNone" id="joinGroupButton"
 									onclick="joinGroup()">
 									Join This Group
 								</button>
-								<button class="btn btn-warning panelHeadingButton" id="leaveGroupButton"
+								<button class="btn btn-warning panelHeadingButton displayNone" id="leaveGroupButton"
 									onclick="leaveGroup()">
 									Leave This Group
 								</button>
-								<button class="btn btn-danger panelHeadingButton" id="deleteGroupButton"
+								<button class="btn btn-danger panelHeadingButton displayNone" id="deleteGroupButton"
 									onclick="deleteGroup()">
 									Delete This Group
 								</button>
@@ -44,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="projectDetails col-xs-12 col-sm-12 col-md-6 col-lg-6" id="embeddedProjectDescription">
+		<div class="projectDetails col-xs-12 col-sm-12 col-md-6 col-lg-6 displayNone" id="embeddedProjectDescription">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Our Project:</h3>

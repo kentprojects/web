@@ -11,27 +11,6 @@
 </div>
 
 <div class="row">
-	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Projects</h3>
-			</div>
-			<div class="panel-body">
-				<div class="frame" id="projectScroller">
-					<ul class="clearfix">
-					</ul>
-				</div>
-				<ul class="pages"></ul>
-				<div class="controls center">
-					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
-					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="row">
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -41,7 +20,7 @@
 					</div>
 					<div class="col-xs-4">
 						<div class="text-right">
-							<a class="btn btn-info panelHeadingButton" id="addGroupButton"
+							<a class="btn btn-info panelHeadingButton displayNone" id="addGroupButton"
 								href="/new.php?type=group"><span class="fui-plus"></span> Add</a>
 						</div>
 					</div>
@@ -84,6 +63,27 @@
 </div>
 
 <div class="row">
+	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Projects</h3>
+			</div>
+			<div class="panel-body">
+				<div class="frame" id="projectScroller">
+					<ul class="clearfix">
+					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
 	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -106,18 +106,6 @@
 <script type="text/javascript">
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function () {
-		// List the projects
-		API.GET(
-			"/projects", {"year": <?php echo $year;?>},
-			function (data) {
-				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
-				document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
-				scroller("#projectScroller");
-			},
-			function (data) {
-				console.error(data);
-			}
-		);
 
 		// List the groups
 		API.GET(
@@ -127,6 +115,19 @@
 				document.querySelector(".Groups h3").innerText += ' (' + data.body.length + ')';
 				scroller("#groupScroller");
 				document.getElementById("addGroupButton").style.display = "block";
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
+
+		// List the projects
+		API.GET(
+			"/projects", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
+				scroller("#projectScroller");
 			},
 			function (data) {
 				console.error(data);

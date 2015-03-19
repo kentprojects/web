@@ -48,11 +48,11 @@
 						<div class="col-xs-3 col-sm-2 col-md-1"></div>
 						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
-								<button class="btn btn-info panelHeadingButton" id="doProjectButton"
+								<button class="btn btn-info panelHeadingButton displayNone" id="doProjectButton"
 									onclick="doProject()">
 									Do This Project
 								</button>
-								<button class="btn btn-warning panelHeadingButton" id="giveUpProjectButton"
+								<button class="btn btn-warning panelHeadingButton displayNone" id="giveUpProjectButton"
 									onclick="giveUpProject()">
 									Give Up Project
 								</button>

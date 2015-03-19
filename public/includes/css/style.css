@@ -3,6 +3,10 @@ body {
 	width: 100%;
 }
 
+.displayNone {
+	display: none;
+}
+
 .floatRight {
 	float: right;
 }
@@ -129,18 +133,6 @@ body {
 	background: rgba(255, 255, 255, .8);
 }
 
-#roleSelector {
-	display: none;
-}
-
-#embeddedProjectDescription {
-	display: none;
-}
-
-#requestYearAccessButton {
-	display: none;
-}
-
 /* Scroller Styling */
 
 /* Frame */
@@ -218,7 +210,6 @@ body {
 	padding-top: 4px;
 	padding-bottom: 4px;
 	width: 100%;
-	display: none;
 }
 
 .panelHeadingTextBox {

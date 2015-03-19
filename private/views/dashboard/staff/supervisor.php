@@ -18,7 +18,7 @@
 					</div>
 					<div class="col-xs-4">
 						<div class="text-right">
-							<a class="btn btn-info panelHeadingButton" id="addProjectButton" href="/new.php?type=project"><span class="fui-plus"></span> Add</a>
+							<a class="btn btn-info panelHeadingButton displayNone" id="addProjectButton" href="/new.php?type=project"><span class="fui-plus"></span> Add</a>
 						</div>
 					</div>
 				</div>
@@ -37,6 +37,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="row">
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -92,7 +93,7 @@
 	loadQueue.push(function () {
 		// List the projects
 		API.GET(
-			"/projects", {"year": <?php echo $year;?>},
+			"/projects", {"year": <?php echo $year;?>, "supervisor": me.user.id},
 			function (data) {
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
@@ -106,7 +107,7 @@
 
 		// List the groups
 		API.GET(
-			"/groups", {"year": <?php echo $year;?>},
+			"/groups", {"year": <?php echo $year;?>, "supervisor": me.user.id},
 			function (data) {
 				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
 				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
@@ -119,10 +120,11 @@
 
 		// List the students
 		API.GET(
-			"/students", {"year": <?php echo $year;?>},
+			"/students", {"year": <?php echo $year;?>, "supervisor": me.user.id},
 			function (data) {
-				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
-				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
+				var students = data.body;
+				document.querySelector(".Students ul").innerHTML = scrollerHTML(students, "student", true);
+				document.querySelector(".Students a").innerText += ' (' + (students && students.length ? students.length : 0) + ')';
 				scroller("#studentScroller");
 			},
 			function (data) {
