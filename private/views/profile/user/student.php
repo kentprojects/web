@@ -16,19 +16,25 @@
 		<div class="userDetails col-xs-12 col-sm-3 col-md-2 col-lg-2">
 			<div class="panel panel-default" id="profilePicture">
 				<div class="panel-body">
-					<img src="https://www.arceuropenews.com/files/ProfilePhotos/placeholder-user.jpg"></img>
+					<img />
 				</div>
 			</div>
 		</div>
-		<div class="userBio col-xs-12 col-sm-9 col-md-5 col-lg-5">
+		<div class="userBio col-xs-12 col-sm-9 col-md-10 col-lg-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-xs-10">
+						<div class="col-xs-8">
 							<div><h3 class="panel-title">Bio</h3></div>
 						</div>
-						<div class="col-xs-2">
-							<div class="text-right editBioButton" id="editUserBioButton">
+						<div class="col-xs-4">
+							<div class="floatRight text-right hiddenActionButtons" id="inviteToGroupDiv">
+								<button class="btn btn-info panelHeadingButton" id="inviteToGroupButton"
+									onclick="inviteToGroup()">
+									Invite To Join Your Group
+								</button>
+							</div>
+							<div class="floatRight text-right hiddenActionButtons" id="editUserBioButton">
 								<span class="fui-new"></span>
 							</div>
 						</div>
@@ -40,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5">
+		<div class="projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5" id="embeddedProjectDescription">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">My Project:</h3>
@@ -102,6 +108,7 @@
 				// Set the user interests
 				var userInterests = data.body.interests;
 
+
 				if (data.body.permissions.update == 1) {
 
 					markdownThingy(
@@ -135,22 +142,47 @@
 				}
 				else {
 					markdownThingy("userBio", userBio);
-					tokensThingy("#interestsInput", userInterests);
+					if (userInterests.length > 0) {
+						tokensThingy("#interestsInput", userInterests);
+					}
+					else {
+						document.querySelector(".userInterests .panel-body").innerHTML = '<p class="text-info">I haven\'t set my interests yet</p>';
+					}
 				}
 				// Set the user's name
 				document.getElementById("userName").innerText = data.body.name;
 
+				// Set the user's profile picture
+				document.querySelector("#profilePicture img").setAttribute("src", '/uploads/' + md5(data.body.email));
+
 				// Set their project bio if they have one
-				if (data.body.project) {
-					document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.project.id + '">' + data.body.project.name + '</a>';
+				if (data.body.group && data.body.group.project) {
+					document.getElementById("projectName").innerHTML = '<a href="/profile.php?type=project&id=' + data.body.group.project.id + '">' + data.body.group.project.name + '</a>';
 					// Set the project bio
-					var projectBio = data.body.project.description || defaultProjectBio;
+					var projectBio = data.body.group.project.description || defaultProjectBio;
 					markdownThingy("projectBio", projectBio);
+					document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-5 col-lg-5";
+					document.querySelector(".projectDetails").className = "projectDetails col-xs-12 col-sm-12 col-md-5 col-lg-5";
+					document.getElementById("embeddedProjectDescription").style.display = "block";
+
 				}
-				else {
-					// Otherwise, hide the bio
-					document.querySelector(".projectDetails").style.display = "none";
-					document.querySelector(".userBio").className = "userBio col-xs-12 col-sm-9 col-md-10 col-lg-10"
+
+				if (me.user.role == "student") {
+					if(!data.body.group) {
+						if(profileId !== me.user.id) {
+							if (me.group &&	me.group.creator && (me.group.creator.id == me.user.id)) {
+								if (hasIntent("invite_to_group")) {
+									filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function(intent) {
+										document.getElementById("inviteToGroupButton").className = "btn btn-warning panelHeadingButton";
+										document.getElementById("inviteToGroupButton").innerText = "Cancel Invitation";
+										document.getElementById("inviteToGroupButton").setAttribute("onclick", "cancelInvite()");
+									});
+								}
+								document.getElementById("inviteToGroupDiv").style.display = "block";
+								document.getElementById("inviteToGroupButton").style.display = "block";
+							}
+						}
+					}
 				}
 
 				commentsThingy("commentsBody", "user/" + data.body.id);
@@ -163,4 +195,24 @@
 			}
 		);
 	});
+
+	function inviteToGroup() {
+		window.location.href = '/intents.php?action=request&request=inviteToGroup&studentId=' + profileId;
+	}
+
+	function cancelInvite() {
+		if (confirm("Are you sure you want to cancel this invitation?")) {
+			filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function(intent) {
+				API.DELETE(
+					"/intent/" + intent.id, {},
+					function Success(data) {
+						window.location.reload();
+					},
+					function Error(data) {
+						console.error(data);
+					}
+				);
+			});
+		}
+	}
 </script>

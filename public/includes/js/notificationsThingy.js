@@ -21,6 +21,7 @@ function onNotificationsGetSuccess(data) {
 		for (var i = 0; i < 10; i++) {
 			if (data.body[i]) {
 				var notification = data.body[i];
+				//console.log(notification);
 				var url = "#";
 				switch (notification.type) {
 					case "user_got_a_notification":
@@ -31,6 +32,7 @@ function onNotificationsGetSuccess(data) {
 						break;
 					case "user_wants_to_access_a_year":
 					case "group_wants_to_undertake_a_project":
+					case "user_wants_another_to_join_a_group":
 					case "user_wants_to_join_a_group":
 						if (notification.intent && notification.intent.id) {
 							url = '/intents.php?action=view&id=' + notification.intent.id;
@@ -63,8 +65,8 @@ function onNotificationsGetSuccess(data) {
 				}
 
 				HTML.push('<li><a href="' + url + '">' + notification.text + '</a></li>');
-				if (!data.body[i].read) {
-					notificationIds.push(data.body[i].id);
+				if (!notification.read) {
+					notificationIds.push(notification.id);
 				}
 			}
 		}

@@ -4,7 +4,7 @@
 
 	</div>
 	<div class="row">
-		<div class="groupMembers col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div class="groupMembers col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
@@ -44,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="projectDetails col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div class="projectDetails col-xs-12 col-sm-12 col-md-6 col-lg-6" id="embeddedProjectDescription">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Our Project:</h3>
@@ -81,7 +81,17 @@
 		].join('\n');
 		if (me.user.role == "student") {
 			if (!me.group.id) {
-				document.getElementById("joinGroupButton").style.display = "block";
+				if (hasIntent("join_a_group")) {
+					filterIntentsByTypeAndEntity("join_a_group", "group", profileId, function(intent) {
+						document.getElementById("joinGroupButton").className = "btn btn-warning panelHeadingButton";
+						document.getElementById("joinGroupButton").innerText = "Cancel Request";
+						document.getElementById("joinGroupButton").setAttribute("onclick", "cancelRequest()");
+						document.getElementById("joinGroupButton").style.display = "block";
+					});
+				}
+				else {
+					document.getElementById("joinGroupButton").style.display = "block";
+				}
 			}
 			else if (me.group.id === profileId) {
 				if (me.group.creator.id === me.user.id) {
@@ -105,10 +115,8 @@
 					markdownThingy("projectBio", projectBio);
 					// Hide the join group button
 					document.getElementById("joinGroupButton").style.display = "none";
-
-				}
-				else {
-					document.querySelector(".projectDetails").style.display = "none";
+					document.querySelector(".groupMembers").className = "groupMembers col-xs-12 col-sm-12 col-md-6 col-lg-6";
+					document.querySelector("#embeddedProjectDescription").style.display = "block";
 				}
 				commentsThingy("commentsBody", "group/" + data.body.id);
 			},
@@ -122,8 +130,25 @@
 	});
 
 
+
 	function joinGroup() {
 		window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;
+	}
+
+	function cancelRequest() {
+		if (confirm("Are you sure you want to cancel this request?")) {
+			filterIntentsByTypeAndEntity("join_a_group", "group", profileId, function(intent) {
+				API.DELETE(
+					"/intent/" + intent.id, {},
+					function Success(data) {
+						window.location.reload();
+					},
+					function Error(data) {
+						console.error(data);
+					}
+				);
+			});
+		}
 	}
 
 	function leaveGroup() {

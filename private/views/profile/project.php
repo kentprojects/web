@@ -22,11 +22,11 @@
 							<div><h3 class="panel-title">Description</h3></div>
 						</div>
 						<div class="col-xs-4">
-							<div class="floatRight text-right ownershipButtons" id="deleteProjectButton"
+							<div class="floatRight text-right hiddenActionButtons" id="deleteProjectButton"
 								onclick="deleteProject()">
 								<span class="fui-cross"></span>
 							</div>
-							<div class="floatRight text-right ownershipButtons" id="editProjectDescriptionButton">
+							<div class="floatRight text-right hiddenActionButtons" id="editProjectDescriptionButton">
 								<span class="fui-new"></span>
 							</div>
 						</div>
@@ -132,6 +132,13 @@
 				// The user isn't a student / doesn't have a project / it's already taken
 				if (me.user.role == "student" && me.group.id && !me.project.id && !data.body.group) {
 					if (me.group.creator.id == me.user.id) {
+						if (hasIntent("undertake_a_project")) {
+							filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function(intent) {
+								document.getElementById("doProjectButton").className = "btn btn-warning panelHeadingButton";
+								document.getElementById("doProjectButton").innerText = "Cancel Request";
+								document.getElementById("doProjectButton").setAttribute("onclick", "cancelRequest()");
+							});
+						}
 						document.getElementById("doProjectButton").style.display = "block";
 					}
 				}
@@ -154,38 +161,54 @@
 				console.error(data);
 			}
 		);
+	});
 
-		function doProject() {
-			window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;
-		}
-
-		function deleteProject() {
-			if (confirm("Are you sure you want to delete this project?")) {
+	function cancelRequest() {
+		if (confirm("Are you sure you want to cancel this request?")) {
+			filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function(intent) {
 				API.DELETE(
-					"/project/" + profileId, {},
+					"/intent/" + intent.id, {},
 					function Success(data) {
-						window.location.href = '/dashboard.php'
+						window.location.reload();
 					},
 					function Error(data) {
 						console.error(data);
 					}
 				);
-			}
+			});
 		}
+	}
 
-		function giveUpProject() {
-			API.POST(
-				"/intent/", {
-					handler: "release_project",
-					data: {project_id: profileId}
-				},
+	function deleteProject() {
+		if (confirm("Are you sure you want to delete this project?")) {
+			API.DELETE(
+				"/project/" + profileId, {},
 				function Success(data) {
 					window.location.href = '/dashboard.php'
 				},
 				function Error(data) {
-					console.error(data.body);
+					console.error(data);
 				}
 			);
 		}
-	});
+	}
+
+	function giveUpProject() {
+		API.POST(
+			"/intent/", {
+				handler: "release_project",
+				data: {project_id: profileId}
+			},
+			function Success(data) {
+				window.location.href = '/dashboard.php'
+			},
+			function Error(data) {
+				console.error(data.body);
+			}
+		);
+	}
+
+	function doProject() {
+		window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;
+	}
 </script>

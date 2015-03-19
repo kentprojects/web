@@ -9,6 +9,10 @@ var commentsThingy = function EmptyCommentsThingy() {
 	console.error("Failed to build the native Comments function.");
 };
 
+var deleteComment = function emptyDeleteComment() {
+	console.error("Failed to build the native Delete Comments function.");
+};
+
 (function () {
 	var commentRoot, containerDiv, containerId, newCommentCount, writeBox;
 	newCommentCount = 250;
@@ -29,13 +33,14 @@ var commentsThingy = function EmptyCommentsThingy() {
 
 	function createComment(data) {
 		containerDiv.innerHTML += [
-			'<div class="col-xs-12 col-sm-10 col-sm-offset-1 commentItem">',
+			'<div class="col-xs-12 col-sm-10 col-sm-offset-1 commentItem" id="comment_' + data.id + '">',
 			'<img src="/uploads/', md5(data.author.email), '">',
 			'<div class="commentText">', '<div class="commentHead">',
 			'<h5><a href="/profile.php?type=' + data.author.role + '&id=', data.author.id, '">',
 			data.author.name,
 			'</a></h5>',
 			'<span class="com-dt">', data.created, '</span>',
+			((data.permissions.delete) ? '<span class="com-dt-delete"><a href="#" onclick="deleteComment(' + data.id + ');">Delete </a> </span>' : ''),
 			'</div>',
 			'<p>', data.comment, '</p>',
 			'</div>',
@@ -98,7 +103,6 @@ var commentsThingy = function EmptyCommentsThingy() {
 				API.POST(
 					"/comment", {root: commentRoot, comment: commentBody},
 					function onCommentCreate(data) {
-						console.log("onCommentCreate", data.body);
 						writeBoxElem.parentNode.removeChild(writeBoxElem);
 						createComment(data.body);
 						initWriteBox();
@@ -111,6 +115,19 @@ var commentsThingy = function EmptyCommentsThingy() {
 		}, 200);
 	}
 
+	deleteComment = function deleteComment(id) {
+		API.DELETE("/comment/" + id, {},
+			function Success(){
+				var element = document.getElementById("comment_" + id);
+				element.parentNode.removeChild(element);
+
+			},
+			function Error(){
+				console.error("Failed to delete comment with ID " + id);
+			}
+		);
+	}
+
 	commentsThingy = function CommentsThingy(commentBodyId, root) {
 		containerId = commentBodyId;
 		containerDiv = document.getElementById(commentBodyId);
@@ -118,7 +135,6 @@ var commentsThingy = function EmptyCommentsThingy() {
 		API.GET(
 			"/comment/thread", {root: root},
 			function onCommentGet(data) {
-				console.log("onCommentGet", data);
 				if (data.body && data.body.length) {
 					for (var i = 0; i < data.body.length; i++) {
 						createComment(data.body[i]);

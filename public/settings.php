@@ -39,7 +39,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			<div class="col-xs-12 col-sm-4">
 				<h4>Current Avatar</h4>
 
-				<img id="imageAvatar" src="/uploads/<?php echo md5($meRequest->user->email); ?>.png" />
+				<img id="imageAvatar" src="/uploads/<?php echo md5($meRequest->user->email); ?>" />
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<h4>New Avatar</h4>
@@ -67,5 +67,4 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			url: '/settings.php?upload=avatar'
 		};
 	</script>
-	<script src="/includes/js/script.js" type="text/javascript"></script>
 <?php require PUBLIC_DIR . '/includes/php/footer.php'; ?>

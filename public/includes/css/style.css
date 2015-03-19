@@ -101,6 +101,18 @@ body {
 	margin-bottom: 0;
 }
 
+.noTopMargin {
+	margin-top: 0;
+}
+
+.noBottomPadding {
+	padding-bottom: 0;
+}
+
+.noTopPadding {
+	padding-top: 0;
+}
+
 .restrictedWidth {
 	max-width: 400px;
 }
@@ -115,6 +127,18 @@ body {
 
 .translucent {
 	background: rgba(255, 255, 255, .8);
+}
+
+#roleSelector {
+	display: none;
+}
+
+#embeddedProjectDescription {
+	display: none;
+}
+
+#requestYearAccessButton {
+	display: none;
 }
 
 /* Scroller Styling */
@@ -265,7 +289,7 @@ body {
 	display: none;
 }
 
-.ownershipButtons {
+.hiddenActionButtons {
 	display: none;
 	margin-left: 15px;
 }
@@ -414,6 +438,16 @@ code {
 	background: #57a858 !important;
 }
 
+.hideTile {
+	width: 0px !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.hideTile div {
+	display: none;
+}
+
 /*.tileLink {
 	margin: 0px;
 	position: absolute;
@@ -539,6 +573,14 @@ code {
 #commentsBody .commentText .com-dt {
 	display: inline;
 	float: left;
+	font-size: 12px;
+	line-height: 18px;
+	color: #ccc;
+}
+
+#commentsBody .commentText .com-dt-delete {
+	display: inline;
+	float: right;
 	font-size: 12px;
 	line-height: 18px;
 	color: #ccc;

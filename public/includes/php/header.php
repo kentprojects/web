@@ -6,17 +6,17 @@ $title = empty($title) ? "KentProjects" : $title;
 <html lang="en">
 <!--
 
-    Hey there! We would love you to have a poke around in our source code - it was our final year project and I'm sure
-    we will have made some mistakes! If you notice anything dodgy please let the current convener for the module know.
+    Hey there! We would love you to have a poke around in our source code - it was our final year project and  we will
+    have made some mistakes! If you notice anything dodgy please let the current convener for the module know.
 
     **ONE IMPORTANT THING TO NOTE, HOWEVER**
     As you will undoubtedly notice, this site is mostly written in JS (on the front-end), and therefore can be mucked
-    about with in your browser. We've built this site like an app, communicating with the back-end via an API and you
+    about with in your browser. We tried to build this site like an app, communicating with the back-end via an API and you
     cannot therefore, do anything without the appropriate permissions, even if you can expose the functionality in the UI.
 
     Just a little FYI.
 
-    We are sure you wouldn't even try that.
+    We are sure you would never even try that.
 
 	If you do, however, and find that you can, it would be awesome if you could let the powers that be know about it. :)
 
