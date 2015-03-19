@@ -32,18 +32,33 @@ function onNotificationsGetSuccess(data) {
 					case "user_wants_to_access_a_year":
 					case "group_wants_to_undertake_a_project":
 					case "user_wants_to_join_a_group":
-						url = '/intents.php?action=view&id=' + notification.intent.id;
+						if (notification.intent && notification.intent.id) {
+							url = '/intents.php?action=view&id=' + notification.intent.id;
+						}
+						else {
+							url = '#failed-to-get-intent-id-for-notification-' + notification.id;
+						}
 						break;
 					case "user_approved_another_to_join_a_group":
 					case "user_rejected_another_to_join_a_group":
 					case "user_joined_a_group":
 					case "user_left_a_group":
-						url = '/profile.php?type=group&id=' + notification.group.id;
+						if (notification.group && notification.group.id) {
+							url = '/profile.php?type=group&id=' + notification.group.id;
+						}
+						else {
+							url = '#failed-to-get-group-id-for-notification-' + notification.id;
+						}
 						break;
 					case "group_undertaken_project_approved":
 					case "group_undertaken_project_rejected":
 					case "group_released_project":
-						url = '/profile.php?type=project&id=' + notification.project.id;
+						if (notification.project && notification.project.id) {
+							url = '/profile.php?type=project&id=' + notification.project.id;
+						}
+						else {
+							url = '#failed-to-get-project-id-for-notification-' + notification.id;
+						}
 						break;
 				}
 
