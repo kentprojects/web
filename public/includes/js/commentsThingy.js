@@ -117,16 +117,16 @@ var deleteComment = function emptyDeleteComment() {
 
 	deleteComment = function deleteComment(id) {
 		API.DELETE("/comment/" + id, {},
-			function Success(){
+			function Success() {
 				var element = document.getElementById("comment_" + id);
 				element.parentNode.removeChild(element);
 
 			},
-			function Error(){
+			function Error() {
 				console.error("Failed to delete comment with ID " + id);
 			}
 		);
-	}
+	};
 
 	commentsThingy = function CommentsThingy(commentBodyId, root) {
 		containerId = commentBodyId;
