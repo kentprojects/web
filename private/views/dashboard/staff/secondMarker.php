@@ -12,8 +12,10 @@
 				<h3 class="panel-title"><a href="/list.php?type=projects">My Projects</a></h3>
 			</div>
 			<div class="panel-body">
-				<div class="frame" id="projectScroller">
+				<div class="loaderFixHeight" id="projectLoader">
 					<div class="loader">Loading...</div>
+				</div>
+				<div class="frame displayNone" id="projectScroller">
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -35,6 +37,8 @@
 		API.GET(
 			"/projects", {"year": year},
 			function (data) {
+				document.querySelector("#projectScroller").className = document.querySelector("#projectScroller").className.replace("displayNone", "");
+				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");

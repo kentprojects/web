@@ -1,6 +1,6 @@
-<h3 id="intentTitle">Ask to join <var class="groupName""></var>?</h3>
+<h3 class="displayNone" id="intentTitle">Ask to join <var class="groupName""></var>?</h3>
 
-<p id="intentDescription">Do you want to ask <a href="#" class="userName"></a> if you can join
+<p class="displayNone" id="intentDescription">Do you want to ask <a href="#" class="userName"></a> if you can join
 	<a href="#" class="groupName"></a>?</p>
 
 <div class="btn-group intentResponseButtons">
@@ -33,6 +33,10 @@
 					document.querySelector("#intentTitle").innerText = "You can't join a group that's already got a project"
 					document.querySelector("#intentDescription").innerHTML = 'How did you get here? </br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
 				}
+				else if (hasIntent("join_a_group")) {
+					document.querySelector("#intentTitle").innerText = 'You can\'t do that right now';
+					document.querySelector("#intentDescription").innerHTML = 'You already have a pending request to join a group. </br><strong><a href="#" onclick="cancelRequest();"> Go back? </a></strong>';
+				}
 				else {
 					qf(".groupName", function (element) {
 						element.innerText = data.body.name;
@@ -44,6 +48,8 @@
 					});
 					document.querySelector(".intentResponseButtons").style.display = "block";
 				}
+				document.querySelector("#intentTitle").style.display = "block";
+				document.querySelector("#intentDescription").style.display = "block";
 			},
 			function Error(data) {
 				console.error("That group doesn't exist!");
