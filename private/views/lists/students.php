@@ -11,23 +11,26 @@
 		var tileView = true;
 		var listData = "";
 
-		API.GET(
-			"/students/", {},
-			function sucess(data) {
-				listData = data;
-				if (getWidth() < 550) {
-					// View as list
-					viewList(listData);
+		var loadQueue = loadQueue || [];
+		loadQueue.push(function(){
+			API.GET(
+				"/students/", {},
+				function sucess(data) {
+					listData = data;
+					if (getWidth() < 550) {
+						// View as list
+						viewList(listData);
+					}
+					else {
+						// View as tiles
+						viewTiles(listData);
+					}
+				},
+				function error(data) {
+					console.error(data);
 				}
-				else {
-					// View as tiles
-					viewTiles(listData);
-				}
-			},
-			function error(data) {
-				console.error(data);
-			}
-		);
+			);
+		});
 
 		function changeListView() {
 			if (tileView) {
