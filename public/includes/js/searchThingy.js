@@ -4,7 +4,6 @@
  * Matt Weeks
  */
 
-
 function stuff() {
 	var $frame = $('#projectScroller');
 	removeEDR(document.getElementById('navbarInput-01').value, "tileLiproject");
