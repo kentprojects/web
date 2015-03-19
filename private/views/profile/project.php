@@ -70,6 +70,19 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="Likes col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">People that like this:</h3>
+				</div>
+				<div class="panel-body">
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="commentsPublic col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
@@ -99,6 +112,7 @@
 		API.GET(
 			"/project/" + profileId, {},
 			function Success(data) {
+				var project = data.body;
 				document.getElementById("projectName").innerText = data.body.name;
 				document.getElementById("supervisorName").innerHTML = '<a href="/profile.php?type=staff&id=' + data.body.supervisor.id + '">' + data.body.supervisor.name + '</a>';
 				// Set the project description
