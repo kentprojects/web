@@ -8,14 +8,13 @@ require_once __DIR__ . "/../private/bootstrap.php";
 $forcedRole = null;
 $roles = new stdClass;
 $user = $meRequest->user;
-$years = KentProjects::getPotentialYears();
 $year = null;
 
 if (!empty($user->years))
 {
 	if (!empty($_GET["year"]))
 	{
-		foreach ($years as $yearId => $yearRoles)
+		foreach ($meRequest->user->years as $yearId => $yearRoles)
 		{
 			if ($yearId == $_GET["year"])
 			{
@@ -34,7 +33,7 @@ if (!empty($user->years))
 		$year = KentProjects::getForcedYear(KentProjects::getAcademicYearFromDate("today"));
 	}
 
-	foreach ($years as $yearId => $yearRoles)
+	foreach ($meRequest->user->years as $yearId => $yearRoles)
 	{
 		if ($yearId == $year)
 		{
@@ -51,8 +50,6 @@ if (!empty($user->years))
 
 	if ($user->role === "staff")
 	{
-		$potentialRoles = KentProjects::getPotentialRoles($roles);
-
 		if (!empty($_GET["role"]))
 		{
 			if (!$roles->{$_GET["role"]})
@@ -166,8 +163,22 @@ require PUBLIC_DIR . "/includes/php/header.php";
 
 	</div>
 
-<?php if (!empty($potentialRoles))
-{ ?>
+<?php if (!empty($roles))
+{
+	$potentialRoles = array();
+	if ($roles->convener)
+	{
+		$potentialRoles["convener"] = "Convener";
+	}
+	if ($roles->supervisor)
+	{
+		$potentialRoles["supervisor"] = "Supervisor";
+	}
+	if ($roles->secondmarker)
+	{
+		$potentialRoles["secondmarker"] = "Second Marker";
+	}
+	?>
 	<script type="text/javascript">
 		var loadQueue = loadQueue || [];
 		loadQueue.push(function () {
