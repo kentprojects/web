@@ -6,11 +6,11 @@ function scrollerTile(item, type, addStyle) {
 	// If colour required add to class list.
 	// If tile locked add locked to class list.
 	if (addStyle) {
-		if ((type === "student")) {
+		if ((type == "student")) {
 			// If group.
-			if (item.group !== null) {
+			if (item.group != null) {
 				// If project.
-				if (item.group.project !== null) { 
+				if (item.group.project != null) {
 					//classList += " greenTile";
 					classList += " greenStatus";
 					//statusHTML += "<div class='circleStatus greenStatus'></div>";
@@ -27,13 +27,13 @@ function scrollerTile(item, type, addStyle) {
 				//statusHTML += "<div class='circleStatus redStatus'></div>";
 			}
 		}
-		else if ((type === "project") && (item.group !== null)) {
+		else if ((type == "project") && (item.group != null)) {
 			//classList += " lockTile";
-			lockedHTML = "<span class='banner'>Taken</span>";	
+			lockedHTML = "<span class='banner'>Taken</span>";
 		}
-		else if (type === "group") {
+		else if (type == "group") {
 			// If project.
-			if (item.project !== null) { 
+			if (item.project != null) {
 				//classList += " greenTile";
 				classList += " greenStatus";
 				//statusHTML += "<div class='circleStatus greenStatus'></div>";
@@ -46,7 +46,7 @@ function scrollerTile(item, type, addStyle) {
 		}
 
 		// TODO: REMOVE BEFORE SUBMISSION
-		if ((item.name === "Declan Greenhalgh") && (classList === "")) {
+		if ((item.name == "Declan Greenhalgh") && (classList=="")) {
 			classList += " decTile";
 			//classList += " redStatus";
 		}
@@ -55,7 +55,7 @@ function scrollerTile(item, type, addStyle) {
 	}
 	// If image then add image tag
 	if (item.role)  { tileImage = '<img src="/uploads/' + md5(item.email) + '"/>'; }
-	else { tileImage = '';}
+	else { tileImage = ''};
 	// Set class list
 	classList = " class='tileLi tileLi" + type + classList + "'";
 
@@ -150,4 +150,4 @@ function scroller(element) {
 	$(window).resize(function(e) {
 		$frame.sly('reload');
 	});
-}
+};
