@@ -3,10 +3,8 @@
 		<div class="jumbotron convenorWelcome">
 			<div class="container">
 				<h3>Welcome to KentProjects!</a></h3>
-
 				<p>This is your <i>convener</i> dashboard, where you can quickly search through your projects, groups,
 					and students.</p>
-
 			</div>
 		</div>
 	</div>
@@ -50,7 +48,6 @@
 						</form>
 					</div>
 				</div>
-
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="projectLoader">
@@ -69,6 +66,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="row">
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -189,7 +187,6 @@
 				total_groups = data.body.total_groups;
 				students_in_groups = data.body.total_students_in_groups;
 				groups_with_projects = data.body.total_groups_with_projects;
-
 				setGauges();
 				document.querySelector("#students-in-group-gauge .loader").style.display = "none";
 				document.querySelector("#groups-with-projects-gauge .loader").style.display = "none";
@@ -207,7 +204,6 @@
 			function (data) {
 				document.querySelector("#projectScroller").className = document.querySelector("#projectScroller").className.replace("displayNone", "");
 				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
-
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
@@ -225,8 +221,6 @@
 			function (data) {
 				document.querySelector("#groupScroller").className = document.querySelector("#groupScroller").className.replace("displayNone", "");
 				document.querySelector("#groupLoader").className = document.querySelector("#groupLoader").className + " displayNone";
-
-
 				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
 				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
 				scroller("#groupScroller");
@@ -244,8 +238,6 @@
 			function (data) {
 				document.querySelector("#studentScroller").className = document.querySelector("#studentScroller").className.replace("displayNone", "");
 				document.querySelector("#studentLoader").className = document.querySelector("#studentLoader").className + " displayNone";
-
-
 				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
 				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
 				scroller("#studentScroller");
@@ -263,8 +255,6 @@
 			function (data) {
 				document.querySelector("#supervisorScroller").className = document.querySelector("#supervisorScroller").className.replace("displayNone", "");
 				document.querySelector("#supervisorLoader").className = document.querySelector("#supervisorLoader").className + " displayNone";
-
-
 				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
 				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
 				scroller("#supervisorScroller");
