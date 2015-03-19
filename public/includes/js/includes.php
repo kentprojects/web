@@ -18,6 +18,7 @@ $variables = array(
 	"intents" => !empty($meRequest->intents) ? $meRequest->intents : array(),
 	"settings" => !empty($meRequest->settings) ? $meRequest->settings : new stdClass
 );
+$year = KentProjects::getForcedYear(KentProjects::getAcademicYearFromDate("today"));
 
 header("HTTP/1.1 200 OK");
 header("Content-Type: text/javascript");
@@ -28,7 +29,8 @@ echo <<<EOT
  * @license: Copyright KentProjects
  * @link: http://kentprojects.com
  */
-var me = {};
+var me = {},
+	year = $year;
 EOT;
 
 foreach ($variables as $key => $value)

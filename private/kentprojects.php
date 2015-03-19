@@ -52,9 +52,9 @@ final class KentProjects
 		return $potential;
 	}
 
-	public static function getForcedYear()
+	public static function getForcedYear($default = null)
 	{
-		return Session::get("forcedYear");
+		return Session::get("forcedYear", $default);
 	}
 
 	// TODO: Add validation for this

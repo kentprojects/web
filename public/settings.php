@@ -20,7 +20,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 ?>
 	<div class="container">
 		<div class="row">
-			<h1> Settings </h1>
+			<h1>Settings</h1>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-4">
@@ -30,7 +30,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 				<i>The academic year you would like to browse</i>
 			</div>
 			<div class="col-xs-12 col-sm-4">
-				<form action="dashboard.php" method="get">
+				<form action="/dashboard.php" method="get">
 					<input type="text" name="year" class="form-control text-center" placeholder="Year">
 				</form>
 			</div>
@@ -48,7 +48,6 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			</div>
 		</div>
 	</div>
-	<!--suppress SpellCheckingInspection -->
 	<script type="text/javascript">
 		Dropzone.options.userAvatarUpload = {
 			accept: function (file, done) {

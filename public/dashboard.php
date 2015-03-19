@@ -1,8 +1,12 @@
 <?php
-// Get authentication
+/**
+ * @var stdClass $meRequest
+ */
 $prerequisites = array("authentication", "me");
 require_once __DIR__ . "/../private/bootstrap.php";
 
+$forcedRole = null;
+$roles = new stdClass;
 $user = $meRequest->user;
 $years = KentProjects::getPotentialYears();
 $year = null;
@@ -11,34 +15,30 @@ if (!empty($user->years))
 {
 	if (!empty($_GET["year"]))
 	{
-		$forcedYear = null;
-		foreach ($years as $year)
+		foreach ($years as $yearId => $yearRoles)
 		{
-			if ($year->year == $_GET["year"])
+			if ($yearId == $_GET["year"])
 			{
-				KentProjects::setForcedYear($_GET["year"]);
-				$forcedYear = $_GET["year"];
+				KentProjects::setForcedYear($yearId);
+				$year = $yearId;
 				break;
 			}
 		}
-		if (empty($forcedYear))
+		if (empty($year))
 		{
 			redirect("/dashboard.php");
 		}
 	}
 	else
 	{
-		$forcedYear = KentProjects::getForcedYear();
+		$year = KentProjects::getForcedYear(KentProjects::getAcademicYearFromDate("today"));
 	}
 
-	$year = !empty($forcedYear) ? $forcedYear : KentProjects::getAcademicYearFromDate("today");
-	$roles = new stdClass;
-
-	foreach ($years as $y)
+	foreach ($years as $yearId => $yearRoles)
 	{
-		if ($y->year == $year)
+		if ($yearId == $year)
 		{
-			foreach ($y as $key => $value)
+			foreach ($yearRoles as $key => $value)
 			{
 				if (strpos($key, "role_") === 0)
 				{
@@ -55,7 +55,6 @@ if (!empty($user->years))
 
 		if (!empty($_GET["role"]))
 		{
-			$forcedRole = null;
 			if (!$roles->{$_GET["role"]})
 			{
 				die("NO. YOU ARE NOT ALLOWED TO BE THAT PERSON.");
@@ -91,7 +90,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 				<h1 class="text-center Heading">Dashboard</h1>
 			</div>
 			<div class="col-lg-5 col-md-4 col-sm-3 col-xs-0" id="headerPadLeft"></div>
-			<div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"; id="roleSelectorDiv">
+			<div class="col-lg-0 col-md-0 col-sm-0 col-xs-0" ; id="roleSelectorDiv">
 				<div class="dropdown dashboardSelector Heading">
 					<button class="btn btn-default dropdown-toggle dashboardSelector displayNone"
 						type="button" id="roleSelector" data-toggle="dropdown">
@@ -167,35 +166,35 @@ require PUBLIC_DIR . "/includes/php/header.php";
 
 	</div>
 
+<?php if (!empty($potentialRoles))
+{ ?>
 	<script type="text/javascript">
 		var loadQueue = loadQueue || [];
 		loadQueue.push(function () {
 			<!-- App code goes here -->
-			var year = "<?php echo $year; ?>";
 			// Populate the roles dropdown
-			<?php if (!empty($potentialRoles)) { ?>
-			(function () {
-				var roles = <?php echo json_encode($potentialRoles);?>;
-				var HTML = [];
-				for (var p in roles) {
-					if (roles.hasOwnProperty(p)) {
-						HTML.push(
-							'<li role="presentation">',
-							'<a role="menuitem" href="?role=', p, '">',
-							roles[p],
-							'</a>',
-							'</li>'
-						);
-					}
+			var roles = <?php echo json_encode($potentialRoles);?>;
+			var HTML = [];
+			for (var p in roles) {
+				if (roles.hasOwnProperty(p)) {
+					HTML.push(
+						'<li role="presentation">',
+						'<a role="menuitem" href="?role=', p, '">',
+						roles[p],
+						'</a>',
+						'</li>'
+					);
 				}
-				document.getElementById("roleSelectorDropdown").innerHTML += HTML.join("");
+			}
+			document.getElementById("roleSelectorDropdown").innerHTML += HTML.join("");
 
-				document.getElementById("headerPadLeft").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0";
-				document.getElementById("roleSelectorDiv").className = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
-				document.getElementById("headerPadRight").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0"
-				document.getElementById("roleSelector").style.display = "block";
-			})();
-			<?php }?>
+			document.getElementById("headerPadLeft").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0";
+			document.getElementById("roleSelectorDiv").className = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
+			document.getElementById("headerPadRight").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0"
+			document.getElementById("roleSelector").style.display = "block";
 		});
 	</script>
-<?php require PUBLIC_DIR . '/includes/php/footer.php';
+<?php
+}
+
+require PUBLIC_DIR . '/includes/php/footer.php';
