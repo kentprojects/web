@@ -79,35 +79,38 @@
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<h3 class="panel-title">People that like this<span id="likesCount"></span></h3>
 						</div>
-						<div class="col-xs-4 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2">
+						<div class="col-xs-3 col-sm-2 col-md-1"></div>
+						<div class="col-xs-6 col-sm-4 col-md-5">
 							<div class="text-center" id="membershipOptions">
 								<button class="btn btn-info panelHeadingButton displayNone" id="likeThisButton"
 									onclick="likeThis()">
-									Like This
+									I like this
 								</button>
 								<button class="btn btn-warning panelHeadingButton displayNone" id="unLikeThisButton"
 									onclick="unLikeThis()">
-									Unlike This
+									I don't like this
 								</button>
 							</div>
 						</div>
+						<div class="col-xs-3 col-sm-0"></div>
 					</div>
 				</div>
 				<div class="panel-body">
 					<div class="has-no-likers displayNone">
 						<p class="text-center text-info">Nobody has liked this project. Why not be the first?</p>
 					</div>
+					<div class="loaderFixHeight" id="likeLoader">
+						<div class="loader">Loading...</div>
+					</div>
 					<div class="has-likers displayNone">
 						<div class="frame" id="likeScroller">
-							<div class="loader">Loading...</div>
-							<ul class="clearfix">
-							</ul>
+							<ul class="clearfix"></ul>
 						</div>
-						<ul class="pages"></ul>
-						<div class="controls center">
-							<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
-							<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
-						</div>
+					</div>
+					<ul class="pages"></ul>
+					<div class="controls center">
+						<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+						<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
 					</div>
 				</div>
 			</div>

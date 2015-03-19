@@ -22,19 +22,18 @@ var unLikeThis = function emptyUnlikeThisButton() {
 		API.GET(
 			"/like", {entity: likeRoot},
 			function onLikesRecieved(data) {
-				console.log(data.body);
+				//console.log(data.body);
 
 				if (!data.body.count || (data.body.count == 0)) {
 					document.querySelector('#likesBox .has-no-likers').style.display = 'block';
-					document.querySelector('#likesBox .has-likers').style.display = 'none';
+					document.querySelector('#likeLoader').style.display = 'none';
 					updateLikesCount(0);
 				}
 				else {
 					document.querySelector('#likeScroller ul').innerHTML = scrollerHTML(data.body.who, 'student', true);
 					scroller("#likeScroller");
-					document.querySelector('#likeScroller .loader').style.display = 'none';
-					document.querySelector('#likesBox .has-no-likers').style.display = 'none';
 					document.querySelector('#likesBox .has-likers').style.display = 'block';
+					document.querySelector('#likeLoader').style.display = 'none';
 					updateLikesCount(data.body.count);
 				}
 
@@ -74,7 +73,7 @@ var unLikeThis = function emptyUnlikeThisButton() {
 		likesBoxId = boxId;
 		likeRoot = root;
 
-		console.log("likesThingy", boxId, root);
+		//console.log("likesThingy", boxId, root);
 		getLikes();
 	};
 
@@ -82,7 +81,7 @@ var unLikeThis = function emptyUnlikeThisButton() {
 		API.POST(
 			"/like", {entity: likeRoot},
 			function onLiked(data) {
-				console.log(data.body);
+				//console.log(data.body);
 				likedThis();
 				getLikes();
 			},
@@ -96,7 +95,7 @@ var unLikeThis = function emptyUnlikeThisButton() {
 		API.DELETE(
 			"/like", {entity: likeRoot},
 			function onUnLiked(data) {
-				console.log(data.body);
+				//console.log(data.body);
 				unlikedThis();
 				getLikes();
 			},
