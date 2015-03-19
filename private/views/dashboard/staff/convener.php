@@ -53,16 +53,18 @@
 
 			</div>
 			<div class="panel-body">
-					<div class="frame" id="projectScroller">
-						<div class="loader">Loading...</div>
-						<ul class="clearfix">
-						</ul>
-					</div>
-					<ul class="pages"></ul>
-					<div class="controls center">
-						<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
-						<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
-					</div>
+				<div class="loaderFixHeight" id="projectLoader">
+					<div class="loader">Loading...</div>
+				</div>
+				<div class="frame displayNone" id="projectScroller">
+					<ul class="clearfix">
+					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -74,8 +76,10 @@
 				<h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3>
 			</div>
 			<div class="panel-body">
-				<div class="frame" id="groupScroller">
+				<div class="loaderFixHeight" id="groupLoader">
 					<div class="loader">Loading...</div>
+				</div>
+				<div class="frame displayNone" id="groupScroller">
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -96,8 +100,10 @@
 				<h3 class="panel-title"><a href="/list.php?type=students">Students</a></h3>
 			</div>
 			<div class="panel-body">
-				<div class="frame" id="studentScroller">
+				<div class="loaderFixHeight" id="studentLoader">
 					<div class="loader">Loading...</div>
+				</div>
+				<div class="frame displayNone" id="studentScroller">
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -118,8 +124,10 @@
 				<h3 class="panel-title"><a href="/list.php?type=staff">Supervisors</a></h3>
 			</div>
 			<div class="panel-body">
-				<div class="frame" id="supervisorScroller">
+				<div class="loaderFixHeight" id="supervisorLoader">
 					<div class="loader">Loading...</div>
+				</div>
+				<div class="frame displayNone" id="supervisorScroller">
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -197,6 +205,9 @@
 		API.GET(
 			"/projects", {"year": year},
 			function (data) {
+				document.querySelector("#projectScroller").className = document.querySelector("#projectScroller").className.replace("displayNone", "");
+				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
+
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
@@ -212,6 +223,10 @@
 		API.GET(
 			"/groups", {"year": year},
 			function (data) {
+				document.querySelector("#groupScroller").className = document.querySelector("#groupScroller").className.replace("displayNone", "");
+				document.querySelector("#groupLoader").className = document.querySelector("#groupLoader").className + " displayNone";
+
+
 				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
 				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
 				scroller("#groupScroller");
@@ -227,6 +242,10 @@
 		API.GET(
 			"/students", {"year": year},
 			function (data) {
+				document.querySelector("#studentScroller").className = document.querySelector("#studentScroller").className.replace("displayNone", "");
+				document.querySelector("#studentLoader").className = document.querySelector("#studentLoader").className + " displayNone";
+
+
 				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
 				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
 				scroller("#studentScroller");
@@ -242,6 +261,10 @@
 		API.GET(
 			"/staff", {"supervisor": true, "year": year},
 			function (data) {
+				document.querySelector("#supervisorScroller").className = document.querySelector("#supervisorScroller").className.replace("displayNone", "");
+				document.querySelector("#supervisorLoader").className = document.querySelector("#supervisorLoader").className + " displayNone";
+
+
 				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
 				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
 				scroller("#supervisorScroller");

@@ -12,7 +12,7 @@
 		var listData = "";
 
 		API.GET(
-			"/projects/", {},
+			"/projects", {"year": year},
 			function sucess(data) {
 				listData = data;
 				if (getWidth() < 550) {

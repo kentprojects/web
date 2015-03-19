@@ -517,6 +517,10 @@ code {
 	margin-top: 30px;
 }
 
+.loaderFixHeight {
+	height: 205px;
+}
+
 /* Mobile */
 @media (max-device-width: 568px) and (orientation: portrait) {
 	.mobileHide {
