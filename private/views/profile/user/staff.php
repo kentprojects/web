@@ -16,7 +16,7 @@
 		<div class="userDetails col-xs-12 col-sm-3 col-md-2 col-lg-2">
 			<div class="panel panel-default" id="profilePicture">
 				<div class="panel-body">
-					<img/>
+					<img />
 				</div>
 			</div>
 		</div>
@@ -54,6 +54,37 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12 displayNone">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-8">
+							<div><h3 class="panel-title"><a href="/list.php?type=projects">My Projects</a></h3></div>
+						</div>
+						<div class="col-xs-4">
+							<div class="text-right">
+								<a class="btn btn-info panelHeadingButton displayNone" id="addProjectButton" href="/new.php?type=project"><span class="fui-plus"></span> Add</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="frame" id="projectScroller">
+						<ul class="clearfix">
+						</ul>
+					</div>
+					<ul class="pages"></ul>
+					<div class="controls center">
+						<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+						<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="commentsPublic col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
@@ -71,6 +102,11 @@
 <script type="text/javascript">
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function () {
+		var defaultOwnerBio = [
+			'You haven\'t set a bio yet',
+			'',
+			'*Click the edit button above to get started*'
+		].join('\n');
 		var defaultUserBio = [
 			'This user hasn\'t set a bio yet',
 			'',
@@ -85,14 +121,14 @@
 		API.GET(
 			"/staff/" + profileId, {},
 			function Success(data) {
-
-				// Set the user bio
-				var userBio = data.body.bio || defaultUserBio;
+				var user = data.body;
 
 				// Set the user interests
-				var userInterests = data.body.interests;
+				var userInterests = user.interests;
 
-				if (data.body.permissions.update == 1) {
+				if (user.permissions.update == 1) {
+					// Set the user bio
+					var userBio = user.bio || defaultOwnerBio;
 
 					markdownThingy(
 						"userBio", userBio, "editUserBioButton",
@@ -122,7 +158,11 @@
 					});
 
 				}
+
 				else {
+					// Set the user bio
+					var userBio = user.bio || defaultUserBio;
+
 					markdownThingy("userBio", userBio);
 					if (userInterests.length > 0) {
 						tokensThingy("#interestsInput", userInterests);
@@ -132,10 +172,32 @@
 					}
 				}
 
-				document.getElementById("userName").innerText = data.body.name;
+				document.getElementById("userName").innerText = user.name;
 
 				// Set the user's profile picture
-				document.querySelector("#profilePicture img").setAttribute("src", '/uploads/' + md5(data.body.email));
+				document.querySelector("#profilePicture img").setAttribute("src", '/uploads/' + md5(user.email));
+
+				//TODO: replace with the forced/current year
+				if(user.years[2014].role_supervisor == 1) {
+					// List their projects
+					API.GET(
+						"/projects", {"year": <?php echo $year;?>, "supervisor": user.id},
+						function (data) {
+							var projects = data.body;
+							document.querySelector(".Projects ul").innerHTML = scrollerHTML(projects, "project", true);
+							document.querySelector(".Projects a").innerText += ' (' + projects.length + ')';
+							scroller("#projectScroller");
+							if(user.permissions.update) {
+								document.getElementById("addProjectButton").style.display = "block";
+							};
+							document.querySelector(".Projects").style.display = "block";
+						},
+						function (data) {
+							console.error(data);
+						}
+					);
+
+				}
 
 				commentsThingy("commentsBody", "user/" + data.body.id);
 			},
