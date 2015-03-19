@@ -1,9 +1,9 @@
-<h3 id="intentTitle">Ask to undertake <var class="projectName""></var></h3>
+<h3 class="displayNone" id="intentTitle">Ask to undertake <var class="projectName""></var></h3>
 
-<p id="intentDescription">Do you want to ask <a href="#" class="userName"></a> if your group can
+<p class="displayNone" id="intentDescription">Do you want to ask <a href="#" class="userName"></a> if your group can
 	undertake <a href="#" class="projectName"></a>?</p>
 
-<div class="btn-group">
+<div class="btn-group displayNone">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
 		Confirm
 	</button>
@@ -34,20 +34,21 @@
 					})
 					document.querySelector(".btn-group").style.display = "none";
 				}
-				if (!me.group.id) {
+				else if (!me.group.id) {
 					document.querySelector("#intentTitle").innerText = "You're not in a group yet!"
 					document.querySelector("#intentDescription").innerHTML = 'You shouldn\'t even be able to get to this page! </br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
-					document.querySelector(".btn-group").style.display = "none";
 				}
-				if (me.project.id) {
+				else if (me.project.id) {
 					document.querySelector("#intentTitle").innerText = "You're already undertaking a project!"
 					document.querySelector("#intentDescription").innerHTML = 'You need to leave your current group, or take back your project request! </br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
-					document.querySelector(".btn-group").style.display = "none";
 				}
-				if (me.group.creator && (me.group.creator.id != me.user.id)) {
+				else if (me.group.creator && (me.group.creator.id != me.user.id)) {
 					document.querySelector("#intentTitle").innerText = 'Only the creator of a group can pick the project';
 					document.querySelector("#intentDescription").innerHTML = 'You need to ask them to do it. </br><strong><a href="#" onclick="cancelRequest();"> Go back? </a></strong>';
-					document.querySelector(".btn-group").style.display = "none";
+				}
+				else if (hasIntent("undertake_a_project")) {
+					document.querySelector("#intentTitle").innerText = 'You can\'t do that right now';
+					document.querySelector("#intentDescription").innerHTML = 'You already have a pending request to undertake a project. </br><strong><a href="#" onclick="cancelRequest();"> Go back? </a></strong>';
 				}
 				else {
 					qf(".projectName", function (element) {
@@ -58,7 +59,10 @@
 						element.innerText = data.body.supervisor.name;
 						element.href = "/profile.php?type=staff&id=" + data.body.supervisor.id;
 					});
+					document.querySelector(".btn-group").style.display = "block";
 				}
+				document.querySelector("#intentTitle").style.display = "block";
+				document.querySelector("#intentDescription").style.display = "block";
 			},
 			function Error(data) {
 				if (data.status == 404) {
