@@ -178,34 +178,38 @@ require PUBLIC_DIR . "/includes/php/header.php";
 	{
 		$potentialRoles["secondmarker"] = "Second Marker";
 	}
-	?>
-	<script type="text/javascript">
-		var loadQueue = loadQueue || [];
-		loadQueue.push(function () {
-			<!-- App code goes here -->
-			// Populate the roles dropdown
-			var roles = <?php echo json_encode($potentialRoles);?>;
-			var HTML = [];
-			for (var p in roles) {
-				if (roles.hasOwnProperty(p)) {
-					HTML.push(
-						'<li role="presentation">',
-						'<a role="menuitem" href="?role=', p, '">',
-						roles[p],
-						'</a>',
-						'</li>'
-					);
-				}
-			}
-			document.getElementById("roleSelectorDropdown").innerHTML += HTML.join("");
 
-			document.getElementById("headerPadLeft").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0";
-			document.getElementById("roleSelectorDiv").className = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
-			document.getElementById("headerPadRight").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0"
-			document.getElementById("roleSelector").style.display = "block";
-		});
-	</script>
-<?php
+	if (!empty($potentialRoles) && (count($potentialRoles) > 1))
+	{
+		?>
+		<script type="text/javascript">
+			var loadQueue = loadQueue || [];
+			loadQueue.push(function () {
+				<!-- App code goes here -->
+				// Populate the roles dropdown
+				var roles = <?php echo json_encode($potentialRoles);?>;
+				var HTML = [];
+				for (var p in roles) {
+					if (roles.hasOwnProperty(p)) {
+						HTML.push(
+							'<li role="presentation">',
+							'<a role="menuitem" href="?role=', p, '">',
+							roles[p],
+							'</a>',
+							'</li>'
+						);
+					}
+				}
+				document.getElementById("roleSelectorDropdown").innerHTML += HTML.join("");
+
+				document.getElementById("headerPadLeft").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0";
+				document.getElementById("roleSelectorDiv").className = "col-lg-4 col-md-4 col-sm-4 col-xs-12";
+				document.getElementById("headerPadRight").className = "col-lg-4 col-md-4 col-sm-4 col-xs-0"
+				document.getElementById("roleSelector").style.display = "block";
+			});
+		</script>
+	<?php
+	}
 }
 
 require PUBLIC_DIR . '/includes/php/footer.php';
