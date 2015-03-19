@@ -24,8 +24,10 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<div class="frame" id="projectScroller">
+				<div class="loaderFixHeight" id="projectLoader">
 					<div class="loader">Loading...</div>
+				</div>
+				<div class="frame displayNone" id="projectScroller">
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -50,8 +52,10 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<div class="frame" id="groupScroller">
+				<div class="loaderFixHeight" id="groupLoader">
 					<div class="loader">Loading...</div>
+				</div>
+				<div class="frame displayNone" id="groupScroller">
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -76,8 +80,10 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<div class="frame" id="studentScroller">
+				<div class="loaderFixHeight" id="studentLoader">
 					<div class="loader">Loading...</div>
+				</div>
+				<div class="frame displayNone" id="studentScroller">
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -98,6 +104,9 @@
 		API.GET(
 			"/projects", {"year": year, "supervisor": me.user.id},
 			function (data) {
+				document.querySelector("#projectScroller").className = document.querySelector("#projectScroller").className.replace("displayNone", "");
+				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
+
 				var projects = data.body;
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + (projects && projects.length ? projects.length : 0) + ')';
@@ -116,6 +125,9 @@
 		API.GET(
 			"/groups", {"year": year, "supervisor": me.user.id},
 			function (data) {
+				document.querySelector("#groupScroller").className = document.querySelector("#groupScroller").className.replace("displayNone", "");
+				document.querySelector("#groupLoader").className = document.querySelector("#groupLoader").className + " displayNone";
+
 				var groups = data.body;
 				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
 				document.querySelector(".Groups a").innerText += ' (' + (groups && groups.length ? groups.length : 0) + ')';
@@ -132,6 +144,9 @@
 		API.GET(
 			"/students", {"year": year, "supervisor": me.user.id},
 			function (data) {
+				document.querySelector("#studentScroller").className = document.querySelector("#studentScroller").className.replace("displayNone", "");
+				document.querySelector("#studentLoader").className = document.querySelector("#studentLoader").className + " displayNone";
+
 				var students = data.body;
 				document.querySelector(".Students ul").innerHTML = scrollerHTML(students, "student", true);
 				document.querySelector(".Students a").innerText += ' (' + (students && students.length ? students.length : 0) + ')';
