@@ -70,6 +70,27 @@
 	</div>
 </div>
 
+<div class="row">
+	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Students</h3>
+			</div>
+			<div class="panel-body">
+				<div class="frame" id="studentScroller">
+					<ul class="clearfix">
+					</ul>
+				</div>
+				<ul class="pages"></ul>
+				<div class="controls center">
+					<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+					<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script>
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function () {
@@ -101,8 +122,21 @@
 
 		// List your group members
 		document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student", false);
-		document.querySelector(".MyGroup a").innerText = 'My Group';
+		document.querySelector(".MyGroup a").innerText = 'My Group - ' + me.group.name + ' (' + me.group.students.length + ')';
 		scroller("#myGroupScroller");
+
+		// List the students
+		API.GET(
+			"/students", {"year": <?php echo $year;?>},
+			function (data) {
+				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
+				document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
+				scroller("#studentScroller");
+			},
+			function (data) {
+				console.error(data);
+			}
+		);
 
 	});
 </script>
