@@ -95,7 +95,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="has-no-likers displayNone">
-						<h3>Nobody has liked this project. Do something about that?</h3>
+						<p class="text-center text-info">Nobody has liked this project. Why not be the first?</p>
 					</div>
 					<div class="has-likers displayNone">
 						<div class="frame" id="likeScroller">
