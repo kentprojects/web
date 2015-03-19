@@ -146,6 +146,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 
 			"/includes/js/commentsThingy.js",
 			"/includes/js/editsThingy.js",
+			"/includes/js/likesThingy.js",
 			"/includes/js/markdownThingy.js",
 			"/includes/js/tokensThingy.js"
 		)

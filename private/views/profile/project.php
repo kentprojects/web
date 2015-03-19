@@ -72,12 +72,43 @@
 	</div>
 
 	<div class="row">
-		<div class="Likes col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="panel panel-default">
+		<div class="likes col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-default" id="likesBox">
 				<div class="panel-heading">
-					<h3 class="panel-title">People that like this:</h3>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							<h3 class="panel-title">People that like this<span id="likesCount"></span></h3>
+						</div>
+						<div class="col-xs-4 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2">
+							<div class="text-center" id="membershipOptions">
+								<button class="btn btn-info panelHeadingButton displayNone" id="likeThisButton"
+									onclick="likeThis()">
+									Like This
+								</button>
+								<button class="btn btn-warning panelHeadingButton displayNone" id="unLikeThisButton"
+									onclick="unLikeThis()">
+									Unlike This
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
+					<div class="has-no-likers displayNone">
+						<p class="text-center text-info">Nobody has liked this project. Why not be the first?</p>
+					</div>
+					<div class="has-likers displayNone">
+						<div class="frame" id="likeScroller">
+							<div class="loader">Loading...</div>
+							<ul class="clearfix">
+							</ul>
+						</div>
+						<ul class="pages"></ul>
+						<div class="controls center">
+							<button class="btn prevPage"><span class="fui-arrow-left"></span></button>
+							<button class="btn nextPage"><span class="fui-arrow-right"></span></button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -147,13 +178,15 @@
 				if (me.user.role == "student" && me.group.id && !me.project.id && !data.body.group) {
 					if (me.group.creator.id == me.user.id) {
 						if (hasIntent("undertake_a_project")) {
-							filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function(intent) {
+							filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function (intent) {
 								document.getElementById("doProjectButton").className = "btn btn-warning panelHeadingButton";
 								document.getElementById("doProjectButton").innerText = "Cancel Request";
 								document.getElementById("doProjectButton").setAttribute("onclick", "cancelRequest()");
 							});
 						}
-						document.getElementById("doProjectButton").style.display = "block";
+						else {
+							document.getElementById("doProjectButton").style.display = "block";
+						}
 					}
 				}
 
@@ -167,6 +200,7 @@
 				}
 
 				commentsThingy("commentsBody", "project/" + data.body.id);
+				likesThingy("likesBox", "project/" + data.body.id);
 			},
 			function Error(data) {
 				if (data.status == 404) {
@@ -179,7 +213,7 @@
 
 	function cancelRequest() {
 		if (confirm("Are you sure you want to cancel this request?")) {
-			filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function(intent) {
+			filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function (intent) {
 				API.DELETE(
 					"/intent/" + intent.id, {},
 					function Success(data) {
