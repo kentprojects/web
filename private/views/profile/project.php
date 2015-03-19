@@ -153,7 +153,9 @@
 								document.getElementById("doProjectButton").setAttribute("onclick", "cancelRequest()");
 							});
 						}
-						document.getElementById("doProjectButton").style.display = "block";
+						else {
+							document.getElementById("doProjectButton").style.display = "block";
+						}
 					}
 				}
 
