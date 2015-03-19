@@ -28,6 +28,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="groupScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -49,6 +50,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="studentScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -70,6 +72,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="projectScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -91,6 +94,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="supervisorScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -115,9 +119,11 @@
 				document.querySelector(".Groups h3").innerText += ' (' + data.body.length + ')';
 				scroller("#groupScroller");
 				document.getElementById("addGroupButton").style.display = "block";
+				document.querySelector(".Groups .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Groups .loader").style.display = "none";
 			}
 		);
 
@@ -128,9 +134,11 @@
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
+				document.querySelector(".Projects .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Projects .loader").style.display = "none";
 			}
 		);
 
@@ -141,9 +149,11 @@
 				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
 				document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
 				scroller("#studentScroller");
+				document.querySelector(".Students .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Students .loader").style.display = "none";
 			}
 		);
 
@@ -154,9 +164,11 @@
 				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
 				document.querySelector(".Supervisors h3").innerText += ' (' + data.body.length + ')';
 				scroller("#supervisorScroller");
+				document.querySelector(".Supervisors .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Supervisors .loader").style.display = "none";
 			}
 		);
 	});

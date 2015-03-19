@@ -25,6 +25,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="projectScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -50,6 +51,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="groupScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -75,6 +77,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="studentScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -95,13 +98,17 @@
 		API.GET(
 			"/projects", {"year": <?php echo $year;?>, "supervisor": me.user.id},
 			function (data) {
+				var projects = data.body;
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
-				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
+				document.querySelector(".Projects a").innerText += ' (' + (projects && projects.length ? projects.length : 0) + ')';
 				scroller("#projectScroller");
 				document.getElementById("addProjectButton").style.display = "block";
+				document.querySelector(".Projects .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Projects .loader").style.display = "none";
+
 			}
 		);
 
@@ -109,12 +116,15 @@
 		API.GET(
 			"/groups", {"year": <?php echo $year;?>, "supervisor": me.user.id},
 			function (data) {
+				var groups = data.body;
 				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
-				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
+				document.querySelector(".Groups a").innerText += ' (' + (groups && groups.length ? groups.length : 0) + ')';
 				scroller("#groupScroller");
+				document.querySelector(".Groups .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Groups .loader").style.display = "none";
 			}
 		);
 
@@ -126,9 +136,11 @@
 				document.querySelector(".Students ul").innerHTML = scrollerHTML(students, "student", true);
 				document.querySelector(".Students a").innerText += ' (' + (students && students.length ? students.length : 0) + ')';
 				scroller("#studentScroller");
+				document.querySelector(".Students .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Students .loader").style.display = "none";
 			}
 		);
 	});

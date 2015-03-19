@@ -13,12 +13,16 @@
 	<div class="Meters col-xs-12 col-sm-12 col-md-6 col-lg-7">
 		<div class="gauge col-xs-12 col-sm-6 col-md-6 col-lg-6">
 			<div class="tile">
-				<div id="students-in-group-gauge"></div>
+				<div id="students-in-group-gauge">
+					<div class="loader">Loading...</div>
+				</div>
 			</div>
 		</div>
 		<div class="gauge col-xs-12 col-sm-6 col-md-6 col-lg-6">
 			<div class="tile">
-				<div id="groups-with-projects-gauge"></div>
+				<div id="groups-with-projects-gauge">
+					<div class="loader">Loading...</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -50,6 +54,7 @@
 			</div>
 			<div class="panel-body">
 					<div class="frame" id="projectScroller">
+						<div class="loader">Loading...</div>
 						<ul class="clearfix">
 						</ul>
 					</div>
@@ -70,6 +75,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="groupScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -91,6 +97,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="studentScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -112,6 +119,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="supervisorScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -151,6 +159,7 @@
 				relativeGaugeSize: true,
 				startAnimationTime: 0
 			});
+
 			var groupsWithProjects = new JustGage({
 				id: "groups-with-projects-gauge",
 				value: groups_with_projects,
@@ -161,6 +170,7 @@
 				relativeGaugeSize: true,
 				startAnimationTime: 0
 			})
+
 		}
 
 		// Get the stats
@@ -173,9 +183,13 @@
 				groups_with_projects = data.body.total_groups_with_projects;
 
 				setGauges();
+				document.querySelector("#students-in-group-gauge .loader").style.display = "none";
+				document.querySelector("#groups-with-projects-gauge .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector("#students-in-group-gauge .loader").style.display = "none";
+				document.querySelector("#groups-with-projects-gauge .loader").style.display = "none";
 			}
 		);
 
@@ -186,9 +200,11 @@
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
+				document.querySelector(".Projects .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Projects .loader").style.display = "none";
 			}
 		);
 
@@ -199,9 +215,11 @@
 				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
 				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
 				scroller("#groupScroller");
+				document.querySelector(".Groups .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Groups .loader").style.display = "none";
 			}
 		);
 
@@ -212,9 +230,11 @@
 				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
 				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
 				scroller("#studentScroller");
+				document.querySelector(".Students .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Students .loader").style.display = "none";
 			}
 		);
 
@@ -225,9 +245,11 @@
 				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
 				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
 				scroller("#supervisorScroller");
+				document.querySelector(".Supervisors .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Supervisors .loader").style.display = "none";
 			}
 		);
 	});

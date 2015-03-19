@@ -13,6 +13,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="frame" id="projectScroller">
+					<div class="loader">Loading...</div>
 					<ul class="clearfix">
 					</ul>
 				</div>
@@ -37,9 +38,11 @@
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
+				document.querySelector(".Projects .loader").style.display = "none";
 			},
 			function (data) {
 				console.error(data);
+				document.querySelector(".Projects .loader").style.display = "none";
 			}
 		);
 	});
