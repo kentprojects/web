@@ -100,7 +100,7 @@
 	loadQueue.push(function () {
 		// List the projects
 		API.GET(
-			"/projects", {"year": <?php echo $year;?>},
+			"/projects", {"year": year},
 			function (data) {
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
@@ -115,7 +115,7 @@
 
 		// List the supervisors
 		API.GET(
-			"/staff", {"supervisor": true, "year": <?php echo $year;?>},
+			"/staff", {"supervisor": true, "year": year},
 			function (data) {
 				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
 				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
@@ -136,7 +136,7 @@
 
 		// List the students
 		API.GET(
-			"/students", {"year": <?php echo $year;?>},
+			"/students", {"year": year},
 			function (data) {
 				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
 				document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';

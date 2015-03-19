@@ -96,7 +96,7 @@
 	loadQueue.push(function () {
 		// List the projects
 		API.GET(
-			"/projects", {"year": <?php echo $year;?>, "supervisor": me.user.id},
+			"/projects", {"year": year, "supervisor": me.user.id},
 			function (data) {
 				var projects = data.body;
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
@@ -114,7 +114,7 @@
 
 		// List the groups
 		API.GET(
-			"/groups", {"year": <?php echo $year;?>, "supervisor": me.user.id},
+			"/groups", {"year": year, "supervisor": me.user.id},
 			function (data) {
 				var groups = data.body;
 				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
@@ -130,7 +130,7 @@
 
 		// List the students
 		API.GET(
-			"/students", {"year": <?php echo $year;?>, "supervisor": me.user.id},
+			"/students", {"year": year, "supervisor": me.user.id},
 			function (data) {
 				var students = data.body;
 				document.querySelector(".Students ul").innerHTML = scrollerHTML(students, "student", true);

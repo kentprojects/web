@@ -33,7 +33,7 @@
 	loadQueue.push(function() {
 		// List the projects
 		API.GET(
-			"/projects", {"year": <?php echo $year;?>},
+			"/projects", {"year": year},
 			function (data) {
 				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
