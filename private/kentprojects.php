@@ -26,35 +26,19 @@ final class KentProjects
 		return Session::get("forcedRole");
 	}
 
-	// TODO: Add validation for this
+	/**
+	 * TODO: Add validation for this
+	 *
+	 * @param string $role
+	 */
 	public static function setForcedRole($role)
 	{
 		Session::set("forcedRole", $role);
 	}
 
-	public static function getPotentialRoles(stdClass $roles)
+	public static function getForcedYear($default = null)
 	{
-		$potential = array();
-
-		if ($roles->convener)
-		{
-			$potential["convener"] = "Convener";
-		}
-		if ($roles->supervisor)
-		{
-			$potential["supervisor"] = "Supervisor";
-		}
-		if ($roles->secondmarker)
-		{
-			$potential["secondmarker"] = "Second Marker";
-		}
-
-		return $potential;
-	}
-
-	public static function getForcedYear()
-	{
-		return Session::get("forcedYear");
+		return Session::get("forcedYear", $default);
 	}
 
 	// TODO: Add validation for this
