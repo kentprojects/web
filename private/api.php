@@ -76,6 +76,12 @@ final class API
 			}
 
 			$header = explode(":", $header, 2);
+			if (count($header) != 2)
+			{
+				error_log("Unknown header from API request: ", implode(":", $header));
+				continue;
+			}
+
 			$headers[trim($header[0])] = trim($header[1]);
 		}
 
