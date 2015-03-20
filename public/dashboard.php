@@ -166,15 +166,15 @@ require PUBLIC_DIR . "/includes/php/header.php";
 <?php if (!empty($roles))
 {
 	$potentialRoles = array();
-	if ($roles->convener)
+	if (!empty($roles->convener))
 	{
 		$potentialRoles["convener"] = "Convener";
 	}
-	if ($roles->supervisor)
+	if (!empty($roles->supervisor))
 	{
 		$potentialRoles["supervisor"] = "Supervisor";
 	}
-	if ($roles->secondmarker)
+	if (!empty($roles->secondmarker))
 	{
 		$potentialRoles["secondmarker"] = "Second Marker";
 	}

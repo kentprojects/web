@@ -36,12 +36,12 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-sm-4">
+			<div class="col-xs-12 col-sm-6">
 				<h4>Current Avatar</h4>
 
 				<img id="imageAvatar" src="/uploads/<?php echo md5($meRequest->user->email); ?>" />
 			</div>
-			<div class="col-xs-12 col-sm-4">
+			<div class="col-xs-12 col-sm-6">
 				<h4>New Avatar</h4>
 
 				<div class="dropzone" id="userAvatarUpload"></div>
