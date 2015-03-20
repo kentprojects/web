@@ -21,7 +21,7 @@ final class Auth
 
 		if ($response->status === 200)
 		{
-			error_log($response->body);
+			// error_log(json_encode($response->body));
 
 			if (!is_object($response->body))
 			{
