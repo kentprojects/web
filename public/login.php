@@ -36,30 +36,43 @@ if (!empty($_GET["auth"]))
 	exit();
 }
 
+$loginAsCas = isset($_GET["cas"]) || isset($_GET["CAS"]);
+
+/**
+ * This will be set to true when we are going live.
+ */
+if (false && !$loginAsCas)
+{
+	Auth::redirect();
+	exit();
+}
+
+
+
 $people = array(
 	"f4dfeada0e91e1791a80da1bb26a7d96" => array(
 		"role" => "convenor",
-		"username" => "J.C.Hernandez-Castro"
+		"username" => "Julio"
 	),
 	"1e9a755d73865da9068f079d81402ce7" => array(
 		"role" => "staff",
-		"username" => "J.S.Crawford"
+		"username" => "John"
 	),
 	"6f2653c2a1c64220e3d2a713cc52b438" => array(
 		"role" => "staff",
-		"username" => "supervisor2"
+		"username" => "Stuart"
 	),
 	"1f18ed87771daf095e090916cb9423e4" => array(
 		"role" => "student",
-		"username" => "mh471"
+		"username" => "House"
 	),
 	"1460357d62390ab9b3b33fa1a0618a8f" => array(
 		"role" => "student",
-		"username" => "jsd24"
+		"username" => "Dryden"
 	),
 	"930144ea545ce754789b15074106bc36" => array(
 		"role" => "student",
-		"username" => "mjw59"
+		"username" => "Weeks"
 	),
 );
 ?>
@@ -71,16 +84,47 @@ $people = array(
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kent Projects Login</title>
         <link rel="shortcut icon" href="/includes/img/kp.ico">
-        <link href="/includes/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="/includes/css/flat-ui-pro.min.css" rel="stylesheet">
+        <link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
         <link href="/includes/css/style.css" rel="stylesheet">
-        <link href="/includes/css/login.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <h1 class="text-center">Log in to Kent Projects!</h1>
+	    	<?php if ($loginAsCas) { ?>
+	        <div class="row">
+                <h2 class="text-center">Kent Projects CAS office login:</h2>
             </div>
+			<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
+							<div class="login-form">
+                                <form action="<?php echo API::GetURL();?>/auth/cas" method="POST">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control login-field" value="" placeholder="Username" id="login-name" />
+                                        <label class="login-field-icon fui-user" for="login-name"></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass" />
+                                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                                    </div>
+                                    <button class="btn btn-primary btn-lg btn-block">Login</button>
+                                </form>
+							</div>
+					</div>
+			</div>
+				<?php } else { ?>
+			<div class="row">
+                <h2 class="text-center">Kent Projects Beta Login</h2>
+                <p class="text-center text-info">This is only temporary. If you see this after September 2015, tell Julio.</p>
+            </div>
+            <div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
+					<a href="<?php echo API::GetURL();?>/auth/sso" class="btn btn-block btn-lg btn-info centerItem restrictedWidth">
+						Login with SSO
+					</a>
+				</div>				
+			</div>
+			
+		
             <div class="row">
 				<?php foreach($people as $code => $person) { ?>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 bigMargin">
@@ -95,6 +139,7 @@ $people = array(
                     <a href="/" class="btn btn-block btn-md btn-danger centerItem restrictedWidth">Back to landing page</a>
                 </div>
             </div>
+        <?php } ?>
             <footer class="row">
                 <hr/>
                 <p class="bigTargin softenText text-center">&copy; 2014. James Dryden, Matt House, Matt Weeks</p>

@@ -6,4 +6,5 @@
  */
 require_once __DIR__."/../private/bootstrap.php";
 Session::destroy();
-redirect("/");
+redirect(API::GetURL() . "/auth/logout");
+exit();

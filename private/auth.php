@@ -6,6 +6,11 @@
  */
 final class Auth
 {
+	private static /** @noinspection SpellCheckingInspection */
+		$simpleSamlAPI = "https://api.kentprojects.com/simplesaml";
+	private static /** @noinspection SpellCheckingInspection */
+		$simpleSamlLogout = "/module.php/core/authenticate.php?as=default-sp&logout";
+
 	/**
 	 * @param string $code
 	 * @return void
@@ -13,11 +18,18 @@ final class Auth
 	public static function confirm($code)
 	{
 		$response = API::Request(API::POST, "/auth/confirm", array(), array("code" => $code));
+
 		if ($response->status === 200)
 		{
+			error_log($response->body);
+
+			if (!is_object($response->body))
+			{
+				$response->body = json_decode($response->body);
+			}
+
 			Session::set("logged-in", true);
-			Session::set("token", $response->body->token);
-			Session::set("user", $response->body->user);
+			Session::set(API::USERTOKEN_SESSIONKEY, $response->body->token);
 
 			if (Session::has("redirect-from"))
 			{
@@ -31,17 +43,8 @@ final class Auth
 		}
 		else
 		{
-			error_log($response);
+			error_log((string)$response);
 		}
-		return null;
-	}
-
-	/**
-	 * @return stdClass|null
-	 */
-	public static function getUser()
-	{
-		return Session::get("user");
 	}
 
 	/**
@@ -58,10 +61,6 @@ final class Auth
 	 */
 	public static function redirect($code = null)
 	{
-		if ($_SERVER["REQUEST_URI"] !== "/login.php")
-		{
-			Session::set("redirect-from", $_SERVER["REQUEST_URI"]);
-		}
 		redirect(API::GetURL() . (empty($code) ? "/auth/sso" : "/auth/internal?auth=" . $code));
 	}
 }

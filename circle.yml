@@ -1,0 +1,32 @@
+#
+# @author: James Dryden <james.dryden@kentprojects.com>
+# @license: Copyright KentProjects
+# @link: http://kentprojects.com
+#
+general:
+  branches:
+    only:
+      - master
+      - develop
+machine:
+# Machine specifics.
+  php:
+    version: 5.5.8
+  timezone:
+      Europe/London
+#
+test:
+  override:
+    - exit 0
+#
+deployment:
+# Deploy the develop branch.
+  development:
+    branch: develop
+    commands:
+      - ./kentprojects.sh circleci deployDevelop
+# Deploy the master branch.
+  production:
+    branch: master
+    commands:
+      - ./kentprojects.sh circleci deployMaster
