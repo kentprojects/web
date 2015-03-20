@@ -26,6 +26,7 @@ var unLikeThis = function emptyUnlikeThisButton() {
 
 				if (!data.body.count || (data.body.count == 0)) {
 					document.querySelector('#likesBox .has-no-likers').style.display = 'block';
+					document.querySelector('#likesBox .has-likers').style.display = 'none';
 					document.querySelector('#likeLoader').style.display = 'none';
 					updateLikesCount(0);
 				}
@@ -33,6 +34,7 @@ var unLikeThis = function emptyUnlikeThisButton() {
 					document.querySelector('#likeScroller ul').innerHTML = scrollerHTML(data.body.who, 'student', true);
 					scroller("#likeScroller");
 					document.querySelector('#likesBox .has-likers').style.display = 'block';
+					document.querySelector('#likesBox .has-no-likers').style.display = 'none';
 					document.querySelector('#likeLoader').style.display = 'none';
 					updateLikesCount(data.body.count);
 				}
