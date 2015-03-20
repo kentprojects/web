@@ -141,12 +141,22 @@
 		);
 
 		// List your group members
-		document.querySelector("#myGroupScroller").className = document.querySelector("#myGroupScroller").className.replace("displayNone", "");
-		document.querySelector("#myGroupLoader").className = document.querySelector("#myGroupLoader").className + " displayNone";
-		document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(me.group.students, "student", false);
-		document.querySelector(".MyGroup a").innerText = 'My Group - ' + me.group.name + ' (' + me.group.students.length + ')';
-		scroller("#myGroupScroller");
-		document.querySelector(".MyGroup .loader").style.display = "none";
+		API.GET(
+			"/students", {"group": me.group.id},
+			function (data) {
+				var groupMembers = data.body;
+				document.querySelector("#myGroupScroller").className = document.querySelector("#myGroupScroller").className.replace("displayNone", "");
+				document.querySelector("#myGroupLoader").className = document.querySelector("#myGroupLoader").className + " displayNone";
+				document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(groupMembers, "student", true);
+				document.querySelector(".MyGroup a").innerText = 'My Group - ' + me.group.name + ' (' + groupMembers.length + ')';
+				scroller("#myGroupScroller");
+				document.querySelector(".MyGroup .loader").style.display = "none";
+			},
+			function (data) {
+				console.error(data);
+				document.querySelector(".Students .loader").style.display = "none";
+			}
+		);
 
 		// List the students
 		API.GET(

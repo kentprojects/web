@@ -174,11 +174,11 @@
 				}
 
 				if (me.user.role == "student") {
-					if(!data.body.group) {
-						if(profileId !== me.user.id) {
-							if (me.group &&	me.group.creator && (me.group.creator.id == me.user.id)) {
+					if (profileId !== me.user.id) {
+						if (me.group && me.group.creator && (me.group.creator.id == me.user.id)) {
+							if (!data.body.group) {
 								if (hasIntent("invite_to_group")) {
-									filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function(intent) {
+									filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function (intent) {
 										document.getElementById("inviteToGroupButton").className = "btn btn-warning panelHeadingButton";
 										document.getElementById("inviteToGroupButton").innerText = "Cancel Invitation";
 										document.getElementById("inviteToGroupButton").setAttribute("onclick", "cancelInvite()");
@@ -187,9 +187,18 @@
 								document.getElementById("inviteToGroupDiv").style.display = "block";
 								document.getElementById("inviteToGroupButton").style.display = "block";
 							}
+							if (data.body.group.id === me.group.id) {
+								document.getElementById("inviteToGroupButton").className = "btn btn-danger panelHeadingButton";
+								document.getElementById("inviteToGroupButton").innerText = "Remove From Group";
+								document.getElementById("inviteToGroupButton").setAttribute("onclick", "kickFromGroup()");
+								document.getElementById("inviteToGroupDiv").style.display = "block";
+								document.getElementById("inviteToGroupButton").style.display = "block";
+							}
 						}
+
 					}
 				}
+
 
 				commentsThingy("commentsBody", "user/" + data.body.id);
 			},
@@ -208,7 +217,7 @@
 
 	function cancelInvite() {
 		if (confirm("Are you sure you want to cancel this invitation?")) {
-			filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function(intent) {
+			filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function (intent) {
 				API.DELETE(
 					"/intent/" + intent.id, {},
 					function Success(data) {
@@ -219,6 +228,12 @@
 					}
 				);
 			});
+		}
+	}
+
+	function kickFromGroup() {
+		if (confirm("Are you sure you want to remove this user from your group?")) {
+			window.location.href = '/intents.php?action=request&request=kickFromGroup&studentId=' + profileId;
 		}
 	}
 </script>

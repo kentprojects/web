@@ -61,7 +61,7 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-xs-8">
-							<div><h3 class="panel-title"><a href="/list.php?type=projects">My Projects</a></h3></div>
+							<div><h3 class="panel-title"><a href="/list.php?type=projects"><span id="supervisorName">My</span> Projects</a></h3></div>
 						</div>
 						<div class="col-xs-4">
 							<div class="text-right">
@@ -173,6 +173,7 @@
 				}
 
 				document.getElementById("userName").innerText = user.name;
+				document.getElementById("supervisorName").innerText = user.first_name + "'s";
 
 				// Set the user's profile picture
 				document.querySelector("#profilePicture img").setAttribute("src", '/uploads/' + md5(user.email));

@@ -50,6 +50,17 @@ switch (!empty($_GET["action"]) ? $_GET["action"] : null)
 					}
 					$content = "/request/inviteToGroup";
 					break;
+				case "kickFromGroup":
+					if (empty($_GET["studentId"]))
+					{
+						exit((string)new Exception("No student ID given."));
+					}
+					if ($meRequest->user->role == "staff")
+					{
+						exit((string)new Exception("Staff can't do that!"));
+					}
+					$content = "/request/kickFromGroup";
+					break;
 				case "undertakeAProject":
 					if (empty($_GET["projectId"]))
 					{
