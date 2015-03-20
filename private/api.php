@@ -66,7 +66,6 @@ final class API
 		 */
 		$headers = array();
 		$curlHeaders = explode("\n", $curlHeaders);
-		array_shift($curlHeaders);
 		foreach ($curlHeaders as $header)
 		{
 			$header = trim($header);
@@ -78,7 +77,11 @@ final class API
 			$header = explode(":", $header, 2);
 			if (count($header) != 2)
 			{
-				error_log("Unknown header from API request: " . implode(":", $header));
+				$header = implode(":", $header);
+				if (strpos($header, "HTTP/1.1 ") !== 0)
+				{
+					error_log("Unknown header from API request: " . $header);
+				}
 				continue;
 			}
 
