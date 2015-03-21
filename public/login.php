@@ -92,7 +92,7 @@ $people = array(
         <div class="container">
 	    	<?php if ($loginAsCas) { ?>
 	        <div class="row">
-                <h2 class="text-center">Kent Projects CAS office login:</h2>
+                <h2 class="text-center">KentProjects CAS office login:</h2>
             </div>
 			<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
