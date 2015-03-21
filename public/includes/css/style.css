@@ -49,6 +49,11 @@ body {
 	padding-top: 10px;
 }
 
+.navLink {
+	padding-top: 11px !important;
+	padding-bottom: 10px !important;
+}
+
 .smallerMobileHeading {
 	font-size: 28px;
 	margin-top: 15px;
@@ -74,10 +79,6 @@ body {
 
 /* When on mobile */
 @media all and (max-width: 568px) {
-	.kentBlueBackground {
-		background-color: #F84;
-	}
-
 	.navbar-nav {
 		padding-top: 7px;
 	}
@@ -86,6 +87,11 @@ body {
 		font-size: 12px; 
 		padding-left: 2px;
 		padding-right: 5px;
+	}
+
+	.navLink {
+		padding-top: 7px !important;
+		padding-bottom: 7px !important;
 	}
 
 	.smallerMobileHeading {
