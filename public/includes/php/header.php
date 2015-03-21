@@ -91,7 +91,7 @@ $title = empty($title) ? "KentProjects" : $title;
 				<a href="/dashboard.php"><h4 class="inlineHeading smallerMobileHeading whiteText"> Kent Projects </h4>
 				</a>
 			</div>
-			<div class="col-xs-6 col-sm-6 col-md-6 noLeftPadding text-right">
+			<div class="col-xs-6 col-sm-6 col-md-6 noRightPadding text-right">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="headerIcon">
 						<a class="navLink" href="#" class="dropdown-toggle" data-toggle="dropdown">
