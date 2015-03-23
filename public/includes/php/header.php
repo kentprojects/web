@@ -92,9 +92,9 @@ $title = empty($title) ? "KentProjects" : $title;
 				</a>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6 noRightPadding text-right">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="headerIcon">
-						<a class="navLink" href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<ul class="nav navbar-nav navbar-right dropdown" id="notificationsDropdown">
+					<li class="headerIcon" class="dropdown-toggle" data-toggle="dropdown">
+						<a class="navLink" href="#">
 							<span class="fui-chat smallerMobileHeading whiteText"></span>
 						</a>
 						<span class="notificationsBadge" id="notificationsBadge"></span>
@@ -110,16 +110,16 @@ $title = empty($title) ? "KentProjects" : $title;
 						</a>
 					</li>
 					<li class="headerIcon">
-						<a class="navLink" href="#"><span class="fui-exit hoverHand smallerMobileHeading whiteText"
-							onclick="logoutUser()"></span></a>
+						<a class="navLink" href="#">
+							<span class="fui-exit hoverHand smallerMobileHeading whiteText" onclick="logoutUser()"></span>
+						</a>
 					</li>
+					<ul class="dropdown-menu " id="user-notifications">
+						<li>asdf</li>
+					</ul>
 				</ul>
 			</div>
 		</div>
 	</div>
 </header>
-<div class="notificationPlaceholder dropdown">
-	<ul class="dropdown-menu" id="user-notifications">
-	</ul>
-</div>
 <div id="pageContent">

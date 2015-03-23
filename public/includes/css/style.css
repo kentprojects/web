@@ -7,6 +7,14 @@ body {
 	width: 100%;
 }
 
+.notiThingy {
+	position: absolute!important;
+	width: 100px;
+	height: 100px;
+	background-color: #1AF;
+	top:0px;
+}
+
 .displayNone {
 	display: none;
 }
@@ -78,6 +86,9 @@ body {
 	h3 {
 		font-size: 36px;
 	}
+	.jumbotron {
+		padding: 15px;
+	}
 
 	.navbar-nav {
 		padding-top: 7px;
@@ -98,18 +109,31 @@ body {
 		font-size: 24px;
 		margin-top: 10px;
 	}
+
+
+	.dropdown-menu {
+		width: 20px;
+	}
+
+	#user-notifications {
+		/*left: -160px;*/
+		/*max-width: 100%;*/
+	}
 }
 /* End of Header footer styles */
 
 /**
  * NOTIFICATIONS
  */
+/*#notificationsDropdown {
+	height: 100px;
+}*/
 
-header .navbar-nav>li>.dropdown-toggle span {
+.dropdown-toggle span {
 	font-size: 24px;
 }
 
-header .navbar-nav>li>.dropdown-menu {
+.dropdown-menu {
 	left: inherit;
 	right: 0%;
 	min-width: 300px;
@@ -162,6 +186,13 @@ header .navbar-nav>li>.dropdown-menu {
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#f78297', EndColorStr='#f46677');
 
 	border:1px solid #ce4f5e;
+}
+
+/* When on mobile */
+@media all and (max-width: 568px) {
+	.notificationsDropdown {
+		display: block;
+	}
 }
 
 /* End of Notification styles */
