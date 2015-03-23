@@ -44,14 +44,6 @@ function scrollerTile(item, type, addStyle) {
 				//statusHTML += "<div class='circleStatus yellowStatus'></div>";
 			}
 		}
-
-		// TODO: REMOVE BEFORE SUBMISSION
-		if ((item.name == "Declan Greenhalgh") && (classList=="")) {
-			classList += " decTile";
-			//classList += " redStatus";
-		}
-		// TODO: REMOVE BEFORE SUBMISSION
-
 	}
 	// If image then add image tag
 	if (item.role)  { tileImage = '<img class="tilePic" src="/uploads/' + md5(item.email) + '"/>'; }
