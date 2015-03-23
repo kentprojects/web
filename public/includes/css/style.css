@@ -77,6 +77,10 @@ body {
 	padding-right: 10px;
 }
 
+#user-notifications {
+	right: 14px;
+}
+
 /* When on mobile */
 @media all and (max-width: 568px) {
 	h1 {
@@ -109,26 +113,12 @@ body {
 		font-size: 24px;
 		margin-top: 10px;
 	}
-
-
-	.dropdown-menu {
-		width: 20px;
-	}
-
-	#user-notifications {
-		/*left: -160px;*/
-		/*max-width: 100%;*/
-	}
 }
 /* End of Header footer styles */
 
 /**
  * NOTIFICATIONS
  */
-/*#notificationsDropdown {
-	height: 100px;
-}*/
-
 .dropdown-toggle span {
 	font-size: 24px;
 }
@@ -190,8 +180,22 @@ body {
 
 /* When on mobile */
 @media all and (max-width: 568px) {
+	.dropdown-menu {
+		width: 20px;
+	}
+
 	.notificationsDropdown {
 		display: block;
+	}
+
+	#user-notifications {
+		right: 10px;
+		width: 200%;
+		max-width: 200%;
+	}
+
+	#user-notifications a {
+		white-space: normal !important;
 	}
 }
 
