@@ -511,6 +511,7 @@ code {
 	color: #fff !important;
 	display: block !important;
 	margin-left: -12px;
+	margin-top: 20px;
 	width: 204px !important;
 
 	-moz-box-shadow: 0 5px 0 #000;
@@ -526,7 +527,6 @@ code {
 	-ms-transform: rotate(-11deg) skew(-11deg);
 	transform: rotate(-11deg) skew(-11deg);
 	position: absolute;
-	top: 105px;
 	z-index: 10;
 }
 
