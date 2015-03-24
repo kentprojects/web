@@ -57,7 +57,7 @@
 
 			document.getElementById('listContents').innerHTML = output;	
 
-			document.querySelector(".Groups ul").innerHTML = scrollerHTML(listData.body, "group", true);
+			document.querySelector(".Groups ul").innerHTML = generateScroller(".Groups ul", listData.body, "group", true);
 		}
 	</script>
 </div>
