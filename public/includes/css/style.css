@@ -889,8 +889,22 @@ code {
 	display: none;
 }
 
+.fillLi {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.tileImage {
+	bottom: 0px;
+	left: 7px;
+	position: absolute!important;
+	width: 166px;
+	z-index: 5;
+}
+
 .tilePic {
 	border-radius: 5px;
-	max-width: 180px;
-	max-height: 180px;
+	max-width: 166px;
+	max-height: 166px;
 }

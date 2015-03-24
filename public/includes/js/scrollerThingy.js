@@ -35,7 +35,7 @@ function scrollerTile(item, type, addStyle) {
 		}
 	}
 	// If image then add image tag
-	if (item.role)  { tileImage = '<img class="tilePic" src="/uploads/' + md5(item.email) + '"/>'; }
+	if (item.role)  { tileImage = '<span class="tileImage"><img class="tilePic" src="/uploads/' + md5(item.email) + '"/></span>'; }
 	else { tileImage = ''};
 	// Set class list
 	classList = " class='tileLi tileLi" + type + classList + "'";
@@ -43,11 +43,13 @@ function scrollerTile(item, type, addStyle) {
 	// Create tile from HTML segments and return as a string.
 	tileHTML.push(
 		'<li ' + classList + '>',
+		'<div class="fillLi">',
 		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
 		tileImage,
 		lockedHTML,
 		statusHTML,
 		'</a>',
+		'</div>',
 		'</li>'
 	);
 	return tileHTML.join("");
