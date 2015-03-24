@@ -628,6 +628,11 @@ code {
 	vertical-align: top!important;
 }
 
+.fullWidth {
+	max-width: 100%;
+	min-width: 100%;
+	width: 100%;
+}
 
 .reduceHeading {
 	font-size: 54px;

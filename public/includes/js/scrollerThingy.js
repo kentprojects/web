@@ -105,7 +105,7 @@ function scrollerHTML(data, type, addStyle) {
 		return HTML.join("");
 	}
 	else {
-		return '<div class="scrollerPlaceholder noBottomMargin"><div class="text-info text-center"> There\'s nothing to show here</div></div>';
+		return false
 	}
 }
 
@@ -143,3 +143,27 @@ function scroller(element) {
 		$frame.sly('reload');
 	});
 };
+
+function generateScroller(ulClass, data, type, addStyle) {
+	var scroller = scrollerHTML(data, type, addStyle);
+	if (!scroller) {
+		//Set max size of thing.
+		document.querySelector(ulClass).className = document.querySelector(ulClass).className+" fullWidth";
+		return '<div class="scrollerPlaceholder noBottomMargin"><div class="text-info text-center">There\'s nothing to show here...</div></div>';
+	}
+	else {
+		return scroller;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

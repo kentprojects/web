@@ -129,7 +129,7 @@
 				document.querySelector("#groupLoader").className = document.querySelector("#groupLoader").className + " displayNone";
 
 				var groups = data.body;
-				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
+				document.querySelector(".Groups ul").innerHTML = generateScroller(".Groups ul", data.body, "group", true);
 				document.querySelector(".Groups a").innerText += ' (' + (groups && groups.length ? groups.length : 0) + ')';
 				scroller("#groupScroller");
 				document.querySelector(".Groups .loader").style.display = "none";
