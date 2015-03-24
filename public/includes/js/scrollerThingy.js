@@ -4,44 +4,33 @@
 function scrollerTile(item, type, addStyle) {
 	var classList = "", lockedHTML = "", statusHTML= "", tileHTML = [], tileImage = "";
 	// If colour required add to class list.
-	// If tile locked add locked to class list.
 	if (addStyle) {
 		if ((type == "student")) {
-			// If group.
+			// If in a group.
 			if (item.group != null) {
-				// If project.
+				// If has a project.
 				if (item.group.project != null) {
-					//classList += " greenTile";
-					classList += " greenStatus";
-					//statusHTML += "<div class='circleStatus greenStatus'></div>";
+					classList += " greenStatus"; //classList += " greenTile";
 				}
 				else {
-					//classList += " yellowTile";
-					classList += " yellowStatus";
-					//statusHTML += "<div class='circleStatus yellowStatus'></div>";
+					classList += " yellowStatus"; //classList += " yellowTile";
 				}
 			}
 			else {
-				//classList += " redTile";
-				classList += " redStatus";
+				classList += " redStatus"; //classList += " redTile";
 				//statusHTML += "<div class='circleStatus redStatus'></div>";
 			}
 		}
 		else if ((type == "project") && (item.group != null)) {
-			//classList += " lockTile";
 			lockedHTML = "<span class='banner'>Taken</span>";
 		}
 		else if (type == "group") {
 			// If project.
 			if (item.project != null) {
-				//classList += " greenTile";
-				classList += " greenStatus";
-				//statusHTML += "<div class='circleStatus greenStatus'></div>";
+				classList += " greenStatus"; //classList += " greenTile";
 			}
 			else {
-				classList += " yellowStatus";
-				//classList += " yellowTile";
-				//statusHTML += "<div class='circleStatus yellowStatus'></div>";
+				classList += " yellowStatus"; //classList += " yellowTile";
 			}
 		}
 	}
@@ -53,8 +42,6 @@ function scrollerTile(item, type, addStyle) {
 
 	// Create tile from HTML segments and return as a string.
 	tileHTML.push(
-		// id="' + type + item.id + '"' + classList + ' onclick="openLink(\'' + type + item.id + '\');">',
-		// '<a id="' + type + item.id + '" class="tileLink" href="javascript:openLink(\'' + type + item.id + '\');"></a>',
 		'<li ' + classList + '>',
 		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
 		tileImage,
