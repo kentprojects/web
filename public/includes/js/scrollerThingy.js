@@ -102,10 +102,11 @@ function scrollerHTML(data, type, addStyle) {
 			item = data[i];
 			HTML.push(scrollerTile(item, type, addStyle));
 		}
+		HTML.push('<div class="scrollerPlaceholder noBottomMargin displayNone hideTile"><div class="text-info text-center">There\'s nothing to show here...</div></div>');
 		return HTML.join("");
 	}
 	else {
-		return false
+		return false;
 	}
 }
 
@@ -148,8 +149,8 @@ function generateScroller(ulClass, data, type, addStyle) {
 	var scroller = scrollerHTML(data, type, addStyle);
 	if (!scroller) {
 		//Set max size of thing.
-		document.querySelector(ulClass).className = document.querySelector(ulClass).className+" fullWidth";
-		return '<div class="scrollerPlaceholder noBottomMargin"><div class="text-info text-center">There\'s nothing to show here...</div></div>';
+		document.querySelector(ulClass).className = document.querySelector(ulClass).className + " fullWidth";
+		return '<div class="scrollerPlaceholder noBottomMargin displayNone"><div class="text-info text-center">There\'s nothing to show here...</div></div>';
 	}
 	else {
 		return scroller;

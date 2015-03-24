@@ -26,7 +26,10 @@ function removeEDR(stringFind, tileClass) {
 		}
 		// If all tiles are hiden then show message to inform the user.
 		if (numResults == 0) {
-			console.log("No search/filter results, please relax your search to see more results. [CONVERT THIS TO A HTML THING]")
+			showNoResultsMessage(tiles[0]);
+		}
+		else {
+			hideNoResultsMessage(tiles[0])
 		}
 	}
 	else {
@@ -40,8 +43,27 @@ function clearSearch(tileClass) {
 		var tile = tiles[i];
 		tile.className = tile.className.replace(" hideTile", "");
 	}
+	hideNoResultsMessage(tiles[0]);
 }
 
 function inFilter() {
 	return true;
+}
+
+function showNoResultsMessage(tile) {
+	if (tile.parentNode.className.indexOf(" fullWidth") == -1) {
+		tile.parentNode.className = tile.parentNode.className + " fullWidth";
+	}
+	tile.parentNode.querySelector(".scrollerPlaceholder").className = tile.parentNode.querySelector(".scrollerPlaceholder").className.replace(" displayNone", "");	
+	tile.parentNode.querySelector(".scrollerPlaceholder").className = tile.parentNode.querySelector(".scrollerPlaceholder").className.replace(" hideTile", "");
+}
+
+function hideNoResultsMessage(tile) {
+	tile.parentNode.className = tile.parentNode.className.replace(" fullWidth", "");
+	if (tile.parentNode.querySelector(".scrollerPlaceholder").className.indexOf(" displayNone") == -1) {
+		tile.parentNode.querySelector(".scrollerPlaceholder").className = tile.parentNode.querySelector(".scrollerPlaceholder").className + " displayNone";
+	}
+	if (tile.parentNode.querySelector(".scrollerPlaceholder").className.indexOf(" hideTile") == -1) {
+		tile.parentNode.querySelector(".scrollerPlaceholder").className = tile.parentNode.querySelector(".scrollerPlaceholder").className + " hideTile";
+	}
 }
