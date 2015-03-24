@@ -39,7 +39,7 @@
 			function (data) {
 				document.querySelector("#projectScroller").className = document.querySelector("#projectScroller").className.replace("displayNone", "");
 				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
-				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects ul").innerHTML = generateScroller(".Projects ul", data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
 				document.querySelector(".Projects .loader").style.display = "none";

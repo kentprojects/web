@@ -112,7 +112,7 @@
 			function (data) {
 				document.querySelector("#projectScroller").className = document.querySelector("#projectScroller").className.replace("displayNone", "");
 				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
-				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects ul").innerHTML = generateScroller(".Projects ul", data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
 				document.querySelector(".Projects .loader").style.display = "none";
@@ -129,7 +129,7 @@
 			function (data) {
 				document.querySelector("#supervisorScroller").className = document.querySelector("#supervisorScroller").className.replace("displayNone", "");
 				document.querySelector("#supervisorLoader").className = document.querySelector("#supervisorLoader").className + " displayNone";
-				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
+				document.querySelector(".Supervisors ul").innerHTML = generateScroller(".Supervisors ul", data.body, "staff", true);
 				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
 				scroller("#supervisorScroller");
 				document.querySelector(".Supervisors .loader").style.display = "none";
@@ -147,7 +147,7 @@
 				var groupMembers = data.body;
 				document.querySelector("#myGroupScroller").className = document.querySelector("#myGroupScroller").className.replace("displayNone", "");
 				document.querySelector("#myGroupLoader").className = document.querySelector("#myGroupLoader").className + " displayNone";
-				document.querySelector(".MyGroup ul").innerHTML = scrollerHTML(groupMembers, "student", true);
+				document.querySelector(".MyGroup ul").innerHTML = generateScroller(".MyGroup ul", groupMembers, "student", true);
 				document.querySelector(".MyGroup a").innerText = 'My Group - ' + me.group.name + ' (' + groupMembers.length + ')';
 				scroller("#myGroupScroller");
 				document.querySelector(".MyGroup .loader").style.display = "none";
@@ -164,7 +164,7 @@
 			function (data) {
 				document.querySelector("#studentScroller").className = document.querySelector("#studentScroller").className.replace("displayNone", "");
 				document.querySelector("#studentLoader").className = document.querySelector("#studentLoader").className + " displayNone";
-				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
+				document.querySelector(".Students ul").innerHTML = generateScroller(".Students ul", data.body, "student", true);
 				document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
 				scroller("#studentScroller");
 				document.querySelector(".Students .loader").style.display = "none";

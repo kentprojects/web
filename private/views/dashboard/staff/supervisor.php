@@ -108,7 +108,7 @@
 				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
 
 				var projects = data.body;
-				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects ul").innerHTML = generateScroller(".Projects ul", data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + (projects && projects.length ? projects.length : 0) + ')';
 				scroller("#projectScroller");
 				document.getElementById("addProjectButton").style.display = "block";
@@ -148,7 +148,7 @@
 				document.querySelector("#studentLoader").className = document.querySelector("#studentLoader").className + " displayNone";
 
 				var students = data.body;
-				document.querySelector(".Students ul").innerHTML = scrollerHTML(students, "student", true);
+				document.querySelector(".Students ul").innerHTML = generateScroller(".Students ul", students, "student", true);
 				document.querySelector(".Students a").innerText += ' (' + (students && students.length ? students.length : 0) + ')';
 				scroller("#studentScroller");
 				document.querySelector(".Students .loader").style.display = "none";
