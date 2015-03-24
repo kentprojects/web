@@ -580,19 +580,20 @@ code {
 	display: none!important;
 }
 
+.blueStatus {
+	background: #cff!important;
+}
+
 .greenStatus {
 	background: #eaffea!important;
-	/*border: #393 5px solid;*/
 }
 
 .redStatus {
 	background: #ffeaea!important;
-	/*border: #c33 5px solid;*/
 }
 
 .yellowStatus {
 	background: #fff9ea!important;
-	/*border: #fc1 5px solid;*/
 }
 
 .tileLi {
