@@ -24,7 +24,7 @@ body {
 }
 
 .headerIcon {
-	display: inline-block !important;
+	display: inline-block!important;
 }
 
 .headerIcon {
@@ -50,8 +50,8 @@ body {
 }
 
 .navLink {
-	padding-top: 11px !important;
-	padding-bottom: 10px !important;
+	padding-top: 11px!important;
+	padding-bottom: 10px!important;
 }
 
 .smallerMobileHeading {
@@ -105,8 +105,8 @@ body {
 	}
 
 	.navLink {
-		padding-top: 7px !important;
-		padding-bottom: 7px !important;
+		padding-top: 7px!important;
+		padding-bottom: 7px!important;
 	}
 
 	.smallerMobileHeading {
@@ -195,7 +195,7 @@ body {
 	}
 
 	#user-notifications a {
-		white-space: normal !important;
+		white-space: normal!important;
 	}
 }
 
@@ -507,12 +507,12 @@ code {
 }
 
 .banner {
-	background-color: #0ff !important;
-	color: #fff !important;
-	display: block !important;
+	background-color: #0ff!important;
+	color: #fff!important;
+	display: block!important;
 	margin-left: -12px;
 	margin-top: 20px;
-	width: 204px !important;
+	width: 204px!important;
 
 	-moz-box-shadow: 0 5px 0 #000;
 	-webkit-box-shadow: 0 5px 0 #000;
@@ -555,44 +555,48 @@ code {
 }
 
 .redTile {
-	background: #bd5351 !important;
+	background: #bd5351!important;
 }
 
 .yellowTile {
-	background: #faa938 !important;
+	background: #faa938!important;
 }
 
 .greenTile {
-	background: #57a858 !important;
+	background: #57a858!important;
 }
 
 .hideTile {
-	width: 0px !important;
-	padding: 0 !important;
-	margin: 0 !important;
+	width: 0px!important;
+	padding: 0!important;
+	margin: 0!important;
 }
 
 .hideTile div {
 	display: none;
 }
 
+.hideTile span {
+	display: none!important;
+}
+
 .greenStatus {
-	background: #eaffea !important;
+	background: #eaffea!important;
 	/*border: #393 5px solid;*/
 }
 
 .redStatus {
-	background: #ffeaea !important;
+	background: #ffeaea!important;
 	/*border: #c33 5px solid;*/
 }
 
 .yellowStatus {
-	background: #fff9ea !important;
+	background: #fff9ea!important;
 	/*border: #fc1 5px solid;*/
 }
 
 .tileLi {
-	cursor: default !important;
+	cursor: default!important;
 }
 
 .listButtons {
@@ -613,15 +617,15 @@ code {
 }
 
 .tileListItems {
-	text-align: center !important;
+	text-align: center!important;
 }
 
 .tileListItems li {
-	height: 250px !important;
-	margin: 8px !important;
-	display: inline-block !important;
-	float: none !important;
-	vertical-align: top !important;
+	height: 250px!important;
+	margin: 8px!important;
+	display: inline-block!important;
+	float: none!important;
+	vertical-align: top!important;
 }
 
 
