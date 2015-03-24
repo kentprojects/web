@@ -67,3 +67,11 @@ function hideNoResultsMessage(tile) {
 		tile.parentNode.querySelector(".scrollerPlaceholder").className = tile.parentNode.querySelector(".scrollerPlaceholder").className + " hideTile";
 	}
 }
+
+// Search box styling fix!
+// Focus state for append/prepend inputs
+$('.input-group').on('focus', '.form-control', function () {
+  $(this).closest('.form-group').addClass('focus');
+}).on('blur', '.form-control', function () {
+  $(this).closest('.form-group').removeClass('focus');
+});
