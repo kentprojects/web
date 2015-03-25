@@ -14,10 +14,14 @@ function removeEDR(stringFind, tileClass) {
 	if (stringFind != "") {
 		var tiles = document.getElementsByClassName(tileClass);
 		var numResults = 0;
+		var tileTitle = "", tileText = "";
 		for (i = 0; i < tiles.length; i++) {
 			var tile = tiles[i];
 			tile.className = tile.className.replace(" hideTile", "");
-			if (inFilter() && (tile.firstChild.innerText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1)) {
+			tileTitle = tile.querySelector(".tile-title").firstChild.innerText;
+			tileText = tile.querySelector(".tileSubText").firstChild.innerText;
+			// Tile passes through filter and title/subtext contain the requested string.
+			if (inFilter() && ((tileTitle.toUpperCase().indexOf(stringFind.toUpperCase()) == -1) && (tileText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1))) {
 				tile.className = tile.className + " hideTile";
 			}
 			else {
