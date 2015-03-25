@@ -48,8 +48,8 @@
 						</form>
 					</div>
 					<script type="text/javascript"> function projectSearch() {searchTiles('#projectScroller', '', document.getElementById('navbarInput-01').value, "tileLiproject");}</script>
-				</div>
 					<!-- End of search bit -->
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="projectLoader">

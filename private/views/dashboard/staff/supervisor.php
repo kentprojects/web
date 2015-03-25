@@ -4,23 +4,36 @@
 
 		<p>This is your <i>supervisor</i> dashboard, where you can quickly search through your projects, groups, and
 			students.</p>
-
 	</div>
 </div>
-
 <div class="row">
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="row">
-					<div class="col-xs-8">
+					<div class="col-xs-8 col-sm-4">
 						<div><h3 class="panel-title"><a href="/list.php?type=projects">My Projects</a></h3></div>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-xs-4 col-sm-4">
 						<div class="text-right">
 							<a class="btn btn-info panelHeadingButton displayNone" id="addProjectButton" href="/new.php?type=project"><span class="fui-plus"></span> Add</a>
 						</div>
 					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-4">
+						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="projectSearch();" oninput="projectSearch();" onkeydown="projectSearch();" onkeypress="projectSearch();" onpaste="projectSearch();">
+									<span class="input-group-btn">
+										<button type="submit" class="btn"><span class="fui-search"></span></button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+					<script type="text/javascript"> function projectSearch() {searchTiles('#projectScroller', '', document.getElementById('navbarInput-01').value, "tileLiproject");}</script>
+					<!-- End of search bit -->
 				</div>
 			</div>
 			<div class="panel-body">
@@ -46,9 +59,24 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-xs-12 col-sm-7">
 						<div><h3 class="panel-title"><a href="/list.php?type=groups">My Groups</a></h3></div>
 					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-5">
+						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" id="navbarInput-02" type="search" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
+									<span class="input-group-btn">
+										<button type="submit" class="btn"><span class="fui-search"></span></button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+					<script type="text/javascript"> function groupSearch() {searchTiles('#groupScroller', '', document.getElementById('navbarInput-02').value, "tileLigroup");}</script>
+					<!-- End of search bit -->
 				</div>
 			</div>
 			<div class="panel-body">
@@ -74,9 +102,24 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-xs-12 col-sm-7">
 						<div><h3 class="panel-title"><a href="/list.php?type=students">My Students</a></h3></div>
 					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-5">
+						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" id="navbarInput-03" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
+									<span class="input-group-btn">
+										<button type="submit" class="btn"><span class="fui-search"></span></button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+					<script type="text/javascript"> function studentSearch() {searchTiles('#studentScroller', '', document.getElementById('navbarInput-03').value, "tileListudent");}</script>
+					<!-- End of search bit -->
 				</div>
 			</div>
 			<div class="panel-body">
