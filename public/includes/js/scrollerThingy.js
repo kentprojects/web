@@ -4,13 +4,20 @@
 function scrollerTile(item, type, addStyle) {
 	var classList = "", lockedHTML = "", statusHTML= "", tileHTML = [], tileImage = "";
 	// If colour required add to class list.
+	//console.log(item.supervisor.id == me.user.id);
 	if (addStyle) {
 		if ((type == "student")) {
 			// If in a group.
 			if (item.group != null) {
 				// If has a project.
 				if (item.group.project != null) {
-					classList += " greenStatus"; //classList += " greenTile";
+					// If my project.
+					if (item.group.project.supervisor.id == me.user.id) {
+						classList += " blueStatus"; //classList += " blueTile";
+					}
+					else {
+						classList += " greenStatus"; //classList += " greenTile";
+					}
 				}
 				else {
 					classList += " yellowStatus"; //classList += " yellowTile";
@@ -21,13 +28,23 @@ function scrollerTile(item, type, addStyle) {
 				//statusHTML += "<div class='circleStatus redStatus'></div>";
 			}
 		}
-		else if ((type == "project") && (item.group != null)) {
-			lockedHTML = "<span class='banner'>Taken</span>";
+		else if (type == "project") {
+			if (item.group != null) {
+				lockedHTML = "<span class='banner'>Taken</span>";
+			}
+			if (item.supervisor.id == me.user.id) {
+				classList += " blueStatus"; //classList += " blueTile";
+			}
 		}
 		else if (type == "group") {
 			// If project.
 			if (item.project != null) {
-				classList += " greenStatus"; //classList += " greenTile";
+				if (item.project.supervisor.id == me.user.id) {
+					classList += " blueStatus"; //classList += " blueTile";
+				}
+				else {
+					classList += " greenStatus"; //classList += " greenTile";
+				}
 			}
 			else {
 				classList += " yellowStatus"; //classList += " yellowTile";

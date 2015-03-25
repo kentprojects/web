@@ -57,7 +57,7 @@
 
 			document.getElementById('listContents').innerHTML = output;	
 
-			document.querySelector(".Students ul").innerHTML = generateScroller(".Students ul", listData.body, "students", true);
+			document.querySelector(".Students ul").innerHTML = generateScroller(".Students ul", listData.body, "student", true);
 		}
 	</script>
 </div>
