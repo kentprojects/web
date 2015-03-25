@@ -34,22 +34,23 @@
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 						<h3 class="panel-title" style="clear:none;"><a href="/list.php?type=projects">Projects</a></h3>
 					</div>
-
+					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-
-<div class="collapse navbar-collapse" id="navbar-collapse-4">
-<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
-	<div class="form-group">
-		<div class="input-group">
-			<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="stuff();" oninput="stuff();" onkeydown="stuff();" onkeypress="stuff();" onpaste="stuff();">
-			<span class="input-group-btn">
-				<button type="submit" class="btn"><span class="fui-search"></span></button>
-			</span>
-		</div>
-	</div>
-</form>
-</div>
+						<div class="collapse navbar-collapse" id="navbar-collapse-4">
+							<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+								<div class="form-group">
+									<div class="input-group">
+										<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="projectSearch();" oninput="projectSearch();" onkeydown="projectSearch();" onkeypress="projectSearch();" onpaste="projectSearch();">
+										<span class="input-group-btn">
+											<button type="submit" class="btn"><span class="fui-search"></span></button>
+										</span>
+									</div>
+								</div>
+							</form>
+						</div>
+						<script type="text/javascript"> function projectSearch() {searchTiles('#projectScroller', '', document.getElementById('navbarInput-01').value, "tileLiproject");}</script>
 					</div>
+					<!-- End of search bit -->
 				</div>
 			</div>
 			<div class="panel-body">
@@ -74,7 +75,28 @@
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3>
+					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+						<div class="collapse navbar-collapse" id="navbar-collapse-4">
+							<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+								<div class="form-group">
+									<div class="input-group">
+										<input class="form-control" id="navbarInput-02" type="search" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
+										<span class="input-group-btn">
+											<button type="submit" class="btn"><span class="fui-search"></span></button>
+										</span>
+									</div>
+								</div>
+							</form>
+						</div>
+						<script type="text/javascript"> function groupSearch() {searchTiles('#groupScroller', '', document.getElementById('navbarInput-02').value, "tileLigroup");}</script>
+					</div>
+					<!-- End of search bit -->
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="groupLoader">
@@ -98,7 +120,28 @@
 	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><a href="/list.php?type=students">Students</a></h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<h3 class="panel-title"><a href="/list.php?type=students">Students</a></h3>
+					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+						<div class="collapse navbar-collapse" id="navbar-collapse-4">
+							<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+								<div class="form-group">
+									<div class="input-group">
+										<input class="form-control" id="navbarInput-03" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
+										<span class="input-group-btn">
+											<button type="submit" class="btn"><span class="fui-search"></span></button>
+										</span>
+									</div>
+								</div>
+							</form>
+						</div>
+						<script type="text/javascript"> function studentSearch() {searchTiles('#studentScroller', '', document.getElementById('navbarInput-03').value, "tileListudent");}</script>
+					</div>
+					<!-- End of search bit -->
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="studentLoader">
@@ -122,7 +165,28 @@
 	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><a href="/list.php?type=staff">Supervisors</a></h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<h3 class="panel-title"><a href="/list.php?type=staff">Supervisors</a></h3>
+					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+						<div class="collapse navbar-collapse" id="navbar-collapse-4">
+							<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+								<div class="form-group">
+									<div class="input-group">
+										<input class="form-control" id="navbarInput-04" type="search" placeholder="Search" onchange="supervisorSearch();" oninput="supervisorSearch();" onkeydown="supervisorSearch();" onkeypress="supervisorSearch();" onpaste="supervisorSearch();">
+										<span class="input-group-btn">
+											<button type="submit" class="btn"><span class="fui-search"></span></button>
+										</span>
+									</div>
+								</div>
+							</form>
+						</div>
+						<script type="text/javascript"> function supervisorSearch() {searchTiles('#supervisorScroller', '', document.getElementById('navbarInput-04').value, "tileListaff");}</script>
+					</div>
+					<!-- End of search bit -->
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="supervisorLoader">

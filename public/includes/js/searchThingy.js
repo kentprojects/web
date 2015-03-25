@@ -4,13 +4,13 @@
  * Matt Weeks
  */
 
-function stuff() {
-	var $frame = $('#projectScroller');
-	removeEDR(document.getElementById('navbarInput-01').value, "tileLiproject");
+function searchTiles(frameSelector, filters, stringFind, tileClass) {
+	var $frame = $(frameSelector);
+	removeEDR(filters, stringFind, tileClass);
 	$frame.sly('reload');
 }
 
-function removeEDR(stringFind, tileClass) {
+function removeEDR(filters, stringFind, tileClass) {
 	if (stringFind != "") {
 		var tiles = document.getElementsByClassName(tileClass);
 		var numResults = 0;
@@ -19,9 +19,14 @@ function removeEDR(stringFind, tileClass) {
 			var tile = tiles[i];
 			tile.className = tile.className.replace(" hideTile", "");
 			tileTitle = tile.querySelector(".tile-title").firstChild.innerText;
-			tileText = tile.querySelector(".tileSubText").firstChild.innerText;
+			if (tile.querySelector(".tileSubText") != null) {
+				tileText = tile.querySelector(".tileSubText").firstChild.innerText;
+			}
+			else {
+				tileText = "";
+			}
 			// Tile passes through filter and title/subtext contain the requested string.
-			if (!inFilter("") || ((tileTitle.toUpperCase().indexOf(stringFind.toUpperCase()) == -1) && (tileText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1))) {
+			if (!inFilter(filters) || ((tileTitle.toUpperCase().indexOf(stringFind.toUpperCase()) == -1) && (tileText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1))) {
 				tile.className = tile.className + " hideTile";
 			}
 			else {
