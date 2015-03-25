@@ -29,7 +29,7 @@ function scrollerTile(item, type, addStyle) {
 			}
 		}
 		else if (type == "project") {
-			subText = '<span class="tileSubText"><a href="/profile.php?type=staff&id='+ item.supervisor.id + '">' + item.supervisor.name + '</a></span>'
+			subText = '<span class="tileSubText"><a href="/profile.php?type=staff&id='+ item.supervisor.id + '">' + item.supervisor.name + '</a></span>';
 			if (item.group != null) {
 				lockedHTML = "<span class='banner'>Taken</span>";
 			}
@@ -40,6 +40,7 @@ function scrollerTile(item, type, addStyle) {
 		else if (type == "group") {
 			// If project.
 			if (item.project != null) {
+				subText = '<span class="tileSubText"><a href="/profile.php?type=project&id='+ item.project.id + '">' + item.project.name + '</a></span>';
 				if (item.project.supervisor.id == me.user.id) {
 					classList += " blueStatus"; //classList += " blueTile";
 				}
