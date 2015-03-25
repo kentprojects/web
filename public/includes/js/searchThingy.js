@@ -21,7 +21,7 @@ function removeEDR(stringFind, tileClass) {
 			tileTitle = tile.querySelector(".tile-title").firstChild.innerText;
 			tileText = tile.querySelector(".tileSubText").firstChild.innerText;
 			// Tile passes through filter and title/subtext contain the requested string.
-			if (inFilter() && ((tileTitle.toUpperCase().indexOf(stringFind.toUpperCase()) == -1) && (tileText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1))) {
+			if (!inFilter("") || ((tileTitle.toUpperCase().indexOf(stringFind.toUpperCase()) == -1) && (tileText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1))) {
 				tile.className = tile.className + " hideTile";
 			}
 			else {
@@ -50,8 +50,13 @@ function clearSearch(tileClass) {
 	hideNoResultsMessage(tiles[0]);
 }
 
-function inFilter() {
-	return true;
+function inFilter(filters) {
+	if (filters != "") {
+		//If not in filters, response is 
+	}
+	else {
+		return true;
+	}
 }
 
 function showNoResultsMessage(tile) {
