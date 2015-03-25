@@ -29,7 +29,7 @@ function scrollerTile(item, type, addStyle) {
 			}
 		}
 		else if (type == "project") {
-			subText = '<span class="tileSubText">' + item.supervisor.name + '</span>'
+			subText = '<span class="tileSubText"><a href="/profile.php?type=staff&id='+ item.supervisor.id + '">' + item.supervisor.name + '</a></span>'
 			if (item.group != null) {
 				lockedHTML = "<span class='banner'>Taken</span>";
 			}

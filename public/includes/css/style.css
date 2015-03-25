@@ -511,7 +511,7 @@ code {
 	color: #fff!important;
 	display: block!important;
 	margin-left: -12px;
-	margin-top: 20px;
+	margin-top: 40px;
 	width: 204px!important;
 
 	-moz-box-shadow: 0 5px 0 #000;
@@ -916,4 +916,8 @@ code {
 	position: absolute!important;
 	width: 100%;
 	z-index: 3;
+}
+
+.tileSubText a {
+  font-size: 18px;
 }
