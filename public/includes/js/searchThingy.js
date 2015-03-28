@@ -5,28 +5,31 @@
  */
 
 function searchTiles(frameSelector, filters, stringFind, tileClass) {
-	var $frame = $(frameSelector);
-	removeEDR(filters, stringFind, tileClass);
-	$frame.sly('reload');
+	if (window.tileView == undefined || tileView == true) {
+		var $frame = $(frameSelector);
+		removeEDR(filters, stringFind, tileClass);
+		$frame.sly('reload');
+	}
 }
 
 function removeEDR(filters, stringFind, tileClass) {
-	if (stringFind != "") {
+	if (stringFind != "" || filters != "") {
 		var tiles = document.getElementsByClassName(tileClass);
 		var numResults = 0;
 		var tileTitle = "", tileText = "";
-		for (i = 0; i < tiles.length; i++) {
+		for (var i = 0; i < tiles.length; i++) {
 			var tile = tiles[i];
 			tile.className = tile.className.replace(" hideTile", "");
 			tileTitle = tile.querySelector(".tile-title").firstChild.innerText;
-			if (tile.querySelector(".tileSubText") != null) {
+			if (tile.querySelector(".tileSubText")) {
 				tileText = tile.querySelector(".tileSubText").firstChild.innerText;
 			}
 			else {
 				tileText = "";
 			}
+			searchFields = [tileTitle,tileText];
 			// Tile passes through filter and title/subtext contain the requested string.
-			if (!inFilter(filters) || ((tileTitle.toUpperCase().indexOf(stringFind.toUpperCase()) == -1) && (tileText.toUpperCase().indexOf(stringFind.toUpperCase()) == -1))) {
+			if (!(passesFilter(filters, tile.className) && passesSearch(stringFind, searchFields))) {
 				tile.className = tile.className + " hideTile";
 			}
 			else {
@@ -48,16 +51,40 @@ function removeEDR(filters, stringFind, tileClass) {
 
 function clearSearch(tileClass) {
 	var tiles = document.getElementsByClassName(tileClass);
-	for (i = 0; i < tiles.length; i++) {
+	for (var i = 0; i < tiles.length; i++) {
 		var tile = tiles[i];
 		tile.className = tile.className.replace(" hideTile", "");
 	}
 	hideNoResultsMessage(tiles[0]);
 }
 
-function inFilter(filters) {
+function passesFilter(filters, tileClasses) {
 	if (filters != "") {
-		//If not in filters, response is 
+		filters = JSON.parse(filters);
+		for (var i = 0; i < filters.filters.length; i++) {
+	 		if (filters.filters[i].value == "false") {
+	 			if (tileClasses.indexOf(filters.filters[i].class) > -1) {
+	 				return false;
+	 			}
+	 		}
+		}
+	}
+	else {
+		return true;
+	}
+	return true;
+}
+
+function passesSearch(stringFind, searchFields) {
+	if (stringFind != "") {
+		for (var i = 0; i < searchFields.length; i++) {
+			if (searchFields[i] != "") {
+				if (searchFields[i].toUpperCase().indexOf(stringFind.toUpperCase()) > -1) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	else {
 		return true;
