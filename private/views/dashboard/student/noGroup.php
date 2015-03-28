@@ -16,7 +16,7 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-8 col-sm-4">
-						<div><h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3></div>
+						<h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3>
 					</div>
 					<div class="col-xs-4 col-sm-4">
 						<div class="text-right">
@@ -65,7 +65,7 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-12 col-sm-7">
-						<h3 class="panel-title">Students</h3>
+						<h3 class="panel-title"><a href="/list.php?type=students">Students</a></h3>
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5">
@@ -108,7 +108,7 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-12 col-sm-7">
-						<h3 class="panel-title">Projects</h3>
+						<h3 class="panel-title" style="clear:none;"><a href="/list.php?type=projects">Projects</a></h3>
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5">
@@ -151,7 +151,7 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-12 col-sm-7">
-						<h3 class="panel-title">Supervisors</h3>
+						<h3 class="panel-title"><a href="/list.php?type=staff">Supervisors</a></h3>
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5">
@@ -198,7 +198,9 @@
 				document.querySelector("#groupScroller").className = document.querySelector("#groupScroller").className.replace("displayNone", "");
 				document.querySelector("#groupLoader").className = document.querySelector("#groupLoader").className + " displayNone";
 				document.querySelector(".Groups ul").innerHTML = generateScroller(".Groups ul",data.body, "group", true);
-				document.querySelector(".Groups h3").innerText += ' (' + data.body.length + ')';
+				console.log(document.querySelector(".Groups h3").innerText);
+				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
+				console.log(document.querySelector(".Groups h3").innerText);
 				scroller("#groupScroller");
 				document.getElementById("addGroupButton").style.display = "block";
 				document.querySelector(".Groups .loader").style.display = "none";
@@ -216,7 +218,7 @@
 				document.querySelector("#projectScroller").className = document.querySelector("#projectScroller").className.replace("displayNone", "");
 				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
 				document.querySelector(".Projects ul").innerHTML = generateScroller(".Projects ul", data.body, "project", true);
-				document.querySelector(".Projects h3").innerText += ' (' + data.body.length + ')';
+				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
 				document.querySelector(".Projects .loader").style.display = "none";
 			},
@@ -233,7 +235,7 @@
 				document.querySelector("#studentScroller").className = document.querySelector("#studentScroller").className.replace("displayNone", "");
 				document.querySelector("#studentLoader").className = document.querySelector("#studentLoader").className + " displayNone";
 				document.querySelector(".Students ul").innerHTML = generateScroller(".Students ul", data.body, "student", true);
-				document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
+				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
 				scroller("#studentScroller");
 				document.querySelector(".Students .loader").style.display = "none";
 			},
@@ -249,10 +251,8 @@
 			function (data) {
 				document.querySelector("#supervisorScroller").className = document.querySelector("#supervisorScroller").className.replace("displayNone", "");
 				document.querySelector("#supervisorLoader").className = document.querySelector("#supervisorLoader").className + " displayNone";
-
-
 				document.querySelector(".Supervisors ul").innerHTML = generateScroller(".Supervisors ul", data.body, "staff", true);
-				document.querySelector(".Supervisors h3").innerText += ' (' + data.body.length + ')';
+				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
 				scroller("#supervisorScroller");
 				document.querySelector(".Supervisors .loader").style.display = "none";
 			},

@@ -124,7 +124,11 @@
 	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Students</h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<h3 class="panel-title"><a href="/list.php?type=students">Students</a></h3>
+					</div>
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="studentLoader">
@@ -206,7 +210,7 @@
 				document.querySelector("#studentScroller").className = document.querySelector("#studentScroller").className.replace("displayNone", "");
 				document.querySelector("#studentLoader").className = document.querySelector("#studentLoader").className + " displayNone";
 				document.querySelector(".Students ul").innerHTML = generateScroller(".Students ul", data.body, "student", true);
-				document.querySelector(".Students h3").innerText += ' (' + data.body.length + ')';
+				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
 				scroller("#studentScroller");
 				document.querySelector(".Students .loader").style.display = "none";
 			},
