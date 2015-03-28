@@ -554,6 +554,10 @@ code {
 	z-index: -5;
 }
 
+.banner a {
+	color: #fff!important;
+}
+
 .redTile {
 	background: #bd5351!important;
 }
