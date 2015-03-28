@@ -57,7 +57,7 @@ final class Auth
 	public static function redirect($code = null)
 	{
 		redirect(
-			(!empty($_SERVER["CORPUS_ENV"]) ? API::GetURL() : "http://localhost:8080") .
+			(empty($_SERVER["CORPUS_ENV"]) ? API::GetURL() : "http://localhost:8080") .
 			(empty($code) ? "/auth/sso" : "/auth/internal?auth=" . $code)
 		);
 	}
