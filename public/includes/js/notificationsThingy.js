@@ -9,6 +9,12 @@ if (!notificationsList) {
 	console.error("No notification dropdown found. Aborting notificationsThingy.");
 }
 
+/**
+ * @description When the API returns a lists of notifications, this method will generate the HTML to fill the dropdown
+ *
+ * @param data
+ * @return void
+ */
 function onNotificationsGetSuccess(data) {
 	//console.log("notificationsThingy onNotificationsGetSuccess", data);
 	if (data.headers && data.headers["X-Notification-Count"] && (data.headers["X-Notification-Count"] > 0)) {
