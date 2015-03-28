@@ -910,10 +910,13 @@ code {
 	bottom: 0px;
 	left: 7px;
 	position: absolute!important;
-	width: 166px;
 	z-index: 5;
 }
 
+.tileImage div {
+	height: 166px;
+	width: 166px;
+}
 .tilePic {
 	border-radius: 5px;
 	max-width: 166px;
