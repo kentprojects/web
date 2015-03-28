@@ -915,12 +915,14 @@ code {
 
 .tileImage div {
 	height: 166px;
+	line-height: 166px;
 	width: 166px;
 }
 .tilePic {
 	border-radius: 5px;
 	max-width: 166px;
 	max-height: 166px;
+	vertical-align: middle;
 }
 
 .tileSubText {
