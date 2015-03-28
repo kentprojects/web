@@ -6,5 +6,8 @@
  */
 require_once __DIR__ . "/../private/bootstrap.php";
 Session::destroy();
-redirect(API::GetURL() . "/auth/logout?url=" . config("logout"));
+redirect(
+	(!empty($_SERVER["CORPUS_ENV"]) ? API::GetURL() : "http://localhost:8080") .
+	"/auth/logout?url=" . config("logout")
+);
 exit();
