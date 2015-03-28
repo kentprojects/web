@@ -25,6 +25,8 @@
 <script type="text/javascript">
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function () {
-		document.querySelector(".chosenProject").innerHTML = "<p>A pat on the back is in order! Your <a href='/profile.php?type=group&id=" + me.group.id + "'>group</a> has found a <a href='/profile.php?type=project&id=" + me.project.id + "'>project</a>.</p><p>Now you just need to submit the paperwork to the CAS office.</p>";
+		console.log(document.querySelector(".chosenProject").innerHTML);
+		document.querySelector(".chosenProject").innerHTML = document.querySelector(".chosenProject").innerHTML.replace("group", "<a href='/profile.php?type=group&id=" + me.group.id + "'>group</a>")
+		document.querySelector(".chosenProject").innerHTML = document.querySelector(".chosenProject").innerHTML.replace("project", "<a href='/profile.php?type=project&id=" + me.project.id + "'>project</a>")
 	});
 </script>
