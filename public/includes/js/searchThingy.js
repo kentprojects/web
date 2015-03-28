@@ -5,9 +5,11 @@
  */
 
 function searchTiles(frameSelector, filters, stringFind, tileClass) {
-	var $frame = $(frameSelector);
-	removeEDR(filters, stringFind, tileClass);
-	$frame.sly('reload');
+	if (window.tileView == undefined || tileView == true) {
+		var $frame = $(frameSelector);
+		removeEDR(filters, stringFind, tileClass);
+		$frame.sly('reload');
+	}
 }
 
 function removeEDR(filters, stringFind, tileClass) {
@@ -26,7 +28,6 @@ function removeEDR(filters, stringFind, tileClass) {
 				tileText = "";
 			}
 			searchFields = [tileTitle,tileText];
-
 			// Tile passes through filter and title/subtext contain the requested string.
 			if (!(passesFilter(filters, tile.className) && passesSearch(stringFind, searchFields))) {
 				tile.className = tile.className + " hideTile";
