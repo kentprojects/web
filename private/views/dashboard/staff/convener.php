@@ -34,12 +34,12 @@
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
 						<h3 class="panel-title" style="clear:none;"><a href="/list.php?type=projects">Projects</a></h3>
 					</div>
-
+					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-						<form class="navbar-form navbar-right noLeftPadding noTopPadding noBottomPadding" action="#" role="search">
+						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="stuff();" oninput="stuff();" onkeydown="stuff();" onkeypress="stuff();" onpaste="stuff();">
+									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="projectSearch();" oninput="projectSearch();" onkeydown="projectSearch();" onkeypress="projectSearch();" onpaste="projectSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
@@ -47,6 +47,8 @@
 							</div>
 						</form>
 					</div>
+					<script type="text/javascript"> function projectSearch() {searchTiles('#projectScroller', '', document.getElementById('navbarInput-01').value, "tileLiproject");}</script>
+					<!-- End of search bit -->
 				</div>
 			</div>
 			<div class="panel-body">
@@ -71,7 +73,26 @@
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<h3 class="panel-title"><a href="/list.php?type=groups">Groups</a></h3>
+					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" id="navbarInput-02" type="search" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
+									<span class="input-group-btn">
+										<button type="submit" class="btn"><span class="fui-search"></span></button>
+									</span>
+								</div>
+							</div>
+						</form>
+						<script type="text/javascript"> function groupSearch() {searchTiles('#groupScroller', '', document.getElementById('navbarInput-02').value, "tileLigroup");}</script>
+					</div>
+					<!-- End of search bit -->
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="groupLoader">
@@ -95,7 +116,26 @@
 	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><a href="/list.php?type=students">Students</a></h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<h3 class="panel-title"><a href="/list.php?type=students">Students</a></h3>
+					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" id="navbarInput-03" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
+									<span class="input-group-btn">
+										<button type="submit" class="btn"><span class="fui-search"></span></button>
+									</span>
+								</div>
+							</div>
+						</form>
+						<script type="text/javascript"> function studentSearch() {searchTiles('#studentScroller', '', document.getElementById('navbarInput-03').value, "tileListudent");}</script>
+					</div>
+					<!-- End of search bit -->
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="studentLoader">
@@ -119,7 +159,26 @@
 	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title"><a href="/list.php?type=staff">Supervisors</a></h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<h3 class="panel-title"><a href="/list.php?type=staff">Supervisors</a></h3>
+					</div>
+					<!-- Search bit -->
+					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" id="navbarInput-04" type="search" placeholder="Search" onchange="supervisorSearch();" oninput="supervisorSearch();" onkeydown="supervisorSearch();" onkeypress="supervisorSearch();" onpaste="supervisorSearch();">
+									<span class="input-group-btn">
+										<button type="submit" class="btn"><span class="fui-search"></span></button>
+									</span>
+								</div>
+							</div>
+						</form>
+						<script type="text/javascript"> function supervisorSearch() {searchTiles('#supervisorScroller', '', document.getElementById('navbarInput-04').value, "tileListaff");}</script>
+					</div>
+					<!-- End of search bit -->
+				</div>
 			</div>
 			<div class="panel-body">
 				<div class="loaderFixHeight" id="supervisorLoader">
@@ -204,7 +263,7 @@
 			function (data) {
 				document.querySelector("#projectScroller").className = document.querySelector("#projectScroller").className.replace("displayNone", "");
 				document.querySelector("#projectLoader").className = document.querySelector("#projectLoader").className + " displayNone";
-				document.querySelector(".Projects ul").innerHTML = scrollerHTML(data.body, "project", true);
+				document.querySelector(".Projects ul").innerHTML = generateScroller(".Projects ul", data.body, "project", true);
 				document.querySelector(".Projects a").innerText += ' (' + data.body.length + ')';
 				scroller("#projectScroller");
 				document.querySelector(".Projects .loader").style.display = "none";
@@ -221,7 +280,7 @@
 			function (data) {
 				document.querySelector("#groupScroller").className = document.querySelector("#groupScroller").className.replace("displayNone", "");
 				document.querySelector("#groupLoader").className = document.querySelector("#groupLoader").className + " displayNone";
-				document.querySelector(".Groups ul").innerHTML = scrollerHTML(data.body, "group", true);
+				document.querySelector(".Groups ul").innerHTML = generateScroller(".Groups ul", data.body, "group", true);
 				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
 				scroller("#groupScroller");
 				document.querySelector(".Groups .loader").style.display = "none";
@@ -238,7 +297,7 @@
 			function (data) {
 				document.querySelector("#studentScroller").className = document.querySelector("#studentScroller").className.replace("displayNone", "");
 				document.querySelector("#studentLoader").className = document.querySelector("#studentLoader").className + " displayNone";
-				document.querySelector(".Students ul").innerHTML = scrollerHTML(data.body, "student", true);
+				document.querySelector(".Students ul").innerHTML = generateScroller(".Students ul", data.body, "student", true);
 				document.querySelector(".Students a").innerText += ' (' + data.body.length + ')';
 				scroller("#studentScroller");
 				document.querySelector(".Students .loader").style.display = "none";
@@ -255,7 +314,7 @@
 			function (data) {
 				document.querySelector("#supervisorScroller").className = document.querySelector("#supervisorScroller").className.replace("displayNone", "");
 				document.querySelector("#supervisorLoader").className = document.querySelector("#supervisorLoader").className + " displayNone";
-				document.querySelector(".Supervisors ul").innerHTML = scrollerHTML(data.body, "staff", true);
+				document.querySelector(".Supervisors ul").innerHTML = generateScroller(".Supervisors ul", data.body, "staff", true);
 				document.querySelector(".Supervisors a").innerText += ' (' + data.body.length + ')';
 				scroller("#supervisorScroller");
 				document.querySelector(".Supervisors .loader").style.display = "none";
