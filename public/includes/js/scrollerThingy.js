@@ -2,7 +2,7 @@
  * Created by house on 12/02/15.
  */
 function scrollerTile(item, type, addStyle) {
-	var classList = "", lockedHTML = "", statusHTML= "", tileHTML = [], tileImage = "", subText = "";
+	var classList = "", lockedHTML = "", tileHTML = [], tileImage = "", subText = "";
 	// If colour required add to class list.
 	//console.log(item.supervisor.id == me.user.id);
 	if (addStyle) {
@@ -25,7 +25,6 @@ function scrollerTile(item, type, addStyle) {
 			}
 			else {
 				classList += " redStatus"; //classList += " redTile";
-				//statusHTML += "<div class='circleStatus redStatus'></div>";
 			}
 		}
 		else if (type == "project") {
@@ -63,11 +62,10 @@ function scrollerTile(item, type, addStyle) {
 	tileHTML.push(
 		'<li ' + classList + '>',
 		'<div class="fillLi">',
-		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
 		tileImage,
-		subText,
 		lockedHTML,
-		statusHTML,
+		'<div class="tile-title"><a href="/profile.php?type=' + type + '&id='+ item.id + '">' + item.name + '</a></div>',
+		subText,
 		'</a>',
 		'</div>',
 		'</li>'

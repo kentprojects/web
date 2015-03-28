@@ -511,7 +511,7 @@ code {
 	color: #fff!important;
 	display: block!important;
 	margin-left: -12px;
-	margin-top: 40px;
+	margin-top: 104px;
 	width: 204px!important;
 
 	-moz-box-shadow: 0 5px 0 #000;
@@ -900,6 +900,11 @@ code {
 	width: 100%;
 }
 
+/*.tile-title {
+	max-height: 136px;
+	overflow: hidden;
+}*/
+
 .tileImage {
 	bottom: 0px;
 	left: 7px;
@@ -917,6 +922,8 @@ code {
 .tileSubText {
 	bottom: 0px;
 	left: 0px;
+/*	max-height: 68px;
+	overflow: hidden;*/
 	position: absolute!important;
 	width: 100%;
 	z-index: 3;
