@@ -4,7 +4,6 @@
 function scrollerTile(item, type, addStyle) {
 	var classList = "", lockedHTML = "", tileHTML = [], tileImage = "", subText = "";
 	// If colour required add to class list.
-	//console.log(item.supervisor.id == me.user.id);
 	if (addStyle) {
 		if ((type == "student")) {
 			// If in a group.
@@ -13,18 +12,18 @@ function scrollerTile(item, type, addStyle) {
 				if (item.group.project != null) {
 					// If my project.
 					if (item.group.project.supervisor.id == me.user.id) {
-						classList += " blueStatus"; //classList += " blueTile";
+						classList += " blueStatus";
 					}
 					else {
-						classList += " greenStatus"; //classList += " greenTile";
+						classList += " greenStatus";
 					}
 				}
 				else {
-					classList += " yellowStatus"; //classList += " yellowTile";
+					classList += " yellowStatus";
 				}
 			}
 			else {
-				classList += " redStatus"; //classList += " redTile";
+				classList += " redStatus";
 			}
 		}
 		else if (type == "project") {
@@ -33,7 +32,7 @@ function scrollerTile(item, type, addStyle) {
 				lockedHTML = "<span class='banner'><a href='/profile.php?type=group&id=" + item.group + "'>Taken</a></span>";
 			}
 			if (item.supervisor.id == me.user.id) {
-				classList += " blueStatus"; //classList += " blueTile";
+				classList += " blueStatus";
 			}
 		}
 		else if (type == "group") {
@@ -41,14 +40,14 @@ function scrollerTile(item, type, addStyle) {
 			if (item.project != null) {
 				subText = '<span class="tileSubText"><a href="/profile.php?type=project&id='+ item.project.id + '">' + item.project.name + '</a></span>';
 				if (item.project.supervisor.id == me.user.id) {
-					classList += " blueStatus"; //classList += " blueTile";
+					classList += " blueStatus";
 				}
 				else {
-					classList += " greenStatus"; //classList += " greenTile";
+					classList += " greenStatus";
 				}
 			}
 			else {
-				classList += " yellowStatus"; //classList += " yellowTile";
+				classList += " yellowStatus";
 			}
 		}
 	}
