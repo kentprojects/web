@@ -6,11 +6,6 @@
  */
 final class Auth
 {
-	private static /** @noinspection SpellCheckingInspection */
-		$simpleSamlAPI = "https://api.kentprojects.com/simplesaml";
-	private static /** @noinspection SpellCheckingInspection */
-		$simpleSamlLogout = "/module.php/core/authenticate.php?as=default-sp&logout";
-
 	/**
 	 * @param string $code
 	 * @return void
@@ -61,6 +56,9 @@ final class Auth
 	 */
 	public static function redirect($code = null)
 	{
-		redirect(API::GetURL() . (empty($code) ? "/auth/sso" : "/auth/internal?auth=" . $code));
+		redirect(
+			(!empty($_SERVER["CORPUS_ENV"]) ? API::GetURL() : "http://localhost:8080") .
+			(empty($code) ? "/auth/sso" : "/auth/internal?auth=" . $code)
+		);
 	}
 }

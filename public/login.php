@@ -82,7 +82,7 @@ $people = array(
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Kent Projects Login</title>
+        <title>KentProjects Login</title>
         <link rel="shortcut icon" href="/includes/img/kp.ico">
         <link href="/includes/css/lib/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="/includes/css/lib/flat-ui-pro.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@ $people = array(
         <div class="container">
 	    	<?php if ($loginAsCas) { ?>
 	        <div class="row">
-                <h2 class="text-center">Kent Projects CAS office login:</h2>
+                <h2 class="text-center">KentProjects CAS office login:</h2>
             </div>
 			<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
@@ -113,7 +113,7 @@ $people = array(
 			</div>
 				<?php } else { ?>
 			<div class="row">
-                <h2 class="text-center">Kent Projects Beta Login</h2>
+                <h2 class="text-center">KentProjects Beta Login</h2>
                 <p class="text-center text-info">This is only temporary. If you see this after September 2015, tell Julio.</p>
             </div>
             <div class="row">

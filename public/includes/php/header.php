@@ -87,38 +87,38 @@ $title = empty($title) ? "KentProjects" : $title;
 <header class="kentBlueBackground">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-6 col-sm-7 col-md-7 noRightPadding">
+			<div class="col-xs-6 col-sm-6 col-md-6 noRightPadding">
 				<a href="/dashboard.php"><h4 class="inlineHeading smallerMobileHeading whiteText"> Kent Projects </h4>
 				</a>
 			</div>
-			<div class="col-xs-6 col-sm-5 col-md-5 noLeftPadding text-right">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown" id="notificationsDropdown">
-						<a class="navLink" href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<div class="col-xs-6 col-sm-6 col-md-6 noRightPadding text-right">
+				<ul class="nav navbar-nav navbar-right dropdown" id="notificationsDropdown">
+					<li class="headerIcon" class="dropdown-toggle" data-toggle="dropdown">
+						<a class="navLink" href="#">
 							<span class="fui-chat smallerMobileHeading whiteText"></span>
 						</a>
-						<ul class="dropdown-menu" id="user-notifications">
-						</ul>
 						<span class="notificationsBadge" id="notificationsBadge"></span>
 					</li>
-					<li>
+					<li class="headerIcon">
 						<a class="navLink" href="/profile.php?shortcut=myProfile">
-							<span class="fui-user marginLeft10 smallerMobileHeading whiteText"></span>
+							<span class="fui-user smallerMobileHeading whiteText"></span>
 						</a>
 					</li>
-					<li>
+					<li class="headerIcon">
 						<a class="navLink" href="/settings.php">
-							<span class="fui-gear marginLeft10 smallerMobileHeading whiteText"></span>
+							<span class="fui-gear smallerMobileHeading whiteText"></span>
 						</a>
 					</li>
-					<li>
-						<a class="navLink" href="#"><span class="fui-exit hoverHand marginLeft10 smallerMobileHeading whiteText"
-							onclick="logoutUser()"></span></a>
+					<li class="headerIcon">
+						<a class="navLink" href="#">
+							<span class="fui-exit hoverHand smallerMobileHeading whiteText" onclick="logoutUser()"></span>
+						</a>
 					</li>
+					<ul class="dropdown-menu " id="user-notifications">
+						<li>asdf</li>
+					</ul>
 				</ul>
-
 			</div>
-
 		</div>
 	</div>
 </header>
