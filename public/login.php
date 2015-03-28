@@ -117,7 +117,7 @@ $people = array(
                 <p class="text-center text-info">This is only temporary. If you see this after September 2015, tell Julio.</p>
             </div>
 
-			<?php if (!empty($_SERVER["CORPUS_ENV"])) { ?>
+			<?php if (empty($_SERVER["CORPUS_ENV"])) { ?>
             <div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-4 bigMargin centerInRow centerItem">
 					<a href="<?php echo API::GetURL();?>/auth/sso" class="btn btn-block btn-lg btn-info centerItem restrictedWidth">
