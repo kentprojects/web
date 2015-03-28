@@ -127,7 +127,12 @@ body {
 .dropdown-menu {
 	left: inherit;
 	right: 0%;
-	min-width: 300px;
+	min-width: 500px;
+	max-width: 500px;
+}
+
+#user-notifications a {
+	white-space: normal!important;
 }
 
 .notificationsBadge {
@@ -179,10 +184,17 @@ body {
 	border:1px solid #ce4f5e;
 }
 
+
+#user-notifications a {
+	white-space: nowrap!important;
+	overflow:vertical;
+}
+
 /* When on mobile */
 @media all and (max-width: 568px) {
 	.dropdown-menu {
-		width: 20px;
+		min-width: 300px;
+		max-width: 300px;
 	}
 
 	.notificationsDropdown {
@@ -193,10 +205,6 @@ body {
 		right: 10px;
 		width: 200%;
 		max-width: 200%;
-	}
-
-	#user-notifications a {
-		white-space: normal!important;
 	}
 }
 
