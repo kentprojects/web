@@ -2,7 +2,7 @@
 	<div class="container">
 		<h3>You've done it!</h3>
 
-		<section class="chosenProject"><p>A pat on the back is in order! Well done for finding a project.</p>
+		<section class="chosenProject"><p>A pat on the back is in order! Your group has found a project.</p>
 
 		<p>Now you just need to submit the paperwork to the CAS office.</p></section>
 
@@ -25,6 +25,6 @@
 <script type="text/javascript">
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function () {
-		document.querySelector(".chosenProject").innerHTML = '<p>A pat on the back is in order! Well done for finding a ' + "<a href='/profile.php?type=project&id=" + me.project.id + "'>project</a>.</p><p>Now you just need to submit the paperwork to the CAS office.</p>";
+		document.querySelector(".chosenProject").innerHTML = "<p>A pat on the back is in order! Your <a href='/profile.php?type=group&id=" + me.group.id + "'>group</a> has found a <a href='/profile.php?type=project&id=" + me.project.id + "'>project</a>.</p><p>Now you just need to submit the paperwork to the CAS office.</p>";
 	});
 </script>
