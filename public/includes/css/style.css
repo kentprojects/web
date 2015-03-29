@@ -932,6 +932,7 @@ code {
 	line-height: 166px;
 	width: 166px;
 }
+
 .tilePic {
 	border-radius: 5px;
 	max-width: 166px;
@@ -964,4 +965,20 @@ code {
 
 .listSearchbox {
 	margin-top: 37px;
+}
+
+.listHeading {
+	display: inline-block;
+	float: left;
+}
+
+.listButtonsDiv {
+	float: left;
+	margin-left: 15px;
+}
+
+@media all and (max-width: 767px) {
+	.listSearchbox {
+		margin-top: 0!important;
+	}
 }
