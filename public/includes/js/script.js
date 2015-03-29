@@ -58,7 +58,6 @@ loadQueue.push(function OnScriptLoad() {
 
 	"/includes/js/ajax.js",
 	"/includes/js/includes.php",
-	"/includes/js/dynamicCSS.js",
 	"/includes/js/notificationsThingy.js",
 	"/includes/js/scrollerThingy.js",
 	"/includes/js/searchThingy.js",
