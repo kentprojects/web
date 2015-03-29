@@ -81,7 +81,7 @@ body {
 	right: 14px;
 }
 
-/* When on mobile */
+/* When on mobile/thin browser */
 @media all and (max-width: 568px) {
 	h1 {
 		font-size: 54px;
@@ -660,6 +660,17 @@ code {
 	height: 205px;
 }
 
+
+@media all and (max-width: 500px) {
+	.reduceHeading {
+		font-size: 42px;
+	}
+
+	.reduceTopMargin {
+		margin-top: 20px;
+	}		
+}
+
 /* Mobile */
 @media (max-device-width: 568px) and (orientation: portrait) {
 	.mobileHide {
@@ -909,11 +920,6 @@ code {
 	width: 100%;
 }
 
-/*.tile-title {
-	max-height: 136px;
-	overflow: hidden;
-}*/
-
 .tileImage {
 	bottom: 0px;
 	left: 7px;
@@ -936,8 +942,6 @@ code {
 .tileSubText {
 	bottom: 0px;
 	left: 0px;
-/*	max-height: 68px;
-	overflow: hidden;*/
 	position: absolute!important;
 	width: 100%;
 	z-index: 3;
