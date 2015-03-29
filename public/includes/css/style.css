@@ -634,12 +634,12 @@ code {
 	text-align: center!important;
 }
 
-.tileListItems li {
-	height: 250px!important;
-	margin: 8px!important;
-	display: inline-block!important;
-	float: none!important;
-	vertical-align: top!important;
+div .frame ul li {
+	height: 250px;
+	margin: 8px;
+	display: inline-block;
+	float: none;
+	vertical-align: top;
 }
 
 .fullWidth {
