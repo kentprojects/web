@@ -19,7 +19,7 @@
 					<img />
 				</div>
 			</div>
-		</div>
+		</div>>
 		<div class="userBio col-xs-12 col-sm-9 col-md-10 col-lg-10">
 			<div class="panel panel-default">
 				<div class="panel-heading">

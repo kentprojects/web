@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h1 id="projectName">&nbsp;</h1>
+			<h1 class="text-center" id="projectName">&nbsp;</h1>
 		</div>
 	</div>
 	<div class="row" id="changeOptions">
@@ -10,6 +10,13 @@
 				<button class="btn btn-default" onclick="location.reload()"><span class="fui-cross"></span> Revert
 				</button>
 				<button class="btn btn-success" onclick="pushChanges()"><span class="fui-check"></span> Save</button>
+			</div>
+		</div>
+	</div>
+	<div class="row displayNone" id="projectTaken">
+		<div class="col-xs-12 col-sm-12">
+			<div class="alert alert-success text-center" role="alert">
+				<em>This project has already been taken by group.</em>
 			</div>
 		</div>
 	</div>
@@ -191,6 +198,11 @@
 							document.getElementById("doProjectButton").style.display = "block";
 						}
 					}
+				}
+	
+				if (data.body.group != null) {
+					document.querySelector('#projectTaken').className = document.querySelector('#projectTaken').className.replace(" displayNone", "");
+					document.querySelector('#projectTaken').innerHTML = document.querySelector('#projectTaken').innerHTML.replace("group", "<a href='/profile.php?type=group&id=" + data.body.group.id + "'>" + data.body.group.name + "</a>")
 				}
 
 				// Show the 'give up' button if:
