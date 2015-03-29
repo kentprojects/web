@@ -112,7 +112,7 @@ function hideNoResultsMessage(tile) {
 // Search box styling fix!
 // Focus state for append/prepend inputs
 $('.input-group').on('focus', '.form-control', function () {
-  $(this).closest('.form-group').addClass('focus');
+	$(this).closest('.form-group').addClass('focus');
 }).on('blur', '.form-control', function () {
-  $(this).closest('.form-group').removeClass('focus');
+	$(this).closest('.form-group').removeClass('focus');
 });

@@ -1,12 +1,26 @@
 <div class="row">
-	<div class="col-xs-8 col-sm-9 col-md-9">
-		<h1 class="reduceHeading hideEdit">Staff</h1>
+	<div class="col-xs-12 col-sm-8 col-md-8">
+		<h1 class="reduceHeading hideEdit float-left listHeading">Staff</h1>
+		<div class="reduceTopMargin alignRight listButtonsDiv">
+			<div class="floatRight fui-new listButtons" onclick="alert();"></div>
+			<div class="floatRight fui-eye listButtons marginRight"onclick="changeListView();"></div>
+		</div>
 	</div>
-	<div class="reduceTopMargin col-xs-4 col-sm-3 col-md-3 alignRight">
-		<div class="floatRight fui-new listButtons" onclick="alert();"></div>
-		<div class="floatRight fui-eye listButtons marginRight"onclick="changeListView();"></div>
+	<!-- Search bit -->
+	<div class="col-xs-12 col-sm-4 col-md-4">
+		<form class="navbar-form navbar-right listSearchbox noBottomPadding" action="#" role="search">
+			<div class="form-group">
+				<div class="input-group">
+					<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
+					<span class="input-group-btn">
+						<button type="submit" class="btn"><span class="fui-search"></span></button>
+					</span>
+				</div>
+			</div>
+		</form>
 	</div>
-
+	<script type="text/javascript"> function studentSearch() {searchTiles('#staffScroller', "", document.getElementById('navbarInput-01').value, "tileListaff");}</script>
+	<!-- End of search bit -->
 	<script type="text/javascript">
 		var tileView = true;
 		var listData = "";
