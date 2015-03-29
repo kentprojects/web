@@ -133,7 +133,7 @@
 				"/students/", {},
 				function sucess(data) {
 					listData = data;
-					if (getWidth() < 550) {
+					if (window.innerWidth < 550) {
 						// View as list
 						viewList(listData);
 					}
