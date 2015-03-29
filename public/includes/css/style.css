@@ -617,7 +617,7 @@ code {
 	margin-top: auto;
 	margin-bottom: auto;
 	height: 100%;
-	padding: 11px 0 0 0px;
+	padding: 10px 0 0 0px;
 	font-size: 28px;
 }
 
@@ -956,4 +956,8 @@ code {
 #imageAvatar {
 	border-radius: 6px;
 	max-width: 100%;
+}
+
+.listSearchbox {
+	margin-top: 37px;
 }

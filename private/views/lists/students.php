@@ -13,7 +13,7 @@
 
 	<!-- Search bit -->
 	<div class="col-xs-12 col-sm-6 col-md-6">
-		<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+		<form class="navbar-form navbar-right listSearchbox noBottomPadding" action="#" role="search">
 			<div class="form-group">
 				<div class="input-group">
 					<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
