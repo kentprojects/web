@@ -1,8 +1,8 @@
 <div class="row">
-	<div class="col-xs-7 col-sm-7 col-md-7">
-		<h1 class="reduceHeading hideEdit"> Projects </h1>
+	<div class="col-xs-8 col-sm-7 col-md-7">
+		<h1 class="reduceHeading hideEdit">Projects</h1>
 	</div>
-	<div class="reduceTopMargin col-xs-5 col-sm-5 col-md-5 alignRight">
+	<div class="reduceTopMargin col-xs-4 col-sm-5 col-md-5 alignRight">
 		<div class="floatRight fui-new listButtons" onclick="alert();"></div>
 		<div class="floatRight fui-eye listButtons marginRight"onclick="changeListView();"></div>
 	</div>
