@@ -952,3 +952,8 @@ code {
 	margin-right: 5px!important;
 	text-align: center;
 }
+
+#imageAvatar {
+	border-radius: 6px;
+	max-width: 100%;
+}
