@@ -29,10 +29,17 @@ function scrollerTile(item, type, addStyle) {
 		else if (type == "project") {
 			subText = '<span class="tileSubText"><a href="/profile.php?type=staff&id='+ item.supervisor.id + '">' + item.supervisor.name + '</a></span>';
 			if (item.group != null) {
+				classList += " projectTaken";
 				lockedHTML = "<span class='banner'><a href='/profile.php?type=group&id=" + item.group + "'>Taken</a></span>";
+			}
+			else {
+				classList += " projectNotTaken";
 			}
 			if (item.supervisor.id == me.user.id) {
 				classList += " blueStatus";
+			}
+			else {
+				classList += " notBlueStatus";
 			}
 		}
 		else if (type == "group") {
