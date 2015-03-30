@@ -982,3 +982,16 @@ div .frame ul li {
 		margin-top: 0!important;
 	}
 }
+
+.filters {
+	text-align: center;
+}
+
+.checkbox {
+	display: inline;
+	margin-left: 18px;
+}
+
+#checkbox1 {
+	margin-left: 0;
+}
