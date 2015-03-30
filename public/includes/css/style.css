@@ -982,7 +982,7 @@ div .frame ul li {
 }
 
 .checkbox {
-	display: inline;
+	display: inline-block;
 	margin-left: 18px;
 }
 
