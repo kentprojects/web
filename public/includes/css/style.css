@@ -989,3 +989,8 @@ div .frame ul li {
 #checkbox1 {
 	margin-left: 0;
 }
+
+.tableLabel {
+	display: inline-block;
+	margin-right: 5px;
+}

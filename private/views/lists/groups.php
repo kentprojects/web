@@ -105,9 +105,21 @@
 
 	function viewList(listData) {
 		tileView = false;
-		var output = "<table class='table table-striped'><thead><tr><th>Name</th></tr></thead><tbody>";
+		var output = "<table class='table table-striped'><thead><tr><th></th><th>Name</th></tr></thead><tbody>";
 		for (var i = 0; i < listData.body.length; i++) {
-			output += "<tr><td>" + listData.body[i].name + "</td></tr>";
+			var dataTag = "";
+			if (listData.body[i].project) {
+				if (listData.body[i].project.supervisor.id == me.user.id) {
+					dataTag = "<a href='/profile.php?type=project&id=" + listData.body[i].project.id + "'><span class='label label-info'>My project</span></a>";
+				}
+				else {
+					dataTag = "<a href='/profile.php?type=project&id=" + listData.body[i].project.id + "'><span class='label label-success'>Has project</span></a>";
+				}
+			}
+			else {
+				dataTag = "<span class='label label-warning'>No project</span>";
+			}
+			output += "<tr><td>" + dataTag + "</td><td><a href='/profile.php?type=group&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td></tr>";
 		};
 		output += "</tbody></table>";
 		document.getElementById('listContents').innerHTML = output;	

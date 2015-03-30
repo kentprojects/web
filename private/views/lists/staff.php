@@ -59,7 +59,7 @@
 			tileView = false;
 			var output = "<table class='table table-striped'><thead><tr><th>Name</th></tr></thead><tbody>";
 			for (var i = 0; i < listData.body.length; i++) {
-				output += "<tr><td>" + listData.body[i].name + "</td></tr>";
+				output += "<tr><td><a href='/profile.php?type=staff&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td></tr>";
 			};
 			output += "</tbody></table>";
 			document.getElementById('listContents').innerHTML = output;	
