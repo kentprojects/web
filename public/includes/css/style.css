@@ -974,6 +974,10 @@ div .frame ul li {
 @media all and (max-width: 767px) {
 	.listSearchbox {
 		margin-top: 0!important;
+		margin-left: -2px;
+		margin-right: -2px;
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 
