@@ -998,3 +998,7 @@ div .frame ul li {
 	display: inline-block;
 	margin-right: 5px;
 }
+
+div.frame ul li.tileLi {
+  margin: 0 15px 0 0;
+}
