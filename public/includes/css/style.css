@@ -630,10 +630,14 @@ code {
 
 div .frame ul li {
 	height: 250px;
-	margin: 8px;
 	display: inline-block;
 	float: none;
 	vertical-align: top;
+}
+
+
+div .frame ul.tileListItems li {
+	margin: 8px;
 }
 
 .fullWidth {
@@ -997,8 +1001,4 @@ div .frame ul li {
 .tableLabel {
 	display: inline-block;
 	margin-right: 5px;
-}
-
-div.frame ul li.tileLi {
-  margin: 0 15px 0 0;
 }
