@@ -198,9 +198,7 @@
 				document.querySelector("#groupScroller").className = document.querySelector("#groupScroller").className.replace("displayNone", "");
 				document.querySelector("#groupLoader").className = document.querySelector("#groupLoader").className + " displayNone";
 				document.querySelector(".Groups ul").innerHTML = generateScroller(".Groups ul",data.body, "group", true);
-				console.log(document.querySelector(".Groups h3").innerText);
 				document.querySelector(".Groups a").innerText += ' (' + data.body.length + ')';
-				console.log(document.querySelector(".Groups h3").innerText);
 				scroller("#groupScroller");
 				document.getElementById("addGroupButton").style.display = "block";
 				document.querySelector(".Groups .loader").style.display = "none";

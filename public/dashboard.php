@@ -81,7 +81,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 ?>
 	<!-- Layout -->
 
-	<div class="container">
+	<div class="container mainContent">
 		<div class="row Header">
 			<div class="col-sm-12 col-xs-12">
 				<h1 class="text-center Heading">Dashboard</h1>

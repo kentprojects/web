@@ -4,7 +4,6 @@
 function scrollerTile(item, type, addStyle) {
 	var classList = "", lockedHTML = "", tileHTML = [], tileImage = "", subText = "";
 	// If colour required add to class list.
-	//console.log(item.supervisor.id == me.user.id);
 	if (addStyle) {
 		if ((type == "student")) {
 			// If in a group.
@@ -13,27 +12,34 @@ function scrollerTile(item, type, addStyle) {
 				if (item.group.project != null) {
 					// If my project.
 					if (item.group.project.supervisor.id == me.user.id) {
-						classList += " blueStatus"; //classList += " blueTile";
+						classList += " blueStatus";
 					}
 					else {
-						classList += " greenStatus"; //classList += " greenTile";
+						classList += " greenStatus";
 					}
 				}
 				else {
-					classList += " yellowStatus"; //classList += " yellowTile";
+					classList += " yellowStatus";
 				}
 			}
 			else {
-				classList += " redStatus"; //classList += " redTile";
+				classList += " redStatus";
 			}
 		}
 		else if (type == "project") {
 			subText = '<span class="tileSubText"><a href="/profile.php?type=staff&id='+ item.supervisor.id + '">' + item.supervisor.name + '</a></span>';
 			if (item.group != null) {
+				classList += " projectTaken";
 				lockedHTML = "<span class='banner'><a href='/profile.php?type=group&id=" + item.group + "'>Taken</a></span>";
 			}
+			else {
+				classList += " projectNotTaken";
+			}
 			if (item.supervisor.id == me.user.id) {
-				classList += " blueStatus"; //classList += " blueTile";
+				classList += " blueStatus";
+			}
+			else {
+				classList += " notBlueStatus";
 			}
 		}
 		else if (type == "group") {
@@ -41,19 +47,20 @@ function scrollerTile(item, type, addStyle) {
 			if (item.project != null) {
 				subText = '<span class="tileSubText"><a href="/profile.php?type=project&id='+ item.project.id + '">' + item.project.name + '</a></span>';
 				if (item.project.supervisor.id == me.user.id) {
-					classList += " blueStatus"; //classList += " blueTile";
+					classList += " blueStatus";
 				}
 				else {
-					classList += " greenStatus"; //classList += " greenTile";
+					classList += " greenStatus";
 				}
 			}
 			else {
-				classList += " yellowStatus"; //classList += " yellowTile";
+				classList += " yellowStatus";
 			}
 		}
 	}
 	// If image then add image tag
-	if (item.role)  { tileImage = '<span class="tileImage"><img class="tilePic" src="/uploads/' + md5(item.email) + '"/></span>'; }
+	//if (item.role)  { tileImage = '<span class="tileImage"><img class="tilePic" src="/uploads/' + md5(item.email) + '"/></span>'; }
+	if (item.role)  { tileImage = '<span class="tileImage"><div><a href="/profile.php?type=' + item.role + '&id=' + item.id + '"><img class="tilePic" src="/uploads/' + md5(item.email) + '"/></a></div></span>'; }
 	else { tileImage = ''};
 	// Set class list
 	classList = " class='tileLi tileLi" + type + classList + "'";

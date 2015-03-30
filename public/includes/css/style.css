@@ -46,7 +46,7 @@ body {
 .navbar-nav {
 	margin-left: 0;
 	margin-right: 0;
-	padding-top: 10px;
+	padding-top: 8px;
 }
 
 .navLink {
@@ -81,7 +81,7 @@ body {
 	right: 14px;
 }
 
-/* When on mobile */
+/* When on mobile/thin browser */
 @media all and (max-width: 568px) {
 	h1 {
 		font-size: 54px;
@@ -111,7 +111,8 @@ body {
 
 	.smallerMobileHeading {
 		font-size: 24px;
-		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-top: 12px;
 	}
 }
 /* End of Header footer styles */
@@ -126,7 +127,12 @@ body {
 .dropdown-menu {
 	left: inherit;
 	right: 0%;
-	min-width: 300px;
+	min-width: 500px;
+	max-width: 500px;
+}
+
+#user-notifications a {
+	white-space: normal!important;
 }
 
 .notificationsBadge {
@@ -181,7 +187,8 @@ body {
 /* When on mobile */
 @media all and (max-width: 568px) {
 	.dropdown-menu {
-		width: 20px;
+		min-width: 300px;
+		max-width: 300px;
 	}
 
 	.notificationsDropdown {
@@ -192,10 +199,6 @@ body {
 		right: 10px;
 		width: 200%;
 		max-width: 200%;
-	}
-
-	#user-notifications a {
-		white-space: normal!important;
 	}
 }
 
@@ -608,7 +611,7 @@ code {
 	margin-top: auto;
 	margin-bottom: auto;
 	height: 100%;
-	padding: 11px 0 0 0px;
+	padding: 10px 0 0 0px;
 	font-size: 28px;
 }
 
@@ -625,12 +628,12 @@ code {
 	text-align: center!important;
 }
 
-.tileListItems li {
-	height: 250px!important;
-	margin: 8px!important;
-	display: inline-block!important;
-	float: none!important;
-	vertical-align: top!important;
+div .frame ul li {
+	height: 250px;
+	margin: 8px;
+	display: inline-block;
+	float: none;
+	vertical-align: top;
 }
 
 .fullWidth {
@@ -649,6 +652,17 @@ code {
 
 .loaderFixHeight {
 	height: 205px;
+}
+
+
+@media all and (max-width: 500px) {
+	.reduceHeading {
+		font-size: 42px;
+	}
+
+	.reduceTopMargin {
+		margin-top: 20px;
+	}		
 }
 
 /* Mobile */
@@ -900,30 +914,29 @@ code {
 	width: 100%;
 }
 
-/*.tile-title {
-	max-height: 136px;
-	overflow: hidden;
-}*/
-
 .tileImage {
 	bottom: 0px;
 	left: 7px;
 	position: absolute!important;
-	width: 166px;
 	z-index: 5;
+}
+
+.tileImage div {
+	height: 166px;
+	line-height: 166px;
+	width: 166px;
 }
 
 .tilePic {
 	border-radius: 5px;
 	max-width: 166px;
 	max-height: 166px;
+	vertical-align: middle;
 }
 
 .tileSubText {
 	bottom: 0px;
 	left: 0px;
-/*	max-height: 68px;
-	overflow: hidden;*/
 	position: absolute!important;
 	width: 100%;
 	z-index: 3;
@@ -937,4 +950,42 @@ code {
 	margin-left: 20px!important;
 	margin-right: 5px!important;
 	text-align: center;
+}
+
+#imageAvatar {
+	border-radius: 6px;
+	max-width: 100%;
+}
+
+.listSearchbox {
+	margin-top: 37px;
+}
+
+.listHeading {
+	display: inline-block;
+	float: left;
+}
+
+.listButtonsDiv {
+	float: left;
+	margin-left: 15px;
+}
+
+@media all and (max-width: 767px) {
+	.listSearchbox {
+		margin-top: 0!important;
+	}
+}
+
+.filters {
+	text-align: center;
+}
+
+.checkbox {
+	display: inline-block;
+	margin-left: 18px;
+}
+
+#checkbox1 {
+	margin-left: 0;
 }
