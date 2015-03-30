@@ -22,7 +22,7 @@
 	<script type="text/javascript"> function studentSearch() {searchTiles('#studentScroller', changeCheck(), document.getElementById('navbarInput-01').value, "tileListudent");}</script>
 	<!-- End of search bit -->
 </div>
-
+<!-- Filter bit -->
 <form role="form">
 	<div class="form-group filters">
 		<label class="checkbox" for="checkbox1">
@@ -47,7 +47,6 @@
 		</label>
 	</div>
 </form>
-
 <script type="text/javascript">
 	function changeCheck() {
 		if (document.getElementById("checkbox1").checked) {
@@ -74,10 +73,11 @@
 		}
 		studentSearch();
 	}
-	
+</script>
+<!-- End of filter bit -->
+<script type="text/javascript">
 	var tileView = true;
 	var listData = "";
-
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function(){
 		API.GET(
@@ -121,9 +121,7 @@
 	function viewTiles(listData) {
 		tileView = true;
 		var output = '<div class="row"><div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12"><div class="flowDown frame" id="studentScroller"><ul class="clearfix tileListItems"></ul></div></div></div>';
-
 		document.getElementById('listContents').innerHTML = output;	
-
 		document.querySelector(".Students ul").innerHTML = generateScroller(".Students ul", listData.body, "student", true);
 	}
 </script>

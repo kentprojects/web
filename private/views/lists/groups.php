@@ -19,59 +19,106 @@
 			</div>
 		</form>
 	</div>
-	<script type="text/javascript"> function studentSearch() {searchTiles('#groupScroller', "", document.getElementById('navbarInput-01').value, "tileLigroup");}</script>
+	<script type="text/javascript"> function studentSearch() {searchTiles('#groupScroller', changeCheck(), document.getElementById('navbarInput-01').value, "tileLigroup");}</script>
 	<!-- End of search bit -->
-	<script type="text/javascript">
-		var tileView = true;
-		var listData = "";
-
-		var loadQueue = loadQueue || [];
-		loadQueue.push(function(){
-			API.GET(
-				"/groups/", {},
-				function sucess(data) {
-					listData = data;
-					if (window.innerWidth < 550) {
-						// View as list
-						viewList(listData);
-					}
-					else {
-						// View as tiles
-						viewTiles(listData);
-					}
-				},
-				function error(data) {
-					console.error(data);
-				}
-			);
-		});
-
-		function changeListView() {
-			if (tileView) {
-				viewList(listData);
-			}
-			else {
-				viewTiles(listData);
-			}
-		}
-
-		function viewList(listData) {
-			tileView = false;
-			var output = "<table class='table table-striped'><thead><tr><th>Name</th></tr></thead><tbody>";
-			for (var i = 0; i < listData.body.length; i++) {
-				output += "<tr><td>" + listData.body[i].name + "</td></tr>";
-			};
-			output += "</tbody></table>";
-			document.getElementById('listContents').innerHTML = output;	
-		}
-
-		function viewTiles(listData) {
-			tileView = true;
-			var output = '<div class="row"><div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12"><div class="flowDown frame" id="groupScroller"><ul class="clearfix tileListItems"></ul></div></div></div>';
-
-			document.getElementById('listContents').innerHTML = output;	
-
-			document.querySelector(".Groups ul").innerHTML = generateScroller(".Groups ul", listData.body, "group", true);
-		}
-	</script>
 </div>
+<!-- Filter bit -->
+<form role="form">
+	<div class="form-group filters">
+		<label class="checkbox" for="checkbox1">
+			<input type="checkbox" data-toggle="checkbox" checked id="checkbox1" class="custom-checkbox" onchange="toggleFilters();"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+			<b><em>Enable filtering</em></b>
+		</label>
+		<label class="checkbox" for="checkbox2">
+			<input type="checkbox" data-toggle="checkbox" checked id="checkbox2" class="custom-checkbox" onchange="studentSearch()"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+			No project
+		</label>
+		<label class="checkbox" for="checkbox3">
+			<input type="checkbox" data-toggle="checkbox" checked id="checkbox3" class="custom-checkbox" onchange="studentSearch()"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+			Project selected
+		</label>
+		<label class="checkbox" for="checkbox4">
+			<input type="checkbox" data-toggle="checkbox" checked id="checkbox4" class="custom-checkbox" onchange="studentSearch()"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+			My project selected
+		</label>
+	</div>
+</form>
+<script type="text/javascript">
+	function changeCheck() {
+		if (document.getElementById("checkbox1").checked) {
+			var filters = '{"filters":[{"class":"yellowStatus","value":"'+document.getElementById("checkbox2").checked+'"},{"class":"greenStatus","value":"'+document.getElementById("checkbox3").checked+'"},{"class":"blueStatus","value":"'+document.getElementById("checkbox4").checked+'"}]}'
+			return filters;
+		}
+		else {
+			return "";
+		}
+	}
+
+	function toggleFilters () {
+		if (document.querySelector("#checkbox1").checked) {
+			document.querySelector("#checkbox2").disabled = false;
+			document.querySelector("#checkbox3").disabled = false;
+			document.querySelector("#checkbox4").disabled = false;
+		}
+		else {
+			document.querySelector("#checkbox2").disabled = true;
+			document.querySelector("#checkbox3").disabled = true;
+			document.querySelector("#checkbox4").disabled = true;
+		}
+		studentSearch();
+	}
+</script>
+<!-- End of filter bit -->
+<script type="text/javascript">
+	var tileView = true;
+	var listData = "";
+
+	var loadQueue = loadQueue || [];
+	loadQueue.push(function(){
+		API.GET(
+			"/groups/", {},
+			function sucess(data) {
+				listData = data;
+				if (window.innerWidth < 550) {
+					// View as list
+					viewList(listData);
+				}
+				else {
+					// View as tiles
+					viewTiles(listData);
+				}
+			},
+			function error(data) {
+				console.error(data);
+			}
+		);
+	});
+
+	function changeListView() {
+		if (tileView) {
+			viewList(listData);
+		}
+		else {
+			viewTiles(listData);
+		}
+	}
+
+	function viewList(listData) {
+		tileView = false;
+		var output = "<table class='table table-striped'><thead><tr><th>Name</th></tr></thead><tbody>";
+		for (var i = 0; i < listData.body.length; i++) {
+			output += "<tr><td>" + listData.body[i].name + "</td></tr>";
+		};
+		output += "</tbody></table>";
+		document.getElementById('listContents').innerHTML = output;	
+	}
+
+	function viewTiles(listData) {
+		tileView = true;
+		var output = '<div class="row"><div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12"><div class="flowDown frame" id="groupScroller"><ul class="clearfix tileListItems"></ul></div></div></div>';
+
+		document.getElementById('listContents').innerHTML = output;	
+
+		document.querySelector(".Groups ul").innerHTML = generateScroller(".Groups ul", listData.body, "group", true);
+	}
+</script>
