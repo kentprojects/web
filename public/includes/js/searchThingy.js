@@ -108,6 +108,9 @@ function clearSearchLists(tileClass) {
 		var row = rows[i];
 		row.className = row.className.replace(" displayNone", "");
 	}
+	document.querySelector(".nothingToShow").className = document.querySelector(".nothingToShow").className.replace(" displayNone", "");
+	document.querySelector(".nothingToShow").className += " displayNone";
+	document.querySelector(".listTable").className = document.querySelector(".listTable").className.replace(" displayNone", "");
 }
 
 function hideSearchLists(tileClass) {
