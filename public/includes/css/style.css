@@ -603,6 +603,10 @@ code {
 	background: #fff9ea!important;
 }
 
+.ignoreStatusColor {
+	background: #eef0f0!important;
+}
+
 .tileLi {
 	cursor: default!important;
 }

@@ -54,7 +54,39 @@ function removeEDR(filters, stringFind, tileClass) {
 
 function removeEDRLists(filters, stringFind, tileClass) {
 	if (stringFind != "" || filters != "") {
-		hideSearchLists(tileClass);
+		var rows = document.getElementsByClassName(tileClass);
+		var numResults = 0;
+		var rowTitle = "", rowText = "";
+		for (var i = 0; i < rows.length; i++) {
+			var row = rows[i];
+			row.className = row.className.replace(" displayNone", "");
+			rowTitle = row.querySelector(".rowTitle").firstChild.innerText;
+			if (row.querySelector(".rowSubText")) {
+				rowText = row.querySelector(".rowSubText").firstChild.innerText;
+			}
+			else {
+				rowText = "";
+			}
+			searchFields = [rowTitle,rowText];
+			// Row passes through filter and title/subtext contain the requested string.
+			if (!(passesFilter(filters, row.className) && passesSearch(stringFind, searchFields))) {
+				row.className = row.className + " displayNone";
+			}
+			else {
+				numResults += 1;
+			}
+		}
+		// Show message/hide message
+		if (numResults == 0) {
+			document.querySelector(".nothingToShow").className = document.querySelector(".nothingToShow").className.replace(" displayNone", "");
+			document.querySelector(".listTable").className = document.querySelector(".listTable").className.replace(" displayNone", "");
+			document.querySelector(".listTable").className += " displayNone";
+		}
+		else {
+			document.querySelector(".nothingToShow").className = document.querySelector(".nothingToShow").className.replace(" displayNone", "");
+			document.querySelector(".nothingToShow").className += " displayNone";
+			document.querySelector(".listTable").className = document.querySelector(".listTable").className.replace(" displayNone", "");
+		}
 	}
 	else {
 		clearSearchLists(tileClass);
@@ -71,12 +103,11 @@ function clearSearch(tileClass) {
 }
 
 function clearSearchLists(tileClass) {
-	var tiles = document.getElementsByClassName(tileClass);
-	for (var i = 0; i < tiles.length; i++) {
-		var tile = tiles[i];
-		tile.className = tile.className.replace(" displayNone", "");
+	var rows = document.getElementsByClassName(tileClass);
+	for (var i = 0; i < rows.length; i++) {
+		var row = rows[i];
+		row.className = row.className.replace(" displayNone", "");
 	}
-	// hideNoResultsMessage(tiles[0]);
 }
 
 function hideSearchLists(tileClass) {
@@ -85,7 +116,6 @@ function hideSearchLists(tileClass) {
 		var tile = tiles[i];
 		tile.className += " displayNone";
 	}
-	// hideNoResultsMessage(tiles[0]);
 }
 
 function passesFilter(filters, tileClasses) {

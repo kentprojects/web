@@ -106,31 +106,39 @@
 		else {
 			viewTiles(listData);
 		}
+		studentSearch();
 	}
 
 	function viewList(listData) {
 		tileView = false;
-		var output = "<table class='table table-striped'><thead><tr><th></th><th>Name</th><th>Supervisor</th></tr></thead><tbody>";
+		var output = "<div class='nothingToShow displayNone text-center text-info'>There's nothing to show here.</div><table class='table table-striped listTable'><thead><tr><th></th><th>Name</th><th>Supervisor</th></tr></thead><tbody>";
 		for (var i = 0; i < listData.body.length; i++) {
 			var dataTag = "";
+			var extraClass = "";
 			if (listData.body[i].group) {
 				dataTag = "<a href='/profile.php?type=group&id=" + listData.body[i].group + "'><span class='label label-primary tableLabel'>Taken</span></a>";
+				extraClass += " projectTaken";
+			}
+			else {
+				extraClass += " projectNotTaken";
 			}
 			if (listData.body[i].supervisor.id == me.user.id) {
 				dataTag += "<span class='label label-info tableLabel'>My project</span>";
+				extraClass += " blueStatus ignoreStatusColor";
 			}
-			output += "<tr class='tileLiproject'><td>" + dataTag + "</td><td><a href='/profile.php?type=project&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td><td><a href='/profile.php?type=staff&id=" + listData.body[i].supervisor.id + "'>" + listData.body[i].supervisor.name + "</a></td></tr>";
+			else {
+				extraClass += " notBlueStatus";
+			}
+			output += "<tr class='tileLiproject" + extraClass + "'><td>" + dataTag + "</td><td class='rowTitle'><a href='/profile.php?type=project&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td><td class='rowSubText'><a href='/profile.php?type=staff&id=" + listData.body[i].supervisor.id + "'>" + listData.body[i].supervisor.name + "</a></td></tr>";
 		};
 		output += "</tbody></table>";
-		document.getElementById('listContents').innerHTML = output;	
+		document.getElementById('listContents').innerHTML = output;
 	}
 
 	function viewTiles(listData) {
 		tileView = true;
 		var output = '<div class="row"><div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12"><div class="flowDown frame" id="projectScroller"><ul class="clearfix tileListItems"></ul></div></div></div>';
-
 		document.getElementById('listContents').innerHTML = output;	
-
 		document.querySelector(".Projects ul").innerHTML = generateScroller(".Projects ul", listData.body, "project", true);
 	}
 </script>
