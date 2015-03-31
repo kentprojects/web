@@ -1,10 +1,5 @@
-* {
-	-ms-scroll-chaining: none;
+html {
 	width: 100%;
-}
-
-header, div, footer {
-	-ms-scroll-chaining: chained;
 }
 
 /* Header footer styles */
