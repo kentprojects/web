@@ -10,6 +10,9 @@ function searchTiles(frameSelector, filters, stringFind, tileClass) {
 		removeEDR(filters, stringFind, tileClass);
 		$frame.sly('reload');
 	}
+	else {
+		removeEDRLists(filters, stringFind, tileClass);
+	}
 }
 
 function removeEDR(filters, stringFind, tileClass) {
@@ -49,6 +52,15 @@ function removeEDR(filters, stringFind, tileClass) {
 	}
 }
 
+function removeEDRLists(filters, stringFind, tileClass) {
+	if (stringFind != "" || filters != "") {
+		hideSearchLists(tileClass);
+	}
+	else {
+		clearSearchLists(tileClass);
+	}
+}
+
 function clearSearch(tileClass) {
 	var tiles = document.getElementsByClassName(tileClass);
 	for (var i = 0; i < tiles.length; i++) {
@@ -56,6 +68,24 @@ function clearSearch(tileClass) {
 		tile.className = tile.className.replace(" hideTile", "");
 	}
 	hideNoResultsMessage(tiles[0]);
+}
+
+function clearSearchLists(tileClass) {
+	var tiles = document.getElementsByClassName(tileClass);
+	for (var i = 0; i < tiles.length; i++) {
+		var tile = tiles[i];
+		tile.className = tile.className.replace(" displayNone", "");
+	}
+	// hideNoResultsMessage(tiles[0]);
+}
+
+function hideSearchLists(tileClass) {
+	var tiles = document.getElementsByClassName(tileClass);
+	for (var i = 0; i < tiles.length; i++) {
+		var tile = tiles[i];
+		tile.className += " displayNone";
+	}
+	// hideNoResultsMessage(tiles[0]);
 }
 
 function passesFilter(filters, tileClasses) {

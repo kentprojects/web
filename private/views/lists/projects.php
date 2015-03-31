@@ -120,7 +120,7 @@
 			if (listData.body[i].supervisor.id == me.user.id) {
 				dataTag += "<span class='label label-info tableLabel'>My project</span>";
 			}
-			output += "<tr><td>" + dataTag + "</td><td><a href='/profile.php?type=project&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td><td><a href='/profile.php?type=staff&id=" + listData.body[i].supervisor.id + "'>" + listData.body[i].supervisor.name + "</a></td></tr>";
+			output += "<tr class='tileLiproject'><td>" + dataTag + "</td><td><a href='/profile.php?type=project&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td><td><a href='/profile.php?type=staff&id=" + listData.body[i].supervisor.id + "'>" + listData.body[i].supervisor.name + "</a></td></tr>";
 		};
 		output += "</tbody></table>";
 		document.getElementById('listContents').innerHTML = output;	

@@ -24,7 +24,7 @@ function onNotificationsGetSuccess(data) {
 			'<li class="text-center"><a href="/notifications.php"><strong>Notifications</strong></a></li> ' +
 			'<li class="divider"></li>'
 		)
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < 5; i++) {
 			if (data.body[i]) {
 				var notification = data.body[i];
 				//console.log(notification);
