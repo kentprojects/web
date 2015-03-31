@@ -19,7 +19,7 @@
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
 									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="projectSearch();" oninput="projectSearch();" onkeydown="projectSearch();" onkeypress="projectSearch();" onpaste="projectSearch();">
@@ -28,7 +28,7 @@
 									</span>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 					<script type="text/javascript"> function projectSearch() {searchTiles('#projectScroller', '', document.getElementById('navbarInput-01').value, "tileLiproject");}</script>
 					<!-- End of search bit -->
@@ -61,7 +61,7 @@
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
 									<input class="form-control" id="navbarInput-02" type="search" placeholder="Search" onchange="supervisorSearch();" oninput="supervisorSearch();" onkeydown="supervisorSearch();" onkeypress="supervisorSearch();" onpaste="supervisorSearch();">
@@ -70,7 +70,7 @@
 									</span>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 					<script type="text/javascript"> function supervisorSearch() {searchTiles('#supervisorScroller', '', document.getElementById('navbarInput-02').value, "tileListaff");}</script>
 					<!-- End of search bit -->

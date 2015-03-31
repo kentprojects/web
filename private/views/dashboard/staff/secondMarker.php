@@ -15,7 +15,7 @@
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5">
-						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
 									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
@@ -24,7 +24,7 @@
 									</span>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 					<script type="text/javascript"> function groupSearch() {searchTiles('#projectScroller', '', document.getElementById('navbarInput-01').value, "tileLiproject");}</script>
 					<!-- End of search bit -->
