@@ -1437,7 +1437,7 @@
 			if (!dragging.released && dragging.path < 1) return;
 
 			if (!dragging.init) {
-				if (o.horizontal ? abs(dragging.pathX) >= abs(dragging.pathY) : abs(dragging.pathX) <= abs(dragging.pathY)) {
+				if (o.horizontal ? abs(dragging.pathX) > abs(dragging.pathY) : abs(dragging.pathX) < abs(dragging.pathY)) {
 					dragging.init = 1;
 				} else {
 					return dragEnd();
