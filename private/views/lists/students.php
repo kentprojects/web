@@ -105,33 +105,39 @@
 		else {
 			viewTiles(listData);
 		}
+		studentSearch();
 	}
 
 	function viewList(listData) {
 		tileView = false;
-		var output = "<table class='table table-striped'><thead><tr><th></th><th>Name</th><th>Group</th></tr></thead><tbody>";
+		var output = "<div class='nothingToShow displayNone text-center text-info'>There's nothing to show here...</div><table class='table table-striped listTable'><thead><tr><th></th><th>Name</th><th>Group</th></tr></thead><tbody>";
 		for (var i = 0; i < listData.body.length; i++) {
 			var dataTag = "";
-			var groupLink = "";
+			var groupLink = "<a></a>";
+			var extraClass = "";
 			//if in group
 			if (listData.body[i].group) {
 				if (listData.body[i].group.project) {
 					if (listData.body[i].group.project.supervisor.id == me.user.id) {
 						dataTag = "<a href='/profile.php?type=project&id=" + listData.body[i].group.project.id + "'><span class='label label-info tableLabel'>My project</span></a>";
+						extraClass += " blueStatus ignoreStatusColor";
 					}
 					else {
 						dataTag = "<a href='/profile.php?type=project&id=" + listData.body[i].group.project.id + "'><span class='label label-success tableLabel'>Has project</span></a>";
+						extraClass += " greenStatus ignoreStatusColor";
 					}
 				}
 				else {
 					dataTag = "<a href='/profile.php?type=group&id=" + listData.body[i].group.id + "'><span class='label label-warning tableLabel'>No project</span></a>";
+					extraClass += " yellowStatus ignoreStatusColor";
 				}
 				groupLink = "<a href='/profile.php?type=group&id=" + listData.body[i].group.id + "'>" + listData.body[i].group.name + "</a>";
 			}
 			else {
 				dataTag = "<span class='label label-danger tableLabel'>No group</span></a>";
+				extraClass += " redStatus ignoreStatusColor";
 			}
-			output += "<tr><td>" + dataTag + "</td><td><a href='/profile.php?type=project&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td><td>" + groupLink + "</td></tr>";
+			output += "<tr class='tileListudent" + extraClass + "'><td>" + dataTag + "</td><td class='rowTitle'><a href='/profile.php?type=project&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td><td class='rowSubText'>" + groupLink + "</td></tr>";
 		};
 		output += "</tbody></table>";
 		document.getElementById('listContents').innerHTML = output;	
