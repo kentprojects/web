@@ -111,7 +111,7 @@
 
 	function viewList(listData) {
 		tileView = false;
-		var output = "<div class='nothingToShow displayNone text-center text-info'>There's nothing to show here.</div><table class='table table-striped listTable'><thead><tr><th></th><th>Name</th><th>Supervisor</th></tr></thead><tbody>";
+		var output = "<div class='nothingToShow displayNone text-center text-info'>There's nothing to show here...</div><table class='table table-striped listTable'><thead><tr><th></th><th>Name</th><th>Supervisor</th></tr></thead><tbody>";
 		for (var i = 0; i < listData.body.length; i++) {
 			var dataTag = "";
 			var extraClass = "";
