@@ -10,7 +10,7 @@
 		<div class="navbar-form navbar-right listSearchbox noBottomPadding" role="search">
 			<div class="form-group">
 				<div class="input-group">
-					<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeyup="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
+					<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
 					<span class="input-group-btn">
 						<button type="submit" class="btn"><span class="fui-search"></span></button>
 					</span>
