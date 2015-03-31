@@ -1,4 +1,5 @@
 html {
+	touch-action: none;
 	width: 100%;
 }
 
