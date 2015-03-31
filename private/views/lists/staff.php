@@ -52,13 +52,14 @@
 			else {
 				viewTiles(listData);
 			}
+			studentSearch();
 		}
 
 		function viewList(listData) {
 			tileView = false;
-			var output = "<table class='table table-striped'><thead><tr><th>Name</th></tr></thead><tbody>";
+			var output = "<div class='nothingToShow displayNone text-center text-info'>There's nothing to show here...</div><table class='table table-striped listTable'><thead><tr><th>Name</th></tr></thead><tbody>";
 			for (var i = 0; i < listData.body.length; i++) {
-				output += "<tr><td><a href='/profile.php?type=staff&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td></tr>";
+				output += "<tr class='tileListaff'><td class='rowTitle'><a href='/profile.php?type=staff&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td></tr>";
 			};
 			output += "</tbody></table>";
 			document.getElementById('listContents').innerHTML = output;	
