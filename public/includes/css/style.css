@@ -1002,3 +1002,8 @@ div .frame ul.tileListItems li {
 	display: inline-block;
 	margin-right: 5px;
 }
+
+.notificationListItem {
+ 	display: inline-block;
+ 	margin-bottom: 16px;
+ }
