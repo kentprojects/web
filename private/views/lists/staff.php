@@ -2,7 +2,6 @@
 	<div class="col-xs-12 col-sm-8 col-md-8">
 		<h1 class="reduceHeading hideEdit float-left listHeading">Staff</h1>
 		<div class="reduceTopMargin alignRight listButtonsDiv">
-			<div class="floatRight fui-new listButtons" onclick="alert();"></div>
 			<div class="floatRight fui-eye listButtons marginRight"onclick="changeListView();"></div>
 		</div>
 	</div>
