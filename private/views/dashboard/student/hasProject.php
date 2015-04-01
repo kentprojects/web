@@ -13,7 +13,7 @@
 		document.querySelector(".chosenProject").innerHTML = document.querySelector(".chosenProject").innerHTML.replace("group", "<a href='/profile.php?type=group&id=" + me.group.id + "'>group</a>");
 		document.querySelector(".chosenProject").innerHTML = document.querySelector(".chosenProject").innerHTML.replace("project", "<a href='/profile.php?type=project&id=" + me.project.id + "'>project</a>");
 		if (me.project.hasCasSubmission) {
-			document.querySelector(".chosenProject").innerHTML += ("<p>And your paperwork has been submitted to the CAS office.</p>");
+			document.querySelector(".chosenProject").innerHTML += ("<p>And your paperwork has been submitted to the CAS office.</p><p> If your project has special requirements please ensure you fill out the relevant form(s) at the CAS office. </p>");
 		}
 		else {
 			if (me.group.creator.id == me.user.id) {

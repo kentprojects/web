@@ -104,15 +104,13 @@
 				</div>
 				<div class="panel-body">
 					<div class="has-no-likers displayNone">
-						<p class="text-center text-info">Nobody has liked this project. Why not be the first?</p>
+						<div class="text-center text-info">Nobody has liked this project.</div>
 					</div>
 					<div class="loaderFixHeight" id="likeLoader">
 						<div class="loader">Loading...</div>
 					</div>
-					<div class="has-likers displayNone">
-						<div class="frame" id="likeScroller">
+					<div class="has-likers displayNone frame" id="likeScroller">
 							<ul class="clearfix"></ul>
-						</div>
 					</div>
 					<ul class="pages"></ul>
 					<div class="controls center">

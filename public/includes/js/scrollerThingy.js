@@ -67,7 +67,7 @@ function scrollerTile(item, type, addStyle) {
 
 	// Create tile from HTML segments and return as a string.
 	tileHTML.push(
-		'<li ' + classList + '>',
+		'<li ' + classList + ' onclick="window.open(\'/profile.php?type=' + type + '&id='+ item.id + '\',\'_self\')">',
 		'<div class="fillLi">',
 		tileImage,
 		lockedHTML,
@@ -83,11 +83,11 @@ function scrollerTile(item, type, addStyle) {
 function scrollerHTML(data, type, addStyle) {
 	if (data && data.length > 0) {
 		var item, HTML = [];
+		HTML.push('<div class="scrollerPlaceholder noBottomMargin displayNone hideTile"><div class="text-info text-center">There\'s nothing to show here...</div></div>');
 		for (var i = 0; i < data.length; i++) {
 			item = data[i];
 			HTML.push(scrollerTile(item, type, addStyle));
 		}
-		HTML.push('<div class="scrollerPlaceholder noBottomMargin displayNone hideTile"><div class="text-info text-center">There\'s nothing to show here...</div></div>');
 		return HTML.join("");
 	}
 	else {
@@ -135,7 +135,7 @@ function generateScroller(ulClass, data, type, addStyle) {
 	if (!scroller) {
 		//Set max size of thing.
 		document.querySelector(ulClass).className = document.querySelector(ulClass).className + " fullWidth";
-		return '<div class="scrollerPlaceholder noBottomMargin displayNone"><div class="text-info text-center">There\'s nothing to show here...</div></div>';
+		return '<div class="scrollerPlaceholder noBottomMargin"><div class="text-info text-center">There\'s nothing to show here...</div></div>';
 	}
 	else {
 		return scroller;

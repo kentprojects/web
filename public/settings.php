@@ -22,7 +22,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 		<div class="row">
 			<h1>Settings</h1>
 		</div>
-		<div class="row">
+		<div class="row settingsRow">
 			<div class="col-xs-12 col-sm-4">
 				<b>Year:</b>
 			</div>
@@ -31,7 +31,7 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<form action="/dashboard.php" method="get">
-					<input type="text" name="year" class="form-control text-center" placeholder="Year">
+					<input type="text" name="year" class="form-control text-center yearSelector" placeholder="Year">
 				</form>
 			</div>
 		</div>

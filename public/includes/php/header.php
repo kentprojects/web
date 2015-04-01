@@ -88,7 +88,7 @@ $title = empty($title) ? "KentProjects" : $title;
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6 noRightPadding">
-				<a href="/dashboard.php"><h4 class="inlineHeading smallerMobileHeading whiteText"> Kent Projects </h4>
+				<a href="/dashboard.php"><h4 class="inlineHeading smallerMobileHeading whiteText"> KentProjects </h4>
 				</a>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6 noRightPadding text-right">

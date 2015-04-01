@@ -26,16 +26,16 @@
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-4">
-						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
+									<input class="form-control" id="navbarInput-01" type="search" autocomplete="off" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 					<script type="text/javascript"> function groupSearch() {searchTiles('#groupScroller', '', document.getElementById('navbarInput-01').value, "tileLigroup");}</script>
 					<!-- End of search bit -->
@@ -69,16 +69,16 @@
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5">
-						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-02" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
+									<input class="form-control" id="navbarInput-02" type="search" autocomplete="off" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 					<script type="text/javascript"> function studentSearch() {searchTiles('#studentScroller', '', document.getElementById('navbarInput-02').value, "tileListudent");}</script>
 					<!-- End of search bit -->
@@ -112,16 +112,16 @@
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5">
-						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-03" type="search" placeholder="Search" onchange="projectSearch();" oninput="projectSearch();" onkeydown="projectSearch();" onkeypress="projectSearch();" onpaste="projectSearch();">
+									<input class="form-control" id="navbarInput-03" type="search" autocomplete="off" placeholder="Search" onchange="projectSearch();" oninput="projectSearch();" onkeydown="projectSearch();" onkeypress="projectSearch();" onpaste="projectSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 					<script type="text/javascript"> function projectSearch() {searchTiles('#projectScroller', '', document.getElementById('navbarInput-03').value, "tileLiproject");}</script>
 					<!-- End of search bit -->
@@ -155,16 +155,16 @@
 					</div>
 					<!-- Search bit -->
 					<div class="col-xs-12 col-sm-5">
-						<form class="navbar-form navbar-right noTopPadding noBottomPadding" action="#" role="search">
+						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-04" type="search" placeholder="Search" onchange="supervisorSearch();" oninput="supervisorSearch();" onkeydown="supervisorSearch();" onkeypress="supervisorSearch();" onpaste="supervisorSearch();">
+									<input class="form-control" id="navbarInput-04" type="search" autocomplete="off" placeholder="Search" onchange="supervisorSearch();" oninput="supervisorSearch();" onkeydown="supervisorSearch();" onkeypress="supervisorSearch();" onpaste="supervisorSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
 					<script type="text/javascript"> function supervisorSearch() {searchTiles('#supervisorScroller', '', document.getElementById('navbarInput-04').value, "tileListaff");}</script>
 					<!-- End of search bit -->

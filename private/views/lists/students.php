@@ -2,13 +2,12 @@
 	<div class="col-xs-12 col-sm-8 col-md-8">
 		<h1 class="reduceHeading hideEdit float-left listHeading">Students</h1>
 		<div class="reduceTopMargin alignRight listButtonsDiv">
-			<div class="floatRight fui-new listButtons" onclick="alert();"></div>
 			<div class="floatRight fui-eye listButtons marginRight"onclick="changeListView();"></div>
 		</div>
 	</div>
 	<!-- Search bit -->
 	<div class="col-xs-12 col-sm-4 col-md-4">
-		<form class="navbar-form navbar-right listSearchbox noBottomPadding" action="#" role="search">
+		<div class="navbar-form navbar-right listSearchbox noBottomPadding" role="search">
 			<div class="form-group">
 				<div class="input-group">
 					<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
@@ -17,7 +16,7 @@
 					</span>
 				</div>
 			</div>
-		</form>
+		</div>
 	</div>
 	<script type="text/javascript"> function studentSearch() {searchTiles('#studentScroller', changeCheck(), document.getElementById('navbarInput-01').value, "tileListudent");}</script>
 	<!-- End of search bit -->
@@ -81,7 +80,7 @@
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function(){
 		API.GET(
-			"/students/", {},
+			"/students/", {"year": year},
 			function sucess(data) {
 				listData = data;
 				if (window.innerWidth < 550) {
@@ -106,13 +105,39 @@
 		else {
 			viewTiles(listData);
 		}
+		studentSearch();
 	}
 
 	function viewList(listData) {
 		tileView = false;
-		var output = "<table class='table table-striped'><thead><tr><th>Name</th></tr></thead><tbody>";
+		var output = "<div class='nothingToShow displayNone text-center text-info'>There's nothing to show here...</div><table class='table table-striped listTable'><thead><tr><th></th><th>Name</th><th>Group</th></tr></thead><tbody>";
 		for (var i = 0; i < listData.body.length; i++) {
-			output += "<tr><td>" + listData.body[i].name + "</td></tr>";
+			var dataTag = "";
+			var groupLink = "<a></a>";
+			var extraClass = "";
+			//if in group
+			if (listData.body[i].group) {
+				if (listData.body[i].group.project) {
+					if (listData.body[i].group.project.supervisor.id == me.user.id) {
+						dataTag = "<a href='/profile.php?type=project&id=" + listData.body[i].group.project.id + "'><span class='label label-info tableLabel'>My project</span></a>";
+						extraClass += " blueStatus ignoreStatusColor";
+					}
+					else {
+						dataTag = "<a href='/profile.php?type=project&id=" + listData.body[i].group.project.id + "'><span class='label label-success tableLabel'>Has project</span></a>";
+						extraClass += " greenStatus ignoreStatusColor";
+					}
+				}
+				else {
+					dataTag = "<a href='/profile.php?type=group&id=" + listData.body[i].group.id + "'><span class='label label-warning tableLabel'>No project</span></a>";
+					extraClass += " yellowStatus ignoreStatusColor";
+				}
+				groupLink = "<a href='/profile.php?type=group&id=" + listData.body[i].group.id + "'>" + listData.body[i].group.name + "</a>";
+			}
+			else {
+				dataTag = "<span class='label label-danger tableLabel'>No group</span></a>";
+				extraClass += " redStatus ignoreStatusColor";
+			}
+			output += "<tr class='tileListudent" + extraClass + "'><td>" + dataTag + "</td><td class='rowTitle'><a href='/profile.php?type=project&id=" + listData.body[i].id + "'>" + listData.body[i].name + "</a></td><td class='rowSubText'>" + groupLink + "</td></tr>";
 		};
 		output += "</tbody></table>";
 		document.getElementById('listContents').innerHTML = output;	

@@ -10,6 +10,9 @@ function searchTiles(frameSelector, filters, stringFind, tileClass) {
 		removeEDR(filters, stringFind, tileClass);
 		$frame.sly('reload');
 	}
+	else {
+		removeEDRLists(filters, stringFind, tileClass);
+	}
 }
 
 function removeEDR(filters, stringFind, tileClass) {
@@ -49,6 +52,47 @@ function removeEDR(filters, stringFind, tileClass) {
 	}
 }
 
+function removeEDRLists(filters, stringFind, tileClass) {
+	if (stringFind != "" || filters != "") {
+		var rows = document.getElementsByClassName(tileClass);
+		var numResults = 0;
+		var rowTitle = "", rowText = "";
+		for (var i = 0; i < rows.length; i++) {
+			var row = rows[i];
+			row.className = row.className.replace(" displayNone", "");
+			rowTitle = row.querySelector(".rowTitle").firstChild.innerText;
+			if (row.querySelector(".rowSubText")) {
+				rowText = row.querySelector(".rowSubText").firstChild.innerText;
+			}
+			else {
+				rowText = "";
+			}
+			searchFields = [rowTitle,rowText];
+			// Row passes through filter and title/subtext contain the requested string.
+			if (!(passesFilter(filters, row.className) && passesSearch(stringFind, searchFields))) {
+				row.className = row.className + " displayNone";
+			}
+			else {
+				numResults += 1;
+			}
+		}
+		// Show message/hide message
+		if (numResults == 0) {
+			document.querySelector(".nothingToShow").className = document.querySelector(".nothingToShow").className.replace(" displayNone", "");
+			document.querySelector(".listTable").className = document.querySelector(".listTable").className.replace(" displayNone", "");
+			document.querySelector(".listTable").className += " displayNone";
+		}
+		else {
+			document.querySelector(".nothingToShow").className = document.querySelector(".nothingToShow").className.replace(" displayNone", "");
+			document.querySelector(".nothingToShow").className += " displayNone";
+			document.querySelector(".listTable").className = document.querySelector(".listTable").className.replace(" displayNone", "");
+		}
+	}
+	else {
+		clearSearchLists(tileClass);
+	}
+}
+
 function clearSearch(tileClass) {
 	var tiles = document.getElementsByClassName(tileClass);
 	for (var i = 0; i < tiles.length; i++) {
@@ -56,6 +100,25 @@ function clearSearch(tileClass) {
 		tile.className = tile.className.replace(" hideTile", "");
 	}
 	hideNoResultsMessage(tiles[0]);
+}
+
+function clearSearchLists(tileClass) {
+	var rows = document.getElementsByClassName(tileClass);
+	for (var i = 0; i < rows.length; i++) {
+		var row = rows[i];
+		row.className = row.className.replace(" displayNone", "");
+	}
+	document.querySelector(".nothingToShow").className = document.querySelector(".nothingToShow").className.replace(" displayNone", "");
+	document.querySelector(".nothingToShow").className += " displayNone";
+	document.querySelector(".listTable").className = document.querySelector(".listTable").className.replace(" displayNone", "");
+}
+
+function hideSearchLists(tileClass) {
+	var tiles = document.getElementsByClassName(tileClass);
+	for (var i = 0; i < tiles.length; i++) {
+		var tile = tiles[i];
+		tile.className += " displayNone";
+	}
 }
 
 function passesFilter(filters, tileClasses) {
