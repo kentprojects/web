@@ -37,6 +37,8 @@ var unLikeThis = function emptyUnlikeThisButton() {
 					document.querySelector('#likesBox .has-no-likers').style.display = 'none';
 					document.querySelector('#likeLoader').style.display = 'none';
 					updateLikesCount(data.body.count);
+					$frame = $('#likeScroller');
+					$frame.sly('reload');
 				}
 
 				if (data.body.liked) {
