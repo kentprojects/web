@@ -67,7 +67,7 @@ function scrollerTile(item, type, addStyle) {
 
 	// Create tile from HTML segments and return as a string.
 	tileHTML.push(
-		'<li ' + classList + '>',
+		'<li ' + classList + ' onclick="window.open(\'/profile.php?type=' + type + '&id='+ item.id + '\',\'_self\')">',
 		'<div class="fillLi">',
 		tileImage,
 		lockedHTML,
