@@ -104,7 +104,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="has-no-likers displayNone">
-						<p class="text-center text-info">Nobody has liked this project.</p>
+						<div class="text-center text-info">Nobody has liked this project.</div>
 					</div>
 					<div class="loaderFixHeight" id="likeLoader">
 						<div class="loader">Loading...</div>
