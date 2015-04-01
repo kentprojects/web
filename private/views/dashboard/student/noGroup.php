@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!--Generate a welcome message including the user's current status.-->
 <div class="jumbotron">
 	<div class="container">
 		<h3>Welcome to KentProjects!</h3>
@@ -9,7 +16,7 @@
 
 	</div>
 </div>
-
+<!--Generate a groups scroller with search functionality.-->
 <div class="row">
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -58,7 +65,7 @@
 		</div>
 	</div>
 </div>
-
+<!--Generate a student scroller with search functionality.-->
 <div class="row">
 	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -101,7 +108,7 @@
 		</div>
 	</div>
 </div>
-
+<!--Generate a project scroller with search functionality.-->
 <div class="row">
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -144,7 +151,7 @@
 		</div>
 	</div>
 </div>
-
+<!--Generate a supervisor scroller with search functionality.-->
 <div class="row">
 	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
