@@ -23,13 +23,13 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			<h1>Settings</h1>
 		</div>
 		<div class="row settingsRow">
-			<div class="col-xs-12 col-sm-2">
+			<div class="col-xs-12 col-sm-4">
 				<b>Year:</b>
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<i>The academic year you would like to browse</i>
 			</div>
-			<div class="col-xs-12 col-sm-3">
+			<div class="col-xs-12 col-sm-4">
 				<form action="/dashboard.php" method="get">
 					<input type="text" name="year" class="form-control text-center yearSelector" placeholder="Year">
 				</form>
@@ -65,13 +65,5 @@ require PUBLIC_DIR . "/includes/php/header.php";
 			uploadMultiple: false,
 			url: '/settings.php?upload=avatar'
 		};
-		
-		var loadQueue = loadQueue || [];
-		loadQueue.push(function () {
-			if (me.user.years[year].role_convener) {
-				console.log("asdf");
-				document.querySelector(".settingsRow").innerHTML += '<div class="col-xs-12 col-sm-3"><a class="btn btn-info" id="addYearButton" href="#" style="display: block;"><span class="fui-plus"></span> Add new year</a></div>';
-			}
-		});
 	</script>
 <?php require PUBLIC_DIR . '/includes/php/footer.php'; ?>
