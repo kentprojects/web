@@ -39,7 +39,7 @@
 						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="projectSearch();" oninput="projectSearch();" onkeydown="projectSearch();" onkeypress="projectSearch();" onpaste="projectSearch();">
+									<input class="form-control" id="navbarInput-01" type="search" autocomplete="off" placeholder="Search" onchange="projectSearch();" oninput="projectSearch();" onkeydown="projectSearch();" onkeypress="projectSearch();" onpaste="projectSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
@@ -82,7 +82,7 @@
 						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-02" type="search" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
+									<input class="form-control" id="navbarInput-02" type="search" autocomplete="off" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
@@ -125,7 +125,7 @@
 						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-03" type="search" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
+									<input class="form-control" id="navbarInput-03" type="search" autocomplete="off" placeholder="Search" onchange="studentSearch();" oninput="studentSearch();" onkeydown="studentSearch();" onkeypress="studentSearch();" onpaste="studentSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
@@ -168,7 +168,7 @@
 						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-04" type="search" placeholder="Search" onchange="supervisorSearch();" oninput="supervisorSearch();" onkeydown="supervisorSearch();" onkeypress="supervisorSearch();" onpaste="supervisorSearch();">
+									<input class="form-control" id="navbarInput-04" type="search" autocomplete="off" placeholder="Search" onchange="supervisorSearch();" oninput="supervisorSearch();" onkeydown="supervisorSearch();" onkeypress="supervisorSearch();" onpaste="supervisorSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>

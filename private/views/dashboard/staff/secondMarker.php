@@ -18,7 +18,7 @@
 						<div class="navbar-form navbar-right noTopPadding noBottomPadding" role="search">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" id="navbarInput-01" type="search" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
+									<input class="form-control" id="navbarInput-01" type="search" autocomplete="off" placeholder="Search" onchange="groupSearch();" oninput="groupSearch();" onkeydown="groupSearch();" onkeypress="groupSearch();" onpaste="groupSearch();">
 									<span class="input-group-btn">
 										<button type="submit" class="btn"><span class="fui-search"></span></button>
 									</span>
