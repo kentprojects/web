@@ -134,8 +134,9 @@ function generateScroller(ulClass, data, type, addStyle) {
 	var scroller = scrollerHTML(data, type, addStyle);
 	if (!scroller) {
 		//Set max size of thing.
+		console.log("Thnks/")
 		document.querySelector(ulClass).className = document.querySelector(ulClass).className + " fullWidth";
-		return '<div class="scrollerPlaceholder noBottomMargin displayNone"><div class="text-info text-center">There\'s nothing to show here...</div></div>';
+		return '<div class="scrollerPlaceholder noBottomMargin"><div class="text-info text-center">There\'s nothing to show here...</div></div>';
 	}
 	else {
 		return scroller;
