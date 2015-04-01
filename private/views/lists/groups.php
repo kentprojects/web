@@ -75,7 +75,7 @@
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function(){
 		API.GET(
-			"/groups/", {},
+			"/groups/", {"year": year},
 			function sucess(data) {
 				listData = data;
 				if (window.innerWidth < 550) {

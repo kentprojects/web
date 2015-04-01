@@ -80,7 +80,7 @@
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function(){
 		API.GET(
-			"/students/", {},
+			"/students/", {"year": year},
 			function sucess(data) {
 				listData = data;
 				if (window.innerWidth < 550) {
