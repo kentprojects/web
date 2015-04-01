@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>,Matt Weeks <matt.weeks@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!-- The elements to show the dashboard welcome and 2 status gauges. -->
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
 		<div class="jumbotron convenorWelcome">
@@ -25,7 +32,7 @@
 		</div>
 	</div>
 </div>
-
+<!-- A projects scroller with search functionality. -->
 <div class="row">
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -68,7 +75,7 @@
 		</div>
 	</div>
 </div>
-
+<!-- A group scroller with search functionality. -->
 <div class="row">
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -111,7 +118,7 @@
 		</div>
 	</div>
 </div>
-
+<!-- A students scroller with search functionality. -->
 <div class="row">
 	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -154,7 +161,7 @@
 		</div>
 	</div>
 </div>
-
+<!-- A supervisor scroller with search functionality. -->
 <div class="row">
 	<div class="Supervisors col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -213,6 +220,9 @@
 		var students_in_groups = 0;
 		var groups_with_projects = 0;
 
+		/**
+		 * Generate the gauges from the data retrieved from the API call.
+		 */
 		function setGauges() {
 			var studentsInGroupsGauge = new JustGage({
 				id: "students-in-group-gauge",
@@ -238,7 +248,7 @@
 
 		}
 
-		// Get the stats
+		// Get the stats for the gauges
 		API.GET(
 			"/year/"+ year +"/stats", {},
 			function (data) {

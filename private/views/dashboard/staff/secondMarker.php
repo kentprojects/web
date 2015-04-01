@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!--Welcome message-->
 <div class="jumbotron">
 	<div class="container">
 		<h3>Welcome to KentProjects!</h3>
@@ -5,6 +12,7 @@
 		<p>This is your <i>second-marker</i> dashboard, where you can access any projects you will be marking.</p>
 	</div>
 </div>
+<!-- A projects scroller with search functionality.-->
 <div class="row">
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">

@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>,Matt Weeks <matt.weeks@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!--Show a welcome message.-->
 <div class="jumbotron">
 	<div class="container">
 		<h3>Welcome to KentProjects!</h3>
@@ -6,6 +13,7 @@
 			students.</p>
 	</div>
 </div>
+<!--Generate a projects scroller with search functionality.-->
 <div class="row">
 	<div class="Projects col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -53,7 +61,7 @@
 		</div>
 	</div>
 </div>
-
+<!--Generate a Groups scroller with search functionality.-->
 <div class="row">
 	<div class="Groups col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
@@ -96,7 +104,7 @@
 		</div>
 	</div>
 </div>
-
+<!--Generate a Students scroller with search functionality.-->
 <div class="row">
 	<div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="panel panel-default">
