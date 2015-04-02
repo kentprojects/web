@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-—>
+<!-- HTML to generate the group profile page -->
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
@@ -148,6 +155,7 @@
 			'',
 			'*Why not comment on their page and let them know?*'
 		].join('\n');
+		// Make call to get the project data from the API.
 		API.GET(
 			"/project/" + profileId, {},
 			function Success(data) {
@@ -224,6 +232,9 @@
 		);
 	});
 
+	/**
+	 * Delete the request to join the current group.
+	 */
 	function cancelRequest() {
 		if (confirm("Are you sure you want to cancel this request?")) {
 			filterIntentsByTypeAndEntity("undertake_a_project", "project", profileId, function (intent) {
@@ -239,7 +250,9 @@
 			});
 		}
 	}
-
+	/**
+	 * If user has the correct access level delete the current project.
+	 */
 	function deleteProject() {
 		if (confirm("Are you sure you want to delete this project?")) {
 			API.DELETE(
@@ -254,6 +267,9 @@
 		}
 	}
 
+	/**
+	 * Release the project back to the pool of projects.
+	 */
 	function giveUpProject() {
 		API.POST(
 			"/intent/", {
@@ -269,6 +285,9 @@
 		);
 	}
 
+	/**
+	 * Open a webpage to allow the user to request to do the project.
+	 */
 	function doProject() {
 		window.location.href = '/intents.php?action=request&request=undertakeAProject&projectId=' + profileId;
 	}

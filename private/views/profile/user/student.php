@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-—>
+<!-- HTML to generate the group profile page -->
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12"><h1 id="userName">&nbsp;</h1></div>
@@ -103,6 +110,7 @@
 			'',
 			'*Why not comment on its creator\'s page and let them know?*'
 		].join('\n');
+		// Get the data about the current student.
 		API.GET(
 			"/student/" + profileId, {},
 			function Success(data) {
@@ -211,10 +219,16 @@
 		);
 	});
 
+	/**
+	 * Invite profile user to the current user's group.
+	 */
 	function inviteToGroup() {
 		window.location.href = '/intents.php?action=request&request=inviteToGroup&studentId=' + profileId;
 	}
 
+	/**
+	 * Cancel the invite of the profile user to the current user's group.
+	 */
 	function cancelInvite() {
 		if (confirm("Are you sure you want to cancel this invitation?")) {
 			filterIntentsByTypeAndEntity("invite_to_group", "user", profileId, function (intent) {
@@ -231,6 +245,9 @@
 		}
 	}
 
+	/**
+	 * Kick the profile user out of the current user's group.
+	 */
 	function kickFromGroup() {
 		if (confirm("Are you sure you want to remove this user from your group?")) {
 			window.location.href = '/intents.php?action=request&request=kickFromGroup&studentId=' + profileId;

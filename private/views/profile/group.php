@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-—>
+<!-- HTML to generate the group profile page -->
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12"><h1 id="groupName">&nbsp;</h1></div>
@@ -102,6 +109,7 @@
 				}
 			}
 		}
+		// Make the API call to get the group scroller data.
 		API.GET(
 			"/group/" + profileId, {},
 			function Success(data) {
@@ -130,11 +138,16 @@
 	});
 
 
-
+	/**
+	 * Load a new page to ask to join the group.
+	 */
 	function joinGroup() {
 		window.location.href = '/intents.php?action=request&request=joinAGroup&groupId=' + profileId;
 	}
 
+	/**
+	 * Cancel the request to join the group.
+	 */
 	function cancelRequest() {
 		if (confirm("Are you sure you want to cancel this request?")) {
 			filterIntentsByTypeAndEntity("join_a_group", "group", profileId, function(intent) {
@@ -151,6 +164,9 @@
 		}
 	}
 
+	/**
+	 * If you're in the group, make the API call to leave the group.
+	 */
 	function leaveGroup() {
 		if (confirm("Are you sure you want to leave this group?")) {
 			API.POST(
@@ -169,6 +185,9 @@
 		}
 	}
 
+	/**
+	 * Make the API call to delete the current group.
+	 */
 	function deleteGroup() {
 		if (confirm("Are you sure you want to delete this group?")) {
 			API.DELETE(
