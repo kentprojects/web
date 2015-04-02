@@ -1,4 +1,11 @@
 <!doctype html>
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */
+ -->
 <html lang="en">
 <head>
 	<meta charset="utf-8">

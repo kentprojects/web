@@ -1,3 +1,9 @@
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */
+
 var backgroundImages = ["includes/img/kentbusiness.jpg","includes/img/kenteye.jpg","includes/img/students.jpg"];
 var counter = 0;
 var infoFadeSpeed = 30;

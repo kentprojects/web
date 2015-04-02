@@ -1,5 +1,11 @@
 <?php
 /**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */
+
+/**
  * @var stdClass $meRequest
  */
 $prerequisites = array("authentication", "me");

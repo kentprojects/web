@@ -1,6 +1,9 @@
 /**
- * Created by house on 17/02/15.
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
  */
+
 var intents = {
 	generic: {
 		title: "person_name sent you a request",

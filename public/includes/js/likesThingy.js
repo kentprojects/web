@@ -1,8 +1,9 @@
 /**
- * At least we all get to write some Javascript, eh?
- *
- * JD woz 'ere 2k15
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
  */
+
 var likesThingy = function emptyLikesThingy() {
 	console.error("Failed to build the native Likes function.");
 };

@@ -1,3 +1,9 @@
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */
+
 var loadQueue = loadQueue || [],
 	scriptQueue = scriptQueue || [];
 loadQueue.execute = function ExecuteLoader() {

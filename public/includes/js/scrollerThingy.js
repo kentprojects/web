@@ -1,6 +1,9 @@
 /**
- * Created by house on 12/02/15.
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
  */
+
 function scrollerTile(item, type, addStyle) {
 	var classList = "", lockedHTML = "", tileHTML = [], tileImage = "", subText = "";
 	// If colour required add to class list.

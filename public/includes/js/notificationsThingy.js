@@ -1,6 +1,9 @@
 /**
- * Notifications. Thingy innit.
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
  */
+
 var notificationsDropdown = document.getElementById("notificationsDropdown");
 var notificationsList = document.getElementById("user-notifications");
 var notificationsBadge = document.getElementById("notificationsBadge");

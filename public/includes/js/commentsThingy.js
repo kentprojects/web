@@ -1,10 +1,9 @@
 /**
- * At least we all get to write some Javascript, eh?
- *
- * JD woz 'ere 2k15
- *
- * Based entirely off http://www.webcodo.net/comments-system-using-php-ajax/
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
  */
+
 var commentsThingy = function EmptyCommentsThingy() {
 	console.error("Failed to build the native Comments function.");
 };

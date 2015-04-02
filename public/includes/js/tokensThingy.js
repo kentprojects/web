@@ -1,3 +1,10 @@
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */
+
+
 function tokensThingy(container, content, saveFunction) {
 
 	saveFunction = saveFunction || false;

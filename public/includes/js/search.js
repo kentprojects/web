@@ -1,5 +1,7 @@
 /**
- * Created by matt on 18/12/14.
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
  */
 
 // Get an XmlHttpRequest Object
