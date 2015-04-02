@@ -1,8 +1,15 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!--Show details and buttons for the intent.-->
 <h3 class="displayNone" id="intentTitle">Ask to join <var class="groupName""></var>?</h3>
 
 <p class="displayNone" id="intentDescription">Do you want to ask <a href="#" class="userName"></a> if you can join
 	<a href="#" class="groupName"></a>?</p>
-
+<!--Buttons to accept or decline the intent.-->
 <div class="btn-group intentResponseButtons">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
 		Confirm
@@ -65,6 +72,9 @@
 				document.querySelector(".btn-group").style.display = "none";
 			}
 		);
+
+		// Setting the functionality of the confirm and cancel buttons.
+
 		confirmRequest = function confirmRequest() {
 			API.POST(
 				'/intent',

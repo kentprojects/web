@@ -1,8 +1,15 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!--Show details and buttons for the intent.-->
 <h3 class="displayNone" id="intentTitle">Ask to undertake <var class="projectName""></var></h3>
 
 <p class="displayNone" id="intentDescription">Do you want to ask <a href="#" class="userName"></a> if your group can
 	undertake <a href="#" class="projectName"></a>?</p>
-
+<!--Buttons to accept or decline the intent.-->
 <div class="btn-group displayNone">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
 		Confirm
@@ -25,6 +32,7 @@
 		API.GET(
 			"/project/" + projectId, {},
 			function Success(data) {
+				// Checking that the group is available to take up the selected project.
 				if (data.body.group != null) {
 					qf("#intentTitle", function (element) {
 						element.innerText = "This project has already been taken, sorry!";
@@ -79,6 +87,9 @@
 				document.querySelector(".btn-group").style.display = "none";
 			}
 		);
+
+		// Setting the functionality of the confirm and cancel buttons.
+
 		confirmRequest = function confirmRequest() {
 			API.POST(
 				'/intent',

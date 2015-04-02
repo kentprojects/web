@@ -1,7 +1,14 @@
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!--Show details and buttons for the intent.-->
 <h3 id="intentTitle">Ask to join this year?</h3>
 
 <p id="intentDescription">Do you want to ask the convener for this year if you can join it?</p>
-
+<!--Buttons to accept or decline the intent.-->
 <div class="btn-group">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
 		Confirm
@@ -19,7 +26,7 @@
 	loadQueue.push(function () {
 		var yearId = phpGets.yearId;
 
-		console.log(me.user);
+		// Setting the functionality of the confirm and cancel buttons.
 
 		confirmRequest = function confirmRequest() {
 			intentCreate("access_year", {yearId: yearId}, "/dashboard.php");

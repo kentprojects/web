@@ -1,8 +1,15 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!--Show details and buttons for the intent.-->
 <h3 id="intentTitle">Remove <var class="userName""></var> from <var class="groupName""></var>?</h3>
 
 <p id="intentDescription">Are you sure you want to remove <a href="#" class="userName"></a> from
 	<a href="#" class="groupName"></a>?</p>
-
+<!--Buttons to accept or decline the intent.-->
 <div class="btn-group intentResponseButtons">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
 		Confirm
@@ -25,6 +32,7 @@
 		API.GET(
 			"/student/" + studentId, {},
 			function Success(data) {
+				// Checking that the current user has the access privileges to kick from the group.
 				if (me.group.creator.id !== me.user.id) {
 					document.querySelector("#intentTitle").innerText = "You didn't create your group!"
 					document.querySelector("#intentDescription").innerHTML = 'Only the creator of a group can invite people to join it. </br><strong><a href=# onclick="cancelRequest();"> Go back? </a></strong>';
@@ -59,6 +67,9 @@
 				document.querySelector(".btn-group").style.display = "none";
 			}
 		);
+
+		// Setting the functionality of the confirm and cancel buttons.
+
 		confirmRequest = function confirmRequest() {
 			API.POST(
 				'/intent',
