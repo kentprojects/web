@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: Matt Weeks <matt.weeks@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */—->
+<!-- Add title and change list view button.-->
 <div class="row">
 	<div class="col-xs-12 col-sm-8 col-md-8">
 		<h1 class="reduceHeading hideEdit float-left listHeading">Students</h1>
@@ -47,6 +54,10 @@
 	</div>
 </form>
 <script type="text/javascript">
+	/**
+	 * Creates a JSON sting according to the filters that are active on the page.
+	 * @returns filtersJSON
+	 */
 	function changeCheck() {
 		if (document.getElementById("checkbox1").checked) {
 			var filters = '{"filters":[{"class":"redStatus","value":"'+document.getElementById("checkbox2").checked+'"},{"class":"yellowStatus","value":"'+document.getElementById("checkbox3").checked+'"},{"class":"greenStatus","value":"'+document.getElementById("checkbox4").checked+'"},{"class":"blueStatus","value":"'+document.getElementById("checkbox5").checked+'"}]}'
@@ -57,6 +68,10 @@
 		}
 	}
 
+	/**
+	 * Enables or disables the filter checkboxes depending on the 'Enable filters' checkbox.
+	 * @returns { void }
+	 */
 	function toggleFilters () {
 		if (document.querySelector("#checkbox1").checked) {
 			document.querySelector("#checkbox2").disabled = false;
@@ -77,6 +92,10 @@
 <script type="text/javascript">
 	var tileView = true;
 	var listData = "";
+
+	/**
+	 * Gets all the data to produce the lists from the API.
+	 */
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function(){
 		API.GET(
@@ -98,6 +117,9 @@
 		);
 	});
 
+	/**
+	 * Switch between the tile view and the list view.
+	 */
 	function changeListView() {
 		if (tileView) {
 			viewList(listData);
@@ -108,6 +130,10 @@
 		studentSearch();
 	}
 
+	/**
+	 * Generate the list from the data retrieved from the API in a table view.
+	 * @param listData
+	 */
 	function viewList(listData) {
 		tileView = false;
 		var output = "<div class='nothingToShow displayNone text-center text-info'>There's nothing to show here...</div><table class='table table-striped listTable'><thead><tr><th></th><th>Name</th><th>Group</th></tr></thead><tbody>";
@@ -115,9 +141,11 @@
 			var dataTag = "";
 			var groupLink = "<a></a>";
 			var extraClass = "";
-			//if in group
+			// if in group
 			if (listData.body[i].group) {
+				// if group has project
 				if (listData.body[i].group.project) {
+					// if current user is the supervisor of the project
 					if (listData.body[i].group.project.supervisor.id == me.user.id) {
 						dataTag = "<a href='/profile.php?type=project&id=" + listData.body[i].group.project.id + "'><span class='label label-info tableLabel'>My project</span></a>";
 						extraClass += " blueStatus ignoreStatusColor";
@@ -143,6 +171,10 @@
 		document.getElementById('listContents').innerHTML = output;	
 	}
 
+	/**
+	 * Generate the list from the data retrieved from the API in tile view.
+	 * @param listData
+	 */
 	function viewTiles(listData) {
 		tileView = true;
 		var output = '<div class="row"><div class="Students col-xs-12 col-sm-12 col-md-12 col-lg-12"><div class="flowDown frame" id="studentScroller"><ul class="clearfix tileListItems"></ul></div></div></div>';

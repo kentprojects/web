@@ -1,8 +1,9 @@
 /**
- * Search functionality for filtering tiles.
- *
- * Matt Weeks
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
  */
+
 
 function searchTiles(frameSelector, filters, stringFind, tileClass) {
 	if (window.tileView == undefined || tileView == true) {

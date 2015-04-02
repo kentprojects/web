@@ -1,7 +1,14 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-->
+<!--Show details and buttons for the intent.-->
 <h3 id="intentTitle">Send a generic request to <var class="userName"">this user?</var></h3>
 
 <p id="intentDescription">Are you sure you want to send a generic request to <var class="userName">the user</var></p>
-
+<!--Buttons to accept or decline the intent.-->
 <div class="btn-group">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
 		Confirm
@@ -29,6 +36,9 @@
 				console.error(data.body);
 			}
 		);
+
+		// Setting the functionality of the confirm and cancel buttons.
+
 		confirmRequest = function confirmRequest() {
 			intentCreate("generic", {user_id: userId}, undefined);
 		};

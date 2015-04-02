@@ -1,5 +1,7 @@
 /**
- * Created by house on 14/02/15.
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
  */
 
 function markdownThingy(container, content, button, saveFunction) {

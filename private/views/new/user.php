@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */—->
+<!--HTML elements to allow the user to generate a new user.-->
 <h3 class="text-center" id="newTitle">Welcome to KentProjects!</h3>
 
 <p class="text-center" id="newDescription">Before we can let you in, we need some information about you.</p>
@@ -42,6 +49,7 @@
 						// Do nothing
 					}
 					else {
+						// Make API calls to create a new user.
 						e.preventDefault();
 						var firstName = document.getElementById("firstName").value;
 						var lastName = document.getElementById("lastName").value;

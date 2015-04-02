@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */--
+<!--Show details and buttons for the intent.-->>
 <h3 id="intentTitle">Submit to CAS office?</h3>
 
 <p id="intentDescription">Are you ready to submit your project to the CAS office?</p>
@@ -5,7 +12,7 @@
 	<input type="checkbox" data-toggle="checkbox" checked id="checkbox1" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
 	This project will entail research involving human participants as defined by the Faculty Research Ethics Procedures available <a href=“http://www.kent.ac.uk/stms/faculty/adminprocedures/research-ethics/index.html” target=“_blank”>here</a>.
 </label>
-
+<!--Buttons to accept or decline the intent.-->
 <div class="btn-group">
 	<button class="btn btn-primary intentAccept" onclick="confirmRequest();" value="Confirm">
 		Confirm
@@ -21,6 +28,9 @@
 
 	var loadQueue = loadQueue || [];
 	loadQueue.push(function () {
+
+		// Setting the functionality of the confirm and cancel buttons.
+
 		confirmRequest = function confirmRequest() {
 			API.POST(
 				'/intent',

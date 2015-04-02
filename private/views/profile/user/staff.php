@@ -1,7 +1,13 @@
+<!--
+/**
+ * @author: KentProjects <developer@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */-—>
+<!-- HTML to generate the group profile page -->
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12"><h1 id="userName">&nbsp;</h1></div>
-
 	</div>
 	<div class="row" id="changeOptions">
 		<div class="col-xs-12 text-center">
@@ -117,7 +123,7 @@
 			'',
 			'*Why not comment on its creator\'s page and let them know?*'
 		].join('\n');
-
+		// Get the data about the selected member of staff.
 		API.GET(
 			"/staff/" + profileId, {},
 			function Success(data) {

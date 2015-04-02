@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */—->
+<!--HTML elements to allow the user to generate a new group.-->
 <h3 class="text-center" id="newTitle">Create a new group</h3>
 
 <p class="text-center" id="newDescription">What would you like to call your new group?</p>
@@ -31,6 +38,7 @@
 						// Do nothing
 					}
 					else {
+						// Call API methods to create new group
 						e.preventDefault();
 						var groupName = document.getElementById("groupName").value;
 						API.POST(

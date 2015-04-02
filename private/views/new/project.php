@@ -1,3 +1,10 @@
+<!--
+/**
+ * @author: Matt House <matt.house@kentprojects.com>
+ * @license: Copyright KentProjects
+ * @link: http://kentprojects.com
+ */—->
+<!--HTML elements to allow the user to generate a new project.-->
 <h3 class="text-center" id="newTitle">Create a new project</h3>
 
 <p class="text-center" id="newDescription">What would you like to call your new project proposal?</p>
@@ -33,6 +40,7 @@
 						// Do nothing
 					}
 					else {
+						// Make API calls to create a new project.
 						e.preventDefault();
 						var projectName = document.getElementById("projectName").value;
 						API.POST(
